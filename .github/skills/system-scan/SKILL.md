@@ -23,8 +23,19 @@ Choose the source in this order:
 
 1. **User-provided file** — if the user has passed a path with
    `load dxdiag <path>`, read that file directly and skip to Step 3.
-2. **Cached file** — if `$env:TEMP\ReFrame-DxDiag.xml` already exists and
-   is less than 15 minutes old, read it directly and skip to Step 3.
+2. **Cached file** — if `$env:TEMP\ReFrame-DxDiag.xml` exists and was written
+   **after the last system boot**, it is still valid for this session.
+   Read it directly and skip to Step 3.
+   Skip this check if the user explicitly ran `scan system` — always regenerate
+   in that case so a display or HDR change mid-session is picked up.
+
+   ```powershell
+   $lastBoot = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
+   $dxPath   = "$env:TEMP\ReFrame-DxDiag.xml"
+   $cacheValid = (Test-Path $dxPath) -and
+                 ((Get-Item $dxPath).LastWriteTime -gt $lastBoot)
+   ```
+
 3. **Generate on the fly** — run dxdiag now (Step 2).
 
 ---
@@ -57,22 +68,22 @@ If the file is absent or empty, skip to **Step 4 (PowerShell fallback)**.
 
 Read the file with `read/readFile` and extract these fields:
 
-| System Profile field     | XML element (first match)                | Notes                                                              |
-| ------------------------ | ---------------------------------------- | ------------------------------------------------------------------ |
-| CPU                      | `SystemInformation > Processor`          |                                                                    |
-| RAM                      | `SystemInformation > Memory`             |                                                                    |
-| OS                        | `SystemInformation > OperatingSystem`    |                                                                    |
-| GPU name                 | `DisplayDevice > CardName`               | Use first `DisplayDevice` (primary GPU)                            |
-| Dedicated VRAM           | `DisplayDevice > DedicatedMemory`        | Strip " MB", divide by 1024 for GB                                 |
-| Driver version           | `DisplayDevice > DriverVersion`          |                                                                    |
-| Driver date              | `DisplayDevice > DriverDate`             |                                                                    |
-| Current resolution + Hz  | `DisplayDevice > CurrentMode`            | e.g. `5120 x 1440 (32 bit) (240Hz)`                               |
-| Native monitor mode      | `DisplayDevice > NativeMode`             | e.g. `3840 x 1080(p) (120.000Hz)`                                  |
-| Monitor model            | `DisplayDevice > MonitorModel`           |                                                                    |
-| HDR active               | `DisplayDevice > ActiveColorMode`        | `DISPLAYCONFIG_ADVANCED_COLOR_MODE_HDR` = HDR on                   |
-| VRR support              | `DisplayDevice > MonitorName`            | Contains `DP_VRR` or `HDMI_VRR` if variable refresh is wired      |
-| HAGS enabled             | `DisplayDevice > HardwareSchedulingAttributes` | `Enabled:True` = HAGS on; `Enabled:False` = off              |
-| DirectX feature level    | `DisplayDevice > FeatureLevels`          | First value, e.g. `12_2` = DX12 Ultimate                          |
+| System Profile field    | XML element (first match)                      | Notes                                                        |
+| ----------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
+| CPU                     | `SystemInformation > Processor`                |                                                              |
+| RAM                     | `SystemInformation > Memory`                   |                                                              |
+| OS                      | `SystemInformation > OperatingSystem`          |                                                              |
+| GPU name                | `DisplayDevice > CardName`                     | Use first `DisplayDevice` (primary GPU)                      |
+| Dedicated VRAM          | `DisplayDevice > DedicatedMemory`              | Strip " MB", divide by 1024 for GB                           |
+| Driver version          | `DisplayDevice > DriverVersion`                |                                                              |
+| Driver date             | `DisplayDevice > DriverDate`                   |                                                              |
+| Current resolution + Hz | `DisplayDevice > CurrentMode`                  | e.g. `5120 x 1440 (32 bit) (240Hz)`                          |
+| Native monitor mode     | `DisplayDevice > NativeMode`                   | e.g. `3840 x 1080(p) (120.000Hz)`                            |
+| Monitor model           | `DisplayDevice > MonitorModel`                 |                                                              |
+| HDR active              | `DisplayDevice > ActiveColorMode`              | `DISPLAYCONFIG_ADVANCED_COLOR_MODE_HDR` = HDR on             |
+| VRR support             | `DisplayDevice > MonitorName`                  | Contains `DP_VRR` or `HDMI_VRR` if variable refresh is wired |
+| HAGS enabled            | `DisplayDevice > HardwareSchedulingAttributes` | `Enabled:True` = HAGS on; `Enabled:False` = off              |
+| DirectX feature level   | `DisplayDevice > FeatureLevels`                | First value, e.g. `12_2` = DX12 Ultimate                     |
 
 After parsing, run these two supplemental PowerShell queries (not in DxDiag):
 
@@ -83,6 +94,9 @@ Get-PhysicalDisk | Select-Object FriendlyName, MediaType, BusType
 # Active power plan — affects CPU boost and latency
 powercfg /getactivescheme
 ```
+
+Leave the temp file in place — it serves as the session cache (Step 1) so
+subsequent `optimise <game>` calls in the same session do not regenerate it.
 
 Proceed to Step 5.
 
@@ -170,9 +184,15 @@ Every downstream recommendation must be appropriate for this tier.
 
 ## Notes
 
-- DxDiag temp file is written to `$env:TEMP\ReFrame-DxDiag.xml` and left in
-  place for 15 minutes as a cache. Do not delete it — Windows TEMP is cleaned
-  up by the OS automatically.
+- DxDiag temp file is written to `$env:TEMP\ReFrame-DxDiag.xml` and kept as a
+  session cache. It is considered valid as long as its `LastWriteTime` is after
+  the last system boot — driver updates, HAGS changes, and GPU changes all
+  require a reboot, so a post-boot file is safe to reuse.
+  The explicit `scan system` command always bypasses this cache to pick up
+  display, HDR, or monitor changes that don’t require a reboot.
+  Windows does not reliably clean TEMP automatically; the file will persist
+  across sessions but will be ignored after a reboot because its write time
+  will pre-date the new `LastBootUpTime`.
 - `msinfo32.txt` is NOT a valid input. It uses UTF-16 binary encoding and
   contains no additional gaming-relevant data beyond what DxDiag provides.
 - If the system has multiple GPUs (integrated + discrete), always use the first
