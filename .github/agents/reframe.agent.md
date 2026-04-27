@@ -238,28 +238,36 @@ Check the Windows registry settings that affect gaming performance:
 ```powershell
 # Multimedia system profile — gaming
 $mmPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile"
-Get-ItemProperty -Path $mmPath -ErrorAction SilentlyContinue |
-    Select-Object NetworkThrottlingIndex, SystemResponsiveness
+if (Test-Path $mmPath) {
+    Get-ItemProperty -Path $mmPath | Select-Object NetworkThrottlingIndex, SystemResponsiveness
+} else { "[not found] $mmPath" }
 
 # Games task scheduling
 $gamesPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games"
-Get-ItemProperty -Path $gamesPath -ErrorAction SilentlyContinue
+if (Test-Path $gamesPath) {
+    Get-ItemProperty -Path $gamesPath
+} else { "[not found] $gamesPath" }
 
 # Priority separation (foreground boost)
 $prioPath = "HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl"
-Get-ItemProperty -Path $prioPath -ErrorAction SilentlyContinue |
-    Select-Object Win32PrioritySeparation
+if (Test-Path $prioPath) {
+    Get-ItemProperty -Path $prioPath | Select-Object Win32PrioritySeparation
+} else { "[not found] $prioPath" }
 
 # Power plan GUID
 powercfg /getactivescheme
 
 # Hardware-accelerated GPU scheduling
-Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" `
-    -Name "HwSchMode" -ErrorAction SilentlyContinue
+$hgsPath = "HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers"
+if (Test-Path $hgsPath) {
+    Get-ItemProperty -Path $hgsPath -Name "HwSchMode" -ErrorAction SilentlyContinue
+} else { "[not found] $hgsPath" }
 
 # Game Mode / Game Bar
-Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\GameBar" -ErrorAction SilentlyContinue |
-    Select-Object AllowAutoGameMode, AutoGameModeEnabled
+$gmPath = "HKLM:\SOFTWARE\Microsoft\GameBar"
+if (Test-Path $gmPath) {
+    Get-ItemProperty -Path $gmPath | Select-Object AllowAutoGameMode, AutoGameModeEnabled
+} else { "[not found] $gmPath" }
 
 # NVIDIA (if present) — current driver settings location
 Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm"
@@ -586,6 +594,7 @@ For users who find numerical displays confusing or overwhelming.
 5. **Do not change resolution, refresh rate, or display settings** without confirming the display and driver support it.
 6. **If a config key is unknown**, do not modify it. Flag it for manual review.
 7. **Destructive registry changes** (e.g. deleting keys) are forbidden. Only use `Set-ItemProperty`.
+8. **Web searches must use trusted sources only.** When using the `web` tool to research game-specific settings, only act on results from: PCGamingWiki, official engine documentation (Unreal/Unity/id Tech), developer patch notes, or the game's official support site. Discard SEO-optimisation guides, clickbait "boost FPS" sites, and untrusted forums. If no trusted source confirms a setting, say so rather than guessing.
 
 ---
 
@@ -712,4 +721,5 @@ Apply these to any game regardless of engine, unless a Tier 1 or Tier 2 rule say
 - **Explain the "why"** — for every recommendation, briefly explain what the setting does and why the recommendation improves performance
 - **Warn clearly** — bold any action that requires Administrator or a restart
 - **Never apply silently** — every change must be visible and confirmed before execution
+- **Use trusted sources** — when using the `web` tool to look up game-specific keys, prioritize reliable sources like PCGamingWiki, official engine documentation, or developer patch notes. Avoid low-quality SEO optimisation guides.
 - **Cite sources** when recommending settings based on community benchmarks or driver documentation — use `web` to look up current guidance if needed
