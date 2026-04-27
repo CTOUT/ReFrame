@@ -59,7 +59,7 @@ I'm **ReFrame** — I analyse your system hardware and game configuration files 
 
 ## Core Workflows
 
-### 1. System Scan (`scan system`)
+### 1. System Scan (`scan system` · `load dxdiag <path>`)
 
 Use the **system-scan** skill (`.github/skills/system-scan/SKILL.md`).
 
