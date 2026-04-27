@@ -1,4 +1,5 @@
-# Require owner review for agent definition, installer, and workflow changes
+# Require owner review for agent definition, installer, workflow, and knowledge base changes
 .github/agents/reframe.agent.md @CTOUT
 install.ps1                     @CTOUT
 .github/workflows/              @CTOUT
+knowledge/                      @CTOUT

@@ -77,13 +77,13 @@ Read the file with `read/readFile` and extract these fields:
 | Dedicated VRAM          | `DisplayDevices > DisplayDevice > DedicatedMemory`              | Strip " MB", divide by 1024 for GB                           |
 | Driver version          | `DisplayDevices > DisplayDevice > DriverVersion`                |                                                              |
 | Driver date             | `DisplayDevices > DisplayDevice > DriverDate`                   |                                                              |
-| Current resolution + Hz | `DisplayDevices > DisplayDevice > CurrentMode`                  | e.g. `5120 x 1440 (32 bit) (240Hz)`                         |
-| Native monitor mode     | `DisplayDevices > DisplayDevice > NativeMode`                   | e.g. `3840 x 1080(p) (120.000Hz)`                           |
+| Current resolution + Hz | `DisplayDevices > DisplayDevice > CurrentMode`                  | e.g. `5120 x 1440 (32 bit) (240Hz)`                          |
+| Native monitor mode     | `DisplayDevices > DisplayDevice > NativeMode`                   | e.g. `3840 x 1080(p) (120.000Hz)`                            |
 | Monitor model           | `DisplayDevices > DisplayDevice > MonitorModel`                 |                                                              |
 | HDR active              | `DisplayDevices > DisplayDevice > ActiveColorMode`              | `DISPLAYCONFIG_ADVANCED_COLOR_MODE_HDR` = HDR on             |
 | VRR support             | `DisplayDevices > DisplayDevice > MonitorName`                  | Contains `DP_VRR` or `HDMI_VRR` if variable refresh is wired |
 | HAGS enabled            | `DisplayDevices > DisplayDevice > HardwareSchedulingAttributes` | `Enabled:True` = HAGS on; `Enabled:False` = off              |
-| DirectX feature level   | `DisplayDevices > DisplayDevice > FeatureLevels`                | First value, e.g. `12_2` = DX12 Ultimate                    |
+| DirectX feature level   | `DisplayDevices > DisplayDevice > FeatureLevels`                | First value, e.g. `12_2` = DX12 Ultimate                     |
 
 After parsing, run these two supplemental PowerShell queries (not in DxDiag):
 
@@ -113,7 +113,7 @@ Get-CimInstance Win32_Processor |
 
 # GPU
 $gpus = Get-CimInstance Win32_VideoController -ErrorAction SilentlyContinue
-$gpus | Sort-Object AdapterRAM -Descending | Select-Object -First 1 | 
+$gpus | Sort-Object AdapterRAM -Descending | Select-Object -First 1 |
     Select-Object Name, @{N='VRAM_GB';E={[math]::Round($_.AdapterRAM/1GB, 1)}}, DriverVersion, VideoProcessor
 
 # RAM
@@ -178,6 +178,14 @@ Then classify the **hardware tier** and store it in session context:
 - **High-end**: RTX 4070+ / RX 7800 XT+ / Arc A770+, 32 GB+ RAM
 - **Mid-range**: RTX 3060–4060 / RX 6600–7600 / i7/R7 mid-gen, 16 GB RAM
 - **Low-end / integrated**: Older cards, integrated graphics, < 16 GB RAM
+
+Always include the assigned tier in the System Profile output:
+
+```
+| Hardware Tier | Mid-range  (override: type "treat as high-end" or "treat as low-end") |
+```
+
+If the user says `treat as high-end`, `treat as mid-range`, or `treat as low-end` at any point, update the stored tier immediately and note the override in subsequent recommendations. Never silently reclassify hardware against the user’s stated preference.
 
 Every downstream recommendation must be appropriate for this tier.
 

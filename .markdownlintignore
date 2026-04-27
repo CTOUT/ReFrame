@@ -1,0 +1,3 @@
+# CODEOWNERS uses # for comments — markdownlint misidentifies them as headings
+
+.github/CODEOWNERS

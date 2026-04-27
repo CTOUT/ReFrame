@@ -1,0 +1,57 @@
+{
+  "_template_version": "1",
+  "_instructions": [
+    "Copy this file to knowledge/game-engines/<kebab-case-engine-name>.json and fill in all fields.",
+    "Remove all _instructions and _comment fields before submitting.",
+    "The engine field must exactly match what game files will use in their engine field.",
+    "Only add keys that have a well-documented, widely-applicable default — avoid game-specific values here.",
+    "Every recommended value must have a source citation in the sources array."
+  ],
+
+  "engine": "REQUIRED — exact engine name, e.g. 'Unreal Engine 5'. Must match what game files reference.",
+  "version_range": "REQUIRED — version string this file covers, e.g. '5.x' or '5.0–5.4'",
+
+  "fallback_for": [
+    "OPTIONAL — list engine names this file covers as a fallback when no dedicated file exists for them.",
+    "REMOVE this field if not applicable.",
+    "Resolution rule: a dedicated exact-match file always wins. This field is only consulted when no exact file exists."
+  ],
+
+  "detection_signatures": {
+    "_comment": "Used by ReFrame to identify this engine from file names and content. Remove _comment.",
+    "file_names": [
+      "REQUIRED — config file names that are characteristic of this engine, e.g. 'GameUserSettings.ini'"
+    ],
+    "section_headers": [
+      "OPTIONAL — INI section headers that identify this engine, e.g. '[/Script/Engine.GameUserSettings]'"
+    ],
+    "key_prefixes": [
+      "OPTIONAL — key name prefixes that identify this engine, e.g. 'sg.', 'r.'"
+    ]
+  },
+
+  "config_file_locations": {
+    "_comment": "Typical config directory path template. Use env var placeholders. Remove _comment.",
+    "windows": "REQUIRED — e.g. '%LOCALAPPDATA%\\<GameName>\\Saved\\Config\\WindowsNoEditor\\'"
+  },
+
+  "keys": [
+    {
+      "_comment": "One entry per engine-default key. Only include keys with a widely-applicable default. Remove _comment.",
+      "key": "REQUIRED — exact key name, e.g. 'sg.ShadowQuality'",
+      "section": "OPTIONAL — section header the key belongs in",
+      "file": "REQUIRED — which config file this key belongs in, e.g. 'GameUserSettings.ini'",
+      "effect": "REQUIRED — plain English description of what this key controls",
+      "recommendations": {
+        "performance": "REQUIRED — engine default recommendation for a performance goal",
+        "balanced": "REQUIRED — engine default recommendation for a balanced goal",
+        "quality": "REQUIRED — engine default recommendation for a quality goal"
+      },
+      "notes": "OPTIONAL — important caveats. In particular: note any known games that override this key so contributors know to check game files first."
+    }
+  ],
+
+  "sources": [
+    "REQUIRED — at least one URL. Accepted: official engine documentation, engine release notes, PCGamingWiki engine page."
+  ]
+}

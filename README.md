@@ -20,28 +20,30 @@ A **GitHub Copilot agent** for game configuration optimisation. ReFrame detects 
 
 ## Installation
 
-### User-level install (recommended)
+### Recommended: clone and repo-level install
 
-Places the agent in your VS Code user prompts folder. Works in every workspace immediately.
+This gives you the full knowledge base (game-specific profiles, per-engine defaults) and keeps it up to date via `git pull`.
+
+```powershell
+git clone https://github.com/CTOUT/ReFrame.git
+cd ReFrame
+.\install.ps1 -Target repo
+```
+
+Open the `ReFrame` folder in VS Code. The agent is available as `@ReFrame` in that workspace and can read the `knowledge/` files at runtime.
+
+> To pin to a specific release: `.\install.ps1 -Target repo -Ref v1.0.0`
+
+### Quick install (any workspace, no clone needed)
+
+Installs the agent to your VS Code user prompts folder so `@ReFrame` is available in every workspace without cloning.
 
 ```powershell
 # PowerShell (Windows)
 irm https://raw.githubusercontent.com/CTOUT/ReFrame/main/install.ps1 | iex
 ```
 
-For a verified install, pin to a release tag:
-
-```powershell
-.\install.ps1 -Ref v1.0.0
-```
-
-### Repo-level install
-
-```powershell
-.\install.ps1 -Target repo
-```
-
-This places the agent in `.github/agents/` and commits with the project, making it available to everyone on the team.
+> **Note:** User-level installs do not include the `knowledge/` files. Game-specific profiles (Tier 1) and per-engine JSON defaults (Tier 2) are unavailable — the agent falls back to its embedded engine defaults and web lookups. For full knowledge base coverage, use the repo-level install above.
 
 ### Manual install
 
@@ -55,6 +57,8 @@ Download `reframe-agent.zip` from the [latest release](https://github.com/CTOUT/
 
 Then restart VS Code (or `Developer: Reload Window`).
 
+The same knowledge base caveat applies — for game-specific profiles, use the repo-level install.
+
 ---
 
 ## Usage
@@ -63,19 +67,19 @@ Open Copilot Chat and select **ReFrame** from the agent picker, or type `@ReFram
 
 ### Quick start
 
-```
+```text
 scan system
 ```
 
 Detects your hardware and shows a system profile.
 
-```
+```text
 optimise Elden Ring
 ```
 
 Finds config files for the named game, analyses current settings, and recommends improvements for your hardware.
 
-```
+```text
 check registry
 ```
 
@@ -120,25 +124,32 @@ Registry changes that require Administrator are shown as runnable PowerShell com
 - A system restart is required for some registry changes (HAGS, priority separation)
 - Config file backups are stored locally in `%LOCALAPPDATA%\ReFrame\Backups\`
 
+See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for help with common issues.
+
 ---
 
 ## Repository Structure
 
-```
+```text
 ReFrame/
 ├── .github/
 │   ├── agents/
 │   │   └── reframe.agent.md        ← the agent definition
+│   ├── skills/
+│   │   └── system-scan/            ← hardware detection skill
 │   ├── workflows/
 │   │   └── release.yml             ← GitHub Actions release workflow
 │   └── CODEOWNERS
 ├── .vscode/
 │   └── extensions.json
 ├── docs/
+│   ├── GAMES.md                    ← Human-readable game config reference
 │   ├── REGISTRY.md                 ← Windows registry keys reference
-│   └── GAMES.md                    ← Known game config paths and keys
+│   └── TROUBLESHOOTING.md          ← Common problems and fixes
 ├── knowledge/
-│   └── games/                      ← Per-game optimisation knowledge
+│   ├── game-engines/               ← Per-engine default profiles (Tier 2)
+│   ├── games/                      ← Per-game config profiles (Tier 1)
+│   └── templates/                  ← Templates for contributors
 ├── .gitattributes
 ├── .gitignore
 ├── .markdownlint.json

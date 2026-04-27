@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Validate tag format
         run: |
-          if [[ ! "${{ github.ref_name }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Tag '${{ github.ref_name }}' does not match vX.Y.Z format"
+          if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Tag '$GITHUB_REF_NAME' does not match vX.Y.Z format"
             exit 1
           fi
         env:
@@ -38,7 +38,7 @@ jobs:
           cat checksums.sha256
 
       - name: Create release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
         with:
           tag_name: ${{ github.ref_name }}
           name: ReFrame ${{ github.ref_name }}
@@ -62,5 +62,6 @@ jobs:
             dist/reframe-agent.zip
             dist/install.ps1
             dist/checksums.sha256
+          fail_on_unmatched_files: true
           draft: false
           prerelease: false

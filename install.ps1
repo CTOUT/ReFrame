@@ -24,6 +24,10 @@
     irm https://raw.githubusercontent.com/CTOUT/ReFrame/main/install.ps1 | iex
 
 .EXAMPLE
+    # Recommended — repo-level install with full knowledge base:
+    git clone https://github.com/CTOUT/ReFrame.git; cd ReFrame; .\install.ps1 -Target repo
+
+.EXAMPLE
     .\install.ps1 -Target repo -Ref v1.0.0
 
 .EXAMPLE
@@ -43,6 +47,12 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+
+# Guard against path traversal in the Ref parameter — '..' could redirect the
+# download to an arbitrary GitHub repository path.
+if ($Ref -match '\.\.') {
+    throw "Invalid -Ref value '$Ref': must not contain '..'"
+}
 
 # Enforce TLS 1.2 / 1.3 for older PowerShell versions
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 -bor [Net.SecurityProtocolType]::Tls13
@@ -109,6 +119,13 @@ try {
     Copy-Item -Path $tempFile -Destination $destFile -Force
     Write-Host "Installed: $destFile"
     Write-Host ""
+    if ($Target -eq 'user') {
+        Write-Host "Note: user-level installs do not include the knowledge base."
+        Write-Host "      Game-specific profiles and per-engine JSON defaults are unavailable."
+        Write-Host "      The agent will use embedded engine defaults and web lookups."
+        Write-Host "      For full knowledge base coverage, clone the repo and use -Target repo."
+        Write-Host ""
+    }
     Write-Host "Restart VS Code (or run 'Developer: Reload Window') to load the agent."
 }
 finally {

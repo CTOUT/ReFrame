@@ -1,0 +1,374 @@
+{
+  "game": "Dead Island 2",
+  "engine": "Unreal Engine 4",
+  "engine_version": "4.25",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\DeadIsland\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\DeadIsland\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Epic Games Store",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\DeadIsland\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\DeadIsland\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "sg.AntiAliasingQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "TAA sample count and temporal stability: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Shadow cascade count, resolution, and soft-shadow quality: 0-4",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.TextureQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Texture streaming quality: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "Bandwidth-bound rather than GPU-compute-bound. Reducing below 2 rarely improves FPS on mid/high-end hardware."
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Particle, fire, and environmental effects quality: 0-4",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.ShadingQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Material shading model complexity, particularly visible on skin and metal in DI2's LA environments: 0-4",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Post-process effects quality including bloom and ambient occlusion: 0-4",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.ViewDistanceQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "LOD and object draw distance: 0-4",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.FoliageQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Foliage density and quality: 0-4",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.SSRQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Screen-space reflection fidelity: 0-4",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.SSAOQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Screen-space ambient occlusion detail: 0-4",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.IndirectShadowQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Indirect (capsule) shadow quality for characters: 0-4",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.SignificanceQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "How many off-screen or distant objects are treated as high-significance and avoid quality cutbacks: 0-4",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "bUseVSync",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Enable or disable in-game VSync",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Always disable. Use G-Sync, FreeSync, or driver-level VSync to avoid input latency."
+    },
+    {
+      "key": "FrameRateLimit",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Maximum frame rate cap in Hz (0 = unlimited)",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "match_monitor_hz"
+      },
+      "notes": "For VRR displays, set 2-3 fps below monitor maximum (e.g. 237 for a 240 Hz panel) to keep inside the VRR range and prevent VSync engaging."
+    },
+    {
+      "key": "bUseHDRDisplayOutput",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Enable HDR output",
+      "recommendations": {
+        "performance": "detect",
+        "balanced": "detect",
+        "quality": "detect"
+      },
+      "notes": "Set True only if HDR is enabled at the OS/display level. Setting True on an SDR display causes washed-out colours. The agent should check the display's HDR state before recommending."
+    },
+    {
+      "key": "r.MotionBlurQuality",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Motion blur quality: 0=off, 1-4=increasing quality",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off in all goals. Primary motion sickness trigger with no meaningful visual benefit in a first-person melee game."
+    },
+    {
+      "key": "r.DepthOfFieldQuality",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Depth of field quality: 0=off",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off in all goals. Causes eye strain in first-person games and is a motion_comfort trigger."
+    },
+    {
+      "key": "r.SceneColorFringeMax",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Maximum chromatic aberration intensity",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off. Peripheral colour fringing is a motion sickness trigger and degrades perceived sharpness."
+    },
+    {
+      "key": "r.FilmGrain",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Enable or disable film grain overlay",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off. Persistent visual noise increases perceptual fatigue with no quality benefit."
+    },
+    {
+      "key": "r.LensFlare",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Enable or disable engine lens flare bloom halos around bright light sources",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off. Bright flash halos are a photosensitivity and motion_comfort trigger."
+    },
+    {
+      "key": "r.MaxAnisotropy",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Anisotropic filtering level (1-16)",
+      "recommendations": {
+        "performance": "8",
+        "balanced": "16",
+        "quality": "16"
+      },
+      "notes": "AF is essentially free on modern GPUs. 16x is recommended for balanced and quality goals."
+    },
+    {
+      "key": "r.HZBOcclusion",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Enable Hierarchical Z-Buffer GPU occlusion culling",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Always enable. Reduces GPU load by culling occluded geometry before shading."
+    },
+    {
+      "key": "r.Streaming.PoolSize",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Texture streaming pool size in MB. Larger pools reduce texture pop-in.",
+      "recommendations": {
+        "performance": "1000",
+        "balanced": "4096",
+        "quality": "8000"
+      },
+      "notes": "Scale with VRAM: ~1000 for 4-6 GB, ~4096 for 8-10 GB, ~8000 for 12 GB+. At 5120x1440 the larger pool is especially important."
+    },
+    {
+      "key": "r.Shadow.RadiusThreshold",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Minimum apparent radius for an object to cast a dynamic shadow. Lower = more objects cast shadows.",
+      "recommendations": {
+        "performance": "0.05",
+        "balanced": "0.03",
+        "quality": "0.008"
+      }
+    },
+    {
+      "key": "r.Shadow.MaxResolution",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Maximum shadow map resolution per light",
+      "recommendations": {
+        "performance": "1024",
+        "balanced": "2048",
+        "quality": "4096"
+      }
+    },
+    {
+      "key": "r.ReflectionCaptureResolution",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Resolution of baked reflection captures — visible in interiors and on glossy surfaces",
+      "recommendations": {
+        "performance": "128",
+        "balanced": "128",
+        "quality": "256"
+      }
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "sg.*",
+      "behaviour": "Scalability group values (sg.ShadowQuality, sg.TextureQuality, etc.) written to GameUserSettings.ini may be overwritten when the player adjusts any setting in the in-game Graphics menu.",
+      "action": "Safe to set via INI, but warn the user that in-game Graphics menu changes will overwrite them. For persistent overrides, use Engine.ini CVars directly."
+    },
+    {
+      "key": "FSR2",
+      "behaviour": "Dead Island 2 ships FSR 2.1 natively. A known bug causes the game to crash when opening the inventory menu while FSR 2 is enabled.",
+      "action": "Always recommend keeping FSR 2 off. Flag this bug if the user mentions FSR or asks about upscaling."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Field of View",
+      "location": "Graphics → Field of View slider (range 70°–100°)",
+      "recommendation": "90–95°",
+      "reason": "Below ~80° increases nausea risk in first-person games. 90–95° is the motion_comfort sweet spot without introducing edge distortion."
+    },
+    {
+      "setting": "Camera / head bob",
+      "location": "Accessibility or Gameplay settings",
+      "recommendation": "Disable",
+      "reason": "Walking and combat head bob is a strong vestibular trigger in first-person melee games."
+    },
+    {
+      "setting": "Camera shake",
+      "location": "Accessibility settings",
+      "recommendation": "Reduce or disable",
+      "reason": "Hit-impact camera jolts compound with fast melee combat to increase motion discomfort."
+    }
+  ],
+  "notes": [
+    "Dead Island 2 uses UE4 4.25 with a 0-4 scalability range on most sg.* keys, unlike the standard UE4 0-3 range. Recommendations account for this.",
+    "At 5120x1440 (ultrawide) or higher resolutions, increase r.Streaming.PoolSize above the UE4 engine default — texture pop-in is more visible at high resolutions.",
+    "Native FSR 2.1 is present but should be left off due to the inventory crash bug. At 1440p and above on RTX 3070+ hardware, native rendering is preferred anyway.",
+    "HDR output is supported. Only set bUseHDRDisplayOutput=True if the OS display HDR toggle is also on."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Dead_Island_2"
+  ]
+}

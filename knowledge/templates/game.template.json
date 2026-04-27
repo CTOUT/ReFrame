@@ -1,0 +1,70 @@
+{
+  "_template_version": "1",
+  "_instructions": [
+    "Copy this file to knowledge/games/<kebab-case-game-name>.json and fill in all fields.",
+    "Remove all _instructions and _comment fields before submitting.",
+    "Delete optional sections that do not apply rather than leaving them empty.",
+    "Verify config paths against a real installation before submitting.",
+    "Every recommended value must have a source citation in the top-level sources array."
+  ],
+
+  "game": "REQUIRED — exact display name of the game, e.g. 'Dead Island 2'",
+  "engine": "REQUIRED — engine name matching the engine field in a knowledge/game-engines/ file, or 'unknown'",
+  "engine_version": "OPTIONAL — specific version string if known, e.g. '4.25'",
+
+  "platforms": [
+    {
+      "_comment": "One entry per store/platform. Duplicate the block if the game is on multiple stores with different paths.",
+      "store": "REQUIRED — e.g. 'Steam', 'Epic Games Store', 'GOG', 'Xbox Game Pass', 'Battle.net'",
+      "config_files": [
+        {
+          "path": "REQUIRED — full path using env var placeholders: %USERPROFILE%, %APPDATA%, %LOCALAPPDATA%, %PROGRAMFILES%, %PROGRAMFILES(X86)%",
+          "format": "REQUIRED — one of: ini, json, xml, cfg, txt"
+        }
+      ]
+    }
+  ],
+
+  "keys": [
+    {
+      "_comment": "One entry per config key. Repeat block for each key. Remove _comment field.",
+      "key": "REQUIRED — exact key name as it appears in the config file, e.g. 'sg.ShadowQuality'",
+      "file": "REQUIRED — filename only, e.g. 'GameUserSettings.ini'",
+      "section": "OPTIONAL — section header the key lives under, e.g. '[/Script/Engine.GameUserSettings]'",
+      "effect": "REQUIRED — plain English description of what the key controls",
+      "recommendations": {
+        "performance": "REQUIRED — recommended value for a performance goal",
+        "balanced": "REQUIRED — recommended value for a balanced goal",
+        "quality": "REQUIRED — recommended value for a quality goal"
+      },
+      "notes": "OPTIONAL — version caveats, hardware requirements, or other considerations for this specific key"
+    }
+  ],
+
+  "engine_overrides": [
+    {
+      "_comment": "OPTIONAL section — only include if this game overrides engine defaults in ways that would cause incorrect recommendations. Remove _comment field.",
+      "key": "REQUIRED — the key (or 'sg.*' glob) that is overridden",
+      "behaviour": "REQUIRED — describe exactly what the game does differently from the engine default, e.g. 'Reset on launch by in-game menu'",
+      "action": "REQUIRED — what ReFrame should do instead, e.g. 'Use in-game slider; direct INI edits will be overwritten'"
+    }
+  ],
+
+  "manual_only_settings": [
+    {
+      "_comment": "OPTIONAL section — settings that can only be changed via in-game menus, not config files. Remove _comment field.",
+      "setting": "REQUIRED — display name of the setting as shown in the game menu",
+      "location": "REQUIRED — menu path, e.g. 'Settings → Graphics → Field of View'",
+      "recommendation": "REQUIRED — recommended value or action",
+      "reason": "REQUIRED — why this setting matters for the goal or modifier"
+    }
+  ],
+
+  "notes": [
+    "OPTIONAL — version-specific caveats, known bugs, or other considerations that apply to the game as a whole"
+  ],
+
+  "sources": [
+    "REQUIRED — at least one URL. Accepted: PCGamingWiki, official engine docs, developer patch notes, game official support. Avoid SEO guides and untrusted forums."
+  ]
+}

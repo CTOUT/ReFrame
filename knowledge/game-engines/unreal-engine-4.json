@@ -1,0 +1,116 @@
+{
+  "engine": "Unreal Engine 4",
+  "version_range": "4.x",
+  "fallback_for": ["Unreal Engine 5"],
+  "fallback_for_note": "Used as fallback defaults only when no dedicated engine file exists for the listed engines. If a dedicated file (e.g. unreal-engine-5.json) exists, it always wins unconditionally, regardless of this field. Among multiple files claiming fallback coverage for the same engine, the file with the closest version match takes priority.",
+  "detection_signatures": {
+    "file_names": ["GameUserSettings.ini", "Engine.ini", "Scalability.ini"],
+    "section_headers": [
+      "[/Script/Engine.GameUserSettings]",
+      "[/Script/Engine.Engine]"
+    ],
+    "key_prefixes": ["sg.", "r.", "b"]
+  },
+  "config_file_locations": {
+    "windows": "%LOCALAPPDATA%\\<GameName>\\Saved\\Config\\WindowsNoEditor\\"
+  },
+  "keys": [
+    {
+      "key": "sg.ResolutionQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Render resolution scale as a percentage (50-100). Does not affect UI resolution.",
+      "recommendations": {
+        "performance": "75",
+        "balanced": "85",
+        "quality": "100"
+      },
+      "notes": "Some games replace the default UE4 scalability system with a custom scaler or reset this value on launch. Always check docs/GAMES.md or knowledge/games/ for a game-specific override before applying."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Shadow rendering quality: 0=low, 1=medium, 2=high, 3=epic",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.TextureQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Texture streaming quality: 0=low, 1=medium, 2=high, 3=epic",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Texture quality is bandwidth-bound rather than GPU-compute-bound. Reducing below 2 rarely improves FPS on mid/high-end hardware."
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Particle and visual effects quality: 0=low, 1=medium, 2=high, 3=epic",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Post-process effects quality including bloom, lens flare, and ambient occlusion: 0=low, 1=medium, 2=high, 3=epic",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "r.Streaming.PoolSize",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Texture streaming pool size in MB. Higher values reduce texture pop-in on GPUs with sufficient VRAM.",
+      "recommendations": {
+        "performance": "1000",
+        "balanced": "2000",
+        "quality": "4000"
+      },
+      "notes": "Scale with available VRAM: ~1000 for 4-6 GB, ~2000 for 8 GB, ~4000 for 12 GB+."
+    },
+    {
+      "key": "bUseVSync",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Enables or disables in-game VSync",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Always disable in-game VSync. Use G-Sync, FreeSync, or driver-level VSync instead to avoid input latency."
+    },
+    {
+      "key": "FrameRateLimit",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Maximum frame rate cap in Hz (0 = unlimited)",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "match_monitor_hz"
+      },
+      "notes": "Set to monitor refresh rate. Uncapped causes screen tearing, unnecessary GPU heat, and higher power draw."
+    }
+  ],
+  "sources": [
+    "https://docs.unrealengine.com/4.27/en-US/TestingAndOptimization/PerformanceAndProfiling/",
+    "https://www.pcgamingwiki.com/wiki/Engine:Unreal_Engine_4"
+  ]
+}

@@ -68,3 +68,16 @@ ReFrame uses `run/runInTerminal` to execute PowerShell for hardware detection an
 - Registry changes use `Set-ItemProperty` only — no `Remove-Item`, `Remove-ItemProperty`, or `reg delete`
 - All PowerShell commands in the agent use only well-known registry paths with no dynamic path construction from user input
 - The agent requires explicit user confirmation before any write operation
+- Game names are sanitised before use in backup path construction (strips `\/:*?"<>|` and `..` sequences)
+- Game names are escaped with `[WildcardPattern]::Escape()` before use in `-like` file search patterns
+
+## GitHub Actions
+
+The release workflow (`release.yml`) pins all actions to full commit SHAs to prevent supply-chain compromise via mutable tags:
+
+| Action                        | SHA                                        | Tag    |
+| ----------------------------- | ------------------------------------------ | ------ |
+| `actions/checkout`            | `de0fac2e4500dabe0009e67214ff5f5447ce83dd` | v6.0.2 |
+| `softprops/action-gh-release` | `b4309332981a82ec1c5618f44dd2e27cc8bfbfda` | v3.0.0 |
+
+When updating either action, replace the SHA with the new release's commit SHA — do not revert to a mutable tag reference.

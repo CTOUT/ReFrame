@@ -10,7 +10,7 @@ Paths use environment variable placeholders: `%USERPROFILE%`, `%APPDATA%`, `%LOC
 
 When adding a new game:
 
-```
+```markdown
 ### Game Name
 
 **Engine:** Unreal Engine 4 / Source / Unity / Custom / Unknown
@@ -43,7 +43,7 @@ custom scaler, broken implementation, deliberate rebalance by the developer).
 | Steam    | `%LOCALAPPDATA%\Ark\Saved\Config\WindowsNoEditor\GameUserSettings.ini` | INI    |
 |          | `%LOCALAPPDATA%\Ark\Saved\Config\WindowsNoEditor\Engine.ini`           | INI    |
 
-### Engine Overrides
+### Ark: Engine Overrides
 
 Ark ships a heavily customised UE4 scalability and rendering pipeline. Several standard UE4 engine defaults either do not apply, are overwritten on launch, or have been rebalanced by the developers.
 
@@ -79,7 +79,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 - **Two config files matter:** Changes to scalability groups (textures, shadows, effects) must go through the in-game Graphics menu or they will be overwritten. Performance-focused INI tweaks go in `Engine.ini` and are persistent.
 - **[/Script/Engine.Engine] section** in `Engine.ini` is where most persistent rendering CVars should be placed.
 - Ark's version history matters: some CVars behaved differently before the UE4 upgrade patches (late 2020+). These recommendations are for post-upgrade builds.
-- **Sources:** [Ark community performance guide](https://survivetheark.com/), community benchmarks on r/playark.
+- **Sources:** [Ark Official Forums](https://survivetheark.com/), community benchmarks on r/playark.
 
 ---
 
@@ -134,6 +134,70 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `fps_max`            | Frame rate cap           | Match monitor refresh rate |
 | `r_dynamic_lighting` | Dynamic lighting quality | `0` (competitive) / `1`    |
 | `mat_queue_mode`     | Async material loading   | `2`                        |
+
+---
+
+## Dead Island 2
+
+**Engine:** Unreal Engine 4 (4.25)
+
+| Platform   | Config Path                                                                              | Format |
+| ---------- | ---------------------------------------------------------------------------------------- | ------ |
+| Steam      | `%LOCALAPPDATA%\DeadIsland\Saved\Config\WindowsNoEditor\GameUserSettings.ini`            | INI    |
+| Epic       | `%LOCALAPPDATA%\DeadIsland\Saved\Config\WindowsNoEditor\GameUserSettings.ini`            | INI    |
+| Steam/Epic | `%LOCALAPPDATA%\DeadIsland\Saved\Config\WindowsNoEditor\Engine.ini`                      | INI    |
+
+**Key settings — GameUserSettings.ini (`[/Script/Engine.GameUserSettings]`):**
+
+> ⚠️ DI2 uses a **0–4 scalability range** (not the standard UE4 0–3). Adjusting any setting in the in-game Graphics menu will overwrite `sg.*` values in this file. For persistent overrides, use `Engine.ini` CVars instead.
+
+| Key                       | Effect                              | Recommended (mid) | Recommended (high) |
+| ------------------------- | ----------------------------------- | ----------------- | ------------------ |
+| `sg.AntiAliasingQuality`  | TAA quality (0–4)                   | `2`               | `4`                |
+| `sg.ShadowQuality`        | Shadow quality (0–4)                | `2`               | `4`                |
+| `sg.TextureQuality`       | Texture streaming quality (0–4)     | `2`               | `4`                |
+| `sg.EffectsQuality`       | Particle and effects quality (0–4)  | `2`               | `4`                |
+| `sg.ShadingQuality`       | Material shading complexity (0–4)   | `2`               | `4`                |
+| `sg.PostProcessQuality`   | Post-process effects quality (0–4)  | `2`               | `4`                |
+| `sg.ViewDistanceQuality`  | LOD and draw distance (0–4)         | `2`               | `4`                |
+| `sg.FoliageQuality`       | Foliage density and quality (0–4)   | `2`               | `4`                |
+| `sg.SSRQuality`           | Screen-space reflections (0–4)      | `1`               | `4`                |
+| `sg.SSAOQuality`          | Ambient occlusion detail (0–4)      | `1`               | `4`                |
+| `sg.IndirectShadowQuality`| Capsule shadow quality (0–4)        | `2`               | `4`                |
+| `sg.SignificanceQuality`  | Off-screen object significance (0–4)| `2`               | `4`                |
+| `bUseVSync`               | In-game VSync                       | `False`           | `False`            |
+| `FrameRateLimit`          | Frame rate cap (Hz)                 | Monitor Hz        | Monitor Hz − 3 for VRR |
+
+**Key settings — Engine.ini (`[/Script/Engine.Engine]`):**
+
+| Key                             | Effect                                              | Recommended (mid) | Recommended (high) |
+| ------------------------------- | --------------------------------------------------- | ----------------- | ------------------ |
+| `r.MotionBlurQuality`           | Motion blur (0 = off)                               | `0`               | `0`                |
+| `r.DepthOfFieldQuality`         | Depth of field (0 = off)                            | `0`               | `0`                |
+| `r.SceneColorFringeMax`         | Chromatic aberration max intensity (0 = off)        | `0`               | `0`                |
+| `r.FilmGrain`                   | Film grain overlay (0 = off)                        | `0`               | `0`                |
+| `r.LensFlare`                   | Engine lens flare halos (0 = off)                   | `0`               | `0`                |
+| `r.MaxAnisotropy`               | Anisotropic filtering level                         | `8`               | `16`               |
+| `r.HZBOcclusion`                | GPU occlusion culling (1 = on)                      | `1`               | `1`                |
+| `r.Streaming.PoolSize`          | Texture streaming pool (MB)                         | `2000`            | `8000`             |
+| `r.Shadow.RadiusThreshold`      | Min radius for dynamic shadows (lower = more)       | `0.03`            | `0.008`            |
+| `r.Shadow.MaxResolution`        | Max shadow map resolution per light                 | `2048`            | `4096`             |
+| `r.ReflectionCaptureResolution` | Baked reflection capture resolution                 | `128`             | `256`              |
+
+### Dead Island 2: Engine Overrides
+
+| Key | UE4 Engine Default | DI2 Behaviour | What to do |
+| --- | ------------------ | ------------- | ---------- |
+| `sg.*` scalability keys | Edit directly in INI | **Overwritten** when the player changes any setting in the in-game Graphics menu | Safe to set via INI, but warn user. For persistent changes use `Engine.ini` CVars directly. |
+| FSR 2 | Not present in standard UE4 | DI2 ships FSR 2.1 natively — **known crash bug**: opening the inventory menu while FSR 2 is enabled crashes the game | Always recommend keeping FSR 2 off. Flag the bug if user asks about upscaling. |
+| `sg.*` range | 0–3 | DI2 uses **0–4** | Use 0–4 values; do not cap recommendations at 3. |
+
+**Notes:**
+
+- All four post-process comfort settings (`r.MotionBlurQuality`, `r.DepthOfFieldQuality`, `r.SceneColorFringeMax`, `r.FilmGrain`) are recommended off regardless of goal — they are the primary motion sickness and visual fatigue triggers in a first-person melee game.
+- At 5120×1440 or higher, increase `r.Streaming.PoolSize` significantly — texture pop-in is more visible at ultrawide/super-ultrawide resolutions.
+- FOV (70°–100°), head bob, and camera shake can only be set via the in-game menu.
+- **Sources:** [PCGamingWiki — Dead Island 2](https://www.pcgamingwiki.com/wiki/Dead_Island_2), ReFrame live session data.
 
 ---
 

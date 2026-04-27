@@ -1,0 +1,63 @@
+name: Feature Request
+description: Suggest a new feature or improvement to ReFrame
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting, check the [TODO list](../blob/main/TODO.md) to see if this is already planned.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: What part of ReFrame does this relate to?
+      options:
+        - New game knowledge profile
+        - New engine knowledge profile
+        - New command or workflow
+        - Registry / system optimisation
+        - Accessibility modifier
+        - GPU / driver integration
+        - Platform support (Linux, macOS, Steam Deck)
+        - Installer
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the gap or pain point you have encountered.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe what you would like to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you have thought about?
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Relevant sources
+      description: For game or engine profile requests — link to PCGamingWiki, developer documentation, or community guides that document the config keys.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and this is not a duplicate
+          required: true

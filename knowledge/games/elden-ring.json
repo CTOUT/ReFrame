@@ -1,0 +1,63 @@
+{
+  "game": "Elden Ring",
+  "engine": "unknown",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%APPDATA%\\EldenRing\\<SteamID64>\\GraphicsConfig.xml",
+          "format": "xml"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "ScreenMode",
+      "effect": "Display mode: 0=windowed, 1=borderless fullscreen, 2=exclusive fullscreen",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "2",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "AntiAliasing",
+      "effect": "Anti-aliasing quality level: 0=low TAA, 1=medium TAA, 2=high TAA",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "MotionBlur",
+      "effect": "Enable or disable motion blur",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off in all goals. Primary motion comfort trigger with no meaningful visual benefit."
+    },
+    {
+      "key": "Raytracing",
+      "effect": "Enable ray tracing effects",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      },
+      "notes": "Quality goal only, and only on RTX 3080-class hardware or better. Has a significant performance cost."
+    }
+  ],
+  "engine_overrides": [],
+  "notes": [
+    "Elden Ring has no built-in FPS cap. Use RTSS or an NVIDIA/AMD driver-level frame cap to limit to monitor refresh rate.",
+    "Config options are sparse — most settings must be changed through the in-game menu or RTSS."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Elden_Ring"
+  ]
+}
