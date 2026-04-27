@@ -71,16 +71,14 @@ The release workflow will package `reframe-agent.zip` and publish it automatical
 
 ## Adding Game Knowledge
 
-To add a new game's configuration profile, create a Markdown file in `knowledge/games/`:
-
-```
-knowledge/games/<GameName>.md
-```
+To add a new game's configuration profile, add a section to `docs/GAMES.md` following the template at the top of that file.
 
 Include:
+- The game's underlying engine
 - Common config file paths (use environment variable placeholders)
 - Key names and their effect on performance
 - Recommended values per hardware tier
-- Source citations (benchmark article, developer post, etc.)
+- **Engine overrides** — any keys where this game's behaviour differs from the engine default, with an explanation of why (e.g. reset on launch, custom scaler, deliberate rebalance)
+- Source citations (benchmark article, developer post, community guide)
 
-See existing files in `knowledge/games/` for the expected structure.
+The engine override section is the most important part for games built on shared engines (Unreal, Source, Unity). Without it, ReFrame may apply engine defaults that are wrong or harmful for that specific game.

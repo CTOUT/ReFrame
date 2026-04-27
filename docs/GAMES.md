@@ -13,18 +13,73 @@ When adding a new game:
 ```
 ### Game Name
 
-| Platform | Config Path                                          | Format |
-| -------- | ---------------------------------------------------- | ------ |
+**Engine:** Unreal Engine 4 / Source / Unity / Custom / Unknown
+
+| Platform | Config Path                                           | Format |
+| -------- | ----------------------------------------------------- | ------ |
 | Steam    | `%LOCALAPPDATA%\GameName\Config\GameUserSettings.ini` | INI    |
 
 **Key settings:**
 
-| Key             | Effect               | Recommended (mid) | Recommended (high) |
-| --------------- | -------------------- | ----------------- | ------------------ |
-| ResolutionX     | Horizontal resolution| 1920              | 2560               |
+| Key         | Effect                | Recommended (mid) | Recommended (high) | Overrides engine default? |
+| ----------- | --------------------- | ----------------- | ------------------ | ------------------------- |
+| ResolutionX | Horizontal resolution | 1920              | 2560               | No                        |
 
-**Notes:** Any caveats, known issues, or version-specific information.
+**Engine overrides:** List any keys where this game's behaviour differs from the engine default.
+For each override, explain WHY the engine default is wrong for this game (e.g. reset on launch,
+custom scaler, broken implementation, deliberate rebalance by the developer).
+
+**Notes:** Version-specific caveats, known bugs, or other considerations.
 ```
+
+---
+
+## Ark: Survival Evolved
+
+**Engine:** Unreal Engine 4 (heavily modified)
+
+| Platform | Config Path                                                                          | Format |
+| -------- | ------------------------------------------------------------------------------------ | ------ |
+| Steam    | `%LOCALAPPDATA%\Ark\Saved\Config\WindowsNoEditor\GameUserSettings.ini`              | INI    |
+|          | `%LOCALAPPDATA%\Ark\Saved\Config\WindowsNoEditor\Engine.ini`                        | INI    |
+
+### Engine Overrides
+
+Ark ships a heavily customised UE4 scalability and rendering pipeline. Several standard UE4 engine defaults either do not apply, are overwritten on launch, or have been rebalanced by the developers.
+
+| Key                          | UE4 Engine Default | Ark Behaviour | What to do |
+| ---------------------------- | ------------------ | ------------- | ---------- |
+| `sg.ResolutionQuality`       | Edit directly      | **Reset on launch** by Ark's graphics menu | Set via the in-game Graphics slider, not INI. Direct INI edits will be overwritten. |
+| `sg.ShadowQuality`           | Edit directly      | **Reset on launch** by Ark's graphics menu | Same — use in-game slider. |
+| `sg.TextureQuality`          | Edit directly      | **Reset on launch** by Ark's graphics menu | Same — use in-game slider. |
+| `sg.EffectsQuality`          | Edit directly      | **Reset on launch**                        | Same — use in-game slider. |
+| `sg.PostProcessQuality`      | Edit directly      | **Reset on launch**                        | Same — use in-game slider. |
+| `bUseVSync`                  | `False` recommended | Works as expected in `GameUserSettings.ini` | Safe to set `False` via INI. |
+| `FrameRateLimit`             | Set to monitor Hz  | Works — set in `[/Script/Engine.GameUserSettings]` | Safe to set via INI. |
+| `r.Streaming.PoolSize`       | `1000`–`4000`      | Not reset by the game menu — INI edit persists | Safe to set in `Engine.ini` under `[/Script/Engine.Engine]`. Scale with VRAM. |
+| `r.Shadow.RadiusThreshold`   | Not exposed        | Not reset — INI edit persists              | Set in `Engine.ini`. Higher values (e.g. `0.05`) reduce shadow draw calls; lower (e.g. `0.005`) increases quality. |
+| `r.DepthOfFieldQuality`      | Not exposed        | Not reset — INI edit persists              | `0` disables depth-of-field blur (performance gain, especially outdoors). |
+| `grass.DensityScale`         | Not exposed        | Not reset — INI edit persists              | `0.6`–`0.8` (mid) / `1.0` (high). Grass is a significant CPU/GPU cost in Ark. |
+| `foliage.DensityScale`       | Not exposed        | Not reset — INI edit persists              | `0.6`–`0.8` (mid) / `1.0` (high). |
+
+**Key settings (INI-safe — not reset on launch):**
+
+| Key                         | File         | Recommended (mid)         | Recommended (high)        |
+| --------------------------- | ------------ | ------------------------- | ------------------------- |
+| `bUseVSync`                 | GameUserSettings | `False`               | `False`                   |
+| `FrameRateLimit`            | GameUserSettings | Match monitor Hz      | Match monitor Hz          |
+| `r.Streaming.PoolSize`      | Engine.ini   | `2000`                    | `4000`                    |
+| `r.Shadow.RadiusThreshold`  | Engine.ini   | `0.03`                    | `0.008`                   |
+| `r.DepthOfFieldQuality`     | Engine.ini   | `0`                       | `0`                       |
+| `grass.DensityScale`        | Engine.ini   | `0.7`                     | `1.0`                     |
+| `foliage.DensityScale`      | Engine.ini   | `0.7`                     | `1.0`                     |
+
+**Notes:**
+
+- **Two config files matter:** Changes to scalability groups (textures, shadows, effects) must go through the in-game Graphics menu or they will be overwritten. Performance-focused INI tweaks go in `Engine.ini` and are persistent.
+- **[/Script/Engine.Engine] section** in `Engine.ini` is where most persistent rendering CVars should be placed.
+- Ark's version history matters: some CVars behaved differently before the UE4 upgrade patches (late 2020+). These recommendations are for post-upgrade builds.
+- **Sources:** [Ark community performance guide](https://survivetheark.com/), community benchmarks on r/playark.
 
 ---
 

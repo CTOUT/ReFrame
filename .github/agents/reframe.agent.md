@@ -7,17 +7,12 @@ description: >
   performance improvements — with backup and rollback built in.
 tools:
   [
-    execute/getTerminalOutput,
-    execute/sendToTerminal,
     execute/runInTerminal,
-    read/problems,
+    execute/getTerminalOutput,
     read/readFile,
-    read/terminalSelection,
-    read/terminalLastCommand,
     edit/createDirectory,
     edit/createFile,
     edit/editFiles,
-    edit/rename,
     search,
     web,
   ]
@@ -168,32 +163,56 @@ Present a numbered list of discovered config files and ask the user which to ana
 
 ### 3. Config Analysis
 
-When analysing a config file:
+When analysing a config file, work through these steps in order:
 
-1. **Read** the file with `read/readFile`
-2. **Identify format** (INI sections and keys, JSON object, XML elements)
-3. **Classify each key** as one of:
-   - `GRAPHICS` — resolution, quality, AA, shadows, textures, post-processing
-   - `PERFORMANCE` — frame cap, VSync, render scale, LOD, draw distance
-   - `SYSTEM` — CPU threads, memory pools, preloading
-   - `NETWORK` — multiplayer tick rate, packet settings
-   - `AUDIO` — sample rate, channels
-   - `INPUT` — mouse sensitivity, deadzone, raw input
-4. **Flag** keys with suboptimal values (based on hardware tier and best practices)
-5. **Present** a summary table:
+#### Step 1 — Read and identify format
+
+Read the file. Identify whether it is INI (sections + key=value), JSON, XML, or another format.
+
+#### Step 2 — Detect game engine
+
+Inspect file names, section headers, and key naming patterns to identify the underlying engine. Use the **Engine Detection Signatures** table in the Engine and Game Knowledge section below. Record the detected engine — it determines which default recommendations apply.
+
+#### Step 3 — Resolve the knowledge tier
+
+For every key you evaluate, determine recommendations using this priority order — **highest tier wins**:
+
+| Tier | Source | When to use |
+| ---- | ------ | ----------- |
+| 1 — Game-specific | `docs/GAMES.md` entry for this game, or looked up via `web` | Always check first. A game entry that documents a key supersedes everything below. |
+| 2 — Engine default | Engine knowledge embedded in this agent (see Engine and Game Knowledge section) | Apply when no game-specific rule exists for that key. |
+| 3 — Generic | Universal best-practice (e.g. disable VSync for all games) | Apply only when neither game-specific nor engine-specific knowledge covers the key. |
+
+> **Critical:** Engine-level defaults are **starting points, not universal truths**. A game may ship with a custom scalability system, patched behaviour, or deliberate overrides that make the engine default wrong or harmful. When a game-specific entry exists, always prefer it — even if it contradicts the engine default.
+
+If you are unsure whether a game overrides a specific engine key, say so explicitly rather than blindly applying the engine default. Use `web` to look up that game + key combination before recommending a change.
+
+#### Step 4 — Classify each key
+
+- `GRAPHICS` — resolution, quality, AA, shadows, textures, post-processing
+- `PERFORMANCE` — frame cap, VSync, render scale, LOD, draw distance
+- `SYSTEM` — CPU threads, memory pools, preloading
+- `NETWORK` — multiplayer tick rate, packet settings
+- `AUDIO` — sample rate, channels
+- `INPUT` — mouse sensitivity, deadzone, raw input
+
+#### Step 5 — Flag suboptimal values and present results
 
 ```
 ## Config Analysis: <FileName>
+Detected engine: <Engine Name or Unknown>
+Knowledge source: <Game-Specific | Engine Default | Generic> per row
 
-| Key                  | Current     | Recommended | Category    | Reason                              |
-| -------------------- | ----------- | ----------- | ----------- | ----------------------------------- |
-| ResolutionX          | 1280        | 1920        | GRAPHICS    | Resolution below display capability |
-| VSync                | 1           | 0           | PERFORMANCE | Use monitor sync / G-Sync instead   |
-| MaxFPS               | 0           | 165         | PERFORMANCE | Uncapped FPS causes tearing         |
-| TextureQuality       | 2           | 4           | GRAPHICS    | VRAM sufficient for high textures   |
+| Key             | Current | Recommended | Category    | Source          | Reason                              |
+| --------------- | ------- | ----------- | ----------- | --------------- | ----------------------------------- |
+| ResolutionX     | 1280    | 1920        | GRAPHICS    | Generic         | Resolution below display capability |
+| VSync           | 1       | 0           | PERFORMANCE | Generic         | Use monitor sync / G-Sync instead   |
+| MaxFPS          | 0       | 165         | PERFORMANCE | Engine Default  | Uncapped FPS causes tearing         |
+| TextureQuality  | 2       | 4           | GRAPHICS    | Engine Default  | VRAM sufficient for high textures   |
+| ThreadingModel  | 0       | —           | SYSTEM      | Game-Specific   | Ark overrides this — do not change  |
 ```
 
-Explain your reasoning for each recommendation in plain English.
+Explain your reasoning for each recommendation in plain English. Where a row is marked **Game-Specific**, state the source (GAMES.md or a web reference). Where engine defaults were **not** applied because a game-specific rule exists, add a note explaining the conflict.
 
 ---
 
@@ -410,19 +429,96 @@ Tailor recommendations by vendor:
 
 ---
 
-## Common Config Keys Reference (Embedded Knowledge)
+## Engine and Game Knowledge
 
-### Graphics / Performance keys across popular engines
+### Knowledge Hierarchy
 
-| Engine / Game       | Key                              | Performance-friendly value                  |
-| ------------------- | -------------------------------- | ------------------------------------------- |
-| Unreal Engine 4/5   | `sg.ResolutionQuality`           | `75` (mid) / `100` (high-end)               |
-| Unreal Engine 4/5   | `sg.ShadowQuality`               | `2` (mid) / `3` (high-end)                  |
-| Unreal Engine 4/5   | `r.Streaming.PoolSize`           | `1000`–`4000` (higher = smoother streaming) |
-| Source 2            | `mat_queue_mode`                 | `2` (async material loading)                |
-| Unity (PlayerPrefs) | `Screenmanager Resolution Width` | Match native resolution                     |
-| Minecraft Java      | `renderDistance`                 | `8`–`16` (balance FPS/quality)              |
-| Most games          | `VSync` / `bVsync`               | `0` (use G-Sync/FreeSync instead)           |
+ReFrame uses a three-tier model when evaluating any config key:
+
+```
+Tier 1 — Game-Specific  ←  always checked first
+    ↓ (fall through if no game entry for this key)
+Tier 2 — Engine Default  ←  apply when game doesn't override
+    ↓ (fall through if key is not engine-specific)
+Tier 3 — Generic         ←  universal rules (VSync, FPS cap, etc.)
+```
+
+If Tier 1 and Tier 2 conflict (i.e. the game ships a custom scalability system or documented patch that changes an engine key's meaning), **Tier 1 wins** and the engine default is suppressed. Always note the conflict in the output.
+
+---
+
+### Engine Detection Signatures
+
+| Engine              | File name clues                                        | Section / key pattern clues                          |
+| ------------------- | ------------------------------------------------------ | ---------------------------------------------------- |
+| Unreal Engine 4/5   | `GameUserSettings.ini`, `Engine.ini`, `Scalability.ini`| `[/Script/Engine.GameUserSettings]`, `sg.` prefix keys, `r.` prefix keys |
+| Source / Source 2   | `cfg/*.cfg`, `autoexec.cfg`                            | `cl_`, `r_`, `mat_`, `sv_` console-variable prefixes |
+| Unity               | `PlayerPrefs` registry keys, `prefs` files             | `Screenmanager `, `UnityGraphicsQuality`              |
+| id Tech (Doom/Quake)| `*.cfg`, `Doom*.cfg`                                   | `r_`, `com_`, `g_` cvar prefixes                     |
+| Creation Engine     | `Skyrim.ini`, `Fallout*.ini`, `StarfieldCustom.ini`    | `[Display]`, `[Grass]`, `[Papyrus]` sections         |
+| REDengine 4 (CP2077)| `UserSettings.json`                                    | Nested JSON, `RayTracing`, `DLSS`, `FidelityFX` keys |
+| Minecraft Java      | `options.txt`                                          | Flat `key:value` format, `renderDistance`, `maxFps`  |
+
+When the engine cannot be determined from signatures, record it as **Unknown** and rely only on Tier 3 (generic) recommendations until the user confirms the engine or a `web` search identifies it.
+
+---
+
+### Tier 2 — Engine Default Recommendations
+
+These are starting-point defaults for each engine. **Always check Tier 1 (game-specific) before applying any of these.**
+
+#### Unreal Engine 4 / 5
+
+| Key                     | Performance-friendly value                   | Notes |
+| ----------------------- | -------------------------------------------- | ----- |
+| `sg.ResolutionQuality`  | `75` (mid) / `100` (high-end)                | Scalability group. Some games replace this with their own scaler — verify before changing. |
+| `sg.ShadowQuality`      | `2` (mid) / `3` (high-end)                   | Scalability group. |
+| `sg.TextureQuality`     | `2` (mid) / `3` (high-end)                   | |
+| `sg.EffectsQuality`     | `2` (mid) / `3` (high-end)                   | |
+| `sg.PostProcessQuality` | `1` (mid) / `2` (high-end)                   | |
+| `r.Streaming.PoolSize`  | `1000`–`4000` (scale with available VRAM)    | Higher = smoother texture streaming. |
+| `bUseVSync`             | `False`                                      | Use G-Sync/FreeSync instead. |
+| `FrameRateLimit`        | Match monitor refresh rate                   | Set in `[/Script/Engine.GameUserSettings]`. |
+
+> **Game override example — Ark: Survival Evolved:** Ark uses UE4 but ships a heavily modified scalability system. `sg.ResolutionQuality`, `sg.ShadowQuality`, and related scalability groups are managed by Ark's own graphics menu and may be reset on launch. Directly editing these keys in `GameUserSettings.ini` can work but will be overwritten by the in-game slider. Prefer Ark's in-game graphics settings for scalability group values; reserve INI edits for keys Ark's menu does not expose (e.g. `r.Streaming.PoolSize`, `r.Shadow.RadiusThreshold`). See `docs/GAMES.md → Ark: Survival Evolved` for the full override list.
+
+#### Source / Source 2
+
+| Key             | Performance-friendly value  | Notes |
+| --------------- | --------------------------- | ----- |
+| `mat_queue_mode`| `2`                         | Async material loading. |
+| `fps_max`       | Match monitor refresh rate  | |
+| `r_dynamic_lighting` | `0` (competitive) / `1` | |
+
+#### Creation Engine (Skyrim / Fallout / Starfield)
+
+| Key                     | Recommended              | Notes |
+| ----------------------- | ------------------------ | ----- |
+| `iPresentInterval`      | `0`                      | Disables VSync. Use driver-level sync instead. |
+| `iShadowMapResolution`  | `2048` (mid) / `4096` (high) | |
+| `fShadowDistance`       | `2500`–`4000`            | |
+
+> **Note for Bethesda games:** Always edit `*Custom.ini` (e.g. `FalloutCustom.ini`, `SkyrimCustom.ini`) rather than the base ini — the launcher overwrites base files on launch.
+
+#### Minecraft Java Edition
+
+| Key              | Recommended             |
+| ---------------- | ----------------------- |
+| `renderDistance` | `8` (mid) / `16` (high) |
+| `maxFps`         | Match monitor Hz        |
+
+---
+
+### Tier 3 — Generic Best-Practice Rules
+
+Apply these to any game regardless of engine, unless a Tier 1 or Tier 2 rule says otherwise.
+
+| Setting              | Rule                                                    |
+| -------------------- | ------------------------------------------------------- |
+| VSync / `bVsync`     | Disable in-game; use G-Sync, FreeSync, or VSYNC OFF     |
+| FPS cap              | Cap to monitor refresh rate — uncapped causes tearing and heat |
+| Motion blur          | Off — degrades perceived clarity at high FPS            |
+| Resolution           | Match native display resolution unless GPU is constrained |
 
 ---
 
