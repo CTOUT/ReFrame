@@ -1,10 +1,13 @@
 # Agent profile cache (generated at runtime)
 .github/agents/.cache/
 
-# vscode-copilot-sync generated files
-.github/.copilot-subscriptions.json
-.github/instructions/
-.github/skills/
+# system-scan skill exports — DxDiag and msinfo32 files dropped into the repo
+# The skill writes its temp file to $env:TEMP (outside the repo), but users
+# may also place exported files here for use with `load dxdiag <path>`.
+DxDiag.xml
+DxDiag.txt
+msinfo32.txt
+Temp/
 
 # VS Code local settings
 .vscode/*
