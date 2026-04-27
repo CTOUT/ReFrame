@@ -81,6 +81,15 @@ The release workflow will package `reframe-agent.zip` and publish it automatical
 
 ## Adding Game Knowledge
 
+### Two ways to contribute
+
+| Path | When to use |
+| ---- | ----------- |
+| **Pull request** | You're comfortable with Git. Fork the repo, add or edit a JSON file, open a PR. The PR template will guide you through the checklist. |
+| **Issue form** | No Git experience needed. Run ReFrame — if it analyses an unknown game it will offer to generate the JSON file for you. Copy the output and paste it into the [Knowledge Submission issue form](https://github.com/CTOUT/ReFrame/issues/new?template=knowledge_submission.yml). A maintainer will review and merge it. |
+
+### Knowledge file locations
+
 Game and engine knowledge lives in two places:
 
 | Path                                        | Purpose                                                     |

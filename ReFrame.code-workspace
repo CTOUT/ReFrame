@@ -2,5 +2,9 @@
   "folders": [
     { "path": "." }
   ],
-  "settings": {}
+  "settings": {
+    "chat.tools.terminal.autoApprove": {
+      "git remote": true
+    }
+  }
 }

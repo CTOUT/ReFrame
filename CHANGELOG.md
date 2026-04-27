@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `reframe.agent.md` — knowledge capture workflow: after analysing an unknown game, the agent offers to write `knowledge/games/<game>.json` from session findings and prompts the user to contribute via PR or issue form
+- `.github/ISSUE_TEMPLATE/knowledge_submission.yml` — Knowledge Submission issue form for non-git contributors; accepts generated or hand-authored JSON with verification checklist
+- `CONTRIBUTING.md` — two-path contribution guide: PR workflow (existing) and no-git issue form path (new)
+- `.github/ISSUE_TEMPLATE/config.yml` — added "Browse game knowledge" contact link
+
 ---
 
 ## [v1.1.0] — 2026-04-27

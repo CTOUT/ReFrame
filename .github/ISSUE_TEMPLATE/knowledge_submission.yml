@@ -1,0 +1,95 @@
+name: Knowledge Submission
+description: Submit config knowledge for a game you've analysed with ReFrame
+labels: ["knowledge", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing game knowledge to ReFrame! This form is for users who don't want to open a pull request.
+
+        **If you're comfortable with Git**, a PR is preferred — see [CONTRIBUTING.md](https://github.com/CTOUT/ReFrame/blob/main/CONTRIBUTING.md#adding-game-knowledge) for the full workflow.
+
+        **Otherwise, fill in this form** and a maintainer will review and merge your submission.
+
+        > **Tip:** If ReFrame generated a `knowledge/games/<game>.json` file during your session, copy its contents directly into the JSON field below.
+
+  - type: input
+    id: game_name
+    attributes:
+      label: Game name
+      description: Exact display name of the game (e.g. "Cyberpunk 2077", "Elden Ring")
+      placeholder: My Game Name
+    validations:
+      required: true
+
+  - type: dropdown
+    id: store
+    attributes:
+      label: Store / platform
+      description: Where did you install the game?
+      multiple: true
+      options:
+        - Steam
+        - Epic Games Store
+        - GOG
+        - Xbox Game Pass
+        - Battle.net
+        - EA App
+        - Ubisoft Connect
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: engine
+    attributes:
+      label: Engine (if known)
+      description: Underlying game engine, e.g. "Unreal Engine 4", "Unity", "id Tech 7". Leave blank if unknown.
+      placeholder: Unreal Engine 5
+
+  - type: textarea
+    id: json_content
+    attributes:
+      label: knowledge/games JSON
+      description: |
+        Paste the full contents of your `knowledge/games/<game>.json` file here.
+        If ReFrame generated it automatically, copy the file contents directly.
+        If you're writing it manually, use the template at `knowledge/templates/game.template.json` — remove all `_instructions` and `_comment` fields before pasting.
+      placeholder: |
+        {
+          "game": "My Game",
+          "engine": "Unreal Engine 5",
+          ...
+        }
+      render: json
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification
+      description: Please confirm the following before submitting.
+      options:
+        - label: I verified the config file paths against a real installation on my machine
+          required: true
+        - label: Every recommended value has at least one source URL in the `sources` array
+          required: true
+        - label: I have removed all `_instructions` and `_comment` fields from the JSON
+          required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources (optional extra notes)
+      description: |
+        List any additional URLs (PCGamingWiki, developer posts, patch notes) that informed your recommendations, especially if they weren't captured in the JSON.
+      placeholder: |
+        - https://www.pcgamingwiki.com/wiki/My_Game
+        - https://...
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Anything else maintainers should know — version tested, hardware tier used, known caveats.
