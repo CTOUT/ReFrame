@@ -466,14 +466,17 @@ For users sensitive to motion sickness, nausea, or visual fatigue.
 
 | Setting | Recommended | Reason |
 | --- | --- | --- |
-| Motion blur | Off | Primary nausea trigger |
-| Camera shake / screen bob | Off | Contributes to disorientation |
-| Depth of field | Off | Inconsistent focus causes eye strain |
-| Chromatic aberration | Off | Peripheral distortion trigger |
-| Film grain | Off | Visual noise increases perceptual fatigue |
+| Motion blur | Off | Primary nausea trigger; affects all movement |
+| Head bob / view bob | Off | Walking/running camera oscillation; strong nausea trigger in FPS games |
+| Camera shake | Off | Impact and event-driven camera jolt |
+| Screen bob / weapon bob | Off | Weapon and HUD sway during movement |
+| Depth of field | Off | Inconsistent focus plane causes eye strain |
+| Chromatic aberration | Off | Peripheral colour fringing; peripheral distortion trigger |
+| Film grain | Off | Persistent visual noise increases perceptual fatigue |
 | Vignette | Off | Edge darkening increases tunnel vision perception |
 | FOV | 90–100° horizontal (if configurable) | Below ~80° increases nausea; above ~115° causes distortion |
 | Screen flash / hit effects | Reduced / Off | High-contrast sudden flashes |
+| Speed lines / radial blur | Off (if configurable) | Radial post-process effects amplify motion perception |
 
 ##### `photosensitivity`
 
