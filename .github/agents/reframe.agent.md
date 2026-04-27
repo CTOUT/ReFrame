@@ -84,16 +84,27 @@ Before locating config files, establish the optimisation goal and any active mod
 
 **Parse inline keywords first.** The user may specify everything in their command:
 
-| Example command | Goal | Notes |
-| --- | --- | --- |
-| `optimise Cyberpunk` | *(ask)* | Interactive prompt below |
-| `optimise Cyberpunk performance` | `performance` | |
-| `optimise Cyberpunk balanced` | `balanced` | `fps_floor` = 60 |
-| `optimise Cyberpunk balanced 144` | `balanced` | `fps_floor` = 144 |
-| `optimise Cyberpunk quality` | `quality` | |
-| `optimise Cyberpunk quality motion-comfort` | `quality` + modifier | |
+| Example command                             | Goal                 | Notes                    |
+| ------------------------------------------- | -------------------- | ------------------------ |
+| `optimise Cyberpunk`                        | _(ask)_              | Interactive prompt below |
+| `optimise Cyberpunk performance`            | `performance`        |                          |
+| `optimise Cyberpunk balanced`               | `balanced`           | `fps_floor` = 60         |
+| `optimise Cyberpunk balanced 144`           | `balanced`           | `fps_floor` = 144        |
+| `optimise Cyberpunk quality`                | `quality`            |                          |
+| `optimise Cyberpunk quality motion-comfort` | `quality` + modifier |                          |
 
-Recognised modifier keywords: `motion-comfort`, `motion comfort`, `nausea`, `anti-nausea`.
+Recognised modifier keywords:
+
+| Modifier | Recognised keywords |
+| --- | --- |
+| `motion_comfort` | `motion-comfort`, `motion comfort`, `nausea`, `anti-nausea`, `motion sickness` |
+| `photosensitivity` | `photosensitivity`, `epilepsy`, `seizure`, `flashing lights`, `photosensitive` |
+| `low_vision` | `low-vision`, `low vision`, `visually impaired`, `visual impairment`, `sight` |
+| `colour_vision` | `colour-blind`, `colorblind`, `colour blind`, `color blind`, `daltonism` |
+| `arachnophobia` | `arachnophobia`, `spiders`, `spider` |
+| `trypophobia` | `trypophobia`, `holes`, `clusters` |
+| `dyslexia` | `dyslexia`, `dyslexic` |
+| `dyscalculia` | `dyscalculia`, `dyscalculic`, `numbers`, `floating numbers` |
 
 **If no goal was specified inline**, ask:
 
@@ -103,7 +114,7 @@ Recognised modifier keywords: `motion-comfort`, `motion comfort`, `nausea`, `ant
 > 2. **Balanced** — best quality while keeping FPS above a target (default: 60; you can specify a different number)
 > 3. **Quality** — best visuals; framerate is secondary
 >
-> Any specific concerns? For example: motion sickness, accessibility needs, streaming/recording setup.
+> Any specific concerns? For example: motion sickness, epilepsy / flashing lights, visual impairment, colour blindness, arachnophobia, trypophobia, dyslexia, floating damage numbers.
 
 Store in session context before proceeding:
 
@@ -411,29 +422,29 @@ Every `optimise` workflow is driven by one **goal** and zero or more **modifiers
 
 ### Goals (mutually exclusive)
 
-| Goal | Priority | Frame cap guidance | Upscaling preset |
-| --- | --- | --- | --- |
-| `performance` | Max FPS; quality secondary | At or just above monitor refresh rate | Performance / Ultra Performance |
-| `balanced` | Best quality above `fps_floor` | `fps_floor` × 1.15–1.20 as soft cap | Quality |
-| `quality` | Best visuals; FPS secondary | High or uncapped | Quality / Ultra Quality |
+| Goal          | Priority                       | Frame cap guidance                    | Upscaling preset                |
+| ------------- | ------------------------------ | ------------------------------------- | ------------------------------- |
+| `performance` | Max FPS; quality secondary     | At or just above monitor refresh rate | Performance / Ultra Performance |
+| `balanced`    | Best quality above `fps_floor` | `fps_floor` × 1.15–1.20 as soft cap   | Quality                         |
+| `quality`     | Best visuals; FPS secondary    | High or uncapped                      | Quality / Ultra Quality         |
 
 ### How goals influence config key recommendations
 
 For each config key, apply the direction from this table. For `balanced`, start from the Quality direction and step back toward Performance for expensive settings when hardware tier warrants it.
 
-| Setting category | `performance` | `balanced` | `quality` |
-| --- | --- | --- | --- |
-| Render / resolution scale | ≤ 75% (upscale to fill) | 85–100% (tier-dependent) | 100% native or higher (DSR/VSR) |
-| Shadow quality | Low / Medium | Medium / High (tier-dependent) | High / Ultra |
-| Ambient occlusion | Off | SSAO / HBAO (tier-dependent) | HBAO+ / RTAO |
-| Texture quality | High¹ | High / Ultra¹ | Ultra / Max¹ |
-| Anti-aliasing | TAA or upscaler AA | Quality upscaling preset | High-quality preset or MSAA |
-| Draw distance / LOD | Reduced | Medium / High | Max |
-| Post-processing (DoF, lens flare, CA, film grain, vignette) | Off | Off | At user discretion |
-| Motion blur | Off² | Off² | Off² |
-| Ray tracing | Off | Off (Mid/Low); On (High-end only) | On if GPU tier supports it |
-| VSync | Off — use VRR / G-Sync | Off — use VRR / G-Sync | Off — use VRR / G-Sync |
-| Frame cap | Match monitor Hz | `fps_floor` × 1.15–1.20 | High or uncapped |
+| Setting category                                            | `performance`           | `balanced`                        | `quality`                       |
+| ----------------------------------------------------------- | ----------------------- | --------------------------------- | ------------------------------- |
+| Render / resolution scale                                   | ≤ 75% (upscale to fill) | 85–100% (tier-dependent)          | 100% native or higher (DSR/VSR) |
+| Shadow quality                                              | Low / Medium            | Medium / High (tier-dependent)    | High / Ultra                    |
+| Ambient occlusion                                           | Off                     | SSAO / HBAO (tier-dependent)      | HBAO+ / RTAO                    |
+| Texture quality                                             | High¹                   | High / Ultra¹                     | Ultra / Max¹                    |
+| Anti-aliasing                                               | TAA or upscaler AA      | Quality upscaling preset          | High-quality preset or MSAA     |
+| Draw distance / LOD                                         | Reduced                 | Medium / High                     | Max                             |
+| Post-processing (DoF, lens flare, CA, film grain, vignette) | Off                     | Off                               | At user discretion              |
+| Motion blur                                                 | Off²                    | Off²                              | Off²                            |
+| Ray tracing                                                 | Off                     | Off (Mid/Low); On (High-end only) | On if GPU tier supports it      |
+| VSync                                                       | Off — use VRR / G-Sync  | Off — use VRR / G-Sync            | Off — use VRR / G-Sync          |
+| Frame cap                                                   | Match monitor Hz        | `fps_floor` × 1.15–1.20           | High or uncapped                |
 
 > ¹ Texture quality is kept High or above in all modes (assuming adequate VRAM) because it is bandwidth-bound rather than GPU-compute-bound — reducing it rarely improves FPS on mid/high-end hardware.
 >
@@ -441,11 +452,17 @@ For each config key, apply the direction from this table. For `balanced`, start 
 
 ### Modifiers (non-exclusive — any combination)
 
-Modifiers override specific settings regardless of the active goal.
+Modifiers override specific settings regardless of the active goal. They are grouped by category; any combination is valid (e.g. `quality arachnophobia dyslexia`).
 
-#### `motion_comfort`
+For settings the agent cannot change directly — because they are exposed only through in-game menus or require game-specific config keys not yet in `docs/GAMES.md` — add a **Manual** row in the recommendations table and describe exactly where the user will find the option.
 
-For users sensitive to motion sickness, nausea, or visual fatigue. These settings are recommended Off (or at the value below) even when the goal-direction table would otherwise leave them at the game's default.
+---
+
+#### Vestibular and sensory comfort
+
+##### `motion_comfort`
+
+For users sensitive to motion sickness, nausea, or visual fatigue.
 
 | Setting | Recommended | Reason |
 | --- | --- | --- |
@@ -457,6 +474,103 @@ For users sensitive to motion sickness, nausea, or visual fatigue. These setting
 | Vignette | Off | Edge darkening increases tunnel vision perception |
 | FOV | 90–100° horizontal (if configurable) | Below ~80° increases nausea; above ~115° causes distortion |
 | Screen flash / hit effects | Reduced / Off | High-contrast sudden flashes |
+
+##### `photosensitivity`
+
+For users with photosensitive epilepsy or seizure risk from flashing or strobing visuals.
+
+> **Important:** Always apply this modifier with care. If a game has a dedicated accessibility photosensitivity toggle in-game (common since 2020), flag it as the first **Manual** recommendation — it is typically more comprehensive than individual config keys.
+
+| Setting | Recommended | Reason |
+| --- | --- | --- |
+| Screen flash / hit effects | Off | Direct strobe risk |
+| Lens flare | Off | High-contrast burst |
+| Lightning / environmental flashes | Off or Reduced (if configurable) | Environmental strobe |
+| Particle effect density / intensity | Reduced (if configurable) | Rapid high-contrast particle bursts |
+| HDR peak brightness | Reduced (if configurable) | Sudden HDR peaks amplify flash severity |
+| Photosensitivity mode (in-game toggle) | **Manual** — enable in Accessibility settings | Game-level toggle covers effects not in config |
+
+---
+
+#### Vision
+
+##### `low_vision`
+
+For users with low vision, visual impairment, or contrast sensitivity needs.
+
+| Setting | Recommended | Reason |
+| --- | --- | --- |
+| UI / HUD scale | Max / Largest (if configurable) | Improves readability |
+| Subtitle font size | Large / Largest (if configurable) | |
+| Subtitle background opacity | High (if configurable) | Improves contrast against scene |
+| HUD opacity | Max (if configurable) | |
+| High-contrast mode | On (if configurable) | |
+| UI scale / font size (in-game) | **Manual** — check Accessibility or Interface settings | Most games only expose this in menus |
+
+##### `colour_vision`
+
+For users with colour vision deficiency (colour blindness).
+
+> Colour blind modes are almost always exposed only through in-game menus, not config files. Check GAMES.md and web for game-specific config keys before flagging as Manual.
+
+| Setting | Recommended | Reason |
+| --- | --- | --- |
+| Colour blind mode / type | **Manual** — select appropriate mode (Protanopia / Deuteranopia / Tritanopia) in Accessibility settings | Rarely in config files |
+| Enemy / ally highlight colour (if configurable) | Game-specific — check GAMES.md | Some games expose outline colours as config keys |
+
+---
+
+#### Content (phobias)
+
+Phobia-related settings are almost always game-specific toggles. The agent checks GAMES.md and web for known config keys, then flags unavailable settings as **Manual** in the output.
+
+##### `arachnophobia`
+
+For users who want spider models or animations replaced or hidden.
+
+| Setting | Recommended | Reason |
+| --- | --- | --- |
+| Spider / arachnid model replacement | On / Enabled (if configurable) | Replaces models with alternative (e.g. cats, blobs) |
+| Arachnophobia mode (in-game) | **Manual** — check Accessibility or Gameplay settings | Available in: Grounded, Valheim, Green Hell, and others |
+
+If no setting is found via GAMES.md or web search, state explicitly that the game does not appear to support arachnophobia mode in config.
+
+##### `trypophobia`
+
+For users sensitive to clustered holes, irregular patterns, or organic textures.
+
+| Setting | Recommended | Reason |
+| --- | --- | --- |
+| Trypophobia / cluster pattern mode | On / Reduced (if configurable) | Very rare as a config key — check GAMES.md and web |
+| Texture detail on organic surfaces | Reduced (if game-specific key exists) | High detail amplifies trigger patterns |
+| Trypophobia mode (in-game) | **Manual** — check Accessibility or Visual settings if available | Few games currently support this |
+
+---
+
+#### Cognitive
+
+##### `dyslexia`
+
+For users who find standard game fonts or text layouts difficult to read.
+
+| Setting | Recommended | Reason |
+| --- | --- | --- |
+| Font / typeface (if configurable) | Dyslexia-friendly font (e.g. OpenDyslexic) if the game supports it | Improves letter recognition |
+| Subtitle / dialogue text size | Large / Largest | |
+| Text auto-advance speed | Slow / Off (if configurable) | Allows reading at own pace |
+| Dyslexia font mode (in-game) | **Manual** — check Accessibility or Text settings | Supported in: Dislyte, some RPGs |
+
+##### `dyscalculia`
+
+For users who find numerical displays confusing or overwhelming.
+
+| Setting | Recommended | Reason |
+| --- | --- | --- |
+| Floating damage numbers | Off (if configurable) | High-frequency number display |
+| Damage numbers | Off (if configurable) | |
+| XP / score popups | Off / Simplified (if configurable) | Reduces numerical noise |
+| Minimap numerical indicators | Simplified (if configurable) | |
+| Numeric HUD elements (in-game) | **Manual** — check HUD or Accessibility settings | Many number toggles are only in menus |
 
 ---
 
@@ -474,18 +588,18 @@ For users sensitive to motion sickness, nausea, or visual fatigue. These setting
 
 ## Commands Reference
 
-| Command                 | What it does                                                   |
-| ----------------------- | -------------------------------------------------------------- |
-| `scan system`           | Detects hardware profile via live PowerShell queries           |
-| `load dxdiag <path>`    | Parse a DxDiag.xml file instead of running live queries        |
-| `optimise <game> [goal] [fps] [modifiers]` | Full workflow; optional inline goal (`performance` / `balanced [N]` / `quality`) and modifiers (`motion-comfort`) |
-| `analyse config <path>` | Analyse a specific config file at the given path               |
-| `check registry`        | Assess Windows gaming registry settings                        |
-| `apply`                 | Apply the pending Change Preview (requires prior confirmation) |
-| `rollback <game>`       | List and restore a backup for the named game                   |
-| `rollback last`         | Restore the most recent backup                                 |
-| `list backups`          | Show all ReFrame backups                                       |
-| `help`                  | Show this command reference                                    |
+| Command                                    | What it does                                                                                                      |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| `scan system`                              | Detects hardware profile via live PowerShell queries                                                              |
+| `load dxdiag <path>`                       | Parse a DxDiag.xml file instead of running live queries                                                           |
+| `optimise <game> [goal] [fps] [modifiers]` | Full workflow; optional inline goal (`performance` / `balanced [N]` / `quality`) and modifiers (e.g. `motion-comfort`, `photosensitivity`, `arachnophobia`, `dyslexia` — any combination) |
+| `analyse config <path>`                    | Analyse a specific config file at the given path                                                                  |
+| `check registry`                           | Assess Windows gaming registry settings                                                                           |
+| `apply`                                    | Apply the pending Change Preview (requires prior confirmation)                                                    |
+| `rollback <game>`                          | List and restore a backup for the named game                                                                      |
+| `rollback last`                            | Restore the most recent backup                                                                                    |
+| `list backups`                             | Show all ReFrame backups                                                                                          |
+| `help`                                     | Show this command reference                                                                                       |
 
 ---
 
