@@ -89,7 +89,7 @@ After parsing, run these two supplemental PowerShell queries (not in DxDiag):
 
 ```powershell
 # Storage type — affects streaming pool recommendations
-Get-PhysicalDisk | Select-Object FriendlyName, MediaType, BusType
+Get-PhysicalDisk -ErrorAction SilentlyContinue | Select-Object FriendlyName, MediaType, BusType
 
 # Active power plan — affects CPU boost and latency
 powercfg /getactivescheme
@@ -112,8 +112,9 @@ Get-CimInstance Win32_Processor |
     Select-Object Name, NumberOfCores, NumberOfLogicalProcessors, MaxClockSpeed
 
 # GPU
-Get-CimInstance Win32_VideoController |
-    Select-Object Name, AdapterRAM, DriverVersion, VideoProcessor
+$gpus = Get-CimInstance Win32_VideoController -ErrorAction SilentlyContinue
+$gpus | Sort-Object AdapterRAM -Descending | Select-Object -First 1 | 
+    Select-Object Name, @{N='VRAM_GB';E={[math]::Round($_.AdapterRAM/1GB, 1)}}, DriverVersion, VideoProcessor
 
 # RAM
 $totalRAM = (Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB
@@ -121,7 +122,7 @@ $totalRAM = (Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB
 Get-CimInstance Win32_PhysicalMemory | Select-Object Capacity, Speed
 
 # Storage
-Get-PhysicalDisk | Select-Object FriendlyName, MediaType, Size, BusType
+Get-PhysicalDisk -ErrorAction SilentlyContinue | Select-Object FriendlyName, MediaType, Size, BusType
 
 # OS
 Get-CimInstance Win32_OperatingSystem |

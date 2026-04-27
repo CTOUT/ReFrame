@@ -44,12 +44,15 @@ Follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Add entries und
 ## [Unreleased]
 
 ### Added
+
 - Short description of new feature
 
 ### Changed
+
 - Short description of change to existing behaviour
 
 ### Fixed
+
 - Short description of bug fix
 ```
 
@@ -74,6 +77,7 @@ The release workflow will package `reframe-agent.zip` and publish it automatical
 To add a new game's configuration profile, add a section to `docs/GAMES.md` following the template at the top of that file.
 
 Include:
+
 - The game's underlying engine
 - Common config file paths (use environment variable placeholders)
 - Key names and their effect on performance

@@ -1,5 +1,3 @@
-# Agent profile cache (generated at runtime)
-.github/agents/.cache/
 
 # system-scan skill exports — DxDiag and msinfo32 files dropped into the repo
 # The skill writes its temp file to $env:TEMP (outside the repo), but users
@@ -34,7 +32,6 @@ Transcript*
 *.tmp
 *.bak
 *.swp
-Temp/
 
 # ReFrame runtime backups (stored locally, not committed)
 backups/

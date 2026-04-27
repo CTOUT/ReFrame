@@ -49,17 +49,18 @@ $ErrorActionPreference = 'Stop'
 
 # --- Paths ---
 $agentFileName = 'reframe.agent.md'
-$rawBase       = "https://raw.githubusercontent.com/CTOUT/ReFrame/$Ref/.github/agents"
+$rawBase = "https://raw.githubusercontent.com/CTOUT/ReFrame/$Ref/.github/agents"
 
 $userPromptsPath = switch ($true) {
-    ($IsLinux)  { "$HOME/.config/Code/User/prompts" }
-    ($IsMacOS)  { "$HOME/Library/Application Support/Code/User/prompts" }
-    default     { "$env:APPDATA\Code\User\prompts" }
+    ($IsLinux) { "$HOME/.config/Code/User/prompts" }
+    ($IsMacOS) { "$HOME/Library/Application Support/Code/User/prompts" }
+    default { "$env:APPDATA\Code\User\prompts" }
 }
 
 $installPath = if ($Target -eq 'repo') {
     Join-Path (Get-Location) '.github\agents'
-} else {
+}
+else {
     $userPromptsPath
 }
 
@@ -70,11 +71,13 @@ if ($Uninstall) {
     if (Test-Path $destFile) {
         if ($DryRun) {
             Write-Host "[DryRun] Would remove: $destFile"
-        } else {
+        }
+        else {
             Remove-Item $destFile -Force
             Write-Host "Removed: $destFile"
         }
-    } else {
+    }
+    else {
         Write-Host "Not installed at: $destFile"
     }
     return
@@ -97,7 +100,7 @@ if (-not (Test-Path $installPath)) {
 }
 
 # Download to a private temp directory
-$tempDir  = Join-Path ([System.IO.Path]::GetTempPath()) ([System.IO.Path]::GetRandomFileName())
+$tempDir = Join-Path ([System.IO.Path]::GetTempPath()) ([System.IO.Path]::GetRandomFileName())
 New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
 $tempFile = Join-Path $tempDir $agentFileName
 
@@ -107,6 +110,7 @@ try {
     Write-Host "Installed: $destFile"
     Write-Host ""
     Write-Host "Restart VS Code (or run 'Developer: Reload Window') to load the agent."
-} finally {
+}
+finally {
     Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue
 }

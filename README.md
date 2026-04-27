@@ -83,17 +83,17 @@ Assesses Windows gaming registry settings (multimedia scheduler, GPU scheduling,
 
 ### All commands
 
-| Command                  | Description                                              |
-| ------------------------ | -------------------------------------------------------- |
-| `scan system`            | Detect hardware profile                                  |
-| `optimise <game>`        | Full optimisation workflow for the named game            |
-| `analyse config <path>`  | Analyse a specific config file                           |
-| `check registry`         | Assess Windows gaming registry settings                  |
-| `apply`                  | Apply the pending change preview (after confirmation)    |
-| `rollback <game>`        | Restore a backup for the named game                      |
-| `rollback last`          | Restore the most recent backup                           |
-| `list backups`           | Show all ReFrame backups                                 |
-| `help`                   | Show command reference                                   |
+| Command                 | Description                                           |
+| ----------------------- | ----------------------------------------------------- |
+| `scan system`           | Detect hardware profile                               |
+| `optimise <game>`       | Full optimisation workflow for the named game         |
+| `analyse config <path>` | Analyse a specific config file                        |
+| `check registry`        | Assess Windows gaming registry settings               |
+| `apply`                 | Apply the pending change preview (after confirmation) |
+| `rollback <game>`       | Restore a backup for the named game                   |
+| `rollback last`         | Restore the most recent backup                        |
+| `list backups`          | Show all ReFrame backups                              |
+| `help`                  | Show command reference                                |
 
 ---
 
