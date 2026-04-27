@@ -1,0 +1,37 @@
+# Agent profile cache (generated at runtime)
+.github/agents/.cache/
+
+# vscode-copilot-sync generated files
+.github/.copilot-subscriptions.json
+.github/instructions/
+.github/skills/
+
+# VS Code local settings
+.vscode/*
+!.vscode/extensions.json
+
+# OS artefacts
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node (tooling)
+node_modules/
+npm-debug.log*
+*.log
+
+# Release build output
+dist/
+
+# PowerShell transcripts
+Transcript*
+*.pslog
+
+# Temp / scratch files
+*.tmp
+*.bak
+*.swp
+Temp/
+
+# ReFrame runtime backups (stored locally, not committed)
+backups/

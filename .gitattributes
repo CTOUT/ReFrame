@@ -1,0 +1,5 @@
+# Ensure consistent line endings
+* text=auto
+
+# Scripts always LF
+install.ps1 text eol=crlf
