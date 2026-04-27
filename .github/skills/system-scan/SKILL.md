@@ -68,22 +68,22 @@ If the file is absent or empty, skip to **Step 4 (PowerShell fallback)**.
 
 Read the file with `read/readFile` and extract these fields:
 
-| System Profile field    | XML element (first match)                      | Notes                                                        |
-| ----------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
-| CPU                     | `SystemInformation > Processor`                |                                                              |
-| RAM                     | `SystemInformation > Memory`                   |                                                              |
-| OS                      | `SystemInformation > OperatingSystem`          |                                                              |
-| GPU name                | `DisplayDevice > CardName`                     | Use first `DisplayDevice` (primary GPU)                      |
-| Dedicated VRAM          | `DisplayDevice > DedicatedMemory`              | Strip " MB", divide by 1024 for GB                           |
-| Driver version          | `DisplayDevice > DriverVersion`                |                                                              |
-| Driver date             | `DisplayDevice > DriverDate`                   |                                                              |
-| Current resolution + Hz | `DisplayDevice > CurrentMode`                  | e.g. `5120 x 1440 (32 bit) (240Hz)`                          |
-| Native monitor mode     | `DisplayDevice > NativeMode`                   | e.g. `3840 x 1080(p) (120.000Hz)`                            |
-| Monitor model           | `DisplayDevice > MonitorModel`                 |                                                              |
-| HDR active              | `DisplayDevice > ActiveColorMode`              | `DISPLAYCONFIG_ADVANCED_COLOR_MODE_HDR` = HDR on             |
-| VRR support             | `DisplayDevice > MonitorName`                  | Contains `DP_VRR` or `HDMI_VRR` if variable refresh is wired |
-| HAGS enabled            | `DisplayDevice > HardwareSchedulingAttributes` | `Enabled:True` = HAGS on; `Enabled:False` = off              |
-| DirectX feature level   | `DisplayDevice > FeatureLevels`                | First value, e.g. `12_2` = DX12 Ultimate                     |
+| System Profile field    | XML path                                                        | Notes                                                        |
+| ----------------------- | --------------------------------------------------------------- | ------------------------------------------------------------ |
+| CPU                     | `SystemInformation > Processor`                                 |                                                              |
+| RAM                     | `SystemInformation > Memory`                                    |                                                              |
+| OS                      | `SystemInformation > OperatingSystem`                           |                                                              |
+| GPU name                | `DisplayDevices > DisplayDevice > CardName`                     | Use first `DisplayDevice` (primary GPU)                      |
+| Dedicated VRAM          | `DisplayDevices > DisplayDevice > DedicatedMemory`              | Strip " MB", divide by 1024 for GB                           |
+| Driver version          | `DisplayDevices > DisplayDevice > DriverVersion`                |                                                              |
+| Driver date             | `DisplayDevices > DisplayDevice > DriverDate`                   |                                                              |
+| Current resolution + Hz | `DisplayDevices > DisplayDevice > CurrentMode`                  | e.g. `5120 x 1440 (32 bit) (240Hz)`                         |
+| Native monitor mode     | `DisplayDevices > DisplayDevice > NativeMode`                   | e.g. `3840 x 1080(p) (120.000Hz)`                           |
+| Monitor model           | `DisplayDevices > DisplayDevice > MonitorModel`                 |                                                              |
+| HDR active              | `DisplayDevices > DisplayDevice > ActiveColorMode`              | `DISPLAYCONFIG_ADVANCED_COLOR_MODE_HDR` = HDR on             |
+| VRR support             | `DisplayDevices > DisplayDevice > MonitorName`                  | Contains `DP_VRR` or `HDMI_VRR` if variable refresh is wired |
+| HAGS enabled            | `DisplayDevices > DisplayDevice > HardwareSchedulingAttributes` | `Enabled:True` = HAGS on; `Enabled:False` = off              |
+| DirectX feature level   | `DisplayDevices > DisplayDevice > FeatureLevels`                | First value, e.g. `12_2` = DX12 Ultimate                    |
 
 After parsing, run these two supplemental PowerShell queries (not in DxDiag):
 
