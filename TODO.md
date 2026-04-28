@@ -6,7 +6,32 @@ Tracked work items for ReFrame. Items are moved from here to `CHANGELOG.md` when
 
 ## In Progress
 
-- [ ] **Game-specific knowledge base** — `knowledge/games/` and `knowledge/game-engines/` structure created; Elden Ring, Dead Island 2, and Unreal Engine 4 profiles added. Remaining: Cyberpunk 2077, CS2, Fortnite, Minecraft, Fallout 4 and other popular titles.
+- [ ] **Game-specific knowledge base** — profiles being added in priority order; see queue below.
+
+### Knowledge Base Queue
+
+Completed items are struck through. Each item requires an engine profile (if new) + a game profile.
+
+| # | Game | Engine | Engine profile | Status |
+|---|---|---|---|---|
+| 1 | Cyberpunk 2077 | REDengine 4 | ✅ `redengine-4.json` | ✅ Done |
+| 2 | GTA V | RAGE | ✅ `rage.json` | ✅ Done |
+| 3 | Counter-Strike 2 | Source 2 | ❌ Needed | ⏳ Next |
+| 4 | World of Warcraft | Blizzard WoW engine | ❌ Needed | Queued |
+| 5 | PUBG: Battlegrounds | UE4 | ✅ Done | Queued |
+| 6 | Valorant | UE4 | ✅ Done | Queued |
+| 7 | Fortnite | UE5 | ✅ Done | Queued |
+| 8 | Marvel Rivals | UE5 | ✅ Done | Queued |
+| 9 | Windrose | UE5 (suspected) | ✅ Done | Queued |
+| 10 | Valheim | Unity | ❌ Needed | Queued |
+| 11 | Rust | Unity | After #10 | Queued |
+| 12 | Dota 2 | Source 2 | After #3 | Queued |
+| 13 | Baldur's Gate 3 | Divinity 4.0 | ❌ Needed | Queued |
+| 14 | Call of Duty: BO6 | IW Engine 9 | ❌ Needed | Queued |
+| 15 | League of Legends | Riot custom engine | ❌ Needed | Queued |
+| 16 | Enshrouded | Keen proprietary | ❌ Needed | Queued |
+| 17 | Apex Legends | Modified Source | ❌ Needed | Queued |
+| 18 | Warframe | Evolution Engine | ❌ Needed | Queued |
 
 ## Planned
 
