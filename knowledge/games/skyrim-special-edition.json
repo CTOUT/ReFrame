@@ -1,0 +1,211 @@
+{
+  "game": "The Elder Scrolls V: Skyrim Special Edition",
+  "engine": "Creation Engine",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\Documents\\My Games\\Skyrim Special Edition\\SkyrimPrefs.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%USERPROFILE%\\Documents\\My Games\\Skyrim Special Edition\\Skyrim.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "GOG",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\Documents\\My Games\\Skyrim Special Edition\\SkyrimPrefs.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%USERPROFILE%\\Documents\\My Games\\Skyrim Special Edition\\Skyrim.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Xbox Game Pass",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\Packages\\BethesdaSoftworks.SkyrimSE-PC_3275kfvn8vcwc\\LocalState\\Skyrim Special Edition\\SkyrimPrefs.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\Packages\\BethesdaSoftworks.SkyrimSE-PC_3275kfvn8vcwc\\LocalState\\Skyrim Special Edition\\Skyrim.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "bFull Screen",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Display]",
+      "effect": "Exclusive fullscreen mode: 0=windowed or borderless, 1=exclusive fullscreen",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Set bFull Screen=0 together with bBorderless=1 for borderless windowed. Exclusive fullscreen may provide a minor GPU scheduling advantage on some hardware."
+    },
+    {
+      "key": "bBorderless",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Display]",
+      "effect": "Borderless windowed mode: 0=off, 1=on. Must be paired with bFull Screen=0.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "iShadowMapResolution",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Display]",
+      "effect": "Shadow map texture resolution per cascade: 512, 1024, 2048, or 4096. Higher values produce sharper contact and object shadows at the cost of GPU memory and fill rate.",
+      "recommendations": {
+        "performance": "1024",
+        "balanced": "2048",
+        "quality": "4096"
+      },
+      "notes": "Default is 2048. 4096 is the practical maximum — the engine ignores values above this."
+    },
+    {
+      "key": "bVolumetricLightingEnable",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Display]",
+      "effect": "Volumetric lighting (god rays) from sunlight, interior torches, and particle light sources: 0=off, 1=on",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "bSAOEnable",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Display]",
+      "effect": "Screen-space ambient occlusion — darkens crevices, contact areas, and recessed geometry to add perceived depth: 0=off, 1=on",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "bScreenSpaceReflections",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Display]",
+      "effect": "Screen-space reflections on water surfaces and wet terrain: 0=off, 1=on",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "bMotionBlur",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Display]",
+      "effect": "Camera and object motion blur: 0=off, 1=on",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off in all goals. SSE motion blur is a simple radial effect that adds visual noise without meaningful immersion benefit."
+    },
+    {
+      "key": "fMaxAnisotropy",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Display]",
+      "effect": "Anisotropic texture filtering strength: 1=off, 2=2×, 4=4×, 8=8×, 16=16×. Sharpens textures viewed at oblique angles (stone floors, cliff faces, long corridors).",
+      "recommendations": {
+        "performance": "8",
+        "balanced": "16",
+        "quality": "16"
+      },
+      "notes": "16× AF has near-zero GPU cost on any modern discrete GPU. Reducing below 8 is rarely worth the quality trade-off."
+    },
+    {
+      "key": "bDoDepthOfField",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Imagespace]",
+      "effect": "Depth-of-field blur applied to objects outside the focal distance: 0=off, 1=on",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      },
+      "notes": "Subjective. Many players disable it for visual clarity during combat. Enable for a cinematic presentation. ENB presets typically replace this with a higher-quality custom DoF."
+    },
+    {
+      "key": "fGrassStartFadeDistance",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Grass]",
+      "effect": "Distance in game units at which grass begins to fade. Higher values extend the visible grass field toward the horizon.",
+      "recommendations": {
+        "performance": "5000",
+        "balanced": "7000",
+        "quality": "14000"
+      },
+      "notes": "Default is 7000. Values above 14000 have diminishing visual returns and a disproportionate CPU cost. Requires strong single-threaded CPU performance to push beyond 14000 without stuttering."
+    },
+    {
+      "key": "iMinGrassSize",
+      "file": "SkyrimPrefs.ini",
+      "section": "[Grass]",
+      "effect": "Minimum spacing in game units between individual grass objects. Lower values place objects closer together, producing denser, fuller ground coverage.",
+      "recommendations": {
+        "performance": "40",
+        "balanced": "20",
+        "quality": "10"
+      },
+      "notes": "Default is 20. Values below 10 give imperceptible density gains while continuing to increase CPU cost. Must be a whole number."
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "*",
+      "behaviour": "The in-game Settings menu writes back to SkyrimPrefs.ini whenever the player exits the menu, overwriting all manual INI edits. The Bethesda launcher can also reset SkyrimPrefs.ini if it detects hardware changes.",
+      "action": "After applying INI tweaks, set SkyrimPrefs.ini as read-only (right-click the file → Properties → Read-only). This locks your values but prevents the game from saving any new in-game graphics changes. Alternatively, use BethINI — a community INI manager that re-applies your settings on each launch."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Resolution",
+      "location": "Settings → Display",
+      "recommendation": "Set to your monitor's native resolution",
+      "reason": "iSize W and iSize H in SkyrimPrefs.ini are overwritten by the in-game display menu. Set resolution via the game launcher or in-game menu rather than editing the INI directly."
+    },
+    {
+      "setting": "Anti-Aliasing",
+      "location": "Settings → Display → Anti-aliasing",
+      "recommendation": "Enable TAA for quality; use the Skyrim Upscaler mod (PureDark) to replace TAA with DLSS 2/3, FSR 2, or XeSS for the best quality-to-performance ratio",
+      "reason": "Skyrim SE ships with TAA only. DLSS, FSR, and XeSS require the third-party Skyrim Upscaler mod. Native SMAA injection is available via ENB presets."
+    }
+  ],
+  "notes": [
+    "Skyrim Special Edition runs on the 64-bit Creation Engine. Many INI settings carry over from Skyrim LE (32-bit), but some defaults differ.",
+    "DLSS, FSR, and XeSS are not natively supported. The Skyrim Upscaler mod by PureDark adds DLSS 2/3, FSR 2, and XeSS as TAA replacements.",
+    "ENB Series (ENBoost) is a widely-used post-processing injector that adds SSAO, DoF, colour grading, and other effects beyond the game's native pipeline. ENB has its own enbseries.ini configuration separate from the game INI files.",
+    "Community Shaders is a modern, open-source alternative to ENB that replaces Skyrim SE's rendering pipeline using compute shaders. It provides screen-space global illumination, screen-space shadows, terrain blending, and more with a lower performance overhead than ENB. It is incompatible with ENB — only one shader injector can be active at a time. Community Shaders is available on Nexus Mods.",
+    "SKSE64 (Skyrim Script Extender) is a near-universal prerequisite for advanced graphics mods, including Community Shaders, ENB-dependent presets, and many lighting overhauls. It does not modify any INI files but must be launched via skse64_loader.exe instead of the default game executable. Available at https://skse.silverlock.org/",
+    "BethINI is a community tool that provides a guided INI editor for Bethesda titles. It applies tested presets and prevents common misconfiguration errors — recommended for first-time INI editing.",
+    "The Anniversary Edition content added in November 2021 does not change the INI file structure or config paths.",
+    "Nexus Mods (https://www.nexusmods.com/skyrimspecialedition) is the primary repository for Skyrim SE mods, including thousands of graphics improvements covering textures, meshes, lighting, weather, and post-processing. Individual mod recommendations are outside ReFrame's scope — Nexus search and community collections are the best starting point for further graphical enhancement."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/The_Elder_Scrolls_V:_Skyrim_Special_Edition",
+    "https://skse.silverlock.org/",
+    "https://www.nexusmods.com/skyrimspecialedition"
+  ]
+}
