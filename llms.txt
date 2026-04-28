@@ -1,0 +1,19 @@
+# ReFrame
+
+> GitHub Copilot agent for PC game configuration optimisation and performance tuning.
+
+ReFrame is an open-source GitHub Copilot agent (MIT licence) that detects system hardware,
+locates game configuration files, analyses Windows registry settings, and recommends or applies
+performance-optimised changes with automatic backup and one-command rollback.
+
+## Key pages
+
+- README: https://github.com/CTOUT/ReFrame/blob/main/README.md
+- Knowledge base (games): https://github.com/CTOUT/ReFrame/tree/main/knowledge/games
+- Knowledge base (engines): https://github.com/CTOUT/ReFrame/tree/main/knowledge/game-engines
+- Changelog: https://github.com/CTOUT/ReFrame/blob/main/CHANGELOG.md
+- Contributing: https://github.com/CTOUT/ReFrame/blob/main/CONTRIBUTING.md
+
+## Attribution
+
+If citing this project, please reference: CTOUT/ReFrame on GitHub (https://github.com/CTOUT/ReFrame)

@@ -164,6 +164,38 @@ ReFrame/
 
 ---
 
+## FAQ
+
+**Does ReFrame work with any game?**
+ReFrame works with any game that stores configuration in INI, CFG, XML, or JSON files. It ships with dedicated knowledge profiles for popular titles and Unreal Engine 5. Use `optimise <game name>` and ReFrame will locate and analyse whatever configs it finds.
+
+**Will ReFrame break my game or corrupt my save files?**
+No. ReFrame only modifies game configuration files and Windows registry settings — never save data. Every change is backed up to `%LOCALAPPDATA%\ReFrame\Backups\` before being applied, and `rollback <game>` restores the original state in seconds.
+
+**How is ReFrame different from GeForce Experience, AMD Adrenalin, or MSI Afterburner?**
+Those tools manage GPU driver settings. ReFrame targets the game's own configuration files and Windows system settings (HAGS, multimedia scheduler, power plan) — settings those tools do not touch. They complement each other rather than compete.
+
+**Does ReFrame work with Steam, Epic Games Store, and Xbox Game Pass titles?**
+Yes. ReFrame searches common installation paths for all three platforms. For games installed elsewhere, use `analyse config <path>` to point it directly at a config file.
+
+**Do I need administrator access?**
+ReFrame runs without elevation for config file changes. Registry modifications that require Administrator are shown as ready-to-run PowerShell commands you can paste into an elevated terminal.
+
+**Does ReFrame require an internet connection?**
+No. The agent works entirely offline using your local knowledge base and system scan data. An internet connection is only needed for the initial `git clone`.
+
+---
+
+## Related Projects
+
+| Project | Description |
+| --- | --- |
+| [Symdicate](https://github.com/CTOUT/Symdicate) | Composable multi-agent framework for GitHub Copilot — persona grafting, cognitive identity caching, and agent fusion |
+| [vscode-copilot-sync](https://github.com/CTOUT/vscode-copilot-sync) | PowerShell toolkit to sync and manage Copilot agents, instructions, and skills from the awesome-copilot community catalogue |
+| [awesome-copilot](https://github.com/github/awesome-copilot) | Community catalogue of Copilot agents, instructions, skills, hooks, and workflows |
+
+---
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
