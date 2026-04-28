@@ -64,6 +64,17 @@
       "key_count": 8,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
+    },
+    {
+      "name": "Counter-Strike 2",
+      "file": "games/counter-strike-2.json",
+      "engine": "Source 2",
+      "platforms": [
+        "Steam"
+      ],
+      "key_count": 10,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-28"
     }
   ],
   "engines": [
@@ -103,6 +114,15 @@
         "RAGE 7"
       ],
       "key_count": 7,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-28"
+    },
+    {
+      "name": "Source 2",
+      "file": "game-engines/source-2.json",
+      "version_range": "2.x",
+      "fallback_for": [],
+      "key_count": 9,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
     }

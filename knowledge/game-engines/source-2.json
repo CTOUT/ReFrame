@@ -1,0 +1,155 @@
+{
+  "engine": "Source 2",
+  "version_range": "2.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-28",
+  "detection_signatures": {
+    "file_names": ["video.txt", "autoexec.cfg"],
+    "path_fragments": ["Counter-Strike Global Offensive\\cfg", "cs2\\cfg", "Dota 2 Beta\\game\\dota\\cfg"]
+  },
+  "config_file_locations": {
+    "windows_cs2_video": "%USERPROFILE%\\AppData\\Local\\Counter-Strike Global Offensive\\cs2\\cfg\\cs2_video.txt",
+    "windows_cs2_cfg": "%USERPROFILE%\\AppData\\Local\\Counter-Strike Global Offensive\\cs2\\cfg\\",
+    "windows_dota2_cfg": "%USERPROFILE%\\AppData\\Local\\Steam\\steamapps\\common\\dota 2 beta\\game\\dota\\cfg\\",
+    "windows_note": "Source 2 uses two config surfaces: a JSON-style video.txt for GPU/display settings (rewritten by in-game video menu), and plaintext .cfg files for console variables (persistent across sessions). autoexec.cfg in the cfg\\ directory is executed automatically on game start."
+  },
+  "keys": [
+    {
+      "key": "setting.fullscreen",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "Display mode: 0=windowed, 1=fullscreen, 2=windowed fullscreen (borderless).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Exclusive fullscreen (1) provides the lowest input latency and enables hardware flip presentation. Borderless windowed (2) is convenient for multi-monitor setups but adds ~1 frame of latency via DWM composition."
+    },
+    {
+      "key": "setting.defaultres",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "Horizontal render resolution in pixels.",
+      "recommendations": {
+        "performance": "1280",
+        "balanced": "match_monitor_width",
+        "quality": "match_monitor_width"
+      },
+      "notes": "Competitive players commonly use 1280x960 or 1024x768 stretched for larger player models and higher FPS. This is a preference setting — for optimisation-only users, match monitor native resolution."
+    },
+    {
+      "key": "setting.gpu_mem_level",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "Texture detail / GPU memory usage level: 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "setting.gpu_level",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "Overall shader and rendering quality level: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "setting.cpu_level",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "CPU-side simulation quality (ragdolls, debris, particle density): 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "CPU level above 1 provides minimal visual benefit in a competitive shooter. Keeping at 0 or 1 reduces CPU overhead in intense firefights."
+    },
+    {
+      "key": "setting.mat_antialias",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "MSAA sample count: 0=off, 2=2x, 4=4x, 8=8x.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "2"
+      },
+      "notes": "MSAA above 0 reduces FPS measurably. Competitive players universally use 0. FXAA or no AA is the standard for performance mode."
+    }
+  ],
+  "console_vars": [
+    {
+      "key": "fps_max",
+      "file": "autoexec.cfg",
+      "effect": "Maximum client-side frame rate cap. 0=unlimited.",
+      "recommendations": {
+        "performance": "match_monitor_hz_plus_ten",
+        "balanced": "match_monitor_hz_plus_ten",
+        "quality": "match_monitor_hz_plus_ten"
+      },
+      "notes": "Setting fps_max slightly above monitor refresh rate (e.g. 251 for 240 Hz) keeps the frame pipeline full without uncapped heat/power draw. Unlimited (0) causes GPU thermal throttling during low-complexity frames."
+    },
+    {
+      "key": "cl_showfps",
+      "file": "autoexec.cfg",
+      "effect": "In-game FPS counter: 0=off, 1=on, 4=detailed with frame time.",
+      "recommendations": {
+        "performance": "4",
+        "balanced": "1",
+        "quality": "0"
+      }
+    },
+    {
+      "key": "net_graph",
+      "file": "autoexec.cfg",
+      "effect": "Network statistics overlay: 0=off, 1=on.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "0",
+        "quality": "0"
+      }
+    }
+  ],
+  "launch_options": [
+    {
+      "option": "-novid",
+      "effect": "Skips the Valve intro video on game launch.",
+      "recommended": true
+    },
+    {
+      "option": "-high",
+      "effect": "Launches the game process with Windows High CPU priority.",
+      "recommended": false,
+      "notes": "May cause audio dropouts or system instability. Only beneficial on CPUs with many background processes. Not recommended."
+    },
+    {
+      "option": "-nojoy",
+      "effect": "Disables joystick/controller subsystem. Reduces startup time if no controller is used.",
+      "recommended": true
+    },
+    {
+      "option": "+exec autoexec",
+      "effect": "Explicitly executes autoexec.cfg on launch. Required if autoexec.cfg is not being loaded automatically.",
+      "recommended": true
+    }
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Counter-Strike_2",
+    "https://totalcsgo.com/launch-options",
+    "https://www.valve.com/cs2"
+  ]
+}

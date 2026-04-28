@@ -16,8 +16,8 @@ Completed items are struck through. Each item requires an engine profile (if new
 |---|---|---|---|---|
 | 1 | Cyberpunk 2077 | REDengine 4 | ✅ `redengine-4.json` | ✅ Done |
 | 2 | GTA V | RAGE | ✅ `rage.json` | ✅ Done |
-| 3 | Counter-Strike 2 | Source 2 | ❌ Needed | ⏳ Next |
-| 4 | World of Warcraft | Blizzard WoW engine | ❌ Needed | Queued |
+| 3 | Counter-Strike 2 | Source 2 | ✅ `source-2.json` | ✅ Done |
+| 4 | World of Warcraft | Blizzard WoW engine | ❌ Needed | ⏳ Next |
 | 5 | PUBG: Battlegrounds | UE4 | ✅ Done | Queued |
 | 6 | Valorant | UE4 | ✅ Done | Queued |
 | 7 | Fortnite | UE5 | ✅ Done | Queued |
@@ -25,7 +25,7 @@ Completed items are struck through. Each item requires an engine profile (if new
 | 9 | Windrose | UE5 (suspected) | ✅ Done | Queued |
 | 10 | Valheim | Unity | ❌ Needed | Queued |
 | 11 | Rust | Unity | After #10 | Queued |
-| 12 | Dota 2 | Source 2 | After #3 | Queued |
+| 12 | Dota 2 | Source 2 | ✅ (reuses #3) | Queued |
 | 13 | Baldur's Gate 3 | Divinity 4.0 | ❌ Needed | Queued |
 | 14 | Call of Duty: BO6 | IW Engine 9 | ❌ Needed | Queued |
 | 15 | League of Legends | Riot custom engine | ❌ Needed | Queued |

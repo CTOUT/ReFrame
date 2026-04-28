@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `knowledge/game-engines/source-2.json` — Source 2 engine profile (2.x): 6 video.txt keys + 3 console vars + 4 launch options; documents dual-surface config model (cs2_video.txt + autoexec.cfg); covers CS2 and Dota 2 detection; VAC-safety notes included
+- `knowledge/games/counter-strike-2.json` — Counter-Strike 2 profile: Steam path; 5 video keys; 5 console vars including fps_max with match_monitor_hz_plus_ten token, cl_forcepreload, mat_queue_mode, instanced draw call limit; 4 launch options; NVIDIA Reflex and AMD Anti-Lag+ manual notes; CS:GO obsolescence warning
 - `knowledge/game-engines/rage.json` — RAGE engine profile (5.x): 7 keys covering textures, shadows, reflections, AA, grass, shaders, and post-FX; fallback_for RAGE 6/7 (RDR2); documents settings.xml overwrite behaviour
 - `knowledge/games/gta-v.json` — Grand Theft Auto V profile (aliases: GTA V, GTA 5): Steam, Epic, and Rockstar Launcher paths; 8 keys including MotionBlurStrength with motion_comfort modifier; 3 manual-only settings (population density/variety, extended distance); Enhanced Edition (2022) DLSS/FSR and ray tracing notes
 - `knowledge/game-engines/redengine-4.json` — REDengine 4 engine profile (4.x): 3 keys covering texture streaming distance, NPC physics rig limit, and SSR quality; documents dual-location config model (UserSettings.json in Documents + engine override INIs in game install); notes that UserSettings.json is overwritten by the in-game menu

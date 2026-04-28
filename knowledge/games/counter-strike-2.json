@@ -1,0 +1,196 @@
+{
+  "game": "Counter-Strike 2",
+  "engine": "Source 2",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-28",
+  "aliases": ["CS2", "Counter-Strike 2", "CS:GO"],
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "730",
+      "config_files": [
+        {
+          "file": "cs2_video.txt",
+          "path": "%USERPROFILE%\\AppData\\Local\\Counter-Strike Global Offensive\\cs2\\cfg\\cs2_video.txt",
+          "format": "json_value",
+          "notes": "GPU and display settings. Overwritten whenever the in-game Video settings menu is closed. Edit only while CS2 is fully closed."
+        },
+        {
+          "file": "autoexec.cfg",
+          "path": "%USERPROFILE%\\AppData\\Local\\Counter-Strike Global Offensive\\cs2\\cfg\\autoexec.cfg",
+          "format": "cfg",
+          "notes": "Console variable file. Executed automatically on game start if +exec autoexec is present in launch options, or if autoexec.cfg exists in the cfg directory on modern CS2 builds. Create this file if it does not exist."
+        }
+      ],
+      "launch_options_path": "Steam Library > Right-click CS2 > Properties > Launch Options"
+    }
+  ],
+  "keys": [
+    {
+      "key": "setting.fullscreen",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "Display mode: 0=windowed, 1=fullscreen, 2=windowed fullscreen (borderless).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Exclusive fullscreen gives the lowest input latency via hardware flip presentation. Borderless adds ~1 frame of latency through Desktop Window Manager composition. Strongly recommended to use exclusive fullscreen for competitive play."
+    },
+    {
+      "key": "setting.gpu_mem_level",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "Texture quality / GPU memory usage: 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "setting.gpu_level",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "Shader and rendering quality: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "setting.cpu_level",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "CPU simulation quality (ragdolls, debris, particle density): 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Level 2 provides no meaningful visual benefit in competitive play and adds CPU overhead during intense rounds. Not recommended above 1."
+    },
+    {
+      "key": "setting.mat_antialias",
+      "section": "\"Video\"",
+      "file": "cs2_video.txt",
+      "format": "json_value",
+      "effect": "MSAA sample count: 0=off, 2=2x, 4=4x, 8=8x.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "2"
+      },
+      "notes": "Competitive players universally disable MSAA for maximum FPS. Even 2x MSAA has a measurable frametime cost in large-scale server games."
+    }
+  ],
+  "console_vars": [
+    {
+      "key": "fps_max",
+      "file": "autoexec.cfg",
+      "effect": "Maximum client frame rate. 0=unlimited.",
+      "recommendations": {
+        "performance": "match_monitor_hz_plus_ten",
+        "balanced": "match_monitor_hz_plus_ten",
+        "quality": "match_monitor_hz_plus_ten"
+      },
+      "notes": "Setting 10 above monitor refresh rate (e.g., 251 for 240 Hz) ensures the pipeline stays full without uncapped thermal load. Do not use 0 — this causes GPU overheat during low-complexity map areas such as spawn zones."
+    },
+    {
+      "key": "cl_showfps",
+      "file": "autoexec.cfg",
+      "effect": "FPS overlay: 0=off, 1=FPS only, 4=FPS + frame time graph.",
+      "recommendations": {
+        "performance": "4",
+        "balanced": "1",
+        "quality": "0"
+      }
+    },
+    {
+      "key": "cl_forcepreload",
+      "file": "autoexec.cfg",
+      "effect": "Forces all map assets to preload before game start: 0=off, 1=on.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Eliminates mid-match texture/audio pop-in at the cost of slower map load times. Highly recommended on systems with 16 GB+ RAM. May cause RAM pressure on 8 GB systems on complex maps."
+    },
+    {
+      "key": "mat_queue_mode",
+      "file": "autoexec.cfg",
+      "effect": "Multi-threaded rendering queue mode: -1=auto, 0=synchronous, 2=multi-threaded.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "Multi-threaded mode (2) improves CPU utilisation on quad-core and higher CPUs. Auto (-1) typically selects 2 on modern hardware. Explicit 2 ensures it is not overridden by GPU driver defaults."
+    },
+    {
+      "key": "r_dynamic_rendering_max_instanced_draw_calls_desktop",
+      "file": "autoexec.cfg",
+      "effect": "Maximum instanced draw calls per frame. Lower values reduce CPU overhead at the cost of detail density.",
+      "recommendations": {
+        "performance": "128",
+        "balanced": "256",
+        "quality": "512"
+      },
+      "notes": "Default is 512. Reducing to 128 on CPU-limited systems can recover 5-15% CPU frame time in high-player-count servers."
+    }
+  ],
+  "launch_options": [
+    {
+      "option": "-novid",
+      "effect": "Skips the Valve intro video.",
+      "recommended": true
+    },
+    {
+      "option": "-nojoy",
+      "effect": "Disables joystick/gamepad input subsystem. Reduces startup time and memory footprint on non-controller setups.",
+      "recommended": true
+    },
+    {
+      "option": "+exec autoexec",
+      "effect": "Explicitly executes autoexec.cfg on launch.",
+      "recommended": true,
+      "notes": "Not always required on modern CS2 builds — the game auto-executes autoexec.cfg if present. Including it explicitly is harmless and ensures the file always runs."
+    },
+    {
+      "option": "-high",
+      "effect": "Sets process priority to High in Windows Task Manager.",
+      "recommended": false,
+      "notes": "Can cause audio dropouts and system instability by starving background Windows processes. The benefit is marginal even on systems with many background apps. Not recommended."
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "cs2_video.txt",
+      "behaviour": "Fully rewritten by the in-game Video settings menu on every close. Manual edits will be lost if the user opens and saves any video setting.",
+      "action": "Warn the user to edit cs2_video.txt only while CS2 is fully closed. For truly persistent display preferences, instruct the user to set them in-game first, then make additional tweaks to the file."
+    },
+    {
+      "key": "VAC / Valve Anti-Cheat",
+      "behaviour": "VAC does not scan config files or autoexec.cfg. All keys and console variables in this profile are VAC-safe. No modifications to game binary files are recommended.",
+      "action": "Safe to apply all recommended settings. Do not recommend cheat-adjacent cvars such as sv_cheats-gated commands — these are server-controlled and cannot be applied by clients."
+    }
+  ],
+  "notes": [
+    "CS2 replaced CS:GO in September 2023. All CSGO-era config documentation referencing the Windows registry or CSGO-specific paths is obsolete.",
+    "The in-game Boost Player Contrast setting (Settings > Video > Advanced) is equivalent to the old cl_contrast console variable. It is not accessible via config file — set in-game.",
+    "NVIDIA Reflex is available in CS2's Advanced Video settings. It significantly reduces input latency (measured in mouse-to-pixel latency). Enabled + Boost is recommended on all NVIDIA GPUs; has no effect on AMD/Intel.",
+    "AMD Anti-Lag+ is available for AMD RX 7000 series and newer through the AMD Software Adrenalin Edition overlay."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Counter-Strike_2",
+    "https://totalcsgo.com/launch-options",
+    "https://developer.valvesoftware.com/wiki/CS2_Launch_Options"
+  ]
+}
