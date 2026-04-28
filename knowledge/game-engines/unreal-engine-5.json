@@ -1,0 +1,226 @@
+{
+  "engine": "Unreal Engine 5",
+  "version_range": "5.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-28",
+  "detection_signatures": {
+    "file_names": ["GameUserSettings.ini", "Engine.ini", "Scalability.ini"],
+    "section_headers": [
+      "[/Script/Engine.GameUserSettings]",
+      "[/Script/Engine.Engine]"
+    ],
+    "key_prefixes": ["sg.", "r.", "b"],
+    "ue5_specific_signatures": ["r.Lumen", "r.Nanite", "r.Shadow.Virtual", "sg.GlobalIlluminationQuality", "sg.ReflectionQuality"]
+  },
+  "config_file_locations": {
+    "windows": "%LOCALAPPDATA%\\<GameName>\\Saved\\Config\\Windows\\",
+    "windows_note": "UE5 changed the config subfolder from 'WindowsNoEditor' (UE4) to 'Windows'. A small number of early UE5 titles (shipped before 5.1) may still use 'WindowsNoEditor' — check both if the expected path is absent."
+  },
+  "keys": [
+    {
+      "key": "sg.ResolutionQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Internal render resolution as a percentage of output resolution (50-100). Does not affect UI or HUD resolution. TSR can maintain quality at lower values than TAA could.",
+      "recommendations": {
+        "performance": "67",
+        "balanced": "80",
+        "quality": "100"
+      },
+      "notes": "UE5's TSR (Temporal Super Resolution) reconstructs fine detail more effectively than UE4's TAA at equivalent scale values, so lower values are viable at quality settings. Many UE5 games expose DLSS, FSR, or XeSS as in-game alternatives — use those in preference to direct INI scaling where available."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Shadow system quality: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic. In UE5, this governs Virtual Shadow Maps (VSM) quality — cascade count, VSM page resolution, and contact shadow accuracy.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      },
+      "notes": "UE5 replaces UE4's cascaded shadow maps with Virtual Shadow Maps (VSM). VSM quality 4 (cinematic) has a substantial GPU cost; quality 2 offers the best performance-to-quality balance on mid-range hardware. Some titles allow disabling VSM entirely via r.Shadow.Virtual.Enable."
+    },
+    {
+      "key": "sg.GlobalIlluminationQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Global illumination quality: 0=low (screen-space or baked only), 1=medium, 2=high, 3=epic, 4=cinematic. Controls Lumen GI quality — ray budget, probe density, and update frequency.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "4"
+      },
+      "notes": "New in UE5. At 0, Lumen GI is replaced by screen-space GI or baked lighting depending on the game — a significant GPU saving on mid/low-end hardware. Levels 3-4 (epic/cinematic) require hardware ray tracing for best results; on cards without RT cores they fall back to Lumen's software ray tracing path."
+    },
+    {
+      "key": "sg.ReflectionQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Reflection quality: 0=low (SSR or baked probes), 1=medium, 2=high, 3=epic, 4=cinematic. Controls Lumen reflection quality — ray count, roughness support, and world-space cache accuracy.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      },
+      "notes": "New in UE5. At 0, Lumen reflections are replaced by screen-space reflections (SSR) and/or baked reflection captures — acceptable on performance hardware. Lumen reflections at quality 3-4 show the greatest benefit on rough and metallic surfaces."
+    },
+    {
+      "key": "sg.ShadingQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Material shading model complexity: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic. Controls per-material shader permutation complexity and subsurface/hair rendering fidelity.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.TextureQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Texture streaming quality: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "Texture quality is VRAM-bandwidth-bound rather than GPU-compute-bound. Reducing below 2 rarely improves FPS on mid/high-end hardware. Nanite geometry does not affect texture memory."
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Particle and visual effects quality: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Post-process quality including bloom, depth of field, lens flare, and ambient occlusion: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.ViewDistanceQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "LOD bias and object draw distance: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "sg.FoliageQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Foliage density, draw distance, and wind simulation fidelity: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "r.Lumen.GlobalIllumination.Enable",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Enables or disables Lumen Global Illumination entirely: 0=off (screen-space or baked fallback), 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Disabling Lumen GI on performance hardware recovers significant GPU headroom. The fallback (screen-space GI or baked lighting) still provides acceptable indirect lighting in most scenes. Some games tie this to their in-game GI quality slider — check game-specific overrides before editing."
+    },
+    {
+      "key": "r.Lumen.Reflections.Enable",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Enables or disables Lumen Reflections: 0=off (SSR + reflection captures), 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Disabling Lumen reflections falls back to screen-space reflections and baked reflection captures. The difference is most visible on wet ground, polished floors, and still water. SSR fallback is not visible on geometry outside the screen frustum."
+    },
+    {
+      "key": "r.Shadow.Virtual.Enable",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Enables UE5 Virtual Shadow Maps (VSM): 0=off (traditional cascaded shadow maps), 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "VSM produces significantly sharper contact shadows and handles complex scene geometry better than cascaded shadow maps, but has a higher baseline GPU cost. Disabling VSM on performance hardware is a meaningful trade-off. Some titles do not support disabling VSM and will re-enable it on load — check engine_overrides in the game's Tier 1 file."
+    },
+    {
+      "key": "r.TSR.History.ScreenPercentage",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "TSR (Temporal Super Resolution) history buffer size as a percentage of output resolution (50-200). Higher values improve temporal stability and fine-detail retention at the cost of VRAM and GPU bandwidth.",
+      "recommendations": {
+        "performance": "75",
+        "balanced": "100",
+        "quality": "100"
+      },
+      "notes": "Default is 100. Values above 100 provide diminishing quality returns and are only meaningful at 4K+ output. Values below 100 reduce VRAM pressure on GPU-limited systems. Only relevant when TSR is the active upscaler — DLSS, FSR, and XeSS have their own quality controls."
+    },
+    {
+      "key": "r.Streaming.PoolSize",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Texture streaming pool size in MB. Higher values reduce texture pop-in on GPUs with sufficient VRAM. Nanite geometry does not count against this pool.",
+      "recommendations": {
+        "performance": "1000",
+        "balanced": "2000",
+        "quality": "4000"
+      },
+      "notes": "Scale with available VRAM: ~1000 for 6-8 GB, ~2000 for 10-12 GB, ~4000 for 16 GB+. UE5 games tend to use larger texture budgets than UE4 counterparts due to Nanite and Lumen asset requirements — err toward higher values on mid/high-end hardware."
+    },
+    {
+      "key": "bUseVSync",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Enables or disables in-game VSync.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Always disable in-game VSync. Use G-Sync, FreeSync, or driver-level VSync instead to avoid input latency."
+    },
+    {
+      "key": "FrameRateLimit",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Maximum frame rate cap in Hz (0 = unlimited).",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "match_monitor_hz"
+      },
+      "notes": "Set to monitor refresh rate. For VRR displays, set 2-3 fps below the panel maximum to keep inside the VRR range and prevent VSync engaging (e.g. 237 for a 240 Hz panel)."
+    }
+  ],
+  "sources": [
+    "https://docs.unrealengine.com/5.0/en-US/scalability-reference-for-unreal-engine/",
+    "https://docs.unrealengine.com/5.0/en-US/lumen-global-illumination-and-reflections-in-unreal-engine/",
+    "https://docs.unrealengine.com/5.0/en-US/virtual-shadow-maps-in-unreal-engine/",
+    "https://www.pcgamingwiki.com/wiki/Engine:Unreal_Engine_5"
+  ]
+}

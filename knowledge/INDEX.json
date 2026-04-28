@@ -45,12 +45,19 @@
       "name": "Unreal Engine 4",
       "file": "game-engines/unreal-engine-4.json",
       "version_range": "4.x",
-      "fallback_for": [
-        "Unreal Engine 5"
-      ],
+      "fallback_for": [],
       "key_count": 8,
+      "profile_version": "1.0.1",
+      "updated": "2026-04-28"
+    },
+    {
+      "name": "Unreal Engine 5",
+      "file": "game-engines/unreal-engine-5.json",
+      "version_range": "5.x",
+      "fallback_for": [],
+      "key_count": 17,
       "profile_version": "1.0.0",
-      "updated": "2026-04-27"
+      "updated": "2026-04-28"
     }
   ]
 }

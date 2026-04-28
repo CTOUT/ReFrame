@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `knowledge/game-engines/unreal-engine-5.json` — Unreal Engine 5 engine profile (5.x): 17 keys covering TSR, Lumen GI, Lumen Reflections, Virtual Shadow Maps, scalability groups (sg.GlobalIlluminationQuality and sg.ReflectionQuality are new to UE5), texture streaming pool, VSync, and frame rate cap; documents Windows config path change from WindowsNoEditor (UE4) to Windows (UE5); 0-4 scalability range throughout; four sources
 - `knowledge/games/skyrim-special-edition.json` — Skyrim Special Edition profile: Steam, GOG, and Xbox Game Pass config paths; 11 INI keys across Display, Imagespace, and Grass sections; engine override note (in-game menu overwrites INI); manual-only settings (resolution, AA / Skyrim Upscaler); notes covering SKSE64, ENB, Community Shaders, BethINI, and Anniversary Edition
 - `knowledge/INDEX.json` — machine-readable index of all game and engine profiles; lists name, file, engine, platforms, key count, profile version, and last-updated date for each entry; updated with every new or changed profile
 - `reframe.agent.md` — knowledge capture workflow: after analysing an unknown game, the agent offers to write `knowledge/games/<game>.json` from session findings and prompts the user to contribute via PR or issue form
@@ -27,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Both contributor templates (`knowledge/templates/`) — added `profile_version` and `updated` as required fields with authoring guidance
 - `knowledge/templates/game-engine.template.json` — documented one-file-per-major-version convention in `_instructions` and `version_range` field guidance
 - `CONTRIBUTING.md` — added engine versioning convention section: one file per major version, minor-version quirks go in Tier 1 `engine_overrides`, guidance on when to create vs extend
+- `knowledge/game-engines/unreal-engine-4.json` — removed Unreal Engine 5 from `fallback_for` now that `unreal-engine-5.json` exists; bumped profile to 1.0.1
 - `.github/ISSUE_TEMPLATE/knowledge_submission.yml` — Knowledge Submission issue form for non-git contributors; accepts generated or hand-authored JSON with verification checklist
 - `CONTRIBUTING.md` — two-path contribution guide: PR workflow (existing) and no-git issue form path (new)
 - `.github/ISSUE_TEMPLATE/config.yml` — added "Browse game knowledge" contact link

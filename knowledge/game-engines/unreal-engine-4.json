@@ -1,10 +1,10 @@
 {
   "engine": "Unreal Engine 4",
   "version_range": "4.x",
-  "profile_version": "1.0.0",
-  "updated": "2026-04-27",
-  "fallback_for": ["Unreal Engine 5"],
-  "fallback_for_note": "Used as fallback defaults only when no dedicated engine file exists for the listed engines. If a dedicated file (e.g. unreal-engine-5.json) exists, it always wins unconditionally, regardless of this field. Among multiple files claiming fallback coverage for the same engine, the file with the closest version match takes priority.",
+  "profile_version": "1.0.1",
+  "updated": "2026-04-28",
+  "fallback_for": [],
+  "fallback_for_note": "No longer covers Unreal Engine 5 as a fallback — unreal-engine-5.json exists and takes precedence unconditionally for all UE5 games.",
   "detection_signatures": {
     "file_names": ["GameUserSettings.ini", "Engine.ini", "Scalability.ini"],
     "section_headers": [
