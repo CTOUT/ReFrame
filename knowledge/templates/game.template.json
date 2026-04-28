@@ -11,6 +11,8 @@
   "game": "REQUIRED — exact display name of the game, e.g. 'Dead Island 2'",
   "engine": "REQUIRED — engine name matching the engine field in a knowledge/game-engines/ file, or 'unknown'",
   "engine_version": "OPTIONAL — specific version string if known, e.g. '4.25'",
+  "profile_version": "REQUIRED — semantic version of this profile, e.g. '1.0.0'. Increment minor for new keys or corrections, patch for typo/source fixes.",
+  "updated": "REQUIRED — ISO 8601 date of last meaningful update, e.g. '2026-04-28'",
 
   "platforms": [
     {

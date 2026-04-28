@@ -1,6 +1,8 @@
 {
   "game": "Elden Ring",
   "engine": "unknown",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-27",
   "platforms": [
     {
       "store": "Steam",

@@ -2,6 +2,8 @@
   "game": "Dead Island 2",
   "engine": "Unreal Engine 4",
   "engine_version": "4.25",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-27",
   "platforms": [
     {
       "store": "Steam",

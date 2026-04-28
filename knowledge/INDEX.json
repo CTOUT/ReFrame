@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "updated": "2026-04-28",
+  "games": [
+    {
+      "name": "Dead Island 2",
+      "file": "games/dead-island-2.json",
+      "engine": "Unreal Engine 4",
+      "engine_version": "4.25",
+      "platforms": [
+        "Steam",
+        "Epic Games Store"
+      ],
+      "key_count": 26,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-27"
+    },
+    {
+      "name": "Elden Ring",
+      "file": "games/elden-ring.json",
+      "engine": "unknown",
+      "platforms": [
+        "Steam"
+      ],
+      "key_count": 4,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-27"
+    },
+    {
+      "name": "The Elder Scrolls V: Skyrim Special Edition",
+      "file": "games/skyrim-special-edition.json",
+      "engine": "Creation Engine",
+      "platforms": [
+        "Steam",
+        "GOG",
+        "Xbox Game Pass"
+      ],
+      "key_count": 11,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-28"
+    }
+  ],
+  "engines": [
+    {
+      "name": "Unreal Engine 4",
+      "file": "game-engines/unreal-engine-4.json",
+      "version_range": "4.x",
+      "fallback_for": [
+        "Unreal Engine 5"
+      ],
+      "key_count": 8,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-27"
+    }
+  ]
+}

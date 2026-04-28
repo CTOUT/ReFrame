@@ -10,6 +10,8 @@
 
   "engine": "REQUIRED — exact engine name, e.g. 'Unreal Engine 5'. Must match what game files reference.",
   "version_range": "REQUIRED — version string this file covers, e.g. '5.x' or '5.0–5.4'",
+  "profile_version": "REQUIRED — semantic version of this profile, e.g. '1.0.0'. Increment minor for new keys or corrections, patch for typo/source fixes.",
+  "updated": "REQUIRED — ISO 8601 date of last meaningful update, e.g. '2026-04-28'",
 
   "fallback_for": [
     "OPTIONAL — list engine names this file covers as a fallback when no dedicated file exists for them.",

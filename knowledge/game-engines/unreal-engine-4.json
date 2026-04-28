@@ -1,6 +1,8 @@
 {
   "engine": "Unreal Engine 4",
   "version_range": "4.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-27",
   "fallback_for": ["Unreal Engine 5"],
   "fallback_for_note": "Used as fallback defaults only when no dedicated engine file exists for the listed engines. If a dedicated file (e.g. unreal-engine-5.json) exists, it always wins unconditionally, regardless of this field. Among multiple files claiming fallback coverage for the same engine, the file with the closest version match takes priority.",
   "detection_signatures": {

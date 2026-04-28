@@ -1,6 +1,8 @@
 {
   "game": "The Elder Scrolls V: Skyrim Special Edition",
   "engine": "Creation Engine",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-28",
   "platforms": [
     {
       "store": "Steam",
