@@ -17,8 +17,8 @@ Completed items are struck through. Each item requires an engine profile (if new
 | 1 | Cyberpunk 2077 | REDengine 4 | ✅ `redengine-4.json` | ✅ Done |
 | 2 | GTA V | RAGE | ✅ `rage.json` | ✅ Done |
 | 3 | Counter-Strike 2 | Source 2 | ✅ `source-2.json` | ✅ Done |
-| 4 | World of Warcraft | Blizzard WoW engine | ❌ Needed | ⏳ Next |
-| 5 | PUBG: Battlegrounds | UE4 | ✅ Done | Queued |
+| 4 | World of Warcraft | Blizzard WoW engine | ✅ `blizzard-wow-engine.json` | ✅ Done |
+| 5 | PUBG: Battlegrounds | UE4 | ✅ Done | ⏳ Next |
 | 6 | Valorant | UE4 | ✅ Done | Queued |
 | 7 | Fortnite | UE5 | ✅ Done | Queued |
 | 8 | Marvel Rivals | UE5 | ✅ Done | Queued |

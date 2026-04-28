@@ -1,0 +1,165 @@
+{
+  "game": "World of Warcraft",
+  "engine": "Blizzard WoW Engine",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-28",
+  "aliases": ["WoW", "World of Warcraft: The War Within", "WoW Retail"],
+  "platforms": [
+    {
+      "name": "Battle.net",
+      "config_files": [
+        {
+          "file": "Config.wtf",
+          "path": "%PROGRAMFILES(X86)%\\World of Warcraft\\_retail_\\WTF\\Config.wtf",
+          "path_note": "Default Blizzard install path. Users who changed install location during Battle.net setup will have a different root. The WTF\\ folder and Config.wtf are created on first game launch.",
+          "format": "wtf",
+          "notes": "Uses 'SET key \"value\"' syntax. The game rewrites this file on exit. Edit only while WoW is fully closed and Battle.net launcher is not actively patching."
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "name": "WoW Classic / Season of Discovery / Hardcore",
+      "config_path": "%PROGRAMFILES(X86)%\\World of Warcraft\\_classic_\\WTF\\Config.wtf",
+      "note": "Separate Config.wtf for Classic clients. All keys in this profile apply to Classic as well, though graphicsSSAO and some Ultra+ settings may not be available in the Classic renderer."
+    },
+    {
+      "name": "WoW PTR / Beta",
+      "config_path": "%PROGRAMFILES(X86)%\\World of Warcraft\\_ptr_\\WTF\\Config.wtf",
+      "note": "PTR has its own Config.wtf. Settings do not sync between PTR and Retail."
+    }
+  ],
+  "keys": [
+    {
+      "key": "graphicsTextureResolution",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Texture streaming resolution: 0=low, 1=fair, 2=good, 3=high, 4=ultra, 5=ultra+.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "5"
+      },
+      "notes": "Ultra+ (5) requires 8 GB+ VRAM. In densely populated capital cities and outdoor raid entrances, texture streaming stutter is common with 6 GB VRAM at Ultra+. Use High (3) as a safe ceiling for 6-8 GB cards."
+    },
+    {
+      "key": "graphicsSpellDensity",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Particle and spell effect density: 0=low, 1=fair, 2=good, 3=high, 4=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "The single most impactful setting for raid and large-group performance. In Mythic raid progression, Low (0) can recover 20-40% GPU frame time versus Ultra. Ultra (4) is only appropriate for solo/open-world content."
+    },
+    {
+      "key": "graphicsShadowQuality",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Shadow map resolution and range: 0=low, 1=fair, 2=good, 3=high, 4=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "graphicsViewDistance",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "World render distance for terrain, characters, and objects: 0=low (426m) through 5=ultra (2133m).",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "5"
+      },
+      "notes": "Major CPU cost driver in open-world zones. The War Within underground zones (Khaz Algar) and Dragonflight outdoor zones with high mob density benefit significantly from reducing this on CPU-limited hardware."
+    },
+    {
+      "key": "graphicsEnvironmentDetail",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Ground clutter density (grass, small foliage): 0=low through 4=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "graphicsLiquidDetail",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Water and liquid surface quality: 0=low through 4=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "graphicsSSAO",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Screen-space ambient occlusion: 0=off, 1=low, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "maxFPS",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Maximum frame rate when the game window is focused.",
+      "recommendations": {
+        "performance": "match_monitor_hz_plus_ten",
+        "balanced": "match_monitor_hz_plus_ten",
+        "quality": "match_monitor_hz_plus_ten"
+      },
+      "notes": "WoW ships uncapped. Capping 10 above monitor Hz (e.g. 170 for 165 Hz) prevents unnecessary GPU heat in low-complexity scenes."
+    },
+    {
+      "key": "maxFPSBk",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Maximum frame rate when the game window is unfocused or minimised.",
+      "recommendations": {
+        "performance": "30",
+        "balanced": "30",
+        "quality": "30"
+      },
+      "notes": "Default is uncapped. WoW is commonly left running during breaks, queues, and AFK. Capping background FPS to 30 significantly reduces idle GPU and CPU power draw."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "DLSS / FidelityFX Super Resolution",
+      "location": "System > Graphics > Advanced",
+      "recommendation": "DLSS Quality on NVIDIA RTX hardware. FSR Quality on AMD. WoW added native DLSS 3.5 support in Patch 10.2 (Dragonflight) and DLSS 4 in Patch 11.0 (The War Within).",
+      "reason": "Upscaler selection is only configurable via the in-game Advanced Graphics menu."
+    },
+    {
+      "setting": "Raid Graphics Preset",
+      "location": "System > Graphics > Raid Preset",
+      "recommendation": "Set a dedicated reduced-quality preset for raid instances. WoW's Raid Preset system (added in Dragonflight) automatically applies a separate graphics profile when entering raid zones.",
+      "reason": "Separates graphics quality between solo/world content and group content where performance is critical. Configured entirely in-game."
+    }
+  ],
+  "notes": [
+    "WoW Retail and WoW Classic maintain completely separate Config.wtf files. Changes to one do not affect the other.",
+    "The Raid Graphics Preset feature (Dragonflight patch 10.0+) automatically applies a lower graphics profile in raid instances. This is the recommended approach for players who want high quality in solo content and maximum performance in raids.",
+    "Config.wtf is recreated from defaults if deleted — this can be used to reset all graphics settings to factory state.",
+    "The WTF\\ directory also contains per-character and per-account addon settings. Config.wtf is the global client configuration only.",
+    "Several graphicsSpellDensity reductions occurred silently in patches — if a user is on a pre-Dragonflight guide, values may reference different numeric scales."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/World_of_Warcraft",
+    "https://wowpedia.fandom.com/wiki/Console_variables",
+    "https://us.battle.net/support/en/article/76459"
+  ]
+}

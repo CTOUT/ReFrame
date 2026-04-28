@@ -75,6 +75,17 @@
       "key_count": 10,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
+    },
+    {
+      "name": "World of Warcraft",
+      "file": "games/world-of-warcraft.json",
+      "engine": "Blizzard WoW Engine",
+      "platforms": [
+        "Battle.net"
+      ],
+      "key_count": 9,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-28"
     }
   ],
   "engines": [
@@ -121,6 +132,15 @@
       "name": "Source 2",
       "file": "game-engines/source-2.json",
       "version_range": "2.x",
+      "fallback_for": [],
+      "key_count": 9,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-28"
+    },
+    {
+      "name": "Blizzard WoW Engine",
+      "file": "game-engines/blizzard-wow-engine.json",
+      "version_range": "all",
       "fallback_for": [],
       "key_count": 9,
       "profile_version": "1.0.0",

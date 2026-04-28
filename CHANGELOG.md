@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `knowledge/game-engines/blizzard-wow-engine.json` — Blizzard WoW Engine profile: 9 keys (textures, spell density, shadows, view distance, environment detail, liquid, SSAO, maxFPS, maxFPSBk); documents wtf format; covers Retail, Classic, and PTR detection
+- `knowledge/games/world-of-warcraft.json` — World of Warcraft profile (aliases: WoW, WoW Retail): Battle.net path; Retail/Classic/PTR config variants; 9 keys; graphicsSpellDensity raid performance note; maxFPSBk background cap; DLSS 4 / Raid Preset manual-only settings; Config.wtf reset note
 - `knowledge/game-engines/source-2.json` — Source 2 engine profile (2.x): 6 video.txt keys + 3 console vars + 4 launch options; documents dual-surface config model (cs2_video.txt + autoexec.cfg); covers CS2 and Dota 2 detection; VAC-safety notes included
 - `knowledge/games/counter-strike-2.json` — Counter-Strike 2 profile: Steam path; 5 video keys; 5 console vars including fps_max with match_monitor_hz_plus_ten token, cl_forcepreload, mat_queue_mode, instanced draw call limit; 4 launch options; NVIDIA Reflex and AMD Anti-Lag+ manual notes; CS:GO obsolescence warning
 - `knowledge/game-engines/rage.json` — RAGE engine profile (5.x): 7 keys covering textures, shadows, reflections, AA, grass, shaders, and post-FX; fallback_for RAGE 6/7 (RDR2); documents settings.xml overwrite behaviour

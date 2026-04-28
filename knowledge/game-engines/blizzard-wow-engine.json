@@ -1,0 +1,126 @@
+{
+  "engine": "Blizzard WoW Engine",
+  "version_range": "all",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-28",
+  "detection_signatures": {
+    "file_names": ["Config.wtf"],
+    "path_fragments": ["World of Warcraft\\_retail_\\WTF", "World of Warcraft\\_classic_\\WTF", "World of Warcraft\\_ptr_\\WTF"]
+  },
+  "config_file_locations": {
+    "windows_retail": "%PROGRAMFILES(X86)%\\World of Warcraft\\_retail_\\WTF\\Config.wtf",
+    "windows_classic": "%PROGRAMFILES(X86)%\\World of Warcraft\\_classic_\\WTF\\Config.wtf",
+    "windows_note": "Blizzard installs WoW to Program Files by default. Config.wtf uses a SET key value format (not INI sections). The Battle.net launcher rewrites some keys; edits made while the game is running may be overwritten. Edit only while WoW is closed."
+  },
+  "keys": [
+    {
+      "key": "graphicsTextureResolution",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Texture streaming resolution: 0=low, 1=fair, 2=good, 3=high, 4=ultra, 5=ultra+ (VRAM permitting).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "5"
+      },
+      "notes": "WoW streams textures progressively. Ultra+ (5) requires 8 GB+ VRAM to prevent constant streaming stutter in densely populated zones such as Orgrimmar and Valdrakken."
+    },
+    {
+      "key": "graphicsSpellDensity",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Spell and particle effect density: 0=low, 1=fair, 2=good, 3=high, 4=ultra, 5=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "4"
+      },
+      "notes": "Critical for raid performance. At Ultra in a 25-player raid with heavy AoE, GPU and CPU frame time can double versus Low. Recommend Low/Fair for progression raiders on mid-tier hardware."
+    },
+    {
+      "key": "graphicsShadowQuality",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Shadow map resolution and range: 0=low, 1=fair, 2=good, 3=high, 4=ultra, 5=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "5"
+      }
+    },
+    {
+      "key": "graphicsLiquidDetail",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Water and liquid surface rendering quality: 0=low, 1=fair, 2=good, 3=high, 4=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "graphicsViewDistance",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Terrain and character render distance: 0=low (426m), 1=fair, 2=good, 3=high, 4=ultra, 5=ultra (2133m).",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "5"
+      },
+      "notes": "One of the highest CPU-cost settings in open-world zones. Reducing from Ultra to High in zones like The War Within's underground areas recovers meaningful CPU frame time."
+    },
+    {
+      "key": "graphicsEnvironmentDetail",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Ground clutter (grass, small foliage) density and draw distance: 0=low, 1=fair, 2=good, 3=high, 4=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "graphicsSSAO",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Screen-space ambient occlusion quality: 0=off, 1=low, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "maxFPS",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Maximum frame rate cap when the game window is focused.",
+      "recommendations": {
+        "performance": "match_monitor_hz_plus_ten",
+        "balanced": "match_monitor_hz_plus_ten",
+        "quality": "match_monitor_hz_plus_ten"
+      },
+      "notes": "WoW's default is uncapped. Setting a cap 10 above monitor refresh reduces GPU heat output without impacting perceived smoothness."
+    },
+    {
+      "key": "maxFPSBk",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Maximum frame rate when the game window is in the background (unfocused).",
+      "recommendations": {
+        "performance": "30",
+        "balanced": "30",
+        "quality": "30"
+      },
+      "notes": "Default is uncapped. Capping background FPS to 30 dramatically reduces GPU/CPU usage when the game is minimised during loading screens or AFK situations."
+    }
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/World_of_Warcraft",
+    "https://us.battle.net/support/en/article/76459",
+    "https://wowpedia.fandom.com/wiki/Console_variables"
+  ]
+}
