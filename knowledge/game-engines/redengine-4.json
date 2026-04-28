@@ -1,0 +1,58 @@
+{
+  "engine": "REDengine 4",
+  "version_range": "4.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-28",
+  "detection_signatures": {
+    "file_names": ["UserSettings.json"],
+    "path_fragments": ["CD Projekt Red\\Cyberpunk 2077"],
+    "key_prefixes": ["Rendering.", "LevelOfDetail.", "SpawnSystem.", "Streaming."]
+  },
+  "config_file_locations": {
+    "windows_user": "%USERPROFILE%\\Documents\\CD Projekt Red\\Cyberpunk 2077\\",
+    "windows_install": "<game_install>\\engine\\config\\platform\\pc\\",
+    "windows_note": "Two separate locations. UserSettings.json lives under Documents and is overwritten by the in-game menu. Engine override INIs must be created (not edited) inside the game install at engine\\config\\platform\\pc\\ — create a new .ini file there (any filename); never edit existing engine INIs as patches restore them."
+  },
+  "keys": [
+    {
+      "key": "Rendering.StreamingDistanceMultiplier",
+      "section": "[Rendering]",
+      "file": "engine_override.ini",
+      "effect": "Multiplier for texture and geometry streaming distance. Higher values reduce pop-in at the cost of VRAM and CPU streaming bandwidth.",
+      "recommendations": {
+        "performance": "0.8",
+        "balanced": "1.0",
+        "quality": "1.5"
+      },
+      "notes": "Default is 1.0. Values above 1.5 have diminishing returns and cause significant VRAM pressure on large open-world scenes. Place in a custom .ini file under engine\\config\\platform\\pc\\ — survives game patches."
+    },
+    {
+      "key": "LevelOfDetail.RigLimit",
+      "section": "[LevelOfDetail]",
+      "file": "engine_override.ini",
+      "effect": "Distance at which NPCs receive full physics rig simulation (cloth, hair, accessories). Higher values activate rigs further from the camera at CPU cost.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "5"
+      },
+      "notes": "Default is 3. Values above 8 stress the CPU in dense NPC scenes and typically show no visible improvement beyond that point."
+    },
+    {
+      "key": "Rendering.ScreenSpaceReflectionQuality",
+      "section": "[Rendering]",
+      "file": "engine_override.ini",
+      "effect": "Screen-space reflection quality: 0=off, 1=low, 2=medium, 3=high.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Only active when ray tracing reflections are disabled in the in-game Graphics menu. If RT reflections or Path Tracing is enabled, this key has no effect."
+    }
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Cyberpunk_2077",
+    "https://wiki.cybermods.net/"
+  ]
+}

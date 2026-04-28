@@ -38,6 +38,19 @@
       "key_count": 11,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
+    },
+    {
+      "name": "Cyberpunk 2077",
+      "file": "games/cyberpunk-2077.json",
+      "engine": "REDengine 4",
+      "platforms": [
+        "Steam",
+        "GOG",
+        "Epic Games Store"
+      ],
+      "key_count": 5,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-28"
     }
   ],
   "engines": [
@@ -56,6 +69,15 @@
       "version_range": "5.x",
       "fallback_for": [],
       "key_count": 17,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-28"
+    },
+    {
+      "name": "REDengine 4",
+      "file": "game-engines/redengine-4.json",
+      "version_range": "4.x",
+      "fallback_for": [],
+      "key_count": 3,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
     }

@@ -1,0 +1,164 @@
+{
+  "game": "Cyberpunk 2077",
+  "engine": "REDengine 4",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-28",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "1091500",
+      "config_files": [
+        {
+          "file": "UserSettings.json",
+          "path": "%USERPROFILE%\\Documents\\CD Projekt Red\\Cyberpunk 2077\\UserSettings.json",
+          "format": "json",
+          "notes": "Main user settings. Overwritten by the in-game Graphics menu on every exit. Do not rely on manual edits surviving a subsequent in-game settings change."
+        },
+        {
+          "file": "user_tweaks.ini",
+          "path": "%STEAM_LIBRARY%\\common\\Cyberpunk 2077\\engine\\config\\platform\\pc\\user_tweaks.ini",
+          "path_note": "ReFrame resolves %STEAM_LIBRARY% from Steam's libraryfolders.vdf. Typical default path: C:\\Program Files (x86)\\Steam\\steamapps\\common\\Cyberpunk 2077\\engine\\config\\platform\\pc\\. Create this file if it does not exist — do not edit existing engine INIs in this directory.",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "name": "GOG",
+      "config_files": [
+        {
+          "file": "UserSettings.json",
+          "path": "%USERPROFILE%\\Documents\\CD Projekt Red\\Cyberpunk 2077\\UserSettings.json",
+          "format": "json"
+        },
+        {
+          "file": "user_tweaks.ini",
+          "path": "%PROGRAMFILES(X86)%\\GOG Galaxy\\Games\\Cyberpunk 2077\\engine\\config\\platform\\pc\\user_tweaks.ini",
+          "path_note": "Default GOG install path. Create this file if absent.",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "name": "Epic Games Store",
+      "config_files": [
+        {
+          "file": "UserSettings.json",
+          "path": "%USERPROFILE%\\Documents\\CD Projekt Red\\Cyberpunk 2077\\UserSettings.json",
+          "format": "json"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "Rendering.StreamingDistanceMultiplier",
+      "section": "[Rendering]",
+      "file": "user_tweaks.ini",
+      "effect": "Multiplier for texture and geometry streaming distance. Increasing this reduces asset pop-in in Night City at the cost of VRAM and CPU streaming time.",
+      "recommendations": {
+        "performance": "0.8",
+        "balanced": "1.0",
+        "quality": "1.3"
+      },
+      "notes": "Keep quality-mode value at 1.3 rather than 1.5 for Cyberpunk specifically — the large open world means higher values cause measurable CPU stutter on mid-range hardware even at low GPU load."
+    },
+    {
+      "key": "LevelOfDetail.RigLimit",
+      "section": "[LevelOfDetail]",
+      "file": "user_tweaks.ini",
+      "effect": "Distance at which NPCs receive full physics rig simulation for cloth, hair, and accessories.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "5"
+      },
+      "notes": "Default is 3. Most impactful in crowd-heavy areas such as Market Street and Kabuki. Values above 6 provide negligible visual benefit."
+    },
+    {
+      "key": "Rendering.ScreenSpaceReflectionQuality",
+      "section": "[Rendering]",
+      "file": "user_tweaks.ini",
+      "effect": "Screen-space reflection quality for wet surfaces, puddles, and polished floors: 0=off, 1=low, 2=medium, 3=high.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Has no effect when ray tracing reflections or path tracing is enabled in the in-game Graphics menu — those renderers fully replace SSR."
+    },
+    {
+      "key": "Rendering.AmbientOcclusionQuality",
+      "section": "[Rendering]",
+      "file": "user_tweaks.ini",
+      "effect": "Screen-space ambient occlusion quality: 0=off, 1=low, 2=medium, 3=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Has no effect when ray tracing ambient occlusion or path tracing is enabled in-game. Disabling (0) is a safe performance win on low/mid hardware without ray tracing."
+    },
+    {
+      "key": "Rendering.VolumetricFogResolution",
+      "section": "[Rendering]",
+      "file": "user_tweaks.ini",
+      "effect": "Volumetric fog render resolution: 0=low, 1=medium, 2=high. Affects the quality of fog, atmospheric haze, and god rays throughout Night City.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Fog is visually prominent in many Night City districts. Reducing to 0 is one of the highest per-FPS-gain tweaks on mid/low hardware with minimal visual impact from normal play distances."
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "UserSettings.json (all keys)",
+      "behaviour": "The entire UserSettings.json file is rewritten by the game whenever the player closes the in-game Graphics or Gameplay settings menu. Manual edits to this file will be lost if the user subsequently opens and saves any in-game setting.",
+      "action": "Warn the user before editing UserSettings.json. Recommend engine override INI keys for persistent tweaks. For settings only exposed in UserSettings.json (resolution, upscaler mode), instruct the user to make changes in-game rather than via file edit."
+    },
+    {
+      "key": "SpawnSystem.* (crowd density)",
+      "behaviour": "Patch 2.0 (September 2023) added an in-game Crowd Density slider under Settings > Gameplay. This slider controls crowd-related SpawnSystem values and overwrites any manual SpawnSystem INI entries on load.",
+      "action": "Do not recommend SpawnSystem INI keys. Direct users to the in-game Crowd Density slider instead."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Upscaling / Super Resolution",
+      "location": "Settings > Graphics > Upscaling",
+      "recommendation": "DLSS Quality on RTX cards; FSR Quality on AMD/Intel. Use DLSS Performance at 1440p+ on mid-range RTX hardware. Frame Generation (DLSS 3) requires RTX 40 series; Multi Frame Generation (DLSS 4) requires RTX 50 series.",
+      "reason": "Upscaler selection and mode are only configurable through the in-game Graphics menu and stored in UserSettings.json."
+    },
+    {
+      "setting": "Ray Tracing / Path Tracing",
+      "location": "Settings > Graphics > Ray Tracing",
+      "recommendation": "Disable all RT on Low/Mid hardware. Enable RT Local Shadows + AO on mid-high (RTX 3070+). Full Path Tracing (Overdrive) only on RTX 4070 Ti Super+ with DLSS Quality enabled.",
+      "reason": "RT features are toggled via the in-game Graphics menu. At 4K native resolution, even RTX 4090 cannot maintain 60 FPS with Path Tracing — DLSS Quality is required."
+    },
+    {
+      "setting": "Crowd Density",
+      "location": "Settings > Gameplay > Crowd Density",
+      "recommendation": "Low on performance hardware; Medium on balanced; High on quality. Has meaningful CPU frametime impact in busy districts.",
+      "reason": "Added in patch 2.0. Directly controls NPC population density and overrides legacy SpawnSystem INI keys."
+    },
+    {
+      "setting": "Field of View",
+      "location": "Settings > Gameplay > Camera",
+      "recommendation": "Default 70°. Increase to 80–90° if prone to motion discomfort in first-person view.",
+      "modifier": "motion_comfort",
+      "reason": "The game is primarily first-person; narrow FOV is a common trigger for motion sickness."
+    }
+  ],
+  "notes": [
+    "Cyberpunk 2077 ships with an older DLSS DLL. Users with RTX cards can replace nvngx_dlss.dll in the game install root with a newer version for improved upscaling quality and access to DLSS 3 Ray Reconstruction (2.0+) or DLSS 4 Multi Frame Generation (RTX 50 series). DLSS Swapper automates this.",
+    "Engine override INI files created in engine\\config\\platform\\pc\\ survive patches and do not need to be recreated after updates.",
+    "Pre-patch 2.0 optimisation guides (before September 2023) often reference SpawnSystem INI keys for crowd density. These are now overridden by the in-game Crowd Density slider and should be ignored.",
+    "The game received major performance optimisations in patches 1.5 (February 2022), 1.6 (September 2022), and 2.0 (September 2023). Benchmark data from before patch 1.5 is not representative of current performance."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Cyberpunk_2077",
+    "https://wiki.cybermods.net/",
+    "https://www.digitalfoundry.net/2023-12-18-cyberpunk-2077-overdrive-mode-path-tracing-technology-deep-dive"
+  ]
+}

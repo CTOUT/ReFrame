@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `knowledge/game-engines/redengine-4.json` — REDengine 4 engine profile (4.x): 3 keys covering texture streaming distance, NPC physics rig limit, and SSR quality; documents dual-location config model (UserSettings.json in Documents + engine override INIs in game install); notes that UserSettings.json is overwritten by the in-game menu
+- `knowledge/games/cyberpunk-2077.json` — Cyberpunk 2077 profile: Steam, GOG, and Epic config paths; 5 engine override INI keys (streaming, rig limit, SSR, AO, volumetric fog); engine_overrides documenting UserSettings.json overwrite behaviour and SpawnSystem/crowd density deprecation in patch 2.0; 4 manual-only settings (upscaling, RT/path tracing, crowd density, FOV with motion_comfort modifier); DLSS DLL replacement note
+
 ### Fixed
 
 - `system-scan` skill — DxDiag post-exit polling: added a stability loop after `WaitForExit` that waits until the XML file size is stable for two consecutive 500 ms checks before proceeding, preventing partial-read failures on slower systems
