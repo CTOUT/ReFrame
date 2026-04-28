@@ -26,8 +26,13 @@ Choose the source in this order:
 2. **Cached file** — if `$env:TEMP\ReFrame-DxDiag.xml` exists and was written
    **after the last system boot**, it is still valid for this session.
    Read it directly and skip to Step 3.
-   Skip this check if the user explicitly ran `scan system` — always regenerate
-   in that case so a display or HDR change mid-session is picked up.
+   **Do not skip this check for `scan system`.** Only bypass the cache if the
+   user explicitly asks for a fresh scan with `scan system --fresh` or says
+   something like "re-scan", "fresh scan", or "rescan".
+   Rationale: hardware does not change mid-session without a reboot, and
+   regenerating DxDiag on every `scan system` call adds 10–30 seconds of
+   unnecessary latency. If the user suspects a display/HDR change without
+   rebooting (rare), they can force a fresh scan explicitly.
 
    ```powershell
    $lastBoot = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
@@ -35,6 +40,9 @@ Choose the source in this order:
    $cacheValid = (Test-Path $dxPath) -and
                  ((Get-Item $dxPath).LastWriteTime -gt $lastBoot)
    ```
+
+   If the cache is valid, tell the user: *"Using cached hardware profile from
+   this session. Run `scan system --fresh` to regenerate."*
 
 3. **Generate on the fly** — run dxdiag now (Step 2).
 
@@ -50,7 +58,23 @@ Write-Host "Generating DxDiag report — this takes a few seconds..."
 $proc = Start-Process -FilePath "dxdiag.exe" `
     -ArgumentList "/whql:off", "/x", "`"$dxPath`"" `
     -PassThru -WindowStyle Hidden
-$proc.WaitForExit(30000)   # 30-second timeout
+$proc.WaitForExit(30000)   # wait for dxdiag.exe process to exit (up to 30 s)
+
+# DxDiag writes the XML asynchronously after the process exits.
+# Poll until the file exists, is non-trivially sized (> 1 KB),
+# and its size has been stable for two consecutive checks.
+$maxWait  = 15   # extra seconds to wait after process exit
+$waited   = 0
+$prevSize = -1
+while ($waited -lt $maxWait) {
+    Start-Sleep -Milliseconds 500
+    $waited += 0.5
+    if (Test-Path $dxPath) {
+        $size = (Get-Item $dxPath).Length
+        if ($size -gt 1024 -and $size -eq $prevSize) { break }  # stable and non-trivial
+        $prevSize = $size
+    }
+}
 
 if ((Test-Path $dxPath) -and ((Get-Item $dxPath).Length -gt 1024)) {
     Write-Host "DxDiag report written to: $dxPath"
@@ -60,7 +84,7 @@ if ((Test-Path $dxPath) -and ((Get-Item $dxPath).Length -gt 1024)) {
 ```
 
 If the file is present and non-trivially sized (> 1 KB), proceed to Step 3.
-If the file is absent or empty, skip to **Step 4 (PowerShell fallback)**.
+If the file is absent or empty after polling, skip to **Step 4 (PowerShell fallback)**.
 
 ---
 
@@ -197,8 +221,9 @@ Every downstream recommendation must be appropriate for this tier.
   session cache. It is considered valid as long as its `LastWriteTime` is after
   the last system boot — driver updates, HAGS changes, and GPU changes all
   require a reboot, so a post-boot file is safe to reuse.
-  The explicit `scan system` command always bypasses this cache to pick up
-  display, HDR, or monitor changes that don’t require a reboot.
+  Use the cache for both `scan system` and `optimise <game>` — only bypass it
+  when the user explicitly requests a fresh scan (`scan system --fresh`,
+  "re-scan", "rescan", or "fresh scan").
   Windows does not reliably clean TEMP automatically; the file will persist
   across sessions but will be ignored after a reboot because its write time
   will pre-date the new `LastBootUpTime`.

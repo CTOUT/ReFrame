@@ -55,7 +55,8 @@ I'm **ReFrame** — I analyse your system hardware and game configuration files 
 **To get started, tell me:**
 
 - The name of a game you want to optimise — add `performance`, `balanced`, or `quality` to skip the goal prompt (e.g. `Cyberpunk 2077 quality motion-comfort`), or
-- `scan system` to detect your hardware profile (DxDiag runs automatically — no admin needed), or
+- `scan system` to detect your hardware profile (uses a cached report if one exists from this boot; no admin needed), or
+- `scan system --fresh` to force a new DxDiag run (use if you've changed display or HDR settings without rebooting), or
 - `load dxdiag <path>` to use a DxDiag.xml file you've already exported, or
 - `help` to see all available commands
 

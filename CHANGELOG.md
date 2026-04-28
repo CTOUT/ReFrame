@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `system-scan` skill — DxDiag post-exit polling: added a stability loop after `WaitForExit` that waits until the XML file size is stable for two consecutive 500 ms checks before proceeding, preventing partial-read failures on slower systems
+- `system-scan` skill — cache policy: `scan system` now reuses a valid post-boot cache instead of always regenerating; use `scan system --fresh` (or say "rescan", "re-scan", "fresh scan") to force a new DxDiag run
+- `reframe.agent.md` — greeting updated to document `scan system --fresh`
+
 ### Added
 
 - `knowledge/games/skyrim-special-edition.json` — Skyrim Special Edition profile: Steam, GOG, and Xbox Game Pass config paths; 11 INI keys across Display, Imagespace, and Grass sections; engine override note (in-game menu overwrites INI); manual-only settings (resolution, AA / Skyrim Upscaler); notes covering SKSE64, ENB, Community Shaders, BethINI, and Anniversary Edition
