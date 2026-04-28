@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - All knowledge files (`games/*.json`, `game-engines/*.json`) — added `profile_version` (semver) and `updated` (ISO 8601 date) fields to support change tracking
 - Both contributor templates (`knowledge/templates/`) — added `profile_version` and `updated` as required fields with authoring guidance
+- `knowledge/templates/game-engine.template.json` — documented one-file-per-major-version convention in `_instructions` and `version_range` field guidance
+- `CONTRIBUTING.md` — added engine versioning convention section: one file per major version, minor-version quirks go in Tier 1 `engine_overrides`, guidance on when to create vs extend
 - `.github/ISSUE_TEMPLATE/knowledge_submission.yml` — Knowledge Submission issue form for non-git contributors; accepts generated or hand-authored JSON with verification checklist
 - `CONTRIBUTING.md` — two-path contribution guide: PR workflow (existing) and no-git issue form path (new)
 - `.github/ISSUE_TEMPLATE/config.yml` — added "Browse game knowledge" contact link

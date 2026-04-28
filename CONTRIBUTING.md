@@ -136,3 +136,18 @@ The agent resolves Tier 2 (engine defaults) using these rules, evaluated in orde
 3. **No match.** If neither rule yields a file, fall through to Tier 3 (generic best-practice rules).
 
 **Example:** A UE5 game is detected. `unreal-engine-5.json` does not yet exist. `unreal-engine-4.json` has `"fallback_for": ["Unreal Engine 5"]` — so its defaults are used for any key not covered by a game-specific (Tier 1) entry. Once `unreal-engine-5.json` is created, it immediately takes over for all UE5 games regardless of `fallback_for`.
+
+### Engine versioning convention
+
+**One file per major engine version only.** Never create separate files for minor versions.
+
+| Do | Don't |
+| -- | ----- |
+| `unreal-engine-4.json` covering `4.x` | `unreal-engine-4.27.json` |
+| `unreal-engine-5.json` covering `5.x` | `unreal-engine-5.3.json` |
+
+The rationale: engine files contain defaults that are **widely applicable** across all games on that engine. Minor-version differences — keys added in 4.27, deprecated in 5.1, or behaving differently for a specific title — are by definition game-specific. They belong in the Tier 1 game file's `engine_overrides` section, not in a split engine file.
+
+**When to create a new engine file:** only when a new *major* version introduces a meaningfully different set of defaults (e.g. Lumen replacing SSGI in UE5, a new renderer architecture). If the defaults are largely the same, extend `fallback_for` on the existing file instead.
+
+**When to edit an existing engine file:** when a default value changes across most games built on that major version, or when a new key becomes widely applicable. Increment `profile_version` (minor for new/changed keys, patch for corrections) and update `updated`.
