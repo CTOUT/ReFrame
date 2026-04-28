@@ -1,0 +1,177 @@
+{
+  "game": "Grand Theft Auto V",
+  "engine": "RAGE",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-28",
+  "aliases": ["GTA V", "GTA 5", "Grand Theft Auto 5"],
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "271590",
+      "config_files": [
+        {
+          "file": "settings.xml",
+          "path": "%USERPROFILE%\\Documents\\Rockstar Games\\GTA V\\settings.xml",
+          "format": "xml",
+          "notes": "Overwritten by the in-game Graphics menu and Rockstar Games Launcher on exit. Edit only while the game and launcher are fully closed."
+        }
+      ]
+    },
+    {
+      "name": "Epic Games Store",
+      "config_files": [
+        {
+          "file": "settings.xml",
+          "path": "%USERPROFILE%\\Documents\\Rockstar Games\\GTA V\\settings.xml",
+          "format": "xml"
+        }
+      ]
+    },
+    {
+      "name": "Rockstar Games Launcher",
+      "config_files": [
+        {
+          "file": "settings.xml",
+          "path": "%USERPROFILE%\\Documents\\Rockstar Games\\GTA V\\settings.xml",
+          "format": "xml"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "TextureQuality",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Texture streaming quality and resident pool size: 0=normal, 1=high, 2=very high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "High (1) is suitable for 6 GB VRAM. Very High (2) requires 8 GB+ for stable frame times in busy areas like downtown Los Santos."
+    },
+    {
+      "key": "ShadowQuality",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Shadow map resolution and cascade count: 0=normal, 1=high, 2=very high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "The highest single GPU cost setting in GTA V. Dropping from Ultra to High typically recovers 10-20% GPU frame time in open-world driving scenarios. Ultra is rarely justified at any hardware tier."
+    },
+    {
+      "key": "ReflectionQuality",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Reflection probe quality used on vehicles and surfaces: 0=normal, 1=high, 2=very high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Ultra has a disproportionate VRAM cost versus visual gain. Very High (2) is the practical ceiling for quality mode."
+    },
+    {
+      "key": "AntiAliasing",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Anti-aliasing method: 0=off, 1=FXAA, 2=MSAA x2, 3=MSAA x4, 4=MSAA x8.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "GTA V's open-world renderer makes MSAA extremely expensive — x4 and x8 are not recommended even on high-end hardware. FXAA provides acceptable smoothing at minimal cost."
+    },
+    {
+      "key": "GrassQuality",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Grass density, physics, and draw distance in rural areas: 0=normal, 1=high, 2=very high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "High GPU and CPU cost in rural San Andreas areas (Blaine County, Mount Chiliad). Ultra grass is rarely visible at racing speeds. Reducing from Ultra to High is a reliable win on any hardware tier."
+    },
+    {
+      "key": "ShaderQuality",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Material shading complexity for lighting and surface rendering: 0=normal, 1=high, 2=very high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "PostFX",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Post-processing quality including depth of field, motion blur, and lens effects: 0=normal, 1=high, 2=very high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Ultra PostFX enables high-quality depth of field and lens flare. Motion blur is included in this setting — if motion blur causes discomfort, set PostFX to Normal or disable MotionBlurStrength separately."
+    },
+    {
+      "key": "MotionBlurStrength",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Motion blur intensity: 0=off, value range 0-100.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "modifier": "motion_comfort",
+      "notes": "Default is enabled. Motion blur is a common trigger for motion discomfort, particularly during high-speed vehicle travel. Recommended off for all settings."
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "settings.xml (all keys)",
+      "behaviour": "The entire settings.xml is rewritten whenever the in-game Graphics menu is closed or the Rockstar Games Launcher syncs settings. Manual edits will be lost if the game or launcher is open.",
+      "action": "Instruct the user to close both GTA V and the Rockstar Games Launcher before editing settings.xml, and to make changes before launching the game."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Population Density",
+      "location": "Settings > Graphics > Population Density",
+      "recommendation": "Reduce to 25-50% on performance hardware to significantly lower CPU overhead in populated areas.",
+      "reason": "NPC and vehicle population density is a major CPU cost factor — more impactful than most GPU settings on CPU-limited systems."
+    },
+    {
+      "setting": "Population Variety",
+      "location": "Settings > Graphics > Population Variety",
+      "recommendation": "Reduce to 50% on performance hardware. Does not affect density — only NPC model variety.",
+      "reason": "High variety increases asset streaming load. Lower values reduce RAM pressure without reducing apparent crowd density."
+    },
+    {
+      "setting": "Extended Distance Scaling",
+      "location": "Settings > Graphics > Extended Distance Scaling",
+      "recommendation": "0 on performance/balanced hardware. Increase only if VRAM exceeds 10 GB.",
+      "reason": "Increases the distance at which detail objects and buildings are rendered at full quality. High VRAM cost with marginal visual benefit at ground level."
+    }
+  ],
+  "notes": [
+    "GTA V Enhanced Edition (2022 remaster on PC) significantly improved GPU performance and added ray tracing support. Ensure users are running the Enhanced Edition — it replaced the original on Steam and Rockstar Launcher automatically.",
+    "GTA Online imposes server-side limits on some settings. Settings changed in GTA Online may not match single-player settings.xml values.",
+    "NVIDIA DLSS and AMD FSR are available in GTA V Enhanced Edition through the in-game menu under Anti-Aliasing. These are not present in the pre-2022 version.",
+    "The settings.xml file may be reset to defaults if the Rockstar Games Launcher detects a version mismatch or cache corruption."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Grand_Theft_Auto_V",
+    "https://support.rockstargames.com/articles/200004743/PC-Graphics-Settings",
+    "https://www.digitalfoundry.net/2022-03-15-gta-v-pc-enhanced-performance-analysis"
+  ]
+}

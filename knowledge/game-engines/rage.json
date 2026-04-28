@@ -1,0 +1,106 @@
+{
+  "engine": "RAGE",
+  "version_range": "5.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-28",
+  "fallback_for": ["RAGE 6", "RAGE 7"],
+  "fallback_for_note": "GTA V uses RAGE 5.x. Red Dead Redemption 2 uses a later iteration — use this file as fallback only if no dedicated rdr2 engine file exists.",
+  "detection_signatures": {
+    "file_names": ["settings.xml"],
+    "section_headers": ["<graphics>", "<video>"],
+    "path_fragments": ["Rockstar Games\\GTA V", "Rockstar Games\\Red Dead Redemption 2"]
+  },
+  "config_file_locations": {
+    "windows": "%USERPROFILE%\\Documents\\Rockstar Games\\GTA V\\settings.xml",
+    "windows_note": "Single XML file contains all graphics and game settings. The Rockstar Games Launcher and in-game Graphics menu both rewrite this file — edits made while the game is running will be overwritten on exit."
+  },
+  "keys": [
+    {
+      "key": "TextureQuality",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Texture streaming quality: 0=normal, 1=high, 2=very high. Controls the resident texture pool size and streaming resolution.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "VRAM-bound rather than GPU-compute-bound. High (1) is suitable for 6 GB VRAM; Very High (2) requires 8 GB+ for stable streaming."
+    },
+    {
+      "key": "ShaderQuality",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Shader complexity for lighting and material rendering: 0=normal, 1=high, 2=very high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "ShadowQuality",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Shadow map resolution and cascade count: 0=normal, 1=high, 2=very high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "3"
+      },
+      "notes": "One of the highest GPU cost settings in GTA V. Dropping from Ultra to High recovers 10-20% GPU time in open-world areas."
+    },
+    {
+      "key": "ReflectionQuality",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Reflection probe and mirror quality: 0=normal, 1=high, 2=very high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Ultra reflection quality has a disproportionate VRAM cost with minimal visual benefit at typical play distances."
+    },
+    {
+      "key": "AntiAliasing",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Anti-aliasing method: 0=off, 1=FXAA, 2=MSAA x2, 3=MSAA x4, 4=MSAA x8.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "MSAA (2+) is extremely expensive in GTA V's open-world renderer. FXAA (1) is the best performance-to-quality option for most hardware. MSAA x4/x8 are only viable at 1080p on high-end hardware."
+    },
+    {
+      "key": "FXAA",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "FXAA post-process anti-aliasing toggle: 0=off, 1=on. Applied on top of any MSAA setting.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Low GPU cost with meaningful edge-smoothing benefit. Recommend keeping on at all settings."
+    },
+    {
+      "key": "GrassQuality",
+      "section": "<graphics>",
+      "file": "settings.xml",
+      "effect": "Grass density and draw distance: 0=normal, 1=high, 2=very high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Ultra grass quality causes significant GPU and CPU overhead in rural areas of San Andreas. Dropping to High is a reliable performance win with minimal visual change."
+    }
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Grand_Theft_Auto_V",
+    "https://support.rockstargames.com/articles/200004743/PC-Graphics-Settings"
+  ]
+}

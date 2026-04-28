@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `knowledge/game-engines/rage.json` — RAGE engine profile (5.x): 7 keys covering textures, shadows, reflections, AA, grass, shaders, and post-FX; fallback_for RAGE 6/7 (RDR2); documents settings.xml overwrite behaviour
+- `knowledge/games/gta-v.json` — Grand Theft Auto V profile (aliases: GTA V, GTA 5): Steam, Epic, and Rockstar Launcher paths; 8 keys including MotionBlurStrength with motion_comfort modifier; 3 manual-only settings (population density/variety, extended distance); Enhanced Edition (2022) DLSS/FSR and ray tracing notes
 - `knowledge/game-engines/redengine-4.json` — REDengine 4 engine profile (4.x): 3 keys covering texture streaming distance, NPC physics rig limit, and SSR quality; documents dual-location config model (UserSettings.json in Documents + engine override INIs in game install); notes that UserSettings.json is overwritten by the in-game menu
 - `knowledge/games/cyberpunk-2077.json` — Cyberpunk 2077 profile: Steam, GOG, and Epic config paths; 5 engine override INI keys (streaming, rig limit, SSR, AO, volumetric fog); engine_overrides documenting UserSettings.json overwrite behaviour and SpawnSystem/crowd density deprecation in patch 2.0; 4 manual-only settings (upscaling, RT/path tracing, crowd density, FOV with motion_comfort modifier); DLSS DLL replacement note
 
