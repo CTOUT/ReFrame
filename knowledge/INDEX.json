@@ -247,6 +247,17 @@
       "key_count": 6,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
+    },
+    {
+      "name": "Minecraft",
+      "file": "games/minecraft.json",
+      "engine": "Minecraft Java Engine",
+      "platforms": [
+        "Minecraft Launcher (Official)"
+      ],
+      "key_count": 9,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-29"
     }
   ],
   "engines": [
@@ -367,6 +378,15 @@
       "version_range": "all",
       "fallback_for": [],
       "key_count": 0,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-29"
+    },
+    {
+      "name": "Minecraft Java Engine",
+      "file": "game-engines/minecraft-java-engine.json",
+      "version_range": "all",
+      "fallback_for": [],
+      "key_count": 3,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
     }

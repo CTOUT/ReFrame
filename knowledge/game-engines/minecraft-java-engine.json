@@ -1,0 +1,42 @@
+{
+  "engine": "Minecraft Java Engine",
+  "version_range": "all",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "detection_signatures": {
+    "file_names": ["options.txt"],
+    "path_fragments": [".minecraft\\options.txt", "AppData\\Roaming\\.minecraft"]
+  },
+  "config_file_locations": {
+    "windows": "%APPDATA%\\.minecraft\\options.txt",
+    "windows_note": "Minecraft Java Edition stores all client settings in a single flat text file: options.txt. Format is key:value (colon-separated, no sections). The file is rewritten by the game on exit and on settings menu close. Edit only while the game is fully closed. The launcher and game process must both be closed."
+  },
+  "keys": [
+    {
+      "key": "renderDistance",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Chunk render distance in chunks. Each chunk is 16x16 blocks. Range 2-32 (32 requires 64-bit Java with sufficient heap). Default 12.",
+      "notes": "The single most impactful setting in Minecraft. Each additional chunk adds exponential geometry and lighting computation load. See game profile for tier-specific recommendations."
+    },
+    {
+      "key": "maxFps",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Frame rate cap. 260=unlimited (Minecraft's internal token for uncapped).",
+      "notes": "Uncapped FPS in menus and low-complexity scenes causes unnecessary GPU heat. Capping to monitor Hz+10 is recommended."
+    },
+    {
+      "key": "gamma",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Brightness: 0.0=moody, 0.5=default, 1.0=bright. Values above 1.0 (e.g. 100.0) produce a 'fullbright' effect showing all areas without lighting.",
+      "modifier": "accessibility",
+      "notes": "Values above 1.0 are technically supported but may be reset by some launchers or modpacks. The in-game slider caps at 1.0 (Bright)."
+    }
+  ],
+  "sources": [
+    "https://minecraft.wiki/w/Options.txt",
+    "https://www.pcgamingwiki.com/wiki/Minecraft:_Java_Edition"
+  ]
+}

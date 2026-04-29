@@ -1,0 +1,223 @@
+{
+  "game": "Minecraft",
+  "engine": "Minecraft Java Engine",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "aliases": ["Minecraft Java Edition", "Minecraft Java", "MC"],
+  "editions": [
+    {
+      "name": "Java Edition",
+      "note": "Primary edition covered by this profile. Runs on JVM (Java Virtual Machine). Full mod support via Fabric/Forge/NeoForge. Config surface is options.txt."
+    },
+    {
+      "name": "Bedrock Edition",
+      "note": "Separate codebase (C++). Available on Windows via Microsoft Store and Xbox App. Config stored in JSON under %LOCALAPPDATA%\\Packages\\Microsoft.MinecraftUWP_*\\LocalState\\games\\com.mojang\\minecraftpe\\options.json. Bedrock is generally better optimised out of the box than Java Edition on Windows. A separate profile may be warranted."
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Minecraft Launcher (Official)",
+      "store_id": "N/A",
+      "config_files": [
+        {
+          "file": "options.txt",
+          "path": "%APPDATA%\\.minecraft\\options.txt",
+          "format": "options_colon",
+          "notes": "Key:value format, no sections. Overwritten when the settings menu is closed in-game, and again on game exit. Edit only while both the Minecraft Launcher and the game are fully closed."
+        }
+      ]
+    }
+  ],
+  "launcher_notes": [
+    "Third-party launchers (Prism Launcher, ATLauncher, MultiMC, CurseForge) create isolated instance directories. Each instance has its own options.txt at <launcher_instances>/<instance_name>/.minecraft/options.txt rather than the default %APPDATA%\\.minecraft\\ path.",
+    "When modpacks are installed, some mods (e.g., Sodium, OptiFine, Iris Shaders) add their own config files and may partially or fully override options.txt settings. Check for mod-specific config files in %APPDATA%\\.minecraft\\config\\ or the instance config directory."
+  ],
+  "keys": [
+    {
+      "key": "renderDistance",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Chunk render distance in chunks (16x16 block columns). Range 2-32.",
+      "recommendations": {
+        "performance": "8",
+        "balanced": "12",
+        "quality": "16"
+      },
+      "notes": "The dominant performance setting in Minecraft — far more impactful than any other graphics option. Each +2 chunk distance roughly doubles the visible geometry. For modded Minecraft with large world generation mods (e.g., Terralith, Alex's Caves), reduce by 2-4 chunks from the above recommendations due to increased chunk complexity. Servers may enforce a server-side max render distance (server.properties view-distance) that caps client-side render distance."
+    },
+    {
+      "key": "simulationDistance",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Chunk simulation distance — range within which mobs spawn, redstone ticks, crops grow, and entities are processed. Range 5-32.",
+      "recommendations": {
+        "performance": "6",
+        "balanced": "10",
+        "quality": "12"
+      },
+      "notes": "Separate from renderDistance since Java 1.18. Can be lower than render distance without visual impact — distant chunks are rendered but not simulated. Reducing simulation distance significantly reduces server-side and client-side CPU load, particularly on servers with many farms and mob spawners."
+    },
+    {
+      "key": "maxFps",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Frame rate cap. 260=unlimited (Minecraft's internal 'uncapped' value).",
+      "recommendations": {
+        "performance": "match_monitor_hz_plus_ten",
+        "balanced": "match_monitor_hz_plus_ten",
+        "quality": "match_monitor_hz_plus_ten"
+      },
+      "notes": "Minecraft with 260 (uncapped) commonly pushes 500+ FPS in menus, loading screens, and simple scenes, burning GPU power unnecessarily. Capping to monitor Hz+10 is effective. Use 260 only if benchmarking or measuring hardware limits."
+    },
+    {
+      "key": "graphicsMode",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Rendering quality: 0=fast (no transparent leaves, simple water), 1=fancy (transparent leaves, better water), 2=fabulous (full ray-traced pipeline for particles, water, weather).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Fabulous (2) uses a deferred rendering pipeline introduced in 1.16 that is incompatible with most shader packs and has known visual artefacts. Fancy (1) is the correct maximum for most use cases. Fabulous is not equivalent to ray-tracing — it is a partial transparency pipeline."
+    },
+    {
+      "key": "particles",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Particle effects density: 0=all, 1=decreased, 2=minimal.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "1",
+        "quality": "0"
+      },
+      "notes": "Minimal (2) is particularly effective in modded Minecraft where particle-heavy mods (magic mods, tech mods with smoke/spark effects) can cause significant FPS drops."
+    },
+    {
+      "key": "entityDistanceFactor",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Entity render distance multiplier: 0.5=50%, 1.0=100% (default), 5.0=500%.",
+      "recommendations": {
+        "performance": "0.5",
+        "balanced": "1.0",
+        "quality": "1.0"
+      },
+      "notes": "Reducing to 0.5 halves the distance at which mobs, items, and other players are rendered. Effective on servers with high entity counts."
+    },
+    {
+      "key": "mipmapLevels",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Mipmap levels for texture filtering: 0=off, 1=minimum, 4=maximum.",
+      "recommendations": {
+        "performance": "4",
+        "balanced": "4",
+        "quality": "4"
+      },
+      "notes": "Mipmapping has negligible performance cost on any modern GPU and significantly reduces texture shimmer on distant blocks. Recommend maximum (4) at all tiers."
+    },
+    {
+      "key": "ao",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Ambient occlusion (block corner shading): 0=off, 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "gamma",
+      "file": "options.txt",
+      "format": "options_colon",
+      "effect": "Brightness. 0.0=Moody, 0.5=Default, 1.0=Bright. Values above 1.0 produce fullbright.",
+      "recommendations": {
+        "performance": "1.0",
+        "balanced": "1.0",
+        "quality": "1.0"
+      },
+      "modifier": "accessibility",
+      "notes": "Bright (1.0) is recommended for general play — Moody (0.0) was the original default but makes unlit caves and nether fortresses very difficult to navigate. For accessibility or play without torches, values above 1.0 (fullbright) are used by many players but may be disallowed on some multiplayer servers."
+    }
+  ],
+  "jvm_arguments": [
+    {
+      "argument": "-Xmx<n>G",
+      "effect": "Maximum Java heap memory. Replace <n> with GB. Example: -Xmx4G for 4 GB.",
+      "recommendations": {
+        "performance": "-Xmx4G",
+        "balanced": "-Xmx6G",
+        "quality": "-Xmx8G"
+      },
+      "notes": "The default Minecraft Launcher allocates 2 GB. Vanilla Minecraft runs well on 2-3 GB but modded instances often require 4-8 GB. Allocating more RAM than the game needs causes longer GC pauses — do not set -Xmx to the total system RAM or leave only 2-3 GB for the OS."
+    },
+    {
+      "argument": "-Xms<n>G",
+      "effect": "Initial Java heap memory. Setting equal to -Xmx avoids heap resize GC pauses.",
+      "recommendations": {
+        "performance": "match_xmx",
+        "balanced": "match_xmx",
+        "quality": "match_xmx"
+      },
+      "notes": "Set -Xms to the same value as -Xmx. This prevents the JVM from starting with a small heap and repeatedly resizing it, causing stutters during initial world load. Example: -Xms4G -Xmx4G."
+    },
+    {
+      "argument": "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1",
+      "effect": "Aikar's JVM flags — optimised G1GC garbage collector settings for Minecraft.",
+      "recommendations": {
+        "performance": "apply",
+        "balanced": "apply",
+        "quality": "apply"
+      },
+      "notes": "These flags are the community-standard JVM arguments for Minecraft, maintained by Aikar (developer of Paper server software). They significantly reduce GC pause frequency and duration, eliminating the 'Minecraft freeze stutter' that occurs during garbage collection. Widely validated across vanilla, modded, and server deployments. Apply to all hardware tiers."
+    }
+  ],
+  "mod_recommendations": [
+    {
+      "mod": "Sodium",
+      "loader": "Fabric / NeoForge",
+      "effect": "Complete rendering engine replacement. Typically 2-5x FPS improvement over vanilla at equivalent settings. The most impactful single performance mod available for Java Edition.",
+      "note": "Incompatible with OptiFine. Use Sodium (Fabric) or Embeddium (NeoForge) for best results. Comes with its own extended options menu."
+    },
+    {
+      "mod": "Lithium",
+      "loader": "Fabric",
+      "effect": "Server-side (and singleplayer) logic optimisation — pathfinding, chunk ticking, entity AI. No visual changes. Reduces CPU load from entity and game logic.",
+      "note": "Pairs with Sodium. Does not require a dedicated server — works in singleplayer LAN worlds."
+    },
+    {
+      "mod": "Iris Shaders",
+      "loader": "Fabric",
+      "effect": "Shader pack support for Sodium-based setups. Replaces OptiFine's shader functionality with better compatibility.",
+      "note": "Required for SEUS, Complementary, BSL, and other popular shader packs when using Sodium."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Java Runtime",
+      "location": "Minecraft Launcher > Installations > Edit > More Options > Java Executable",
+      "recommendation": "Use the Mojang-bundled JRE 21 for vanilla. For modded instances requiring Java 17 or 21, verify the correct JRE is selected in the launcher — mismatched Java versions are one of the most common modded Minecraft launch failure causes.",
+      "reason": "Java executable path is a launcher-level configuration, not an options.txt setting."
+    },
+    {
+      "setting": "VSync",
+      "location": "Options > Video Settings > VSync",
+      "recommendation": "Off. Use external frame cap via maxFps instead. VSync adds input latency with no perceptible smoothness benefit when maxFps is properly capped.",
+      "reason": "Stored in options.txt as 'enableVsync:false' but most reliably toggled in-game."
+    }
+  ],
+  "notes": [
+    "Minecraft Java Edition is unique among major games in that third-party mods (Sodium, Lithium) provide far greater performance gains than any config file change alone. Recommend the Fabric + Sodium + Lithium stack for any performance-focused user.",
+    "Java Edition performance is dominated by chunk loading and simulation, not GPU rendering. The JVM heap configuration and renderDistance/simulationDistance settings have more impact than any GPU-level option.",
+    "Modded Minecraft instances often have drastically different performance characteristics from vanilla. Profiles created for vanilla may need significant adjustment for modpacks with heavy world generation, magic systems, or large automation networks.",
+    "The Minecraft Wiki (minecraft.wiki) maintains an up-to-date options.txt reference — this is the authoritative source as key names change between versions.",
+    "Minecraft receives frequent updates. Major version changes (1.20 → 1.21 etc.) occasionally rename or remove options.txt keys. Profile version should be checked against the game's current version."
+  ],
+  "sources": [
+    "https://minecraft.wiki/w/Options.txt",
+    "https://www.pcgamingwiki.com/wiki/Minecraft:_Java_Edition",
+    "https://aikar.co/mcflags.html"
+  ]
+}

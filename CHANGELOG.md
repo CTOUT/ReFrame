@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `knowledge/game-engines/minecraft-java-engine.json` — Minecraft Java Engine profile: options.txt colon-delimited format; renderDistance, maxFps, gamma keys; Aikar JVM flags reference
+- `knowledge/games/minecraft.json` — Minecraft profile (Java Edition primary): Minecraft Launcher (official) + third-party launcher instance path note; 9 keys including renderDistance + simulationDistance (separate since 1.18), JVM heap args with Aikar's flags, mod recommendations (Sodium, Lithium, Iris); Bedrock Edition path/note; fullbright gamma accessibility note; modpack performance caveat
 - `knowledge/game-engines/unity.json` — Unity engine profile (all versions): registry PlayerPrefs config surface; boot.config command-line args; Windows registry key hash suffix note; BIRP/URP/HDRP distinction
 - `knowledge/games/valheim.json` — Valheim profile: Steam; registry + boot.config dual surfaces; gfx-enable-gfx-jobs=1 as primary optimisation (20-40% FPS gain on 6+ core CPUs); biome performance variation note
 - `knowledge/games/rust.json` — Rust profile: Steam; client.cfg authoritative config note; 7 keys; Max Gibs progressive performance issue; shadow competitive trade-off note; EAC safety

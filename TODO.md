@@ -6,7 +6,7 @@ Tracked work items for ReFrame. Items are moved from here to `CHANGELOG.md` when
 
 ## In Progress
 
-- [x] **Game-specific knowledge base** — all 18 queued game profiles completed: 21 games total, 13 engine profiles; covers UE4/UE5, Source 2, REDengine 4, RAGE, Blizzard WoW Engine, Unity, Divinity Engine 4.0, IW Engine 9, Riot Engine, Keen Engine, Source (Modified), and Evolution Engine.
+- [x] **Game-specific knowledge base** — all 19 queued game profiles completed: 22 games total, 14 engine profiles; covers UE4/UE5, Source 2, REDengine 4, RAGE, Blizzard WoW Engine, Unity, Divinity Engine 4.0, IW Engine 9, Riot Engine, Keen Engine, Source (Modified), Evolution Engine, and Minecraft Java Engine.
 
 ### Knowledge Base Queue
 
@@ -32,6 +32,7 @@ Completed items are struck through. Each item requires an engine profile (if new
 | 16 | Enshrouded | Keen proprietary | ✅ `keen-engine.json` | ✅ Done |
 | 17 | Apex Legends | Modified Source | ✅ `source-modified.json` | ✅ Done |
 | 18 | Warframe | Evolution Engine | ✅ `evolution-engine.json` | ✅ Done |
+| 19 | Minecraft | Minecraft Java Engine | ✅ `minecraft-java-engine.json` | ✅ Done |
 
 ## Planned
 
