@@ -1,0 +1,153 @@
+{
+  "game": "Warframe",
+  "engine": "Evolution Engine",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "230410",
+      "config_files": [
+        {
+          "file": "EE.cfg",
+          "path": "%LOCALAPPDATA%\\Warframe\\EE.cfg",
+          "format": "cfg_equals",
+          "notes": "Warframe's single settings file. Stores graphics, audio, and control settings in key=value format. Overwritten by the game on exit — edit only while Warframe is fully closed."
+        }
+      ]
+    },
+    {
+      "name": "Epic Games Store",
+      "store_id": "Warframe",
+      "config_files": [
+        {
+          "file": "EE.cfg",
+          "path": "%LOCALAPPDATA%\\Warframe\\EE.cfg",
+          "format": "cfg_equals",
+          "notes": "Same path as Steam version."
+        }
+      ]
+    },
+    {
+      "name": "Warframe Launcher (standalone)",
+      "config_files": [
+        {
+          "file": "EE.cfg",
+          "path": "%LOCALAPPDATA%\\Warframe\\EE.cfg",
+          "format": "cfg_equals"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "Graphics.RenderSpec",
+      "file": "EE.cfg",
+      "format": "cfg_equals",
+      "effect": "Overall rendering quality preset: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "Graphics.ShadowQuality",
+      "file": "EE.cfg",
+      "format": "cfg_equals",
+      "effect": "Shadow quality: 0=off, 1=low, 2=medium, 3=high, 4=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "Graphics.TextureStreaming",
+      "file": "EE.cfg",
+      "format": "cfg_equals",
+      "effect": "Texture streaming: 0=off (loads all textures upfront), 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "0"
+      },
+      "notes": "Disabling texture streaming (0) on systems with 16 GB+ RAM and a fast SSD eliminates mid-mission texture pop-in at the cost of longer initial load times. Recommended for high-spec systems."
+    },
+    {
+      "key": "Graphics.ParticleSystem",
+      "file": "EE.cfg",
+      "format": "cfg_equals",
+      "effect": "Particle system quality: 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Warframe's combat involves extreme particle density from Warframe abilities. Disruption, Arbitration, and Steel Path survival missions with multiple ability-spamming Warframes can cause significant frame drops at High particle quality."
+    },
+    {
+      "key": "Graphics.DX11",
+      "file": "EE.cfg",
+      "format": "cfg_equals",
+      "effect": "DX11 renderer: 0=off (DX10), 1=on.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "DX11 should always be enabled on modern hardware. DX10 mode exists as a fallback for very old GPUs."
+    },
+    {
+      "key": "Graphics.RefreshRate",
+      "file": "EE.cfg",
+      "format": "cfg_equals",
+      "effect": "Target refresh rate / frame rate cap in Hz.",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "match_monitor_hz"
+      },
+      "notes": "Warframe's EE.cfg frame cap aligns with monitor refresh rate by default. Setting this explicitly prevents the game from running at incorrect rates after a monitor change."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "DLSS / FSR",
+      "location": "Options > Display > Upscaling",
+      "recommendation": "DLSS Quality on RTX hardware. FSR Quality on AMD. Warframe added DLSS support in 2022 and FSR in 2021.",
+      "reason": "Upscaler selection in-game only."
+    },
+    {
+      "setting": "Dynamic Resolution",
+      "location": "Options > Display > Dynamic Resolution",
+      "recommendation": "Disable unless playing on low-end hardware. Dynamic resolution causes inconsistent visual quality during ability spam — the framebuffer resolution changes mid-combat.",
+      "reason": "In-game only."
+    },
+    {
+      "setting": "Depth of Field",
+      "location": "Options > Display > Depth of Field",
+      "recommendation": "Off. DoF during ability casts and heavy particle scenes reduces visual clarity and has measurable GPU cost.",
+      "reason": "In-game only."
+    },
+    {
+      "setting": "Motion Blur",
+      "location": "Options > Display > Motion Blur",
+      "recommendation": "Off. Warframe's fast movement (bullet jumping, void dashing) makes motion blur a significant source of visual noise.",
+      "modifier": "motion_comfort",
+      "reason": "In-game only."
+    }
+  ],
+  "notes": [
+    "Warframe is a free-to-play game available via Steam, Epic, and standalone launcher. All versions share the same EE.cfg path.",
+    "Warframe's Evolution Engine has been continuously updated since 2013. The game uses DX11 on PC and supports Vulkan on some platforms (not PC as of April 2026).",
+    "Warframe ability spam creates extreme particle density in late-game content. Particle quality is the most impactful graphics setting for endgame (Steel Path, Arbitrations, Netracells) performance.",
+    "The game supports clan and alliance multiplayer, but instances are limited to 4 players (squad) or 50 players (Relay hubs). Relay hubs are not gameplay areas and have their own lightweight renderer.",
+    "EE.cfg is rewritten on every game exit. Always edit with the game fully closed and verify changes were not overwritten on next launch."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Warframe",
+    "https://warframe.fandom.com/wiki/EE.cfg",
+    "https://www.warframe.com/"
+  ]
+}

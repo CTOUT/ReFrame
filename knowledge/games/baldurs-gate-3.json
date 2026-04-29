@@ -1,0 +1,117 @@
+{
+  "game": "Baldur's Gate 3",
+  "engine": "Divinity Engine 4.0",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "aliases": ["BG3", "Baldurs Gate 3"],
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "1086940",
+      "config_files": [
+        {
+          "file": "GraphicSettings.lsx",
+          "path": "%LOCALAPPDATA%\\Larian Studios\\Baldur's Gate 3\\PlayerProfiles\\Public\\GraphicSettings.lsx",
+          "format": "lsx",
+          "notes": "XML-based settings file. Larian's LSX format uses attribute nodes. Edit only while BG3 is fully closed. The game rewrites this file on exit."
+        }
+      ]
+    },
+    {
+      "name": "GOG",
+      "config_files": [
+        {
+          "file": "GraphicSettings.lsx",
+          "path": "%LOCALAPPDATA%\\Larian Studios\\Baldur's Gate 3\\PlayerProfiles\\Public\\GraphicSettings.lsx",
+          "format": "lsx"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "GraphicSettings.Quality.ShadowQuality",
+      "file": "GraphicSettings.lsx",
+      "format": "lsx_attribute",
+      "effect": "Shadow quality: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "3"
+      },
+      "notes": "The highest GPU cost setting in BG3. Act 2 (Shadow-Cursed Lands) is the most demanding area — shadow quality on Ultra in Act 2 outdoors can cost 30-40% GPU time versus Low on mid-range hardware."
+    },
+    {
+      "key": "GraphicSettings.Quality.TextureQuality",
+      "file": "GraphicSettings.lsx",
+      "format": "lsx_attribute",
+      "effect": "Texture streaming quality: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Ultra textures require 8 GB+ VRAM. In Act 3 (Lower City) with many characters on screen, texture streaming pressure can cause stuttering on 6 GB cards at Ultra."
+    },
+    {
+      "key": "GraphicSettings.Quality.SSAOEnabled",
+      "file": "GraphicSettings.lsx",
+      "format": "lsx_attribute",
+      "effect": "Screen-space ambient occlusion: 0=off, 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "GraphicSettings.Quality.FogQuality",
+      "file": "GraphicSettings.lsx",
+      "format": "lsx_attribute",
+      "effect": "Volumetric fog and atmospheric scattering quality: 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Fog quality is visually prominent in the Underdark and Act 2 Shadow-Cursed regions. Low fog degrades the visual atmosphere of these areas significantly."
+    },
+    {
+      "key": "GraphicSettings.Quality.ClothSimulationEnabled",
+      "file": "GraphicSettings.lsx",
+      "format": "lsx_attribute",
+      "effect": "Cloth and hair physics simulation: 0=off, 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "CPU cost is moderate and increases in cutscenes with many characters. Safely disabled on performance hardware without significant visual impact."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "FSR / DLSS / XeSS",
+      "location": "Video > Anti-Aliasing",
+      "recommendation": "DLSS Quality on RTX hardware. FSR Quality on AMD (note: BG3's FSR implementation is FSR 1.0 spatial upscaler — quality is notably lower than DLSS or FSR 2/3). XeSS on Intel Arc. TAA is the native option and preferred on high-end hardware.",
+      "reason": "Upscaler selection is in-game only. Note that BG3 shipped with FSR 1.0 — check if Larian has updated to FSR 2/3 in later patches."
+    },
+    {
+      "setting": "NVIDIA Reflex",
+      "location": "Video > NVIDIA Reflex Low Latency",
+      "recommendation": "On for NVIDIA GPU owners. BG3 is not a competitive game so latency impact is minor, but Reflex reduces input lag during real-time combat.",
+      "reason": "In-game only."
+    }
+  ],
+  "notes": [
+    "BG3 is one of the most demanding RPGs of its generation. Act 3 (Lower City) is the most GPU and CPU intensive area — benchmarks from Acts 1 or 2 underrepresent Act 3 performance. Inform users that their frame rate in Act 3 will be lower than earlier in the game.",
+    "Larian patched in significant performance improvements in Patch 5 (December 2023) and Patch 7 (September 2024). Benchmark data from before Patch 5 is not representative of current performance.",
+    "The GraphicSettings.lsx file is rewritten on game exit. Edit only while BG3 is closed.",
+    "BG3 supports Vulkan and DX11. Vulkan is the default and generally recommended. Switch to DX11 only if experiencing Vulkan-specific crashes."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Baldur%27s_Gate_3",
+    "https://baldursgate3.wiki.fextralife.com/",
+    "https://store.steampowered.com/app/1086940/Baldurs_Gate_3/"
+  ]
+}

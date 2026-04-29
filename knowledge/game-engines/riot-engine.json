@@ -1,0 +1,57 @@
+{
+  "engine": "Riot Engine",
+  "version_range": "all",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "detection_signatures": {
+    "file_names": ["game.cfg", "PersistedSettings.json"],
+    "path_fragments": ["Riot Games\\League of Legends\\Config", "Riot Games\\VALORANT"]
+  },
+  "config_file_locations": {
+    "windows_lol": "%USERPROFILE%\\Documents\\League of Legends\\Config\\game.cfg",
+    "windows_note": "The Riot Engine config surface varies by title. League of Legends uses game.cfg (INI-style). Valorant uses its own UE4 config layout (see valorant.json). PersistedSettings.json stores account-level UI settings separately."
+  },
+  "keys": [
+    {
+      "key": "ShadowLevel",
+      "section": "[General]",
+      "file": "game.cfg",
+      "format": "ini",
+      "effect": "Shadow quality: 0=off, 1=average, 2=good, 3=great.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "FrameCapType",
+      "section": "[General]",
+      "file": "game.cfg",
+      "format": "ini",
+      "effect": "Frame cap mode: 0=uncapped, 1=benchmark, 2=60fps, 3=30fps.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Set to 0 (uncapped) and use fps_cap_value to apply a numeric cap."
+    },
+    {
+      "key": "fps_cap_value",
+      "section": "[General]",
+      "file": "game.cfg",
+      "format": "ini",
+      "effect": "Numeric FPS cap when FrameCapType=0.",
+      "recommendations": {
+        "performance": "match_monitor_hz_plus_ten",
+        "balanced": "match_monitor_hz_plus_ten",
+        "quality": "match_monitor_hz_plus_ten"
+      }
+    }
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/League_of_Legends",
+    "https://support-leagueoflegends.riotgames.com/"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "engine": "Evolution Engine",
+  "version_range": "all",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "detection_signatures": {
+    "file_names": ["EE.cfg"],
+    "path_fragments": ["Warframe\\EE.cfg", "AppData\\Local\\Warframe"]
+  },
+  "config_file_locations": {
+    "windows": "%LOCALAPPDATA%\\Warframe\\EE.cfg",
+    "windows_note": "Warframe stores all settings in a single flat file EE.cfg. Format is key=value. The file is rewritten by the game on exit. Edit only while Warframe is fully closed."
+  },
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Warframe",
+    "https://warframe.fandom.com/wiki/EE.cfg"
+  ]
+}

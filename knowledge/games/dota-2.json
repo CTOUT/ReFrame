@@ -1,0 +1,130 @@
+{
+  "game": "Dota 2",
+  "engine": "Source 2",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "570",
+      "config_files": [
+        {
+          "file": "video.txt",
+          "path": "%USERPROFILE%\\AppData\\Local\\Steam\\steamapps\\common\\dota 2 beta\\game\\dota\\cfg\\video.txt",
+          "path_note": "Path uses the Steam default library. Replace the Steam library root if the user has a custom library location. The 'dota 2 beta' folder name is the actual install folder name despite the game being fully released.",
+          "format": "json_value",
+          "notes": "Dota 2 uses the same Source 2 video.txt format as CS2. Overwritten by the in-game Video settings menu. Edit only while Dota 2 is fully closed."
+        },
+        {
+          "file": "autoexec.cfg",
+          "path": "%USERPROFILE%\\AppData\\Local\\Steam\\steamapps\\common\\dota 2 beta\\game\\dota\\cfg\\autoexec.cfg",
+          "format": "cfg",
+          "notes": "Executed on game start. Create this file if it does not exist."
+        }
+      ],
+      "launch_options_path": "Steam Library > Right-click Dota 2 > Properties > Launch Options"
+    }
+  ],
+  "keys": [
+    {
+      "key": "setting.fullscreen",
+      "section": "\"Video\"",
+      "file": "video.txt",
+      "format": "json_value",
+      "effect": "Display mode: 0=windowed, 1=fullscreen, 2=borderless window.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Exclusive fullscreen provides lower latency. Borderless is useful for streamers or multi-monitor use."
+    },
+    {
+      "key": "setting.gpu_mem_level",
+      "section": "\"Video\"",
+      "file": "video.txt",
+      "format": "json_value",
+      "effect": "Texture quality / GPU memory usage level: 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "setting.gpu_level",
+      "section": "\"Video\"",
+      "file": "video.txt",
+      "format": "json_value",
+      "effect": "Rendering quality: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "setting.cpu_level",
+      "section": "\"Video\"",
+      "file": "video.txt",
+      "format": "json_value",
+      "effect": "CPU simulation quality (particles, physics): 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    }
+  ],
+  "console_vars": [
+    {
+      "key": "fps_max",
+      "file": "autoexec.cfg",
+      "effect": "Maximum client frame rate. 0=unlimited.",
+      "recommendations": {
+        "performance": "match_monitor_hz_plus_ten",
+        "balanced": "match_monitor_hz_plus_ten",
+        "quality": "match_monitor_hz_plus_ten"
+      },
+      "notes": "Same recommendation as CS2 — cap 10 above monitor Hz to prevent thermal overhead without impacting smoothness."
+    },
+    {
+      "key": "dota_sf_game_end_delay",
+      "file": "autoexec.cfg",
+      "effect": "Delay in seconds before the game-over screen appears. Default 5.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Quality-of-life setting; not a performance key. Setting to 0 skips the end-game delay."
+    }
+  ],
+  "launch_options": [
+    {
+      "option": "-novid",
+      "effect": "Skips intro video.",
+      "recommended": true
+    },
+    {
+      "option": "-map dota",
+      "effect": "Pre-loads the main Dota 2 map on startup, reducing in-game load times.",
+      "recommended": true
+    },
+    {
+      "option": "+exec autoexec",
+      "effect": "Executes autoexec.cfg on launch.",
+      "recommended": true
+    }
+  ],
+  "notes": [
+    "Dota 2 uses the same Source 2 video.txt format as CS2. The same engine profile (source-2.json) applies to both games.",
+    "The Dota 2 install folder is named 'dota 2 beta' despite the game being fully released since 2013. This is a common source of confusion when locating config files.",
+    "Dota 2 is predominantly CPU-limited, particularly at high player action rates (teamfights, mass unit control). Lowering cpu_level is effective.",
+    "Dota 2's renderer supports Vulkan via the -vulkan launch option. On some AMD and Intel systems, Vulkan provides better performance than DX11. Test per-system."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Dota_2",
+    "https://www.dota2.com/updates/730"
+  ]
+}

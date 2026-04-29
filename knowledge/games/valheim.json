@@ -1,0 +1,105 @@
+{
+  "game": "Valheim",
+  "engine": "Unity",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "892970",
+      "config_files": [
+        {
+          "file": "registry (PlayerPrefs)",
+          "registry_path": "HKCU\\Software\\IronGate\\Valheim",
+          "format": "registry",
+          "notes": "Valheim stores its graphics settings in the Windows registry under HKCU\\Software\\IronGate\\Valheim. Keys use Unity hash suffixes. Edit via regedit or PowerShell only while Valheim is fully closed."
+        },
+        {
+          "file": "boot.config",
+          "path": "%STEAM_LIBRARY%\\common\\Valheim\\valheim_Data\\boot.config",
+          "format": "text",
+          "notes": "Low-level Unity renderer configuration. Controls API selection (DX11, DX12, Vulkan). Edited by adding key=value lines. Survives game updates as it is in the game install directory."
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "Screenmanager Fullscreen mode_h3630240806",
+      "registry_path": "HKCU\\Software\\IronGate\\Valheim",
+      "format": "registry_dword",
+      "effect": "Display mode: 0=exclusive fullscreen, 1=borderless window, 3=windowed.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "0"
+      }
+    },
+    {
+      "key": "Screenmanager Resolution Width_h182942802",
+      "registry_path": "HKCU\\Software\\IronGate\\Valheim",
+      "format": "registry_dword",
+      "effect": "Horizontal render resolution in pixels."
+    },
+    {
+      "key": "Screenmanager Resolution Height_h2627697771",
+      "registry_path": "HKCU\\Software\\IronGate\\Valheim",
+      "format": "registry_dword",
+      "effect": "Vertical render resolution in pixels."
+    }
+  ],
+  "boot_config_keys": [
+    {
+      "key": "gfx-enable-gfx-jobs=1",
+      "file": "boot.config",
+      "effect": "Enables Unity's multi-threaded rendering job system. Significantly improves CPU utilisation on quad-core and above hardware.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "This is the single most impactful tweak for Valheim. Default is 0. Setting to 1 can add 20-40% FPS on systems with 6+ cores. Add as a new line to boot.config."
+    },
+    {
+      "key": "gfx-enable-native-gfx-jobs=1",
+      "file": "boot.config",
+      "effect": "Enables native graphics job rendering alongside gfx-enable-gfx-jobs. Provides additional CPU thread utilisation.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Apply alongside gfx-enable-gfx-jobs=1. Some older Intel CPUs (pre-8th gen) may see instability — monitor for crashes after applying."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Graphics Quality",
+      "location": "Settings > Graphics",
+      "recommendation": "Reduce shadow distance and shadow quality first — these are the dominant GPU costs in Valheim's outdoor environments. Vegetation draw distance is the dominant CPU cost.",
+      "reason": "Valheim uses Unity's built-in settings UI. Granular controls are in-game only."
+    },
+    {
+      "setting": "Shadow Quality",
+      "location": "Settings > Graphics > Shadow Quality",
+      "recommendation": "Medium on performance hardware. Shadows over water and large open meadow biomes are particularly expensive.",
+      "reason": "In-game only."
+    },
+    {
+      "setting": "Vegetation",
+      "location": "Settings > Graphics > Vegetation",
+      "recommendation": "50-75% on CPU-limited hardware. Valheim's procedural forests are heavily CPU-bound for vegetation draw calls.",
+      "reason": "In-game only."
+    }
+  ],
+  "notes": [
+    "The boot.config gfx-enable-gfx-jobs=1 tweak is the community's most widely recommended Valheim optimisation and has been validated across many hardware configurations. It should be the first recommendation for any hardware tier.",
+    "Valheim uses Unity's built-in rendering pipeline (BIRP), not URP or HDRP. Some third-party Unity optimisation guides targeting URP/HDRP do not apply.",
+    "The Mistlands, Ashlands, and Deep North biomes are significantly more GPU and CPU intensive than the earlier Meadows and Black Forest biomes. Performance expectations should be communicated per-biome.",
+    "Valheim has a dedicated server component (valheim_server.exe). Server performance is a separate concern from client graphics optimisation."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Valheim",
+    "https://store.steampowered.com/app/892970/Valheim/"
+  ]
+}

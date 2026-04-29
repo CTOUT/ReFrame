@@ -1,0 +1,146 @@
+{
+  "game": "Call of Duty: Black Ops 6",
+  "engine": "IW Engine 9",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "aliases": ["CoD BO6", "Black Ops 6", "BO6"],
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "2933620",
+      "config_files": [
+        {
+          "file": "config_mp.cfg",
+          "path": "%LOCALAPPDATA%\\Activision\\Call of Duty\\players\\config_mp.cfg",
+          "format": "cfg_seta",
+          "notes": "Multiplayer settings. Uses 'seta key \"value\"' syntax. Overwritten by the in-game settings menu. Edit only while the game is closed."
+        }
+      ]
+    },
+    {
+      "name": "Battle.net",
+      "config_files": [
+        {
+          "file": "config_mp.cfg",
+          "path": "%LOCALAPPDATA%\\Activision\\Call of Duty\\players\\config_mp.cfg",
+          "format": "cfg_seta"
+        }
+      ]
+    },
+    {
+      "name": "Xbox App (Game Pass)",
+      "config_files": [
+        {
+          "file": "config_mp.cfg",
+          "path": "%LOCALAPPDATA%\\Activision\\Call of Duty\\players\\config_mp.cfg",
+          "format": "cfg_seta",
+          "notes": "Game Pass (Xbox App) version shares the same config path as Steam and Battle.net."
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "r_shadowmapQuality",
+      "file": "config_mp.cfg",
+      "format": "cfg_seta",
+      "effect": "Shadow map resolution: 0=low, 1=medium, 2=high, 3=very high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Low shadows are the professional competitive standard in CoD. Shadows obscure player outlines in darker map areas."
+    },
+    {
+      "key": "r_textureResolution",
+      "file": "config_mp.cfg",
+      "format": "cfg_seta",
+      "effect": "Texture resolution: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "r_particleQuality",
+      "file": "config_mp.cfg",
+      "format": "cfg_seta",
+      "effect": "Particle and effects quality: 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Low particles improve FPS consistency during killstreaks and explosions — high-intensity moments where frame time spikes are most disruptive."
+    },
+    {
+      "key": "r_depthOfField",
+      "file": "config_mp.cfg",
+      "format": "cfg_seta",
+      "effect": "Depth of field: 0=off, 1=low, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Universally disabled for competitive play — DoF blurs non-focused areas reducing visibility."
+    },
+    {
+      "key": "r_filmUseToneMap",
+      "file": "config_mp.cfg",
+      "format": "cfg_seta",
+      "effect": "Film-style tone mapping: 0=off, 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Disabling makes dark areas appear brighter and more uniform, which competitive players prefer for enemy visibility."
+    },
+    {
+      "key": "cg_fov",
+      "file": "config_mp.cfg",
+      "format": "cfg_seta",
+      "effect": "Field of view in degrees. Range 60-120.",
+      "recommendations": {
+        "performance": "90",
+        "balanced": "90",
+        "quality": "90"
+      },
+      "modifier": "motion_comfort",
+      "notes": "BO6 introduced Omnimovement (full 360° movement). Most Omnimovement players use 100-110° FOV for the increased peripheral awareness. Default 80° is functional but limiting with the new movement system."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "DLSS / FSR / XeSS",
+      "location": "Graphics > Quality > Anti-Aliasing and Upscaling",
+      "recommendation": "DLSS Quality on RTX hardware. FSR Quality on AMD. XeSS on Intel Arc.",
+      "reason": "Upscaler selection in-game only."
+    },
+    {
+      "setting": "NVIDIA Reflex",
+      "location": "Graphics > Display > NVIDIA Reflex Low Latency",
+      "recommendation": "On + Boost for NVIDIA GPU owners. Highly impactful in CoD's fast-paced multiplayer.",
+      "reason": "In-game only."
+    },
+    {
+      "setting": "On-Demand Texture Streaming",
+      "location": "Graphics > Quality > On-Demand Texture Streaming",
+      "recommendation": "Disable if internet connection is slow or unstable. On-demand streaming loads higher-res textures mid-match; on poor connections, this causes visible texture pop-in.",
+      "reason": "In-game only."
+    }
+  ],
+  "notes": [
+    "BO6 introduced Omnimovement, a significant change from previous CoD titles. FOV recommendations should account for this — 90-100° is more appropriate than the legacy 80° standard.",
+    "The Ricochet anti-cheat system in BO6 operates at the kernel level. All keys in this profile are config-file based and Ricochet-safe.",
+    "BO6 is available on Xbox Game Pass (PC). The config path is the same across all platforms (Steam, Battle.net, Game Pass) because the Activision launcher handles settings for all of them.",
+    "CoD titles are updated frequently. Config key names occasionally change between major updates. If a key has no effect, check PCGamingWiki for the current key name."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Call_of_Duty:_Black_Ops_6",
+    "https://www.callofduty.com/blackops6"
+  ]
+}

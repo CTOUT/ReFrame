@@ -11,6 +11,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `knowledge/game-engines/unity.json` — Unity engine profile (all versions): registry PlayerPrefs config surface; boot.config command-line args; Windows registry key hash suffix note; BIRP/URP/HDRP distinction
+- `knowledge/games/valheim.json` — Valheim profile: Steam; registry + boot.config dual surfaces; gfx-enable-gfx-jobs=1 as primary optimisation (20-40% FPS gain on 6+ core CPUs); biome performance variation note
+- `knowledge/games/rust.json` — Rust profile: Steam; client.cfg authoritative config note; 7 keys; Max Gibs progressive performance issue; shadow competitive trade-off note; EAC safety
+- `knowledge/games/dota-2.json` — Dota 2 profile: Steam; Source 2 engine reuse; 'dota 2 beta' install folder caveat; Vulkan launch option note; CPU-limited architecture note
+- `knowledge/game-engines/divinity-engine-4.json` — Divinity Engine 4.0 profile: LSX/LSF binary-XML hybrid format; BG3 detection paths
+- `knowledge/games/baldurs-gate-3.json` — Baldur's Gate 3 profile: Steam + GOG; 5 keys; Act 2 shadow performance warning; Act 3 Lower City VRAM pressure note; Patch 5/7 performance improvement context; FSR 1.0 quality caveat
+- `knowledge/game-engines/iw-engine-9.json` — IW Engine 9 profile: BO6 config paths; Quake-style seta syntax; Omnimovement FOV note
+- `knowledge/games/call-of-duty-bo6.json` — CoD: Black Ops 6 profile: Steam + Battle.net + Xbox App (Game Pass); 6 keys; Omnimovement FOV recommendation; r_filmUseToneMap competitive visibility note; Ricochet anti-cheat safety
+- `knowledge/game-engines/riot-engine.json` — Riot Engine profile: LoL game.cfg + PersistedSettings.json; fps_cap_value pattern
+- `knowledge/games/league-of-legends.json` — League of Legends profile: Riot Launcher; 6 keys; ARAM effects note; accessibility colorblind mode; CPU-bound architecture note
+- `knowledge/game-engines/keen-engine.json` — Keen Engine profile (Enshrouded): graphics.cfg detection
+- `knowledge/games/enshrouded.json` — Enshrouded profile: Steam; 5 keys; Shroud volumetric fog performance note; multiplayer player count scaling; EA-to-1.0 benchmark caveat
+- `knowledge/game-engines/source-modified.json` — Source (Modified) engine profile (Apex Legends/Respawn): videoconfig.txt + autoexec.cfg detection
+- `knowledge/games/apex-legends.json` — Apex Legends profile: Steam + EA App; 6 video keys + 2 console vars; csm_enabled competitive disable; lobby FPS runaway issue; EAC safety
+- `knowledge/game-engines/evolution-engine.json` — Evolution Engine profile (Warframe): EE.cfg single-file config
+- `knowledge/games/warframe.json` — Warframe profile: Steam + Epic + Standalone; 6 keys; texture streaming off on high-spec systems; particle quality endgame impact note; EE.cfg overwrite warning
 - `knowledge/games/pubg-battlegrounds.json` — PUBG: Battlegrounds profile (aliases: PUBG): Steam; TslGame internal path note; 6 GameUserSettings keys + 2 Engine.ini keys (motion blur, DoF both off); BattlEye safety note; foliage competitive trade-off warning
 - `knowledge/games/valorant.json` — Valorant profile: Riot Launcher; Windows config subdirectory note; 5 keys; Vanguard anti-cheat safety note; CPU-bound architecture note; Vanguard TPM/Secure Boot troubleshooting note; NVIDIA Reflex + menu FPS cap manual settings
 - `knowledge/games/fortnite.json` — Fortnite profile: Epic Games Store; WindowsClient path note; 6 keys; Lumen server-side block note; Performance Mode (DX11) manual setting; seasonal settings reset warning

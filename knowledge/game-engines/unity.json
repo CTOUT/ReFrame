@@ -1,0 +1,71 @@
+{
+  "engine": "Unity",
+  "version_range": "all",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "detection_signatures": {
+    "file_names": ["prefs", "Player.log", "output_log.txt"],
+    "path_fragments": ["LocalLow\\", "AppData\\LocalLow"],
+    "registry_keys": ["HKCU\\Software\\<CompanyName>\\<ProductName>\\"]
+  },
+  "config_file_locations": {
+    "windows_registry": "HKCU\\Software\\<CompanyName>\\<ProductName>\\",
+    "windows_playerprefs": "%USERPROFILE%\\AppData\\LocalLow\\<CompanyName>\\<ProductName>\\",
+    "windows_note": "Unity stores PlayerPrefs in the Windows registry under HKCU\\Software\\<CompanyName>\\<ProductName>. Graphics settings may also be stored as flat files in %APPDATA%\\LocalLow\\<CompanyName>\\<ProductName>\\ depending on how the game implements its settings. Always check for a game-specific profile before applying generic Unity keys."
+  },
+  "keys": [
+    {
+      "key": "Screenmanager Resolution Width_h182942802",
+      "file": "registry",
+      "format": "registry_dword",
+      "registry_path": "HKCU\\Software\\<CompanyName>\\<ProductName>",
+      "effect": "Horizontal screen resolution in pixels.",
+      "notes": "Registry key names include a hash suffix that varies by game. Check HKCU\\Software\\<CompanyName>\\<ProductName>\\ to find the correct key name for a specific game."
+    },
+    {
+      "key": "Screenmanager Fullscreen mode_h3630240806",
+      "file": "registry",
+      "format": "registry_dword",
+      "registry_path": "HKCU\\Software\\<CompanyName>\\<ProductName>",
+      "effect": "Display mode: 0=exclusive fullscreen, 1=fullscreen window (borderless), 2=maximised window, 3=windowed.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "0"
+      },
+      "notes": "Exclusive fullscreen (0) is lowest latency. Borderless (1) is convenient for multi-monitor but adds DWM composition overhead."
+    }
+  ],
+  "command_line_args": [
+    {
+      "arg": "-screen-width <n>",
+      "effect": "Override horizontal resolution at launch."
+    },
+    {
+      "arg": "-screen-height <n>",
+      "effect": "Override vertical resolution at launch."
+    },
+    {
+      "arg": "-screen-fullscreen 0|1",
+      "effect": "Force windowed (0) or fullscreen (1) at launch."
+    },
+    {
+      "arg": "-force-vulkan",
+      "effect": "Force Vulkan renderer instead of DirectX. May improve or reduce performance depending on GPU and driver version."
+    },
+    {
+      "arg": "-force-d3d11",
+      "effect": "Force DirectX 11 renderer. Useful fallback if DX12 causes crashes."
+    }
+  ],
+  "notes": [
+    "Unity does not have a universal config file. Each game implements its own settings persistence — some use PlayerPrefs (registry), some use JSON, some use custom formats. Always use a game-specific profile when available.",
+    "The registry key name hash suffix (e.g. _h182942802) is deterministic per key name but varies between games if the company/product name differs.",
+    "Unity games built with IL2CPP or Mono both share the same PlayerPrefs registry location pattern.",
+    "Unity 2019.3+ introduced the Input System package; games using the old Input Manager behave differently for controller detection. This does not affect graphics config."
+  ],
+  "sources": [
+    "https://docs.unity3d.com/Manual/class-PlayerSettings.html",
+    "https://docs.unity3d.com/Manual/CommandLineArguments.html"
+  ]
+}

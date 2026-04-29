@@ -1,0 +1,66 @@
+{
+  "engine": "IW Engine 9",
+  "version_range": "9.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "detection_signatures": {
+    "file_names": ["config_mp.cfg", "config_sp.cfg", "options.3.cod23.cst.cfg"],
+    "path_fragments": ["Call of Duty", "cod23", "AppData\\Local\\Activision"]
+  },
+  "config_file_locations": {
+    "windows": "%LOCALAPPDATA%\\Activision\\Call of Duty\\players\\",
+    "windows_note": "IW Engine 9 (Black Ops 6) stores player config files in the Activision local app data directory. The primary multiplayer config is config_mp.cfg; single-player is config_sp.cfg. Files use Quake-style 'seta key \"value\"' syntax."
+  },
+  "keys": [
+    {
+      "key": "r_fullscreen",
+      "file": "config_mp.cfg",
+      "format": "cfg_seta",
+      "effect": "Display mode: 1=fullscreen, 0=windowed.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "r_shadowmapQuality",
+      "file": "config_mp.cfg",
+      "format": "cfg_seta",
+      "effect": "Shadow map resolution: 0=low, 1=medium, 2=high, 3=very high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "r_textureResolution",
+      "file": "config_mp.cfg",
+      "format": "cfg_seta",
+      "effect": "Texture streaming resolution: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "cg_fov",
+      "file": "config_mp.cfg",
+      "format": "cfg_seta",
+      "effect": "Field of view in degrees. Range 60-120.",
+      "recommendations": {
+        "performance": "80",
+        "balanced": "80",
+        "quality": "80"
+      },
+      "modifier": "motion_comfort",
+      "notes": "CoD BO6 introduced Omnimovement — a full 360-degree movement system. Higher FOV significantly improves situational awareness with Omnimovement. Recommend 90-100° for Omnimovement users; 80° for traditional playstyle."
+    }
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Call_of_Duty:_Black_Ops_6",
+    "https://www.callofduty.com/blackops6"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "game": "Enshrouded",
+  "engine": "Keen Engine",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "1203620",
+      "config_files": [
+        {
+          "file": "graphics.cfg",
+          "path": "%USERPROFILE%\\AppData\\Local\\Keen Games\\Enshrouded\\graphics.cfg",
+          "format": "cfg_equals",
+          "notes": "Key=value format without sections. Overwritten by the in-game settings menu. Edit only while Enshrouded is fully closed."
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "ResolutionScale",
+      "file": "graphics.cfg",
+      "format": "cfg_equals",
+      "effect": "Render resolution scale as a percentage of screen resolution. Range 50-100.",
+      "recommendations": {
+        "performance": "75",
+        "balanced": "90",
+        "quality": "100"
+      },
+      "notes": "Enshrouded is visually demanding with large procedural open-world areas. Resolution scaling is particularly effective here. DLSS and FSR are available in-game and supersede this key when active."
+    },
+    {
+      "key": "ShadowQuality",
+      "file": "graphics.cfg",
+      "format": "cfg_equals",
+      "effect": "Shadow quality: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Shadows over the large open plains biomes are particularly expensive. Medium is a reliable quality/performance balance."
+    },
+    {
+      "key": "TextureQuality",
+      "file": "graphics.cfg",
+      "format": "cfg_equals",
+      "effect": "Texture resolution: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "FoliageDensity",
+      "file": "graphics.cfg",
+      "format": "cfg_equals",
+      "effect": "Foliage density and draw distance multiplier: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "High CPU cost in forest biomes. Medium is the recommended starting point for CPU-limited systems."
+    },
+    {
+      "key": "VolumetricFog",
+      "file": "graphics.cfg",
+      "format": "cfg_equals",
+      "effect": "Volumetric fog quality: 0=off, 1=low, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Volumetric fog in Enshrouded's Shroud areas (the game's central environmental mechanic) is GPU-expensive. Reducing improves performance in Shroud exploration without significantly reducing gameplay visibility."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "DLSS / FSR / XeSS",
+      "location": "Settings > Graphics > Upscaling",
+      "recommendation": "DLSS Quality on RTX hardware. FSR Quality on AMD. XeSS on Intel Arc.",
+      "reason": "Upscaler selection in-game only."
+    },
+    {
+      "setting": "Multiplayer Server Size",
+      "location": "Host World > Server Settings",
+      "recommendation": "16-player cap on performance hardware. Performance degrades with each additional player in the same region due to shared simulation load.",
+      "reason": "Server settings are configured at world creation, not via graphics.cfg."
+    }
+  ],
+  "notes": [
+    "Enshrouded is an Early Access title that reached 1.0 in 2025. Performance has improved significantly since the 2024 EA launch — older benchmark data may underrepresent current performance.",
+    "The Shroud (the game's signature environmental hazard) is a significant GPU cost area due to volumetric fog and particle effects. Performance in Shroud areas will be 10-30% lower than in clear-sky areas.",
+    "Enshrouded supports multiplayer co-op up to 24 players on a dedicated server. Player count directly affects server-side simulation performance."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Enshrouded",
+    "https://store.steampowered.com/app/1203620/Enshrouded/"
+  ]
+}

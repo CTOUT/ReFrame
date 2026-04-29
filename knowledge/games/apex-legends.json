@@ -1,0 +1,165 @@
+{
+  "game": "Apex Legends",
+  "engine": "Source (Modified)",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "1172470",
+      "config_files": [
+        {
+          "file": "videoconfig.txt",
+          "path": "%USERPROFILE%\\Saved Games\\Respawn\\Apex Legends\\Local\\videoconfig.txt",
+          "format": "json_value",
+          "notes": "JSON-style key-value file storing display and graphics settings. Overwritten by the in-game Video settings menu. Edit only while Apex is fully closed."
+        },
+        {
+          "file": "autoexec.cfg",
+          "path": "%USERPROFILE%\\Saved Games\\Respawn\\Apex Legends\\Local\\autoexec.cfg",
+          "format": "cfg",
+          "notes": "Executed at game launch. Create if it does not exist. Used for console variables and FPS cap."
+        }
+      ]
+    },
+    {
+      "name": "EA App",
+      "config_files": [
+        {
+          "file": "videoconfig.txt",
+          "path": "%USERPROFILE%\\Saved Games\\Respawn\\Apex Legends\\Local\\videoconfig.txt",
+          "format": "json_value"
+        },
+        {
+          "file": "autoexec.cfg",
+          "path": "%USERPROFILE%\\Saved Games\\Respawn\\Apex Legends\\Local\\autoexec.cfg",
+          "format": "cfg"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "setting.fullscreen",
+      "file": "videoconfig.txt",
+      "format": "json_value",
+      "effect": "Display mode: 0=windowed, 1=fullscreen, 2=borderless window.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "setting.gpu_mem_level",
+      "file": "videoconfig.txt",
+      "format": "json_value",
+      "effect": "Texture quality / GPU memory usage: 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "setting.shadow_detail",
+      "file": "videoconfig.txt",
+      "format": "json_value",
+      "effect": "Shadow detail: 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Low shadows are the competitive standard in Apex — consistent frame time in close-quarters fights matters more than shadow quality."
+    },
+    {
+      "key": "setting.csm_enabled",
+      "file": "videoconfig.txt",
+      "format": "json_value",
+      "effect": "Cascaded shadow maps (sun/sky shadows): 0=off, 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Disabling CSM alongside low shadow_detail provides the maximum shadow performance win. Competitive players commonly disable both."
+    },
+    {
+      "key": "setting.ssao_enabled",
+      "file": "videoconfig.txt",
+      "format": "json_value",
+      "effect": "Screen-space ambient occlusion: 0=off, 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "setting.model_quality",
+      "file": "videoconfig.txt",
+      "format": "json_value",
+      "effect": "Character and world model detail: 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    }
+  ],
+  "console_vars": [
+    {
+      "key": "fps_max",
+      "file": "autoexec.cfg",
+      "effect": "Maximum frame rate cap.",
+      "recommendations": {
+        "performance": "match_monitor_hz_plus_ten",
+        "balanced": "match_monitor_hz_plus_ten",
+        "quality": "match_monitor_hz_plus_ten"
+      },
+      "notes": "Uncapped FPS in Apex causes GPU thermal throttling in low-complexity areas (lobby, waiting screens). Cap at monitor Hz + 10."
+    },
+    {
+      "key": "cl_showfps 4",
+      "file": "autoexec.cfg",
+      "effect": "Enables detailed FPS overlay with frame time information.",
+      "recommendations": {
+        "performance": "4",
+        "balanced": "1",
+        "quality": "0"
+      }
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "DLSS / FSR / TSR",
+      "location": "Settings > Video > Anti-Aliasing",
+      "recommendation": "DLSS Quality on RTX hardware. FSR Quality on AMD.",
+      "reason": "Upscaler selection in-game only."
+    },
+    {
+      "setting": "NVIDIA Reflex",
+      "location": "Settings > Video > NVIDIA Reflex",
+      "recommendation": "Enabled + Boost for NVIDIA GPU owners. Apex is latency-sensitive and Reflex has measurable impact on click-to-action timing.",
+      "reason": "In-game only."
+    },
+    {
+      "setting": "Field of View",
+      "location": "Settings > Video > FOV",
+      "recommendation": "90-100 for standard play. Apex has a wide default FOV range. Higher FOV aids target tracking with the game's movement abilities.",
+      "modifier": "motion_comfort",
+      "reason": "In-game only."
+    }
+  ],
+  "notes": [
+    "Apex Legends uses a heavily modified Titanfall/Source engine. Despite Source origins, many performance characteristics differ from Valve Source games (e.g., higher CPU requirements, different threading model).",
+    "Apex's anti-cheat (EasyAntiCheat) does not scan videoconfig.txt or autoexec.cfg. All keys here are EAC-safe.",
+    "Apex Legends has a known issue where the game disables its GPU frame limiter in the lobby and firing range, causing runaway FPS and thermal load. The fps_max autoexec.cfg entry addresses this.",
+    "The EA App replaced Origin in 2023. Config paths are the same for both platforms."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Apex_Legends",
+    "https://www.ea.com/games/apex-legends"
+  ]
+}

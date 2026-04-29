@@ -6,7 +6,7 @@ Tracked work items for ReFrame. Items are moved from here to `CHANGELOG.md` when
 
 ## In Progress
 
-- [ ] **Game-specific knowledge base** — profiles being added in priority order; see queue below.
+- [x] **Game-specific knowledge base** — all 18 queued game profiles completed: 21 games total, 13 engine profiles; covers UE4/UE5, Source 2, REDengine 4, RAGE, Blizzard WoW Engine, Unity, Divinity Engine 4.0, IW Engine 9, Riot Engine, Keen Engine, Source (Modified), and Evolution Engine.
 
 ### Knowledge Base Queue
 
@@ -23,15 +23,15 @@ Completed items are struck through. Each item requires an engine profile (if new
 | 7 | Fortnite | UE5 | ✅ Done | ✅ Done |
 | 8 | Marvel Rivals | UE5 | ✅ Done | ✅ Done |
 | 9 | Windrose | UE5 (suspected) | ✅ Done | ✅ Done |
-| 10 | Valheim | Unity | ❌ Needed | ⏳ Next |
-| 11 | Rust | Unity | After #10 | Queued |
-| 12 | Dota 2 | Source 2 | ✅ (reuses #3) | Queued |
-| 13 | Baldur's Gate 3 | Divinity 4.0 | ❌ Needed | Queued |
-| 14 | Call of Duty: BO6 | IW Engine 9 | ❌ Needed | Queued |
-| 15 | League of Legends | Riot custom engine | ❌ Needed | Queued |
-| 16 | Enshrouded | Keen proprietary | ❌ Needed | Queued |
-| 17 | Apex Legends | Modified Source | ❌ Needed | Queued |
-| 18 | Warframe | Evolution Engine | ❌ Needed | Queued |
+| 10 | Valheim | Unity | ✅ `unity.json` | ✅ Done |
+| 11 | Rust | Unity | ✅ (reuses #10) | ✅ Done |
+| 12 | Dota 2 | Source 2 | ✅ (reuses #3) | ✅ Done |
+| 13 | Baldur's Gate 3 | Divinity 4.0 | ✅ `divinity-engine-4.json` | ✅ Done |
+| 14 | Call of Duty: BO6 | IW Engine 9 | ✅ `iw-engine-9.json` | ✅ Done |
+| 15 | League of Legends | Riot custom engine | ✅ `riot-engine.json` | ✅ Done |
+| 16 | Enshrouded | Keen proprietary | ✅ `keen-engine.json` | ✅ Done |
+| 17 | Apex Legends | Modified Source | ✅ `source-modified.json` | ✅ Done |
+| 18 | Warframe | Evolution Engine | ✅ `evolution-engine.json` | ✅ Done |
 
 ## Planned
 

@@ -1,0 +1,127 @@
+{
+  "game": "Rust",
+  "engine": "Unity",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "252490",
+      "config_files": [
+        {
+          "file": "client.cfg",
+          "path": "%USERPROFILE%\\AppData\\Roaming\\Rust\\client.cfg",
+          "format": "cfg",
+          "notes": "Rust uses a custom cfg format (key value, no equals sign). This file is the primary graphics config surface and is NOT overwritten by the in-game menu — it is the authoritative source. Values set here override in-game defaults on startup."
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "graphics.quality",
+      "file": "client.cfg",
+      "format": "cfg_space",
+      "effect": "Overall graphics quality preset: 0=lowest, 1=low, 2=medium, 3=high, 4=ultra. Sets a baseline for most sub-settings.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "graphics.shadowmode",
+      "file": "client.cfg",
+      "format": "cfg_space",
+      "effect": "Shadow rendering mode: 0=off, 1=hard, 2=soft.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Disabling shadows (0) is the single highest FPS gain in Rust and a common competitive choice. Also affects gameplay visibility — players in shadows are harder to see with shadows disabled."
+    },
+    {
+      "key": "graphics.shadowdistance",
+      "file": "client.cfg",
+      "format": "cfg_space",
+      "effect": "Shadow render distance in metres. Default 100.",
+      "recommendations": {
+        "performance": "50",
+        "balanced": "100",
+        "quality": "200"
+      }
+    },
+    {
+      "key": "graphics.grassdisplacement",
+      "file": "client.cfg",
+      "format": "cfg_space",
+      "effect": "Grass displacement physics: true/false.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "true"
+      }
+    },
+    {
+      "key": "graphics.drawdistance",
+      "file": "client.cfg",
+      "format": "cfg_space",
+      "effect": "Terrain and object draw distance multiplier.",
+      "recommendations": {
+        "performance": "1000",
+        "balanced": "1500",
+        "quality": "2000"
+      }
+    },
+    {
+      "key": "graphics.fov",
+      "file": "client.cfg",
+      "format": "cfg_space",
+      "effect": "Field of view in degrees. Default 90.",
+      "recommendations": {
+        "performance": "90",
+        "balanced": "90",
+        "quality": "90"
+      },
+      "modifier": "motion_comfort",
+      "notes": "Rust allows FOV up to 90°. Increasing FOV reduces per-frame rendering cost slightly at the edges but provides better situational awareness. Adjust for user preference within the 70-90° range."
+    },
+    {
+      "key": "graphics.anisotropy",
+      "file": "client.cfg",
+      "format": "cfg_space",
+      "effect": "Anisotropic filtering level: 0=off, 2, 4, 8, 16.",
+      "recommendations": {
+        "performance": "4",
+        "balanced": "8",
+        "quality": "16"
+      },
+      "notes": "Anisotropic filtering has minimal performance cost on modern GPUs and significantly improves terrain texture clarity at oblique angles. Recommend minimum 4 at all tiers."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Max Gibs",
+      "location": "Options > Graphics > Max Gibs",
+      "recommendation": "0 on performance hardware. Gibs (debris/ragdoll fragments from deaths and explosions) accumulate in scenes and cause progressive frame time increases during active raids.",
+      "reason": "In-game slider only."
+    },
+    {
+      "setting": "Headcloth / Clothing Physics",
+      "location": "Options > Graphics > Cloth Physics",
+      "recommendation": "Off on performance hardware.",
+      "reason": "In-game only."
+    }
+  ],
+  "notes": [
+    "Rust's client.cfg is the authoritative config file — values here persist and override in-game settings on startup. This is the opposite of most other games where the in-game menu overwrites the config.",
+    "Rust is heavily CPU-bound during base raids and large-server events. Shadow distance and draw distance have greater FPS impact than most GPU settings in these scenarios.",
+    "Max Gibs accumulation is a well-known progressive performance issue in Rust — it should be one of the first recommendations for players experiencing decreasing FPS over a play session.",
+    "Rust's anti-cheat (EAC — EasyAntiCheat) does not scan client.cfg. All keys listed here are EAC-safe."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Rust",
+    "https://rust.facepunch.com/"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "engine": "Divinity Engine 4.0",
+  "version_range": "4.0",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "detection_signatures": {
+    "file_names": ["GraphicSettings.lsx", "GraphicSettings.lsf"],
+    "path_fragments": ["Larian Studios\\Baldur's Gate 3\\PlayerProfiles"],
+    "key_prefixes": ["GraphicSettings"]
+  },
+  "config_file_locations": {
+    "windows": "%LOCALAPPDATA%\\Larian Studios\\Baldur's Gate 3\\PlayerProfiles\\Public\\",
+    "windows_note": "Larian uses a proprietary binary/XML hybrid format (.lsx = XML, .lsf = binary). GraphicSettings.lsx is human-readable XML. The game may store active settings as .lsf (binary) — use the .lsx version if available, or export via the in-game settings menu. Edit only while BG3 is fully closed."
+  },
+  "keys": [
+    {
+      "key": "GraphicSettings.Quality.Preset",
+      "file": "GraphicSettings.lsx",
+      "format": "lsx_attribute",
+      "effect": "Quality preset: 0=low, 1=medium, 2=high, 3=ultra.",
+      "notes": "Sets a baseline for all sub-settings. Individual keys below override specific preset values."
+    },
+    {
+      "key": "GraphicSettings.Quality.ShadowQuality",
+      "file": "GraphicSettings.lsx",
+      "format": "lsx_attribute",
+      "effect": "Shadow quality: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "3"
+      },
+      "notes": "Shadows are the dominant GPU cost in BG3, particularly in outdoor areas and the Shadow-Cursed Lands in Act 2."
+    },
+    {
+      "key": "GraphicSettings.Quality.TextureQuality",
+      "file": "GraphicSettings.lsx",
+      "format": "lsx_attribute",
+      "effect": "Texture streaming quality: 0=low, 1=medium, 2=high, 3=ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "GraphicSettings.Quality.SSAOEnabled",
+      "file": "GraphicSettings.lsx",
+      "format": "lsx_attribute",
+      "effect": "Screen-space ambient occlusion: 0=off, 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    }
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Baldur%27s_Gate_3",
+    "https://baldursgate3.wiki.fextralife.com/"
+  ]
+}

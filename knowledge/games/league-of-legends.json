@@ -1,0 +1,128 @@
+{
+  "game": "League of Legends",
+  "engine": "Riot Engine",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "aliases": ["LoL", "League"],
+  "platforms": [
+    {
+      "name": "Riot Games Launcher",
+      "store_id": "N/A",
+      "config_files": [
+        {
+          "file": "game.cfg",
+          "path": "%USERPROFILE%\\Documents\\League of Legends\\Config\\game.cfg",
+          "format": "ini",
+          "notes": "Primary game config. Overwritten by in-game settings menu. Edit only while LoL is fully closed and the Riot client is not patching."
+        },
+        {
+          "file": "PersistedSettings.json",
+          "path": "%USERPROFILE%\\Documents\\League of Legends\\Config\\PersistedSettings.json",
+          "format": "json",
+          "notes": "Stores HUD, minimap, and UI settings. Not graphics-critical but relevant for accessibility settings (UI scale, colorblind mode)."
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "ShadowLevel",
+      "section": "[General]",
+      "file": "game.cfg",
+      "format": "ini",
+      "effect": "Shadow quality: 0=off, 1=average, 2=good, 3=great.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Low/off shadows are the competitive standard in LoL. Shadows make it slightly harder to distinguish champion positions on some terrain textures."
+    },
+    {
+      "key": "FrameCapType",
+      "section": "[General]",
+      "file": "game.cfg",
+      "format": "ini",
+      "effect": "Frame cap mode: 0=uncapped, 1=benchmark, 2=60fps, 3=30fps.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      }
+    },
+    {
+      "key": "fps_cap_value",
+      "section": "[General]",
+      "file": "game.cfg",
+      "format": "ini",
+      "effect": "Numeric FPS cap (active when FrameCapType=0).",
+      "recommendations": {
+        "performance": "match_monitor_hz_plus_ten",
+        "balanced": "match_monitor_hz_plus_ten",
+        "quality": "match_monitor_hz_plus_ten"
+      }
+    },
+    {
+      "key": "EnvironmentQuality",
+      "section": "[General]",
+      "file": "game.cfg",
+      "format": "ini",
+      "effect": "Environment/terrain detail quality: 0=very low, 1=low, 2=medium, 3=high, 4=very high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "EffectsQuality",
+      "section": "[General]",
+      "file": "game.cfg",
+      "format": "ini",
+      "effect": "Spell and particle effects quality: 0=low, 1=medium, 2=high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Low effects quality reduces visual clutter from high-ability-spam scenarios (ARAM, late-game teamfights with multiple AoE champions). Also aids readability in crowded teamfights for players with visual processing preferences."
+    },
+    {
+      "key": "CharacterQuality",
+      "section": "[General]",
+      "file": "game.cfg",
+      "format": "ini",
+      "effect": "Character model detail: 0=very low, 1=low, 2=medium, 3=high, 4=very high.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "4"
+      }
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Colorblind Mode",
+      "location": "Settings > Video > Colorblind Mode",
+      "recommendation": "Enable Deuteranopia, Tritanopia, or Protanopia mode as appropriate. Changes team and ability color schemes to improve distinction.",
+      "modifier": "accessibility",
+      "reason": "Colorblind mode is stored in PersistedSettings.json but is most safely set in-game to avoid JSON format errors."
+    },
+    {
+      "setting": "Anti-Aliasing",
+      "location": "Settings > Video > Anti-Aliasing",
+      "recommendation": "Off for maximum FPS. On for visual quality — LoL is not demanding enough on mid/high hardware that AA causes meaningful FPS loss.",
+      "reason": "In-game toggle only."
+    }
+  ],
+  "notes": [
+    "League of Legends is one of the least hardware-demanding major PC games. On modern hardware (2018+), GPU settings have minimal FPS impact — CPU speed and RAM latency matter more for the game's logic tick rate.",
+    "The Riot engine config (game.cfg) uses standard INI syntax, making it one of the simpler profiles to edit.",
+    "Low effects quality is particularly beneficial in ARAM (All Random All Mid) which has the highest sustained ability density of any LoL game mode.",
+    "The Riot Vanguard anti-cheat runs for Valorant but not for League of Legends. LoL uses a different anti-cheat subsystem. Config file edits are safe for both games."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/League_of_Legends",
+    "https://support-leagueoflegends.riotgames.com/hc/en-us/articles/201752684"
+  ]
+}
