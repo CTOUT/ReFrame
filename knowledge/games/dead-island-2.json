@@ -280,11 +280,11 @@
       "section": "[/Script/Engine.Engine]",
       "effect": "Enable Hierarchical Z-Buffer GPU occlusion culling",
       "recommendations": {
-        "performance": "1",
-        "balanced": "1",
-        "quality": "1"
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
       },
-      "notes": "Always enable. Reduces GPU load by culling occluded geometry before shading."
+      "notes": "WARNING: Setting this CVar in Engine.ini causes Dead Island 2 to hang at a black screen on launch. Do not set. (Tested 2026-04-29)\n\nNormally: Always enable. Reduces GPU load by culling occluded geometry before shading."
     },
     {
       "key": "r.Streaming.PoolSize",
