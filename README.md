@@ -154,9 +154,11 @@ ReFrame/
 ├── .gitignore
 ├── .markdownlint.json
 ├── CHANGELOG.md
+├── CITATION.cff
 ├── CONTRIBUTING.md
 ├── install.ps1
 ├── LICENSE
+├── llms.txt                    ← AI crawler guidance
 ├── README.md
 ├── SECURITY.md
 └── TODO.md
@@ -167,7 +169,7 @@ ReFrame/
 ## FAQ
 
 **Does ReFrame work with any game?**
-ReFrame works with any game that stores configuration in INI, CFG, XML, or JSON files. It ships with dedicated knowledge profiles for popular titles and Unreal Engine 5. Use `optimise <game name>` and ReFrame will locate and analyse whatever configs it finds.
+ReFrame works with any game that stores configuration in INI, CFG, XML, or JSON files. It ships with a knowledge base of **22 game profiles** (Cyberpunk 2077, World of Warcraft, Counter-Strike 2, Apex Legends, Minecraft, Baldur's Gate 3, and more) across **14 engine profiles** (UE4/UE5, Source 2, REDengine 4, Unity, and more). Use `optimise <game name>` and ReFrame will locate and analyse whatever configs it finds — even for titles without a dedicated profile.
 
 **Will ReFrame break my game or corrupt my save files?**
 No. ReFrame only modifies game configuration files and Windows registry settings — never save data. Every change is backed up to `%LOCALAPPDATA%\ReFrame\Backups\` before being applied, and `rollback <game>` restores the original state in seconds.
