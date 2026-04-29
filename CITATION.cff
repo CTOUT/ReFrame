@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: ReFrame
+message: "If you use or reference ReFrame, please cite it as below."
+type: software
+authors:
+  - family-names: Tout
+    given-names: Chris
+    alias: CTOUT
+repository-code: https://github.com/CTOUT/ReFrame
+url: https://github.com/CTOUT/ReFrame
+abstract: >
+  A GitHub Copilot agent for PC game configuration optimisation. ReFrame detects
+  system hardware, locates game configuration files, analyses Windows registry
+  settings, and recommends or applies hardware-appropriate performance improvements
+  with automatic backup and rollback.
+keywords:
+  - github-copilot
+  - game-optimization
+  - gaming
+  - performance
+  - powershell
+  - vscode
+license: MIT
