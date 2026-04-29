@@ -1,0 +1,152 @@
+{
+  "game": "PUBG: Battlegrounds",
+  "engine": "Unreal Engine 4",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "aliases": ["PUBG", "PlayerUnknown's Battlegrounds"],
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "578080",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\TslGame\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini",
+          "notes": "PUBG uses TslGame as the internal UE4 game name. The file is rewritten on every game exit. Edit only while PUBG is fully closed."
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\TslGame\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini",
+          "notes": "Engine-level overrides. Lower-level than GameUserSettings.ini. Keys added here are not overwritten by in-game settings changes."
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "sg.ResolutionQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Render resolution scale as a percentage of screen resolution. Range 50-100.",
+      "recommendations": {
+        "performance": "80",
+        "balanced": "90",
+        "quality": "100"
+      },
+      "notes": "PUBG is GPU-heavy in dense loot areas and final circles. Reducing to 80 on 1080p hardware can add 15-25 FPS with minimal visibility impact at long range. NVIDIA DLSS and AMD FSR are available in-game and supersede this key."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Shadow quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "PUBG shadow quality is a significant GPU cost driver. Low (0) is the competitive standard — shadows create visual noise that makes spotting enemies harder. Low is both the performance and competitive choice."
+    },
+    {
+      "key": "sg.TextureQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Texture streaming quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Epic textures require 8 GB+ VRAM. On 6 GB cards, set to High (2) to avoid streaming stutter in dense loot buildings."
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Post-processing effects quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Low PostProcess is standard for competitive play — disabling heavy depth of field and bloom improves visual clarity when scanning for enemies at distance."
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Visual effects (smoke, muzzle flash, explosions) quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Low effects improves FPS in firefights and reduces GPU spikes from grenades and zone effects. Also reduces smoke grenade visual obstruction size slightly."
+    },
+    {
+      "key": "sg.FoliageQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Foliage draw distance and density: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Low foliage reduces bush/grass density, which is a significant CPU cost in rural map areas (Erangel fields, Miramar desert edges). Note: Low foliage also reduces the ability to hide in bushes — inform users of this trade-off."
+    }
+  ],
+  "engine_ini_keys": [
+    {
+      "key": "r.MotionBlurQuality",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Motion blur quality: 0=off, 1-4=quality levels.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "modifier": "motion_comfort",
+      "notes": "Motion blur in a fast-paced battle royale reduces visibility when panning and causes discomfort for many players. Default off for all profiles."
+    },
+    {
+      "key": "r.DepthOfFieldQuality",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Depth of field effect quality: 0=off, 1-4=quality levels.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Depth of field blurs non-focused areas. In a visibility-critical game, this is universally disabled by competitive players."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Anti-Aliasing",
+      "location": "Settings > Graphics > Anti-Aliasing",
+      "recommendation": "TAA for quality. Off or FXAA for maximum FPS. TAA adds slight blur to distant foliage which can obscure enemies at range — some competitive players prefer FXAA or off.",
+      "reason": "AA mode is set via in-game menu and stored in GameUserSettings.ini but requires a game restart to apply. Recommend in-game to avoid a mid-file conflict."
+    },
+    {
+      "setting": "Screen Scale (DLSS/FSR/XeSS)",
+      "location": "Settings > Graphics > Screen Scale",
+      "recommendation": "DLSS Quality on RTX hardware at 1080p+. FSR Quality on AMD. Native Resolution on high-end hardware.",
+      "reason": "PUBG's integrated upscaler selection is in-game only."
+    }
+  ],
+  "notes": [
+    "PUBG's internal game name in UE4 paths is TslGame (The Survival Lab), not PUBG. The config path is %LOCALAPPDATA%\\TslGame\\, not %LOCALAPPDATA%\\PUBG\\.",
+    "PUBG uses an anti-cheat system (BATTLEYE). All keys in this profile are config-file based and BattlEye-safe. No binary modifications are recommended.",
+    "Low shadow and foliage settings are both a performance optimisation and a competitive advantage in PUBG. Inform users of the gameplay implications before applying competitive presets.",
+    "PUBG migrated from UE4 to a heavily modified version in 2022 (PUBG: New Era update). The config key names and paths remain UE4-standard despite renderer improvements."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/PUBG:_Battlegrounds",
+    "https://www.pubg.com/en/news/4820"
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "game": "Fortnite",
+  "engine": "Unreal Engine 5",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "aliases": ["Fortnite Battle Royale", "Fortnite Creative", "Fortnite Save the World"],
+  "platforms": [
+    {
+      "name": "Epic Games Store",
+      "store_id": "Fortnite",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\FortniteGame\\Saved\\Config\\WindowsClient\\GameUserSettings.ini",
+          "format": "ini",
+          "notes": "Fortnite uses WindowsClient as the config subdirectory, not WindowsNoEditor. Overwritten on every game exit. Edit only while Fortnite is fully closed."
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\FortniteGame\\Saved\\Config\\WindowsClient\\Engine.ini",
+          "format": "ini",
+          "notes": "Engine-level overrides. Not overwritten by in-game settings. Can be used to disable motion blur and other post-process effects persistently."
+        }
+      ]
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "EasyAntiCheat",
+      "behaviour": "Fortnite uses EasyAntiCheat. Config file edits are permitted. Certain CVar injections at launch are monitored. All keys in this profile are standard config-file entries and EAC-safe.",
+      "action": "Safe to apply all recommended settings."
+    },
+    {
+      "key": "Nanite and Lumen (UE5)",
+      "behaviour": "Fortnite uses UE5 Nanite geometry and Lumen global illumination. Some UE5-standard Engine.ini keys for disabling Lumen (r.Lumen.Reflections.Allow=0, r.Lumen.DiffuseIndirect.Allow=0) are blocked server-side in Fortnite Battle Royale — the game re-enables them via server-pushed config.",
+      "action": "Do not recommend r.Lumen.* disable keys for Fortnite. Instead direct users to the in-game Rendering Mode selector."
+    }
+  ],
+  "keys": [
+    {
+      "key": "sg.ResolutionQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Render resolution scale as a percentage. Range 25-200.",
+      "recommendations": {
+        "performance": "75",
+        "balanced": "100",
+        "quality": "100"
+      },
+      "notes": "Fortnite supports DLSS, FSR, and TSR natively. When any upscaler is enabled in-game, sg.ResolutionQuality is overridden by the upscaler's internal resolution ratio. Only applies meaningfully when using native rendering."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Shadow quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.TextureQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Texture streaming quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Post-processing quality including bloom, lens flare, and ambient occlusion: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Particle and visual effects quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Fortnite's UE5 particle system can cause significant frame time spikes at Epic during heavy storm/build sequences. Medium is a good quality/performance balance."
+    },
+    {
+      "key": "sg.ViewDistanceQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "View distance for terrain, objects and characters: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Competitive players keep this at Epic (3) — reduced view distance means enemies further than the threshold are invisible, which is a significant gameplay disadvantage."
+    }
+  ],
+  "engine_ini_keys": [
+    {
+      "key": "r.MotionBlurQuality",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Motion blur: 0=off.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "modifier": "motion_comfort",
+      "notes": "Disabled by default in Fortnite via in-game setting. Adding to Engine.ini ensures it cannot be accidentally re-enabled after a patch reset."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Rendering Mode",
+      "location": "Settings > Video > Rendering Mode",
+      "recommendation": "Performance Mode (DirectX 11) on low/mid hardware for maximum FPS. DirectX 12 on high-end for Nanite/Lumen. DirectX 11 Performance Mode bypasses UE5 features and runs on a simplified renderer.",
+      "reason": "Rendering mode selection is in-game only and fundamentally changes the render pipeline."
+    },
+    {
+      "setting": "Temporal Super Resolution / DLSS / FSR",
+      "location": "Settings > Video > Anti-Aliasing + Resolution Scale",
+      "recommendation": "DLSS Quality on RTX hardware. FSR Quality on AMD. TSR (Epic's native) as fallback. Performance Mode users cannot use TSR.",
+      "reason": "Upscaler selection in-game only."
+    },
+    {
+      "setting": "NVIDIA Reflex",
+      "location": "Settings > Video > NVIDIA Reflex Low Latency",
+      "recommendation": "On + Boost for all NVIDIA GPU owners.",
+      "reason": "In-game toggle only."
+    }
+  ],
+  "notes": [
+    "Fortnite's config path uses WindowsClient, not WindowsNoEditor. This is a common mistake when applying generic UE4/UE5 guides.",
+    "Fortnite Performance Mode (DX11) is a completely separate renderer from the default DX12 mode. Performance Mode disables Nanite, Lumen, and most UE5 features in exchange for significantly higher FPS on low/mid hardware. Recommend explicitly for hardware tiers below mid.",
+    "Epic Games periodically resets graphics settings to defaults with major seasonal updates. Advise users to re-check settings after each new Fortnite chapter.",
+    "Fortnite is available only via the Epic Games Store — not on Steam. The config path reflects this (no Steam AppID)."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Fortnite",
+    "https://www.epicgames.com/fortnite/en-US/news/fortnite-performance-guide"
+  ]
+}

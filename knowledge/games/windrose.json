@@ -1,0 +1,121 @@
+{
+  "game": "Windrose",
+  "engine": "Unreal Engine 5",
+  "engine_confidence": "suspected",
+  "engine_note": "Engine unconfirmed at profile creation (April 2026). DX12-only requirement, RTX 3080 recommended spec, and Pocketpair Publishing involvement are consistent with UE5. If confirmed as a different engine, create a dedicated engine profile and update this file.",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "3041230",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\Windrose\\Saved\\Config\\Windows\\GameUserSettings.ini",
+          "path_note": "Path assumes UE5 default layout with 'Windrose' as the internal game name and 'Windows' as the platform subdirectory. Verify this path exists after first game launch — the internal game name may differ from the display name.",
+          "format": "ini"
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\Windrose\\Saved\\Config\\Windows\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+  "early_access_note": "Windrose launched into Early Access on 14 April 2026. Config paths, key names, and system requirements are not finalised. This profile will require updates as the game reaches 1.0. The developer has explicitly noted that system requirements will change as optimisation work continues.",
+  "keys": [
+    {
+      "key": "sg.ResolutionQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Render resolution scale as a percentage. Range 50-100.",
+      "recommendations": {
+        "performance": "75",
+        "balanced": "90",
+        "quality": "100"
+      },
+      "notes": "Windrose is an open-world survival game with procedural biomes and naval rendering. Both near-water and large-scale terrain scenes are GPU-intensive. Resolution scaling is particularly effective here compared to corridor shooters."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Shadow quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.TextureQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Texture streaming quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "An SSD is strongly recommended by the developer. On HDD or slow SSD, reduce texture quality to reduce streaming I/O load and prevent pop-in during sailing."
+    },
+    {
+      "key": "sg.ViewDistanceQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "View distance: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Naval combat requires spotting ships at distance. Recommend minimum Medium (1) for players engaged in ship-to-ship combat to ensure enemy vessels are visible at engagement range."
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Particle and visual effects quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Water effects, cannon fire, and weather particles are GPU-intensive. Reducing in multi-player ship battles with 8 players recovers meaningful frame time."
+    }
+  ],
+  "engine_ini_keys": [
+    {
+      "key": "r.MotionBlurQuality",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Motion blur: 0=off.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "modifier": "motion_comfort",
+      "notes": "Recommended off during fast ship turns and boarding sequences where rapid camera movement is frequent."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Dedicated Server (self-hosted)",
+      "location": "Main Menu > Host World",
+      "recommendation": "Use dedicated server mode for co-op sessions above 4 players. The developer recommends up to 4 players for optimal performance; self-hosted world above 4 players requires additional RAM beyond the standard minimum.",
+      "reason": "Server mode is a launch option, not a config file setting."
+    }
+  ],
+  "notes": [
+    "Windrose is an Early Access title (April 2026). Performance optimisation is ongoing — the developer has stated system requirements are not final. Re-evaluate this profile with each major update.",
+    "The engine is suspected to be UE5 based on hardware requirements and publisher (Pocketpair). If community confirmation or a PCGamingWiki entry establishes a different engine, update engine field and engine_confidence to 'confirmed'.",
+    "The developer recommends an SSD strongly — frame stutter in late-game dense areas is likely streaming-related on HDD systems regardless of GPU settings.",
+    "Multiplayer performance scales with player count. The developer recommends maximum 4 players in a party for optimal experience in the current Early Access build."
+  ],
+  "sources": [
+    "https://store.steampowered.com/app/3041230/Windrose/"
+  ]
+}

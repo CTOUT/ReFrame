@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `knowledge/games/pubg-battlegrounds.json` — PUBG: Battlegrounds profile (aliases: PUBG): Steam; TslGame internal path note; 6 GameUserSettings keys + 2 Engine.ini keys (motion blur, DoF both off); BattlEye safety note; foliage competitive trade-off warning
+- `knowledge/games/valorant.json` — Valorant profile: Riot Launcher; Windows config subdirectory note; 5 keys; Vanguard anti-cheat safety note; CPU-bound architecture note; Vanguard TPM/Secure Boot troubleshooting note; NVIDIA Reflex + menu FPS cap manual settings
+- `knowledge/games/fortnite.json` — Fortnite profile: Epic Games Store; WindowsClient path note; 6 keys; Lumen server-side block note; Performance Mode (DX11) manual setting; seasonal settings reset warning
+- `knowledge/games/marvel-rivals.json` — Marvel Rivals profile: Steam; Windows config path; 6 keys; DLSS 4 MFG + FSR 4 + XeSS manual settings; per-hero VFX setting note; sg.EffectsQuality=0 as primary frame-time stabiliser
+- `knowledge/games/windrose.json` — Windrose profile (Early Access, April 2026): Steam; UE5 engine_confidence=suspected; 5 keys; Early Access caveat; SSD streaming note; naval combat view distance minimum warning
 - `knowledge/game-engines/blizzard-wow-engine.json` — Blizzard WoW Engine profile: 9 keys (textures, spell density, shadows, view distance, environment detail, liquid, SSAO, maxFPS, maxFPSBk); documents wtf format; covers Retail, Classic, and PTR detection
 - `knowledge/games/world-of-warcraft.json` — World of Warcraft profile (aliases: WoW, WoW Retail): Battle.net path; Retail/Classic/PTR config variants; 9 keys; graphicsSpellDensity raid performance note; maxFPSBk background cap; DLSS 4 / Raid Preset manual-only settings; Config.wtf reset note
 - `knowledge/game-engines/source-2.json` — Source 2 engine profile (2.x): 6 video.txt keys + 3 console vars + 4 launch options; documents dual-surface config model (cs2_video.txt + autoexec.cfg); covers CS2 and Dota 2 detection; VAC-safety notes included

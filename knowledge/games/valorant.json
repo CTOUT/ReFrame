@@ -1,0 +1,152 @@
+{
+  "game": "Valorant",
+  "engine": "Unreal Engine 4",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "aliases": ["VALORANT"],
+  "platforms": [
+    {
+      "name": "Riot Games Launcher",
+      "store_id": "N/A",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\VALORANT\\Saved\\Config\\Windows\\GameUserSettings.ini",
+          "format": "ini",
+          "notes": "Valorant uses 'Windows' rather than 'WindowsNoEditor' as the platform subdirectory — a UE4 shipping build convention. File is overwritten on every game exit. Edit only while Valorant is closed."
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\VALORANT\\Saved\\Config\\Windows\\Engine.ini",
+          "format": "ini",
+          "notes": "Engine-level overrides. Not overwritten by in-game settings changes."
+        }
+      ]
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "Vanguard Anti-Cheat",
+      "behaviour": "Riot Vanguard (kernel-level anti-cheat) runs at all times when the Riot Games client is installed. It does not scan config files but does monitor for memory modifications. All keys in this profile are config-file based and Vanguard-safe.",
+      "action": "Safe to apply all recommended settings. Do not recommend third-party overlays that hook into game memory (e.g. some FPS unlockers). NVIDIA Overlay and Steam Overlay are safe."
+    },
+    {
+      "key": "sg.ResolutionQuality override",
+      "behaviour": "Valorant's in-game Resolution Quality slider maps to sg.ResolutionQuality. However, setting values above 100 (super-sampling) via the .ini file does not persist — the game caps it at 100 on launch.",
+      "action": "Recommend values 50-100 only. Do not suggest super-sampling via this key."
+    }
+  ],
+  "keys": [
+    {
+      "key": "sg.ResolutionQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Render resolution scale as a percentage. Range 50-100.",
+      "recommendations": {
+        "performance": "75",
+        "balanced": "100",
+        "quality": "100"
+      },
+      "notes": "Valorant is CPU-limited on most hardware, not GPU-limited. Reducing resolution quality rarely provides meaningful FPS gains unless the GPU is genuinely the bottleneck. On low-end dedicated or integrated graphics, 75 is effective."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Shadow quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Low shadows improve both FPS and competitive visibility — shadows can obscure agent silhouettes in dark corners. Low is the professional player standard."
+    },
+    {
+      "key": "sg.TextureQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Texture streaming quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Valorant is not texture-heavy. High (2) is appropriate even on performance hardware — the VRAM cost is low and texture clarity aids enemy identification."
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Post-processing quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      },
+      "notes": "Low PostProcess removes bloom, lens flare, and ambient occlusion. Improves visual clarity and FPS consistency. Competitive standard is Low or Medium."
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Particle and ability effects quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Low effects reduce particle density during ability-heavy fights, stabilising frame time in Sova recon drones, Brimstone smoke formations, and Raze explosive clusters."
+    }
+  ],
+  "engine_ini_keys": [
+    {
+      "key": "r.MotionBlurQuality",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Motion blur: 0=off.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "modifier": "motion_comfort",
+      "notes": "Universally disabled in competitive play. Also improves motion comfort."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Anti-Aliasing",
+      "location": "Settings > Video > Anti-Aliasing",
+      "recommendation": "MSAA 4x for quality. None for maximum FPS. MSAA produces cleaner edges than TAA at Valorant's map geometry style.",
+      "reason": "AA method is set in-game only."
+    },
+    {
+      "setting": "NVIDIA Reflex",
+      "location": "Settings > Video > NVIDIA Reflex Low Latency",
+      "recommendation": "Enabled + Boost on all NVIDIA GPUs. Reduces click-to-screen latency by 10-30ms in GPU-bound scenarios.",
+      "reason": "Reflex is in-game toggle only. No effect on AMD/Intel hardware."
+    },
+    {
+      "setting": "Display Mode",
+      "location": "Settings > Video > Display Mode",
+      "recommendation": "Fullscreen (exclusive) for lowest input latency. Use Windowed Fullscreen only if alt-tabbing frequently.",
+      "reason": "Display mode selection stored in GameUserSettings.ini but best set in-game to avoid resolution conflicts."
+    },
+    {
+      "setting": "Limit FPS in Menus",
+      "location": "Settings > Video > Limit FPS in Menus",
+      "recommendation": "30 FPS. Valorant's main menu and collection screens are GPU-intensive. Capping menu FPS prevents the GPU from running at full load while idle.",
+      "reason": "In-game only setting."
+    }
+  ],
+  "notes": [
+    "Valorant is predominantly CPU-limited, not GPU-limited, on most hardware tiers. FPS gains from GPU settings are smaller than in most other titles — CPU frequency, background process count, and RAM speed have more impact.",
+    "The config path uses 'Windows' not 'WindowsNoEditor' — a common source of confusion when copying UE4 guides from other games.",
+    "Vanguard requires Secure Boot and TPM 2.0 on Windows 11. If Valorant fails to launch, the issue is typically Vanguard anti-cheat hardware requirements rather than a config problem.",
+    "Valorant regularly pushes graphics setting resets with major patches. Users should check GameUserSettings.ini after major client updates."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/VALORANT",
+    "https://playvalorant.com/en-us/news/game-updates/"
+  ]
+}

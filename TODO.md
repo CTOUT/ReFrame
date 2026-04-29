@@ -18,12 +18,12 @@ Completed items are struck through. Each item requires an engine profile (if new
 | 2 | GTA V | RAGE | ✅ `rage.json` | ✅ Done |
 | 3 | Counter-Strike 2 | Source 2 | ✅ `source-2.json` | ✅ Done |
 | 4 | World of Warcraft | Blizzard WoW engine | ✅ `blizzard-wow-engine.json` | ✅ Done |
-| 5 | PUBG: Battlegrounds | UE4 | ✅ Done | ⏳ Next |
-| 6 | Valorant | UE4 | ✅ Done | Queued |
-| 7 | Fortnite | UE5 | ✅ Done | Queued |
-| 8 | Marvel Rivals | UE5 | ✅ Done | Queued |
-| 9 | Windrose | UE5 (suspected) | ✅ Done | Queued |
-| 10 | Valheim | Unity | ❌ Needed | Queued |
+| 5 | PUBG: Battlegrounds | UE4 | ✅ Done | ✅ Done |
+| 6 | Valorant | UE4 | ✅ Done | ✅ Done |
+| 7 | Fortnite | UE5 | ✅ Done | ✅ Done |
+| 8 | Marvel Rivals | UE5 | ✅ Done | ✅ Done |
+| 9 | Windrose | UE5 (suspected) | ✅ Done | ✅ Done |
+| 10 | Valheim | Unity | ❌ Needed | ⏳ Next |
 | 11 | Rust | Unity | After #10 | Queued |
 | 12 | Dota 2 | Source 2 | ✅ (reuses #3) | Queued |
 | 13 | Baldur's Gate 3 | Divinity 4.0 | ❌ Needed | Queued |

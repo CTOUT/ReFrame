@@ -1,0 +1,149 @@
+{
+  "game": "Marvel Rivals",
+  "engine": "Unreal Engine 5",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+  "aliases": ["MarvelRivals"],
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "2767030",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\Marvel\\Saved\\Config\\Windows\\GameUserSettings.ini",
+          "format": "ini",
+          "notes": "Marvel Rivals uses Windows (not WindowsNoEditor) as the config subdirectory. Overwritten on every game exit. Edit only while the game is closed."
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\Marvel\\Saved\\Config\\Windows\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "Anti-cheat (EasyAntiCheat)",
+      "behaviour": "Marvel Rivals uses EasyAntiCheat. Config file edits are permitted. All keys in this profile are EAC-safe.",
+      "action": "Safe to apply all recommended settings."
+    }
+  ],
+  "keys": [
+    {
+      "key": "sg.ResolutionQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Render resolution scale as a percentage. Range 50-100.",
+      "recommendations": {
+        "performance": "75",
+        "balanced": "100",
+        "quality": "100"
+      },
+      "notes": "Marvel Rivals supports DLSS 4 (including Multi Frame Generation on RTX 50 series), FSR 4, and XeSS. When any upscaler is active in-game, this key is overridden. Only relevant when using native rendering."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Shadow quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "3"
+      },
+      "notes": "Marvel Rivals is a visually busy game with many hero abilities. Low shadows in team fights help maintain frame consistency."
+    },
+    {
+      "key": "sg.TextureQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Texture quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Post-processing (bloom, lens flare, AO): 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Ability and visual effects quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Marvel Rivals has some of the densest ability particle effects of any hero shooter. Low effects is the standard for competitive play, particularly in 6v6 team fights with multiple ultimates active simultaneously."
+    },
+    {
+      "key": "sg.ViewDistanceQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "View distance: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "3"
+      }
+    }
+  ],
+  "engine_ini_keys": [
+    {
+      "key": "r.MotionBlurQuality",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Motion blur: 0=off.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "modifier": "motion_comfort"
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "DLSS / FSR / XeSS",
+      "location": "Settings > Video > DLSS Super Resolution / FSR / XeSS",
+      "recommendation": "DLSS 4 Quality or Balanced on RTX hardware. FSR 4 Quality on AMD RDNA 4. XeSS on Intel Arc. Native TAAU on high-end hardware without upscaling preference.",
+      "reason": "Upscaler selection is in-game only."
+    },
+    {
+      "setting": "NVIDIA Reflex",
+      "location": "Settings > Video > NVIDIA Reflex",
+      "recommendation": "Enabled + Boost on all NVIDIA GPUs.",
+      "reason": "In-game toggle only."
+    },
+    {
+      "setting": "Ability VFX Quality (individual heroes)",
+      "location": "Settings > Gameplay > Performance Mode per-hero settings (if available)",
+      "recommendation": "Enable any per-hero effects reduction options available. NetEase has added per-hero VFX reduction settings in post-launch updates for the most effect-heavy heroes.",
+      "reason": "Per-hero VFX settings are in-game only and vary by patch version."
+    }
+  ],
+  "notes": [
+    "Marvel Rivals launched December 2024. The game has received significant performance patches since launch — benchmark data from before March 2025 may not be representative of current performance.",
+    "The game's config path uses 'Marvel' as the internal name under %LOCALAPPDATA%, not 'MarvelRivals'.",
+    "The config subdirectory uses 'Windows' not 'WindowsNoEditor'.",
+    "Marvel Rivals supports DLSS 4 Multi Frame Generation on RTX 50 series GPUs, making it one of the first titles to ship with DLSS 4 MFG at launch.",
+    "In 6v6 team fights with all ultimates active, even high-end GPUs can experience frame time spikes. sg.EffectsQuality=0 is the single most effective setting change for stabilising frame time in Marvel Rivals."
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Marvel_Rivals",
+    "https://www.marvelrivals.com/news/"
+  ]
+}

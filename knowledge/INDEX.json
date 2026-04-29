@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated": "2026-04-28",
+  "updated": "2026-04-29",
   "games": [
     {
       "name": "Dead Island 2",
@@ -86,6 +86,62 @@
       "key_count": 9,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
+    },
+    {
+      "name": "PUBG: Battlegrounds",
+      "file": "games/pubg-battlegrounds.json",
+      "engine": "Unreal Engine 4",
+      "platforms": [
+        "Steam"
+      ],
+      "key_count": 8,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-29"
+    },
+    {
+      "name": "Valorant",
+      "file": "games/valorant.json",
+      "engine": "Unreal Engine 4",
+      "platforms": [
+        "Riot Games Launcher"
+      ],
+      "key_count": 6,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-29"
+    },
+    {
+      "name": "Fortnite",
+      "file": "games/fortnite.json",
+      "engine": "Unreal Engine 5",
+      "platforms": [
+        "Epic Games Store"
+      ],
+      "key_count": 7,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-29"
+    },
+    {
+      "name": "Marvel Rivals",
+      "file": "games/marvel-rivals.json",
+      "engine": "Unreal Engine 5",
+      "platforms": [
+        "Steam"
+      ],
+      "key_count": 7,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-29"
+    },
+    {
+      "name": "Windrose",
+      "file": "games/windrose.json",
+      "engine": "Unreal Engine 5",
+      "engine_confidence": "suspected",
+      "platforms": [
+        "Steam"
+      ],
+      "key_count": 6,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-29"
     }
   ],
   "engines": [
