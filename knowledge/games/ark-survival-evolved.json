@@ -1,0 +1,165 @@
+{
+  "game": "ARK: Survival Evolved",
+  "engine": "Unreal Engine 4",
+  "engine_version": "4.27",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\Ark\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\Ark\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Epic Games Store",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\Ark\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\Ark\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+
+  "keys": [
+    {
+      "key": "bUseVSync",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Enables or disables vertical sync",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Recommended off in all goals. Use G-Sync or FreeSync via the NVIDIA/AMD driver instead. In-game VSync adds input lag. This key is not reset by the in-game Graphics menu."
+    },
+    {
+      "key": "FrameRateLimit",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Caps the game frame rate. 0 = uncapped.",
+      "recommendations": {
+        "performance": "Match monitor refresh rate (e.g. 240)",
+        "balanced": "Match monitor refresh rate",
+        "quality": "Match monitor refresh rate"
+      },
+      "notes": "Uncapped FPS causes unnecessary GPU heat and screen tearing. Always cap to your monitor's refresh rate. Not reset by the in-game Graphics menu."
+    },
+    {
+      "key": "r.Streaming.PoolSize",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Size of the texture streaming pool in megabytes. Higher values reduce texture pop-in at the cost of VRAM.",
+      "recommendations": {
+        "performance": "2000",
+        "balanced": "3000",
+        "quality": "4000"
+      },
+      "notes": "Scale with available VRAM. For 12 GB (RTX 4070 SUPER) 4000 is safe. For 8 GB use 2000–2500. Setting this too high relative to available VRAM causes stutters as the driver pages textures. Not reset by the in-game menu."
+    },
+    {
+      "key": "r.Shadow.RadiusThreshold",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Minimum object screen-radius fraction below which dynamic shadows are not cast. Higher value = fewer shadow casters = better performance.",
+      "recommendations": {
+        "performance": "0.05",
+        "balanced": "0.03",
+        "quality": "0.008"
+      },
+      "notes": "One of the highest-impact single CVars in ARK due to the density of foliage, structures, and creatures that cast dynamic shadows. Not reset by the in-game menu."
+    },
+    {
+      "key": "r.DepthOfFieldQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Depth of field blur quality. 0 = disabled.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off in all goals. DoF blurs distant terrain and creatures, actively reducing visibility in a game where threat assessment at range is important. Not reset by the in-game menu."
+    },
+    {
+      "key": "grass.DensityScale",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Multiplier for the density of grass spawned across the terrain. Major CPU and GPU cost on dense maps.",
+      "recommendations": {
+        "performance": "0.6",
+        "balanced": "0.8",
+        "quality": "1.0"
+      },
+      "notes": "Grass density is one of the largest single performance variables in ARK, especially on The Island, Ragnarok, and Fjordur. Values below 0.5 produce visible bare patches. Not reset by the in-game menu."
+    },
+    {
+      "key": "foliage.DensityScale",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Multiplier for the density of foliage meshes (trees, bushes, rocks). Lower values reduce draw calls.",
+      "recommendations": {
+        "performance": "0.6",
+        "balanced": "0.8",
+        "quality": "1.0"
+      },
+      "notes": "Works in conjunction with grass.DensityScale. Together these two settings have the largest combined impact on outdoor FPS in ARK. Not reset by the in-game menu."
+    }
+  ],
+
+  "engine_overrides": [
+    {
+      "key": "sg.ResolutionQuality",
+      "behaviour": "Reset on every game launch by ARK's in-game Graphics menu. Direct INI edits are overwritten immediately.",
+      "action": "Set via the in-game Graphics → Resolution Quality slider. Do not attempt to edit directly in GameUserSettings.ini."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "behaviour": "Reset on every game launch by ARK's in-game Graphics menu.",
+      "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
+    },
+    {
+      "key": "sg.TextureQuality",
+      "behaviour": "Reset on every game launch by ARK's in-game Graphics menu.",
+      "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "behaviour": "Reset on every game launch by ARK's in-game Graphics menu.",
+      "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "behaviour": "Reset on every game launch by ARK's in-game Graphics menu.",
+      "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
+    }
+  ],
+
+  "notes": [
+    "ARK: Survival Evolved uses a heavily modified UE4 pipeline. The in-game Graphics menu overwrites all sg.* scalability group values in GameUserSettings.ini on each launch. For persistent performance improvements, use Engine.ini CVars under [SystemSettings] instead.",
+    "Always edit the per-user config files in %LOCALAPPDATA% — not the files in the game install directory. The launcher overwrites install-directory configs on launch.",
+    "The final major update (v360+) upgraded the engine to UE 4.27.2. Pre-360 builds may behave differently for some CVars.",
+    "Launching with -vulkan can improve performance on AMD GPUs but may cause instability on some maps. Not recommended for NVIDIA GPUs.",
+    "ARK: Survival Evolved has reached end-of-life. Studio Wildcard has shifted focus to ARK: Survival Ascended (UE5 remake). No further patches are expected."
+  ],
+
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/ARK:_Survival_Evolved",
+    "https://ark.wiki.gg/wiki/PC_Configuration",
+    "https://survivetheark.com/index.php?/forums/"
+  ]
+}

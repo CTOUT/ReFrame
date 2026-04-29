@@ -1,0 +1,227 @@
+{
+  "game": "ARK: Survival Ascended",
+  "engine": "Unreal Engine 5",
+  "engine_version": "5.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-04-29",
+
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\Ark Survival Ascended\\Saved\\Config\\Windows\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\Ark Survival Ascended\\Saved\\Config\\Windows\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Epic Games Store",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\Ark Survival Ascended\\Saved\\Config\\Windows\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\Ark Survival Ascended\\Saved\\Config\\Windows\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+
+  "keys": [
+    {
+      "key": "bUseVSync",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Enables or disables vertical sync",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Recommended off in all goals. Use G-Sync or FreeSync via the NVIDIA/AMD driver instead. In-game VSync adds input lag and is not reset by the Graphics menu."
+    },
+    {
+      "key": "FrameRateLimit",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Caps the game frame rate. 0 = uncapped.",
+      "recommendations": {
+        "performance": "Match monitor refresh rate (e.g. 240)",
+        "balanced": "Match monitor refresh rate",
+        "quality": "Match monitor refresh rate"
+      },
+      "notes": "Uncapped FPS causes excessive GPU load and heat, particularly with Lumen active. Always cap to monitor Hz. Not reset by the in-game Graphics menu."
+    },
+    {
+      "key": "r.Streaming.PoolSize",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Size of the texture streaming pool in megabytes. Higher values reduce texture pop-in.",
+      "recommendations": {
+        "performance": "2000",
+        "balanced": "3000",
+        "quality": "4000"
+      },
+      "notes": "ASA uses high-resolution texture assets; a larger pool significantly reduces pop-in at ultrawide/high resolutions. Scale with available VRAM. For 12 GB (RTX 4070 SUPER) 4000 is safe. Setting too high causes stutters if it exceeds available VRAM. Not reset by the in-game menu."
+    },
+    {
+      "key": "r.Shadow.RadiusThreshold",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Minimum object screen-radius fraction below which dynamic shadows are not cast. Higher = fewer shadow casters = better performance.",
+      "recommendations": {
+        "performance": "0.05",
+        "balanced": "0.03",
+        "quality": "0.008"
+      },
+      "notes": "Still one of the highest-impact shadow CVars in ASA despite Lumen. Dynamic shadow costs remain high due to creature density. Not reset by the in-game menu."
+    },
+    {
+      "key": "r.DepthOfFieldQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Depth of field blur quality. 0 = disabled.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off in all goals. Blurs distant terrain and creatures, reducing threat visibility. Not reset by the in-game menu."
+    },
+    {
+      "key": "grass.DensityScale",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Multiplier for grass density across the terrain. High cost on dense maps.",
+      "recommendations": {
+        "performance": "0.6",
+        "balanced": "0.8",
+        "quality": "1.0"
+      },
+      "notes": "Remains a major performance lever in ASA. Values below 0.5 produce visible bare patches. Not reset by the in-game menu."
+    },
+    {
+      "key": "foliage.DensityScale",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Multiplier for foliage mesh density (trees, bushes, rocks). Lower values reduce draw calls.",
+      "recommendations": {
+        "performance": "0.6",
+        "balanced": "0.8",
+        "quality": "1.0"
+      },
+      "notes": "Works in conjunction with grass.DensityScale. Combined impact on outdoor FPS is substantial. Not reset by the in-game menu."
+    },
+    {
+      "key": "r.DynamicGlobalIlluminationMethod",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Selects the global illumination method. 0 = disabled (baked only), 1 = Lumen software GI, 2 = Lumen hardware ray-traced GI (NVIDIA RTX only).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      },
+      "notes": "Lumen GI (value 1) is enabled by default and is by far the most expensive single feature in ASA. Disabling it (value 0) can yield 30–50% FPS improvement at the cost of flat, baked indirect lighting. Value 2 (hardware RT) requires an RTX GPU and is extremely demanding — not recommended for sustained play even on RTX 4090. Not reset by the in-game menu."
+    },
+    {
+      "key": "r.ReflectionMethod",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Selects the reflection rendering method. 0 = none, 1 = Screen Space Reflections (SSR), 2 = Lumen Reflections.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Value 2 (Lumen Reflections) is only meaningful when r.DynamicGlobalIlluminationMethod is also set to 1. If Lumen GI is disabled, set this to 0 or 1 to avoid rendering overhead. SSR (value 1) is a good balance of quality and cost. Not reset by the in-game menu."
+    },
+    {
+      "key": "r.VolumetricFog",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Enables or disables volumetric fog. 0 = off, 1 = on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      },
+      "notes": "Volumetric fog is one of the most expensive effects in ASA, especially near water, swamps, and forests. Disabling it provides a meaningful FPS gain in affected biomes. Not reset by the in-game menu."
+    }
+  ],
+
+  "engine_overrides": [
+    {
+      "key": "sg.ResolutionQuality",
+      "behaviour": "Reset on every game launch by ASA's in-game Graphics menu. Direct INI edits are overwritten.",
+      "action": "Set via the in-game Graphics menu. Note: DLSS/FSR3/XeSS/TSR upscaling is the recommended alternative to lowering native resolution — use the in-game Upscaling setting instead."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "behaviour": "Reset on every game launch by ASA's in-game Graphics menu.",
+      "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
+    },
+    {
+      "key": "sg.TextureQuality",
+      "behaviour": "Reset on every game launch by ASA's in-game Graphics menu.",
+      "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "behaviour": "Reset on every game launch by ASA's in-game Graphics menu.",
+      "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "behaviour": "Reset on every game launch by ASA's in-game Graphics menu.",
+      "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
+    },
+    {
+      "key": "sg.ShadingQuality",
+      "behaviour": "Reset on every game launch by ASA's in-game Graphics menu.",
+      "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
+    },
+    {
+      "key": "sg.ViewDistanceQuality",
+      "behaviour": "Reset on every game launch by ASA's in-game Graphics menu.",
+      "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
+    }
+  ],
+
+  "manual_only_settings": [
+    {
+      "setting": "Upscaling Method",
+      "location": "Settings → Graphics → Upscaling",
+      "recommendation": "DLSS (NVIDIA RTX), FSR 3 (AMD/all), or XeSS (Intel/all). TSR (default) is the UE5 native option.",
+      "reason": "Upscaling is the primary performance lever in ASA. On an RTX 4070 SUPER at 5120x1440, DLSS Quality or DLSS Balanced is recommended for the performance goal. DLSS Quality is the balanced goal default. Quality goal should use TSR or DLSS Quality at native or near-native resolution."
+    },
+    {
+      "setting": "Frame Generation",
+      "location": "Settings → Graphics → Frame Generation",
+      "recommendation": "Enable for performance goal on RTX 40-series (Ada Lovelace) only.",
+      "reason": "DLSS 3 Frame Generation (RTX 40-series exclusive) can nearly double rendered FPS at the cost of slightly increased latency. Best used when GPU-bound, which is common in ASA even on high-end hardware. NVIDIA Reflex should also be enabled alongside Frame Generation to mitigate the latency increase."
+    }
+  ],
+
+  "notes": [
+    "ASA is a full UE5 remake of ARK: Survival Evolved. It is significantly more GPU-demanding than ASE due to Lumen GI, Nanite virtualised geometry, and higher-resolution assets.",
+    "The in-game Graphics menu overwrites all sg.* scalability group values on each launch. Persistent tweaks must go in Engine.ini under [SystemSettings].",
+    "UE5 games use 'Windows' (not 'WindowsNoEditor') as the config subfolder. If files are not found at the listed paths, check for a 'WindowsClient' subdirectory.",
+    "Always edit the per-user config files in %LOCALAPPDATA% — not files in the game install directory.",
+    "Nanite (UE5 virtualised geometry) is active on terrain and most static meshes. Its overhead is generally low; do not attempt to disable it globally as it can cause visual artefacts on ASA assets.",
+    "DLSS Frame Generation requires an NVIDIA RTX 40-series (Ada Lovelace) GPU. It is not available on RTX 30-series or earlier."
+  ],
+
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/ARK:_Survival_Ascended",
+    "https://ark.wiki.gg/wiki/PC_Configuration",
+    "https://survivetheark.com/index.php?/forums/"
+  ]
+}

@@ -258,6 +258,32 @@
       "key_count": 9,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
+    },
+    {
+      "name": "ARK: Survival Evolved",
+      "file": "games/ark-survival-evolved.json",
+      "engine": "Unreal Engine 4",
+      "engine_version": "4.27",
+      "platforms": [
+        "Steam",
+        "Epic Games Store"
+      ],
+      "key_count": 7,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-29"
+    },
+    {
+      "name": "ARK: Survival Ascended",
+      "file": "games/ark-survival-ascended.json",
+      "engine": "Unreal Engine 5",
+      "engine_version": "5.x",
+      "platforms": [
+        "Steam",
+        "Epic Games Store"
+      ],
+      "key_count": 10,
+      "profile_version": "1.0.0",
+      "updated": "2026-04-29"
     }
   ],
   "engines": [
