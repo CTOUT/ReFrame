@@ -146,8 +146,20 @@
     "EE.cfg is rewritten on every game exit. Always edit with the game fully closed and verify changes were not overwritten on next launch."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Warframe",
-    "https://warframe.fandom.com/wiki/EE.cfg",
-    "https://www.warframe.com/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Warframe",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://warframe.fandom.com/wiki/EE.cfg",
+      "type": "wiki",
+      "label": "warframe Wiki (Fandom)"
+    },
+    {
+      "url": "https://www.warframe.com/",
+      "type": "official",
+      "label": "Warframe — Official"
+    }
   ]
 }

@@ -4,9 +4,18 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": ["prefs", "Player.log", "output_log.txt"],
-    "path_fragments": ["LocalLow\\", "AppData\\LocalLow"],
-    "registry_keys": ["HKCU\\Software\\<CompanyName>\\<ProductName>\\"]
+    "file_names": [
+      "prefs",
+      "Player.log",
+      "output_log.txt"
+    ],
+    "path_fragments": [
+      "LocalLow\\",
+      "AppData\\LocalLow"
+    ],
+    "registry_keys": [
+      "HKCU\\Software\\<CompanyName>\\<ProductName>\\"
+    ]
   },
   "config_file_locations": {
     "windows_registry": "HKCU\\Software\\<CompanyName>\\<ProductName>\\",
@@ -65,7 +74,15 @@
     "Unity 2019.3+ introduced the Input System package; games using the old Input Manager behave differently for controller detection. This does not affect graphics config."
   ],
   "sources": [
-    "https://docs.unity3d.com/Manual/class-PlayerSettings.html",
-    "https://docs.unity3d.com/Manual/CommandLineArguments.html"
+    {
+      "url": "https://docs.unity3d.com/Manual/class-PlayerSettings.html",
+      "type": "official",
+      "label": "Unity Docs — Player Settings"
+    },
+    {
+      "url": "https://docs.unity3d.com/Manual/CommandLineArguments.html",
+      "type": "official",
+      "label": "Unity Docs — Command Line Arguments"
+    }
   ]
 }

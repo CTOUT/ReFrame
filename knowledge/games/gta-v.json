@@ -3,7 +3,11 @@
   "engine": "RAGE",
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
-  "aliases": ["GTA V", "GTA 5", "Grand Theft Auto 5"],
+  "aliases": [
+    "GTA V",
+    "GTA 5",
+    "Grand Theft Auto 5"
+  ],
   "platforms": [
     {
       "name": "Steam",
@@ -170,8 +174,25 @@
     "The settings.xml file may be reset to defaults if the Rockstar Games Launcher detects a version mismatch or cache corruption."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Grand_Theft_Auto_V",
-    "https://support.rockstargames.com/articles/200004743/PC-Graphics-Settings",
-    "https://www.digitalfoundry.net/2022-03-15-gta-v-pc-enhanced-performance-analysis"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Grand_Theft_Auto_V",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://support.rockstargames.com/articles/200004743/PC-Graphics-Settings",
+      "type": "official",
+      "label": "Rockstar Games — Official"
+    },
+    {
+      "url": "https://www.digitalfoundry.net/2022-03-15-gta-v-pc-enhanced-performance-analysis",
+      "type": "editorial",
+      "label": "Digital Foundry"
+    },
+    {
+      "url": "https://www.wsgf.org/dr/grand-theft-auto-v",
+      "type": "fix_db",
+      "label": "WSGF (Widescreen Gaming Forum)"
+    }
   ]
 }

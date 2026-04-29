@@ -4,8 +4,16 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": ["config_mp.cfg", "config_sp.cfg", "options.3.cod23.cst.cfg"],
-    "path_fragments": ["Call of Duty", "cod23", "AppData\\Local\\Activision"]
+    "file_names": [
+      "config_mp.cfg",
+      "config_sp.cfg",
+      "options.3.cod23.cst.cfg"
+    ],
+    "path_fragments": [
+      "Call of Duty",
+      "cod23",
+      "AppData\\Local\\Activision"
+    ]
   },
   "config_file_locations": {
     "windows": "%LOCALAPPDATA%\\Activision\\Call of Duty\\players\\",
@@ -60,7 +68,15 @@
     }
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Call_of_Duty:_Black_Ops_6",
-    "https://www.callofduty.com/blackops6"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Call_of_Duty:_Black_Ops_6",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://www.callofduty.com/blackops6",
+      "type": "official",
+      "label": "Call of Duty — Official"
+    }
   ]
 }

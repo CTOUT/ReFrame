@@ -3,7 +3,11 @@
   "engine": "Unreal Engine 5",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": ["Fortnite Battle Royale", "Fortnite Creative", "Fortnite Save the World"],
+  "aliases": [
+    "Fortnite Battle Royale",
+    "Fortnite Creative",
+    "Fortnite Save the World"
+  ],
   "platforms": [
     {
       "name": "Epic Games Store",
@@ -149,7 +153,15 @@
     "Fortnite is available only via the Epic Games Store — not on Steam. The config path reflects this (no Steam AppID)."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Fortnite",
-    "https://www.epicgames.com/fortnite/en-US/news/fortnite-performance-guide"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Fortnite",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://www.epicgames.com/fortnite/en-US/news/fortnite-performance-guide",
+      "type": "official",
+      "label": "Epic Games — Official"
+    }
   ]
 }

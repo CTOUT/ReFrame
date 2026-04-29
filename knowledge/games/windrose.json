@@ -116,6 +116,10 @@
     "Multiplayer performance scales with player count. The developer recommends maximum 4 players in a party for optimal experience in the current Early Access build."
   ],
   "sources": [
-    "https://store.steampowered.com/app/3041230/Windrose/"
+    {
+      "url": "https://store.steampowered.com/app/3041230/Windrose/",
+      "type": "official",
+      "label": "Steam Store Page"
+    }
   ]
 }

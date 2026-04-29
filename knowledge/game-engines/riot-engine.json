@@ -4,8 +4,14 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": ["game.cfg", "PersistedSettings.json"],
-    "path_fragments": ["Riot Games\\League of Legends\\Config", "Riot Games\\VALORANT"]
+    "file_names": [
+      "game.cfg",
+      "PersistedSettings.json"
+    ],
+    "path_fragments": [
+      "Riot Games\\League of Legends\\Config",
+      "Riot Games\\VALORANT"
+    ]
   },
   "config_file_locations": {
     "windows_lol": "%USERPROFILE%\\Documents\\League of Legends\\Config\\game.cfg",
@@ -51,7 +57,15 @@
     }
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/League_of_Legends",
-    "https://support-leagueoflegends.riotgames.com/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/League_of_Legends",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://support-leagueoflegends.riotgames.com/",
+      "type": "official",
+      "label": "Riot Games Support"
+    }
   ]
 }

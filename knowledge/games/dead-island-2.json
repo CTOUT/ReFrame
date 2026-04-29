@@ -371,6 +371,15 @@
     "HDR output is supported. Only set bUseHDRDisplayOutput=True if the OS display HDR toggle is also on."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Dead_Island_2"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Dead_Island_2",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://www.wsgf.org/dr/dead-island-2",
+      "type": "fix_db",
+      "label": "WSGF (Widescreen Gaming Forum)"
+    }
   ]
 }

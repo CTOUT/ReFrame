@@ -4,8 +4,15 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
   "detection_signatures": {
-    "file_names": ["video.txt", "autoexec.cfg"],
-    "path_fragments": ["Counter-Strike Global Offensive\\cfg", "cs2\\cfg", "Dota 2 Beta\\game\\dota\\cfg"]
+    "file_names": [
+      "video.txt",
+      "autoexec.cfg"
+    ],
+    "path_fragments": [
+      "Counter-Strike Global Offensive\\cfg",
+      "cs2\\cfg",
+      "Dota 2 Beta\\game\\dota\\cfg"
+    ]
   },
   "config_file_locations": {
     "windows_cs2_video": "%USERPROFILE%\\AppData\\Local\\Counter-Strike Global Offensive\\cs2\\cfg\\cs2_video.txt",
@@ -148,8 +155,20 @@
     }
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Counter-Strike_2",
-    "https://totalcsgo.com/launch-options",
-    "https://www.valve.com/cs2"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Counter-Strike_2",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://totalcsgo.com/launch-options",
+      "type": "community",
+      "label": "TotalCSGO"
+    },
+    {
+      "url": "https://www.valve.com/cs2",
+      "type": "official",
+      "label": "Valve — Official"
+    }
   ]
 }

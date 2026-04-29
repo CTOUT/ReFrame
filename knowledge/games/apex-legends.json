@@ -159,7 +159,15 @@
     "The EA App replaced Origin in 2023. Config paths are the same for both platforms."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Apex_Legends",
-    "https://www.ea.com/games/apex-legends"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Apex_Legends",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://www.ea.com/games/apex-legends",
+      "type": "official",
+      "label": "EA — Official"
+    }
   ]
 }

@@ -4,14 +4,24 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": ["autoexec.cfg", "videoconfig.txt"],
-    "path_fragments": ["Respawn\\Apex Legends\\", "r5apex"]
+    "file_names": [
+      "autoexec.cfg",
+      "videoconfig.txt"
+    ],
+    "path_fragments": [
+      "Respawn\\Apex Legends\\",
+      "r5apex"
+    ]
   },
   "config_file_locations": {
     "windows": "%USERPROFILE%\\Saved Games\\Respawn\\Apex Legends\\Local\\",
     "windows_note": "Apex Legends uses a heavily modified Source engine. Config layout resembles Valve Source games but with Respawn-specific keys and paths. videoconfig.txt stores resolution/display settings. autoexec.cfg is executed at launch."
   },
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Apex_Legends"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Apex_Legends",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    }
   ]
 }

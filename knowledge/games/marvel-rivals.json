@@ -3,7 +3,9 @@
   "engine": "Unreal Engine 5",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": ["MarvelRivals"],
+  "aliases": [
+    "MarvelRivals"
+  ],
   "platforms": [
     {
       "name": "Steam",
@@ -143,7 +145,15 @@
     "In 6v6 team fights with all ultimates active, even high-end GPUs can experience frame time spikes. sg.EffectsQuality=0 is the single most effective setting change for stabilising frame time in Marvel Rivals."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Marvel_Rivals",
-    "https://www.marvelrivals.com/news/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Marvel_Rivals",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://www.marvelrivals.com/news/",
+      "type": "official",
+      "label": "Marvel Rivals — Official"
+    }
   ]
 }

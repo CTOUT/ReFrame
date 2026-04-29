@@ -4,7 +4,6 @@
   "engine_version": "4.27",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-
   "platforms": [
     {
       "store": "Steam",
@@ -33,7 +32,6 @@
       ]
     }
   ],
-
   "keys": [
     {
       "key": "bUseVSync",
@@ -120,7 +118,6 @@
       "notes": "Works in conjunction with grass.DensityScale. Together these two settings have the largest combined impact on outdoor FPS in ARK. Not reset by the in-game menu."
     }
   ],
-
   "engine_overrides": [
     {
       "key": "sg.ResolutionQuality",
@@ -148,7 +145,6 @@
       "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
     }
   ],
-
   "notes": [
     "ARK: Survival Evolved uses a heavily modified UE4 pipeline. The in-game Graphics menu overwrites all sg.* scalability group values in GameUserSettings.ini on each launch. For persistent performance improvements, use Engine.ini CVars under [SystemSettings] instead.",
     "Always edit the per-user config files in %LOCALAPPDATA% — not the files in the game install directory. The launcher overwrites install-directory configs on launch.",
@@ -156,10 +152,21 @@
     "Launching with -vulkan can improve performance on AMD GPUs but may cause instability on some maps. Not recommended for NVIDIA GPUs.",
     "ARK: Survival Evolved has reached end-of-life. Studio Wildcard has shifted focus to ARK: Survival Ascended (UE5 remake). No further patches are expected."
   ],
-
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/ARK:_Survival_Evolved",
-    "https://ark.wiki.gg/wiki/PC_Configuration",
-    "https://survivetheark.com/index.php?/forums/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/ARK:_Survival_Evolved",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://ark.wiki.gg/wiki/PC_Configuration",
+      "type": "wiki",
+      "label": "ARK Wiki"
+    },
+    {
+      "url": "https://survivetheark.com/index.php?/forums/",
+      "type": "official",
+      "label": "Official ARK Forums"
+    }
   ]
 }

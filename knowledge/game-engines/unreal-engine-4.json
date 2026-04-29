@@ -6,12 +6,20 @@
   "fallback_for": [],
   "fallback_for_note": "No longer covers Unreal Engine 5 as a fallback — unreal-engine-5.json exists and takes precedence unconditionally for all UE5 games.",
   "detection_signatures": {
-    "file_names": ["GameUserSettings.ini", "Engine.ini", "Scalability.ini"],
+    "file_names": [
+      "GameUserSettings.ini",
+      "Engine.ini",
+      "Scalability.ini"
+    ],
     "section_headers": [
       "[/Script/Engine.GameUserSettings]",
       "[/Script/Engine.Engine]"
     ],
-    "key_prefixes": ["sg.", "r.", "b"]
+    "key_prefixes": [
+      "sg.",
+      "r.",
+      "b"
+    ]
   },
   "config_file_locations": {
     "windows": "%LOCALAPPDATA%\\<GameName>\\Saved\\Config\\WindowsNoEditor\\"
@@ -112,7 +120,15 @@
     }
   ],
   "sources": [
-    "https://docs.unrealengine.com/4.27/en-US/TestingAndOptimization/PerformanceAndProfiling/",
-    "https://www.pcgamingwiki.com/wiki/Engine:Unreal_Engine_4"
+    {
+      "url": "https://docs.unrealengine.com/4.27/en-US/TestingAndOptimization/PerformanceAndProfiling/",
+      "type": "official",
+      "label": "Unreal Engine Docs — Performance Profiling"
+    },
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Engine:Unreal_Engine_4",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    }
   ]
 }

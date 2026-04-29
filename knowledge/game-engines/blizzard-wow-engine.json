@@ -4,8 +4,14 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
   "detection_signatures": {
-    "file_names": ["Config.wtf"],
-    "path_fragments": ["World of Warcraft\\_retail_\\WTF", "World of Warcraft\\_classic_\\WTF", "World of Warcraft\\_ptr_\\WTF"]
+    "file_names": [
+      "Config.wtf"
+    ],
+    "path_fragments": [
+      "World of Warcraft\\_retail_\\WTF",
+      "World of Warcraft\\_classic_\\WTF",
+      "World of Warcraft\\_ptr_\\WTF"
+    ]
   },
   "config_file_locations": {
     "windows_retail": "%PROGRAMFILES(X86)%\\World of Warcraft\\_retail_\\WTF\\Config.wtf",
@@ -119,8 +125,20 @@
     }
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/World_of_Warcraft",
-    "https://us.battle.net/support/en/article/76459",
-    "https://wowpedia.fandom.com/wiki/Console_variables"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/World_of_Warcraft",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://us.battle.net/support/en/article/76459",
+      "type": "official",
+      "label": "Blizzard Support"
+    },
+    {
+      "url": "https://wowpedia.fandom.com/wiki/Console_variables",
+      "type": "wiki",
+      "label": "wowpedia Wiki (Fandom)"
+    }
   ]
 }

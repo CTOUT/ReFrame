@@ -206,8 +206,25 @@
     "Nexus Mods (https://www.nexusmods.com/skyrimspecialedition) is the primary repository for Skyrim SE mods, including thousands of graphics improvements covering textures, meshes, lighting, weather, and post-processing. Individual mod recommendations are outside ReFrame's scope — Nexus search and community collections are the best starting point for further graphical enhancement."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/The_Elder_Scrolls_V:_Skyrim_Special_Edition",
-    "https://skse.silverlock.org/",
-    "https://www.nexusmods.com/skyrimspecialedition"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/The_Elder_Scrolls_V:_Skyrim_Special_Edition",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://skse.silverlock.org/",
+      "type": "community",
+      "label": "SKSE (Skyrim Script Extender)"
+    },
+    {
+      "url": "https://www.nexusmods.com/skyrimspecialedition",
+      "type": "community",
+      "label": "NexusMods"
+    },
+    {
+      "url": "https://www.wsgf.org/dr/the-elder-scrolls-v-skyrim-special-edition",
+      "type": "fix_db",
+      "label": "WSGF (Widescreen Gaming Forum)"
+    }
   ]
 }

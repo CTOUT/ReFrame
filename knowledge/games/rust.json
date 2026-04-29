@@ -121,7 +121,15 @@
     "Rust's anti-cheat (EAC — EasyAntiCheat) does not scan client.cfg. All keys listed here are EAC-safe."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Rust",
-    "https://rust.facepunch.com/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Rust",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://rust.facepunch.com/",
+      "type": "official",
+      "label": "Facepunch — Rust Official"
+    }
   ]
 }

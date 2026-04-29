@@ -3,7 +3,9 @@
   "engine": "Unreal Engine 4",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": ["VALORANT"],
+  "aliases": [
+    "VALORANT"
+  ],
   "platforms": [
     {
       "name": "Riot Games Launcher",
@@ -146,7 +148,15 @@
     "Valorant regularly pushes graphics setting resets with major patches. Users should check GameUserSettings.ini after major client updates."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/VALORANT",
-    "https://playvalorant.com/en-us/news/game-updates/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/VALORANT",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://playvalorant.com/en-us/news/game-updates/",
+      "type": "official",
+      "label": "Valorant — Official"
+    }
   ]
 }

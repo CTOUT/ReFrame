@@ -4,8 +4,13 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": ["options.txt"],
-    "path_fragments": [".minecraft\\options.txt", "AppData\\Roaming\\.minecraft"]
+    "file_names": [
+      "options.txt"
+    ],
+    "path_fragments": [
+      ".minecraft\\options.txt",
+      "AppData\\Roaming\\.minecraft"
+    ]
   },
   "config_file_locations": {
     "windows": "%APPDATA%\\.minecraft\\options.txt",
@@ -36,7 +41,15 @@
     }
   ],
   "sources": [
-    "https://minecraft.wiki/w/Options.txt",
-    "https://www.pcgamingwiki.com/wiki/Minecraft:_Java_Edition"
+    {
+      "url": "https://minecraft.wiki/w/Options.txt",
+      "type": "wiki",
+      "label": "Minecraft Wiki"
+    },
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Minecraft:_Java_Edition",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    }
   ]
 }

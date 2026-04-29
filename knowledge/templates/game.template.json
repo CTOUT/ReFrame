@@ -67,6 +67,11 @@
   ],
 
   "sources": [
-    "REQUIRED — at least one URL. Accepted: PCGamingWiki, official engine docs, developer patch notes, game official support. Avoid SEO guides and untrusted forums."
+    {
+      "_comment": "REQUIRED — at least one entry. Remove _comment field. Accepted types: wiki, fix_db, official, community, editorial.",
+      "url": "REQUIRED — full URL",
+      "type": "REQUIRED — one of: wiki | fix_db | official | community | editorial",
+      "label": "REQUIRED — human-readable label, e.g. 'PCGamingWiki — Elden Ring' or 'WSGF — Elden Ring'"
+    }
   ]
 }

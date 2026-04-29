@@ -4,7 +4,6 @@
   "engine_version": "5.x",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-
   "platforms": [
     {
       "store": "Steam",
@@ -33,7 +32,6 @@
       ]
     }
   ],
-
   "keys": [
     {
       "key": "bUseVSync",
@@ -156,7 +154,6 @@
       "notes": "Volumetric fog is one of the most expensive effects in ASA, especially near water, swamps, and forests. Disabling it provides a meaningful FPS gain in affected biomes. Not reset by the in-game menu."
     }
   ],
-
   "engine_overrides": [
     {
       "key": "sg.ResolutionQuality",
@@ -194,7 +191,6 @@
       "action": "Set via the in-game Graphics menu. INI edits will be overwritten."
     }
   ],
-
   "manual_only_settings": [
     {
       "setting": "Upscaling Method",
@@ -209,7 +205,6 @@
       "reason": "DLSS 3 Frame Generation (RTX 40-series exclusive) can nearly double rendered FPS at the cost of slightly increased latency. Best used when GPU-bound, which is common in ASA even on high-end hardware. NVIDIA Reflex should also be enabled alongside Frame Generation to mitigate the latency increase."
     }
   ],
-
   "notes": [
     "ASA is a full UE5 remake of ARK: Survival Evolved. It is significantly more GPU-demanding than ASE due to Lumen GI, Nanite virtualised geometry, and higher-resolution assets.",
     "The in-game Graphics menu overwrites all sg.* scalability group values on each launch. Persistent tweaks must go in Engine.ini under [SystemSettings].",
@@ -218,10 +213,21 @@
     "Nanite (UE5 virtualised geometry) is active on terrain and most static meshes. Its overhead is generally low; do not attempt to disable it globally as it can cause visual artefacts on ASA assets.",
     "DLSS Frame Generation requires an NVIDIA RTX 40-series (Ada Lovelace) GPU. It is not available on RTX 30-series or earlier."
   ],
-
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/ARK:_Survival_Ascended",
-    "https://ark.wiki.gg/wiki/PC_Configuration",
-    "https://survivetheark.com/index.php?/forums/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/ARK:_Survival_Ascended",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://ark.wiki.gg/wiki/PC_Configuration",
+      "type": "wiki",
+      "label": "ARK Wiki"
+    },
+    {
+      "url": "https://survivetheark.com/index.php?/forums/",
+      "type": "official",
+      "label": "Official ARK Forums"
+    }
   ]
 }

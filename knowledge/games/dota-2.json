@@ -124,7 +124,15 @@
     "Dota 2's renderer supports Vulkan via the -vulkan launch option. On some AMD and Intel systems, Vulkan provides better performance than DX11. Test per-system."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Dota_2",
-    "https://www.dota2.com/updates/730"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Dota_2",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://www.dota2.com/updates/730",
+      "type": "official",
+      "label": "Dota 2 — Official"
+    }
   ]
 }

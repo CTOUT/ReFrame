@@ -3,7 +3,11 @@
   "engine": "Source 2",
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
-  "aliases": ["CS2", "Counter-Strike 2", "CS:GO"],
+  "aliases": [
+    "CS2",
+    "Counter-Strike 2",
+    "CS:GO"
+  ],
   "platforms": [
     {
       "name": "Steam",
@@ -189,8 +193,25 @@
     "AMD Anti-Lag+ is available for AMD RX 7000 series and newer through the AMD Software Adrenalin Edition overlay."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Counter-Strike_2",
-    "https://totalcsgo.com/launch-options",
-    "https://developer.valvesoftware.com/wiki/CS2_Launch_Options"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Counter-Strike_2",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://totalcsgo.com/launch-options",
+      "type": "community",
+      "label": "TotalCSGO"
+    },
+    {
+      "url": "https://developer.valvesoftware.com/wiki/CS2_Launch_Options",
+      "type": "community",
+      "label": "Valve Developer Wiki"
+    },
+    {
+      "url": "https://www.wsgf.org/dr/counter-strike-global-offensive",
+      "type": "fix_db",
+      "label": "WSGF (Widescreen Gaming Forum)"
+    }
   ]
 }

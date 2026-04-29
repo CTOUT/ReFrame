@@ -3,7 +3,11 @@
   "engine": "Minecraft Java Engine",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": ["Minecraft Java Edition", "Minecraft Java", "MC"],
+  "aliases": [
+    "Minecraft Java Edition",
+    "Minecraft Java",
+    "MC"
+  ],
   "editions": [
     {
       "name": "Java Edition",
@@ -216,8 +220,20 @@
     "Minecraft receives frequent updates. Major version changes (1.20 → 1.21 etc.) occasionally rename or remove options.txt keys. Profile version should be checked against the game's current version."
   ],
   "sources": [
-    "https://minecraft.wiki/w/Options.txt",
-    "https://www.pcgamingwiki.com/wiki/Minecraft:_Java_Edition",
-    "https://aikar.co/mcflags.html"
+    {
+      "url": "https://minecraft.wiki/w/Options.txt",
+      "type": "wiki",
+      "label": "Minecraft Wiki"
+    },
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Minecraft:_Java_Edition",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://aikar.co/mcflags.html",
+      "type": "community",
+      "label": "Aikar — JVM Flags Reference"
+    }
   ]
 }

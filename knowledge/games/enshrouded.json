@@ -98,7 +98,15 @@
     "Enshrouded supports multiplayer co-op up to 24 players on a dedicated server. Player count directly affects server-side simulation performance."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Enshrouded",
-    "https://store.steampowered.com/app/1203620/Enshrouded/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Enshrouded",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://store.steampowered.com/app/1203620/Enshrouded/",
+      "type": "official",
+      "label": "Steam Store Page"
+    }
   ]
 }

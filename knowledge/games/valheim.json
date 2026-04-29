@@ -99,7 +99,15 @@
     "Valheim has a dedicated server component (valheim_server.exe). Server performance is a separate concern from client graphics optimisation."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Valheim",
-    "https://store.steampowered.com/app/892970/Valheim/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Valheim",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://store.steampowered.com/app/892970/Valheim/",
+      "type": "official",
+      "label": "Steam Store Page"
+    }
   ]
 }

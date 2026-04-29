@@ -4,14 +4,22 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": ["graphics.cfg"],
-    "path_fragments": ["Keen Games\\Enshrouded"]
+    "file_names": [
+      "graphics.cfg"
+    ],
+    "path_fragments": [
+      "Keen Games\\Enshrouded"
+    ]
   },
   "config_file_locations": {
     "windows": "%USERPROFILE%\\AppData\\Local\\Keen Games\\Enshrouded\\",
     "windows_note": "Keen Engine stores graphics config in a flat cfg file. The format is key=value without INI sections."
   },
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Enshrouded"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Enshrouded",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    }
   ]
 }

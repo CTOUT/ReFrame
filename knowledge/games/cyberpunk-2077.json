@@ -157,8 +157,25 @@
     "The game received major performance optimisations in patches 1.5 (February 2022), 1.6 (September 2022), and 2.0 (September 2023). Benchmark data from before patch 1.5 is not representative of current performance."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Cyberpunk_2077",
-    "https://wiki.cybermods.net/",
-    "https://www.digitalfoundry.net/2023-12-18-cyberpunk-2077-overdrive-mode-path-tracing-technology-deep-dive"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Cyberpunk_2077",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://wiki.cybermods.net/",
+      "type": "community",
+      "label": "Cybermods Wiki"
+    },
+    {
+      "url": "https://www.digitalfoundry.net/2023-12-18-cyberpunk-2077-overdrive-mode-path-tracing-technology-deep-dive",
+      "type": "editorial",
+      "label": "Digital Foundry"
+    },
+    {
+      "url": "https://www.wsgf.org/dr/cyberpunk-2077",
+      "type": "fix_db",
+      "label": "WSGF (Widescreen Gaming Forum)"
+    }
   ]
 }

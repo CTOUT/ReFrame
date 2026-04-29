@@ -3,7 +3,10 @@
   "engine": "Divinity Engine 4.0",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": ["BG3", "Baldurs Gate 3"],
+  "aliases": [
+    "BG3",
+    "Baldurs Gate 3"
+  ],
   "platforms": [
     {
       "name": "Steam",
@@ -110,8 +113,25 @@
     "BG3 supports Vulkan and DX11. Vulkan is the default and generally recommended. Switch to DX11 only if experiencing Vulkan-specific crashes."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Baldur%27s_Gate_3",
-    "https://baldursgate3.wiki.fextralife.com/",
-    "https://store.steampowered.com/app/1086940/Baldurs_Gate_3/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Baldur%27s_Gate_3",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://baldursgate3.wiki.fextralife.com/",
+      "type": "wiki",
+      "label": "Fextralife Wiki"
+    },
+    {
+      "url": "https://store.steampowered.com/app/1086940/Baldurs_Gate_3/",
+      "type": "official",
+      "label": "Steam Store Page"
+    },
+    {
+      "url": "https://www.wsgf.org/dr/baldurs-gate-3",
+      "type": "fix_db",
+      "label": "WSGF (Widescreen Gaming Forum)"
+    }
   ]
 }

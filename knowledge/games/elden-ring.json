@@ -60,6 +60,15 @@
     "Config options are sparse — most settings must be changed through the in-game menu or RTSS."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Elden_Ring"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Elden_Ring",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://www.wsgf.org/dr/elden-ring",
+      "type": "fix_db",
+      "label": "WSGF (Widescreen Gaming Forum)"
+    }
   ]
 }

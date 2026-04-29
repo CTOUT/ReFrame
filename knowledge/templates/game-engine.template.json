@@ -57,6 +57,11 @@
   ],
 
   "sources": [
-    "REQUIRED — at least one URL. Accepted: official engine documentation, engine release notes, PCGamingWiki engine page."
+    {
+      "_comment": "REQUIRED — at least one entry. Remove _comment field. Accepted types: wiki, official, community, editorial.",
+      "url": "REQUIRED — full URL",
+      "type": "REQUIRED — one of: wiki | official | community | editorial",
+      "label": "REQUIRED — human-readable label, e.g. 'Unreal Engine Documentation — Scalability Reference'"
+    }
   ]
 }

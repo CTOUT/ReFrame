@@ -3,7 +3,10 @@
   "engine": "Unreal Engine 4",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": ["PUBG", "PlayerUnknown's Battlegrounds"],
+  "aliases": [
+    "PUBG",
+    "PlayerUnknown's Battlegrounds"
+  ],
   "platforms": [
     {
       "name": "Steam",
@@ -146,7 +149,20 @@
     "PUBG migrated from UE4 to a heavily modified version in 2022 (PUBG: New Era update). The config key names and paths remain UE4-standard despite renderer improvements."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/PUBG:_Battlegrounds",
-    "https://www.pubg.com/en/news/4820"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/PUBG:_Battlegrounds",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://www.pubg.com/en/news/4820",
+      "type": "official",
+      "label": "PUBG — Official"
+    },
+    {
+      "url": "https://www.wsgf.org/dr/playerunknowns-battlegrounds",
+      "type": "fix_db",
+      "label": "WSGF (Widescreen Gaming Forum)"
+    }
   ]
 }

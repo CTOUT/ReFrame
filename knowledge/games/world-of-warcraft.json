@@ -3,7 +3,11 @@
   "engine": "Blizzard WoW Engine",
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
-  "aliases": ["WoW", "World of Warcraft: The War Within", "WoW Retail"],
+  "aliases": [
+    "WoW",
+    "World of Warcraft: The War Within",
+    "WoW Retail"
+  ],
   "platforms": [
     {
       "name": "Battle.net",
@@ -158,8 +162,20 @@
     "Several graphicsSpellDensity reductions occurred silently in patches — if a user is on a pre-Dragonflight guide, values may reference different numeric scales."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/World_of_Warcraft",
-    "https://wowpedia.fandom.com/wiki/Console_variables",
-    "https://us.battle.net/support/en/article/76459"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/World_of_Warcraft",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://wowpedia.fandom.com/wiki/Console_variables",
+      "type": "wiki",
+      "label": "wowpedia Wiki (Fandom)"
+    },
+    {
+      "url": "https://us.battle.net/support/en/article/76459",
+      "type": "official",
+      "label": "Blizzard Support"
+    }
   ]
 }

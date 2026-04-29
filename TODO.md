@@ -45,10 +45,7 @@ Completed items are struck through. Each item requires an engine profile (if new
 - [ ] **Config format support: Unreal Engine DefaultEngine.ini deep analysis** — key-by-key UE4/5 reference
 - [ ] **Benchmark integration** — optionally run a quick GPU benchmark to calibrate tier classification
 - [ ] **Export report** — save optimisation report as a Markdown or HTML file
-- [ ] **External source references in knowledge profiles** — enrich game and engine profiles with structured links to authoritative third-party sources:
-  - [PCGamingWiki](https://www.pcgamingwiki.com/) — per-game config paths, API support, known issues, fix documentation; already used in several profiles as a `sources` entry but not yet surfaced to the agent as a queryable resource
-  - [WSGF — Widescreen Gaming Forum](https://www.wsgf.org/) — ultra-wide (21:9), super-ultra-wide (32:9), and multi-monitor fix database; covers FOV hack status, HUD stretch behaviour, and pillarbox/letterbox workarounds per game; particularly valuable for the `motion_comfort` and display resolution workflows
-  - Consider a `sources` schema extension to tag entries by type (e.g. `"type": "wiki"`, `"type": "fix_db"`, `"type": "official"`) so the agent can surface the most relevant reference for a given query rather than listing all sources generically
+- [x] **External source references in knowledge profiles** — `sources` field migrated from a flat string array to a structured `{ url, type, label }` object array across all 24 game profiles and 14 engine profiles. Types: `wiki`, `fix_db` (WSGF), `official`, `community`, `editorial`. WSGF entries added to 8 titles with notable widescreen/ultrawide considerations (Elden Ring, Cyberpunk 2077, GTA V, Skyrim SE, Baldur's Gate 3, Dead Island 2, CS2, PUBG). Both profile templates updated to document the new schema.
 
 ## Completed
 

@@ -3,7 +3,11 @@
   "engine": "IW Engine 9",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": ["CoD BO6", "Black Ops 6", "BO6"],
+  "aliases": [
+    "CoD BO6",
+    "Black Ops 6",
+    "BO6"
+  ],
   "platforms": [
     {
       "name": "Steam",
@@ -140,7 +144,15 @@
     "CoD titles are updated frequently. Config key names occasionally change between major updates. If a key has no effect, check PCGamingWiki for the current key name."
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Call_of_Duty:_Black_Ops_6",
-    "https://www.callofduty.com/blackops6"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Call_of_Duty:_Black_Ops_6",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://www.callofduty.com/blackops6",
+      "type": "official",
+      "label": "Call of Duty — Official"
+    }
   ]
 }

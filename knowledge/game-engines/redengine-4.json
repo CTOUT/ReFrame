@@ -4,9 +4,18 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
   "detection_signatures": {
-    "file_names": ["UserSettings.json"],
-    "path_fragments": ["CD Projekt Red\\Cyberpunk 2077"],
-    "key_prefixes": ["Rendering.", "LevelOfDetail.", "SpawnSystem.", "Streaming."]
+    "file_names": [
+      "UserSettings.json"
+    ],
+    "path_fragments": [
+      "CD Projekt Red\\Cyberpunk 2077"
+    ],
+    "key_prefixes": [
+      "Rendering.",
+      "LevelOfDetail.",
+      "SpawnSystem.",
+      "Streaming."
+    ]
   },
   "config_file_locations": {
     "windows_user": "%USERPROFILE%\\Documents\\CD Projekt Red\\Cyberpunk 2077\\",
@@ -52,7 +61,15 @@
     }
   ],
   "sources": [
-    "https://www.pcgamingwiki.com/wiki/Cyberpunk_2077",
-    "https://wiki.cybermods.net/"
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Cyberpunk_2077",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://wiki.cybermods.net/",
+      "type": "community",
+      "label": "Cybermods Wiki"
+    }
   ]
 }
