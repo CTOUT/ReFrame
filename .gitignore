@@ -33,5 +33,7 @@ Transcript*
 *.bak
 *.swp
 
-# ReFrame runtime backups (stored locally, not committed)
+# ReFrame runtime backups — canonical location is %LOCALAPPDATA%\ReFrame\Backups\ (outside repo)
+# .reframe-backups/ entry kept for any legacy backups already written to the repo root
 backups/
+.reframe-backups/

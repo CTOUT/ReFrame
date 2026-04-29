@@ -46,6 +46,7 @@ Completed items are struck through. Each item requires an engine profile (if new
 - [ ] **Benchmark integration** — optionally run a quick GPU benchmark to calibrate tier classification
 - [ ] **Export report** — save optimisation report as a Markdown or HTML file
 - [x] **External source references in knowledge profiles** — `sources` field migrated from a flat string array to a structured `{ url, type, label }` object array across all 24 game profiles and 14 engine profiles. Types: `wiki`, `fix_db` (WSGF), `official`, `community`, `editorial`. WSGF entries added to 8 titles with notable widescreen/ultrawide considerations (Elden Ring, Cyberpunk 2077, GTA V, Skyrim SE, Baldur's Gate 3, Dead Island 2, CS2, PUBG). Both profile templates updated to document the new schema.
+- [ ] **Backup Review** — Review backup strategy and naming conventions for ReFrame. Create registry import files for changes and rollback.
 
 ## Completed
 
