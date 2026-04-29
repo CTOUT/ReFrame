@@ -158,7 +158,7 @@ ReFrame/
 ├── CONTRIBUTING.md
 ├── install.ps1
 ├── LICENSE
-├── llms.txt                    ← AI crawler guidance
+├── llms.txt                        ← AI crawler guidance
 ├── README.md
 ├── SECURITY.md
 └── TODO.md
@@ -190,11 +190,11 @@ No. The agent works entirely offline using your local knowledge base and system 
 
 ## Related Projects
 
-| Project | Description |
-| --- | --- |
-| [Symdicate](https://github.com/CTOUT/Symdicate) | Composable multi-agent framework for GitHub Copilot — persona grafting, cognitive identity caching, and agent fusion |
+| Project                                                             | Description                                                                                                                 |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| [Symdicate](https://github.com/CTOUT/Symdicate)                     | Composable multi-agent framework for GitHub Copilot — persona grafting, cognitive identity caching, and agent fusion        |
 | [vscode-copilot-sync](https://github.com/CTOUT/vscode-copilot-sync) | PowerShell toolkit to sync and manage Copilot agents, instructions, and skills from the awesome-copilot community catalogue |
-| [awesome-copilot](https://github.com/github/awesome-copilot) | Community catalogue of Copilot agents, instructions, skills, hooks, and workflows |
+| [awesome-copilot](https://github.com/github/awesome-copilot)        | Community catalogue of Copilot agents, instructions, skills, hooks, and workflows                                           |
 
 ---
 
