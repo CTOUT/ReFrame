@@ -1,0 +1,385 @@
+{
+  "game": "Skull and Bones",
+  "engine": "Ubisoft Anvil",
+  "profile_version": "1.0.0",
+  "updated": "2026-05-21",
+
+  "platforms": [
+    {
+      "store": "Steam",
+      "app_id": "2853730",
+      "config_files": [
+        {
+          "file": "SkullAndBones.ini",
+          "path": "%USERPROFILE%\\Documents\\Skull And Bones\\SkullAndBones.ini",
+          "format": "ini",
+          "notes": "Single flat INI file covering all graphics, display, input, and audio options. Note the space in the folder name ('Skull And Bones'). Contains a [HARDWARE_INFO] section written by the in-game benchmark — do not edit those values. The [LightingDevices] section controls RGB peripheral integration; do not edit unless disabling RGB."
+        }
+      ]
+    },
+    {
+      "store": "Epic Games Store",
+      "config_files": [
+        {
+          "file": "SkullAndBones.ini",
+          "path": "%USERPROFILE%\\Documents\\Skull And Bones\\SkullAndBones.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Ubisoft Store",
+      "config_files": [
+        {
+          "file": "SkullAndBones.ini",
+          "path": "%USERPROFILE%\\Documents\\Skull And Bones\\SkullAndBones.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Microsoft Store",
+      "config_files": [
+        {
+          "file": "SkullAndBones.ini",
+          "path": "%USERPROFILE%\\Documents\\Skull And Bones\\SkullAndBones.ini",
+          "format": "ini",
+          "notes": "Also accessible via Xbox Game Pass for PC. Path is the same as other PC versions."
+        }
+      ]
+    }
+  ],
+
+  "keys": [
+    {
+      "key": "MaxFPS",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Frame rate ceiling in FPS. The in-game slider only allows values up to 90, but editing this key directly in the config file accepts higher values (e.g. 120, 144).",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "120",
+        "quality": "120"
+      },
+      "notes": "Must be set alongside IsFpsLimitEnabled=1 to take effect. Values above 90 cannot be set via the in-game UI — config file editing is required. Setting above the display's native refresh rate provides no benefit and wastes GPU power. DLSS 3 Frame Generation (DynamicResolutionFrameGeneration=1) is recommended alongside this cap to help reach and sustain 120+ FPS at high quality settings."
+    },
+    {
+      "key": "IsFpsLimitEnabled",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Enables (1) or disables (0) the MaxFPS frame rate limiter.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Default is 0 (disabled), leaving the game uncapped. Always enable for consistent frame pacing — especially important in a nautical game where variable frame times amplify perceived motion from waves and ship pitch."
+    },
+    {
+      "key": "VSyncMode",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "In-game VSync. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disable in-game VSync and use G-Sync or FreeSync instead to avoid input latency penalty."
+    },
+    {
+      "key": "Texture",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Texture quality. Known values: 0=Low, 1=Medium, 2=High, 3=Very High/Ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "In-game auto-detect may set this to 1 (Medium) even on high-VRAM GPUs. On GPUs with 8 GB+ VRAM at 1080p–1440p, and 12 GB+ at ultrawide resolutions, value 3 is appropriate for a quality goal."
+    },
+    {
+      "key": "Lighting",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Lighting quality, affecting dynamic sky, ocean atmosphere, and ship illumination. Known values: 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "In-game auto-detect may erroneously set this to 0 (Low) on capable hardware. Low lighting substantially degrades the game's signature ocean and sky atmosphere. High (2) is the recommended quality target."
+    },
+    {
+      "key": "Water",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Water simulation and rendering quality including wave geometry, foam, and surface detail. Known values: 0=Low, 1=Medium, 2=High, 3=Ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Water is the primary visual feature of Skull and Bones. Highest priority quality setting for this game. Ultra (3) recommended on all mid-range and above GPUs with 8 GB+ VRAM."
+    },
+    {
+      "key": "Reflection",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Screen-space reflection quality on water and ship surfaces. Known values: 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "High-impact setting for ocean visual quality. Consider pairing with RayTraceGI=1 for best combined result on RTX GPUs."
+    },
+    {
+      "key": "Shadow",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Shadow rendering quality. Known values: 0=Low, 1=Medium, 2=High, 3=Ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "SSAO",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Screen-space ambient occlusion quality. Adds contact shadows and depth to scene geometry. Known values: 0=Off, 1=Low/Medium, 2=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "Terrain",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Island and port terrain rendering quality. Known values: 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "Tessellation",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Geometry tessellation quality for terrain and water surfaces. Known values: 0=Off, 1=Low, 2=Medium, 3=High/Ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "Environment",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "General environment quality including foliage, distant objects, and environmental detail. Known values: 0=Low, 1=Medium, 2=High, 3=Very High, 4=Ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "TextureFiltering",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Anisotropic texture filtering quality. Known values: 0=Low (bilinear), 1=Medium (4x AF), 2=High (8x–16x AF).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "RayTraceGI",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Ray traced global illumination. 0=Off, 1=On. Requires DirectX 12 and an RTX or RDNA2+ GPU.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      },
+      "notes": "Highest performance cost of any single setting. For quality goal: enable on RTX 30/40-series or RDNA3+. If FPS drops below target with all other quality settings applied, this is the first setting to disable. Pairs well with DLSS 3 Frame Generation on RTX 40-series."
+    },
+    {
+      "key": "DynamicResolutionFrameGeneration",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "DLSS 3 Frame Generation (NVIDIA RTX 40-series only). 0=Off, 1=On. Inserts AI-generated frames to double effective output framerate.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Enable on RTX 40-series for all goals — it significantly increases output FPS with minimal visual overhead, enabling higher quality settings elsewhere. Has no effect on non-RTX 40-series GPUs."
+    },
+    {
+      "key": "ChromaticAberration",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Chromatic aberration (peripheral colour fringing effect). 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended Off for all goals. Particularly pronounced during ship turning and broadside impacts. Primary motion sickness trigger with no gameplay value."
+    },
+    {
+      "key": "MotionBlur",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Motion blur. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended Off for all goals. Amplifies perceived motion sickness in a nautical game with constant ship movement."
+    },
+    {
+      "key": "FilmGrain",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Film grain overlay. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended Off for all goals. Persistent noise reduces perceived image quality at high resolutions."
+    },
+    {
+      "key": "DOF",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Depth of field effect. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended Off for all goals. Inconsistent focal plane during constant wave motion causes visual fatigue and eye strain. No meaningful visual benefit in open-world gameplay."
+    },
+    {
+      "key": "HDREnabled",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "High dynamic range output. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Enable if display supports HDR. The game's ocean and sky environments benefit substantially from HDR luminance range."
+    },
+    {
+      "key": "FOVScale",
+      "file": "SkullAndBones.ini",
+      "section": "[Options]",
+      "effect": "Field of view multiplier relative to the game's default FOV. Range: 0.85 (85%) to 1.15 (115%). Corresponds to the in-game FOV slider.",
+      "recommendations": {
+        "performance": "1.00000",
+        "balanced": "1.10000",
+        "quality": "1.15000"
+      },
+      "notes": "For ultrawide (21:9 or 32:9) displays, always pair with AutoFOV=1. At 1.15 (maximum) with AutoFOV=1, the game correctly scales FOV for the aspect ratio. Without AutoFOV=1, this value is applied relative to a 16:9 baseline regardless of actual aspect ratio."
+    },
+    {
+      "key": "AutoFOV",
+      "file": "SkullAndBones.ini",
+      "section": "[Options]",
+      "effect": "Automatic FOV scaling based on display aspect ratio. 0=Off (manual FOVScale applied against 16:9 baseline), 1=On (FOVScale applied against the actual aspect ratio of the display).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Recommended On (1) for all goals, especially critical on ultrawide (21:9/32:9) displays. With AutoFOV=0 on a 32:9 display, the effective horizontal FOV is narrower than the FOVScale value implies, amplifying perceived motion and motion sickness. Set to 1 to allow the engine to compute correct FOV for the actual screen geometry."
+    },
+    {
+      "key": "WideAspectStretchedHUDMode",
+      "file": "SkullAndBones.ini",
+      "section": "[Options]",
+      "effect": "Controls HUD layout on ultrawide displays. 0=HUD locked to 16:9 centre, 1=HUD fills the full ultrawide screen width.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Personal preference. Value 1 (fill screen) is recommended for ultrawide users to use the full display. Value 0 keeps HUD elements in the 16:9 safe area, which some users prefer to reduce eye travel. Note: menus and cutscenes are pillarboxed regardless of this setting (PCGamingWiki confirmed)."
+    },
+    {
+      "key": "WindowMode",
+      "file": "SkullAndBones.ini",
+      "section": "[Graphics]",
+      "effect": "Display window mode. 2=Borderless Fullscreen.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "Borderless fullscreen (2) is the only fullscreen option available in Skull and Bones per PCGamingWiki. Exclusive fullscreen is not supported."
+    }
+  ],
+
+  "engine_overrides": [
+    {
+      "key": "MaxFPS",
+      "behaviour": "The in-game FPS limiter slider caps at 90 FPS maximum. However, editing MaxFPS directly in the config file bypasses this ceiling and accepts any positive integer value.",
+      "action": "Set MaxFPS to the desired value (e.g. 120, 144) directly in the config file. The in-game slider will show 90 as maximum but the config value takes precedence. Always set IsFpsLimitEnabled=1 alongside."
+    }
+  ],
+
+  "manual_only_settings": [
+    {
+      "setting": "Camera / Screen Shake Intensity",
+      "location": "Settings → Gameplay (if present)",
+      "recommendation": "Minimum or Off",
+      "reason": "Ship impacts, broadside cannon fire, and storm conditions trigger camera shake. Not exposed as a config key. Particularly significant motion sickness trigger in a naval combat game."
+    },
+    {
+      "setting": "Anti-Aliasing Mode (DLSS / FSR / TAA)",
+      "location": "Settings → Graphics → Anti-Aliasing",
+      "recommendation": "DLSS Quality on NVIDIA RTX; FSR Quality on AMD; TAA on other GPUs",
+      "reason": "The interaction between the config keys Antialiasing and SuperResolution is not fully documented. Changing AA mode via the in-game menu is safer than direct config editing. DLSS/FSR can only be used with upscaling enabled — there is no native-resolution DLSS AA option per PCGamingWiki."
+    },
+    {
+      "setting": "Colour Blind Mode",
+      "location": "Settings → Accessibility",
+      "recommendation": "Select appropriate mode: Deuteranopia/Protanopia or Tritanopia",
+      "reason": "Colour blind mode is available in-game but not exposed as a config key."
+    }
+  ],
+
+  "notes": [
+    "Always-online DRM required for all game modes (Ubisoft Connect + Denuvo + VMProtect).",
+    "Borderless fullscreen is the only fullscreen mode — exclusive fullscreen is not supported.",
+    "Menus and cutscenes are pillarboxed on ultrawide displays regardless of WideAspectStretchedHUDMode.",
+    "DLSS 3 Frame Generation (DynamicResolutionFrameGeneration=1) is available on RTX 40-series and is highly recommended alongside RayTraceGI=1 to offset the RT performance cost.",
+    "The in-game FPS limiter slider caps at 90 FPS. Values above 90 can only be set by editing MaxFPS directly in the config file.",
+    "Quality value scale for most settings: 0=Low, 1=Medium, 2=High, 3=Very High/Ultra, 4=Ultra (for Environment). Confirmed by observed config values from auto-detect benchmark.",
+    "The [HARDWARE_INFO] section (CPUScore, GPUScore, ConfidenceLevelCPU, ConfidenceLevelGPU) is written by the in-game auto-detect benchmark. Do not edit these values manually.",
+    "In-game auto-detect may set Lighting=0 and Texture=1 (both at minimum) even on high-end hardware. Always verify these after running auto-detect."
+  ],
+
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Skull_and_Bones",
+      "type": "wiki",
+      "label": "PCGamingWiki — Skull and Bones"
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "game": "Outriders",
+  "engine": "Unreal Engine 4",
+  "engine_version": "4.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-05-21",
+
+  "platforms": [
+    {
+      "store": "Steam",
+      "app_id": "680420",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\Madness\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini",
+          "notes": "Primary settings file. Internal game codename is 'Madness' — do NOT look for an 'Outriders' folder. Section header is [/Script/Madness.MadGameUserSettings]. Several settings (CameraFov, FrameRateLimit, bFrameRateLimitEnabled, bMotionBlurEnabled, DLSSQuality) are stored inside a single compound value called DisplaySettings on one line, not as standalone keys."
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\Madness\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini",
+          "notes": "Used for low-level engine overrides such as r.Streaming.PoolSize. On a fresh install the file contains only [Core.System] content paths. Add a [/Script/Engine.Engine] section for any engine CVars."
+        }
+      ]
+    },
+    {
+      "store": "Microsoft Store",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\Packages\\39C668CD.Madness-BaseGame_r7bfsmp40f67j\\LocalCache\\Local\\Madness\\Saved\\Config\\WinGDK\\GameUserSettings.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Epic Games Store",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\Madness\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+
+  "keys": [
+    {
+      "key": "CameraFov",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Madness.MadGameUserSettings]",
+      "compound_parent": "DisplaySettings",
+      "effect": "Horizontal field of view in degrees. Range: 75–130°. Game is confirmed Hor+ — FOV widens automatically at ultra-wide aspect ratios, but the baseline value still needs to be set high enough.",
+      "recommendations": {
+        "performance": "85",
+        "balanced": "90",
+        "quality": "90"
+      },
+      "notes": "This key lives INSIDE the DisplaySettings compound value, not as a standalone line. Default of 75 is the slider minimum and causes tunnel-vision on all aspect ratios. On 32:9 displays (e.g. 5120×1440) push to 100–110° to counteract the extreme peripheral motion that causes motion sickness. On 16:9 displays, 85–95° is the comfortable range. Edit the compound value carefully — the entire DisplaySettings= line must remain on one line."
+    },
+    {
+      "key": "bFrameRateLimitEnabled",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Madness.MadGameUserSettings]",
+      "compound_parent": "DisplaySettings",
+      "effect": "Enables or disables the in-game frame rate limiter. Must be True for FrameRateLimit (inside DisplaySettings) to take effect.",
+      "recommendations": {
+        "performance": "True",
+        "balanced": "True",
+        "quality": "True"
+      },
+      "notes": "Defaults to False (no cap). Always enable alongside FrameRateLimit to prevent uncapped frame times. Lives inside the DisplaySettings compound value."
+    },
+    {
+      "key": "FrameRateLimit",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Madness.MadGameUserSettings]",
+      "compound_parent": "DisplaySettings",
+      "effect": "Frame rate cap inside the Outriders DisplaySettings compound value. Known bug: after certain in-game menu interactions this value can be serialised as a corrupt integer (e.g. 1131675648). Set to a valid float and ensure bFrameRateLimitEnabled=True.",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "120.000000"
+      },
+      "notes": "This is a DUPLICATE of the standard UE4 FrameRateLimit standalone key. BOTH must be set to avoid confusion. The corrupt-integer bug only affects this compound copy; the standalone key (same file, outside DisplaySettings) holds a normal float. Lives inside the DisplaySettings compound value."
+    },
+    {
+      "key": "FrameRateLimit",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Madness.MadGameUserSettings]",
+      "compound_parent": null,
+      "effect": "Standard UE4 frame rate cap (standalone key, not inside DisplaySettings). Set this in tandem with the compound copy above.",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "120.000000"
+      },
+      "notes": "Appears as a standalone key towards the end of the [/Script/Madness.MadGameUserSettings] section. Default is 0.000000 (uncapped). Must be set in sync with the FrameRateLimit inside DisplaySettings."
+    },
+    {
+      "key": "CineCameraSmoothingScale",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Madness.MadGameUserSettings]",
+      "effect": "Controls how much the cinematic camera lags behind input ('floaty' camera smoothing). 1.0 = maximum smoothing; 0.0 = immediate camera response with no lag.",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "0.000000",
+        "quality": "0.000000"
+      },
+      "notes": "Default of 1.0 introduces input-to-camera desynchronisation that is a well-documented motion sickness trigger, especially during fast movement and ability use. Recommended Off (0.0) for all goals."
+    },
+    {
+      "key": "CineMaxFramerate",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Madness.MadGameUserSettings]",
+      "effect": "Frame rate cap applied during in-engine cutscenes. Separate from the gameplay FrameRateLimit.",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "120.000000"
+      },
+      "notes": "Default is 60. Mismatching this with gameplay FrameRateLimit causes a jarring pacing drop on cutscene transitions. Set to match your gameplay cap. Cutscene FPS options per PCGamingWiki: 30, 60, 90, 120."
+    },
+    {
+      "key": "bMotionBlurEnabled",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Madness.MadGameUserSettings]",
+      "compound_parent": "DisplaySettings",
+      "effect": "Enables or disables motion blur. Lives inside the DisplaySettings compound value.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Defaults to False in most installs. Recommended Off for all goals. Lives inside the DisplaySettings compound value."
+    },
+    {
+      "key": "DLSSQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Madness.MadGameUserSettings]",
+      "compound_parent": "DisplaySettings",
+      "effect": "NVIDIA DLSS upscaling quality preset. Known values: 0=Off, 1=Performance, 2=Quality. Higher values produce sharper images at greater GPU cost.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "Only available on NVIDIA RTX GPUs. At 5120×1440 (32:9) DLSS Quality (2) is recommended even for a quality goal — the resolution is demanding enough that DLSS Quality renders at ~72% scale with near-native sharpness. Lives inside the DisplaySettings compound value."
+    },
+    {
+      "key": "r.Streaming.PoolSize",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Texture streaming pool size in MB. Higher values reduce texture pop-in and blurry surface streaming on GPUs with sufficient VRAM.",
+      "recommendations": {
+        "performance": "1000",
+        "balanced": "2000",
+        "quality": "4000"
+      },
+      "notes": "Not present in Engine.ini by default. Add the [/Script/Engine.Engine] section header before this key if the file only contains [Core.System] paths. Scale with VRAM: ~1000 for 4–6 GB, ~2000 for 8 GB, ~4000 for 12 GB+. RTX 4070 SUPER (12 GB) warrants 4000."
+    }
+  ],
+
+  "engine_overrides": [
+    {
+      "key": "FrameRateLimit",
+      "behaviour": "Outriders duplicates this key: once as a standalone UE4 key (FrameRateLimit=0.000000) and once embedded inside the game-specific DisplaySettings compound value. The compound copy can be serialised as a corrupt integer (e.g. 1131675648) after certain in-game menu interactions. The standalone key remains a valid float.",
+      "action": "Set both copies to the same value. Fix the compound copy by replacing the integer with a valid float (e.g. 120.000000) and set bFrameRateLimitEnabled=True inside the same compound."
+    },
+    {
+      "key": "DisplaySettings",
+      "behaviour": "Many per-game keys (CameraFov, bFrameRateLimitEnabled, FrameRateLimit, bMotionBlurEnabled, DLSSQuality, bUseVSync, bUseHDRDisplayOutput, ResolutionScaling) are stored as sub-fields of a single compound value on one line, not as individual INI keys. Standard UE4 key-lookup tooling will not find them.",
+      "action": "Edit the entire DisplaySettings= line. Ensure the line stays on a single line with no newlines inserted. The section is [/Script/Madness.MadGameUserSettings]."
+    }
+  ],
+
+  "manual_only_settings": [
+    {
+      "setting": "Mouse Smoothing",
+      "location": "Settings → Controls → Mouse",
+      "recommendation": "Disabled",
+      "reason": "Mouse smoothing is enabled by default. It introduces input-to-cursor lag that compounds the camera smoothing issue. Disabling it makes aiming and camera control immediately responsive, reducing motion sickness during fast gameplay."
+    },
+    {
+      "setting": "Screen Shake / Hit Effect Intensity",
+      "location": "Settings → Accessibility or Settings → Gameplay (if present)",
+      "recommendation": "Minimum or Off",
+      "reason": "Screen shake during combat and ability use is a motion sickness trigger. Not exposed as a config key. Check Accessibility settings — availability may vary by game version."
+    }
+  ],
+
+  "notes": [
+    "Internal game codename is 'Madness'. Config files are at %LOCALAPPDATA%\\Madness\\, NOT %LOCALAPPDATA%\\Outriders\\.",
+    "Game requires a constant internet connection for all modes (always-online DRM).",
+    "Easy Anti-Cheat was removed in the Worldslayer update (28 July 2022).",
+    "Cutscene FPS is governed by CineMaxFramerate separately from gameplay FrameRateLimit. Default cutscene cap is 60 FPS — set to match gameplay cap to avoid pacing jolt on transitions.",
+    "WMI (Win32_VideoController) misreports VRAM for GPUs with >4 GB due to a 32-bit integer overflow. Use GPU-Z or NVIDIA/AMD control panel for accurate VRAM when sizing r.Streaming.PoolSize."
+  ],
+
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Outriders",
+      "type": "wiki",
+      "label": "PCGamingWiki — Outriders"
+    }
+  ]
+}
