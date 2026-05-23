@@ -62,6 +62,37 @@
     }
   ],
 
+  "intro_skip": [
+    {
+      "_comment": "OPTIONAL section — one entry per verified method for skipping or disabling intro/splash videos on startup. List methods in preference order (safest and most reversible first). Remove all _comment fields before submitting. Delete this entire section if no skip method is known or verified. %GAME_DIR% in file paths refers to the game's root installation folder (e.g. C:\\Program Files (x86)\\Steam\\steamapps\\common\\<GameName>\\ for Steam).",
+      "type": "REQUIRED — one of: file | config | launch_arg",
+      "label": "REQUIRED — human-readable description shown to the user, e.g. 'Rename splash video file'",
+      "reversible": "REQUIRED — boolean. true if the original state can be fully restored (e.g. rename); false if it cannot (e.g. delete).",
+      "platforms": ["OPTIONAL — omit this field entirely if the method works on all platforms. Otherwise list applicable store names, e.g. ['Steam', 'Epic Games Store']."],
+
+      "_comment_file": "The following fields apply when type is 'file'. Remove this comment.",
+      "files": [
+        {
+          "path": "REQUIRED — full path to the target file. Use %GAME_DIR% for install-relative paths or standard env var placeholders (%LOCALAPPDATA% etc.) for user-data paths.",
+          "action": "REQUIRED — one of: rename | delete. Prefer rename over delete — it is reversible.",
+          "rename_to": "REQUIRED when action=rename — the new filename, e.g. 'intro.bak'. Same directory as the source file."
+        }
+      ],
+
+      "_comment_config": "The following fields apply when type is 'config'. Remove this comment.",
+      "file": "REQUIRED when type=config — filename only, e.g. 'GameUserSettings.ini'",
+      "section": "OPTIONAL when type=config — INI section header, e.g. '[/Script/Engine.GameUserSettings]'",
+      "key": "REQUIRED when type=config — the exact config key to set",
+      "value": "REQUIRED when type=config — the value to write",
+
+      "_comment_launch_arg": "The following fields apply when type is 'launch_arg'. Remove this comment.",
+      "argument": "REQUIRED when type=launch_arg — the argument string exactly as it should be entered, e.g. '-novid'",
+      "instruction": "REQUIRED when type=launch_arg — platform-specific instructions for applying the argument. Steam: Library → right-click game → Properties → General → Launch Options. EGS: three-dot menu (…) → Manage → Additional Command Line Arguments. Windows shortcut: right-click → Properties → Target field, append after the closing quote with a space.",
+
+      "notes": "OPTIONAL — caveats such as which game update broke this method, EAC/BattlEye interference, or whether the file is recreated on update."
+    }
+  ],
+
   "notes": [
     "OPTIONAL — version-specific caveats, known bugs, or other considerations that apply to the game as a whole"
   ],

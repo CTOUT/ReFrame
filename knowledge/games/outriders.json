@@ -2,8 +2,8 @@
   "game": "Outriders",
   "engine": "Unreal Engine 4",
   "engine_version": "4.x",
-  "profile_version": "1.0.0",
-  "updated": "2026-05-21",
+  "profile_version": "1.1.0",
+  "updated": "2026-05-23",
 
   "platforms": [
     {
@@ -188,6 +188,22 @@
       "location": "Settings → Accessibility or Settings → Gameplay (if present)",
       "recommendation": "Minimum or Off",
       "reason": "Screen shake during combat and ability use is a motion sickness trigger. Not exposed as a config key. Check Accessibility settings — availability may vary by game version."
+    }
+  ],
+
+  "intro_skip": [
+    {
+      "type": "file",
+      "label": "Rename splash video file",
+      "reversible": true,
+      "files": [
+        {
+          "path": "%GAME_DIR%\\Madness\\Content\\Movies\\splash_screens.umovie",
+          "action": "rename",
+          "rename_to": "splash_screens.umovie.bak"
+        }
+      ],
+      "notes": "The Steam install folder is typically named 'Outriders'. The internal subdirectory 'Madness' matches the game's codename. Renaming rather than deleting allows reverting by restoring the original filename. If a game update recreates the file, repeat this step."
     }
   ],
 
