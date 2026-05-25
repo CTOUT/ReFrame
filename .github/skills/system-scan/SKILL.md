@@ -231,3 +231,41 @@ Every downstream recommendation must be appropriate for this tier.
   contains no additional gaming-relevant data beyond what DxDiag provides.
 - If the system has multiple GPUs (integrated + discrete), always use the first
   `DisplayDevice` entry with `DeviceType` = `Full Device (POST)`.
+
+---
+
+## GPU Vendor Detection and Vendor-Specific Guidance
+
+After the System Profile is produced, identify the GPU vendor and store it in
+session context. Use the GPU name from the System Profile:
+
+```powershell
+$gpu = (Get-CimInstance Win32_VideoController | Select-Object -First 1 -ExpandProperty Name)
+if     ($gpu -match "NVIDIA|GeForce|RTX|GTX")    { "NVIDIA" }
+elseif ($gpu -match "AMD|Radeon|RX\s?\d")         { "AMD" }
+elseif ($gpu -match "Intel|Iris|Arc")              { "Intel" }
+else                                               { "Unknown" }
+```
+
+Tailor recommendations by vendor when analysing config files or the registry:
+
+### NVIDIA (GeForce / RTX / GTX)
+
+- Recommend **DLSS** (2.0+ for upscaling, 3.x Frame Generation for RTX 40-series) in supported games
+- Suggest enabling **Resizable BAR** in BIOS if not active
+- Note that **NVIDIA Control Panel** settings (Low Latency Mode, Max Frame Rate, Texture Filtering quality) can further improve performance — these are currently outside the agent's write scope but will be noted as manual steps
+- `nvlddmkm` service presence confirms NVIDIA driver installation
+
+### AMD (Radeon / RX)
+
+- Recommend **FSR** (FidelityFX Super Resolution) in supported games — FSR 2/3 for quality upscaling
+- Suggest **Radeon Anti-Lag** and **Radeon Chill** where supported
+- Note that **AMD Software: Adrenalin Edition** settings are outside the agent's current write scope — flag as manual steps
+- Check for `amdkmdag` or `amdkmdap` services for AMD driver confirmation
+
+### Intel (Arc / Iris Xe)
+
+- Recommend **XeSS** (Xe Super Sampling) in supported games
+- Check for `igfx` or `IntcDAud` services
+
+> **Future capability:** Direct integration with AMD Adrenalin, NVIDIA Control Panel, and Intel Arc Control for in-agent driver-level configuration is planned for a future release.

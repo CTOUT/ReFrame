@@ -39,7 +39,7 @@ After outputting it, set `session_greeted = true` in session context. On every s
  ____       _____
 |  _ \ ___ |  ___| __ __ _ _ __ ___   ___
 | |_) / _ \| |_ | '__/ _` | '_ ` _ \ / _ \
-|  _ <  __/|  _|| | | (_| | | | | | |  __/
+|  _ <| __/|  _|| | | (_| | | | | | || __/
 |_| \_\___||_|  |_|  \__,_|_| |_| |_|\___|
 
 ```
@@ -205,7 +205,7 @@ For each key, walk down the tiers and **stop at the first tier that covers it**:
 
 1. **Exact match** — load `knowledge/game-engines/<detected-engine>.json` if it exists. This file wins unconditionally.
 2. **Fallback coverage** — if no exact file exists, find any engine file whose `fallback_for` array includes the detected engine. If more than one qualifies, use the file with the closest version match (highest version ≤ detected).
-3. **No file found** — fall through to the embedded engine defaults in the Engine and Game Knowledge section below, then Tier 3.
+3. **No file found** — fall through to Tier 3.
 
 **Example:** For a UE4-based game with a game-specific entry:
 
@@ -351,183 +351,19 @@ Present a registry assessment table with current vs recommended values.
 
 **NEVER apply any change without explicit user confirmation.**
 
-Before applying, present a **Change Preview**:
-
-```
-## Change Preview
-
-The following changes will be made. Type **yes** to apply or **no** to cancel.
-
-### Config file: C:\Users\...\settings.ini
-- VSync: 1 → 0
-- MaxFPS: 0 → 165
-- TextureQuality: 2 → 4
-
-### Registry changes (requires Administrator):
-- HKLM\...\SystemProfile → SystemResponsiveness: 20 → 0
-- HKLM\...\Tasks\Games → GPU Priority: 2 → 8
-
-### Backup location (all backups — config files and registry):
-%LOCALAPPDATA%\ReFrame\Backups\
-```
-
-#### Applying config file changes
-
-1. Create backup directory: `C:\Users\<user>\AppData\Local\ReFrame\Backups\<GameName>_<YYYYMMDD_HHmmss>\`
-2. Copy original file(s) to backup directory
-3. Apply changes using `edit/editFiles`
-4. Report each change with old → new value
-
-```powershell
-# Create backup directory
-$timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
-# Sanitise game name: strip path separators and reserved filesystem characters
-$safeGameName = $GameName -replace '[\\/:*?"<>|]', '_' -replace '\.\.', '_'
-$backupDir = "$env:LOCALAPPDATA\ReFrame\Backups\${safeGameName}_${timestamp}"
-New-Item -ItemType Directory -Path $backupDir -Force | Out-Null
-
-# Copy config files
-Copy-Item -Path "<original_path>" -Destination $backupDir -Force
-Write-Host "Backup created: $backupDir"
-```
-
-#### Applying registry changes
-
-Before writing any registry values, export the affected hives as `.reg` backup files into the same `%LOCALAPPDATA%\ReFrame\Backups\` root used for config file backups:
-
-```powershell
-# Registry backup — same root as config file backups for one consistent location
-$ts = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
-$regBackupDir = "$env:LOCALAPPDATA\ReFrame\Backups\registry_$ts"
-New-Item -ItemType Directory -Path $regBackupDir -Force | Out-Null
-reg export "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl"                       "$regBackupDir\PriorityControl.reg" /y
-reg export "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile"  "$regBackupDir\MMCSS.reg" /y
-reg export "HKLM\SOFTWARE\Microsoft\Windows\Dwm"                                         "$regBackupDir\DWM.reg" /y
-Write-Host "Registry backup written to: $regBackupDir"
-```
-
-After the backup, create a `RESTORE-NOTES.txt` in the same folder documenting every value changed (key path, value name, old value → new value) and the OverlayTestMode delete caveat (see §6).
-
-Run as Administrator. Use `Set-ItemProperty` with `-Force`:
-
-```powershell
-#Requires -RunAsAdministrator
-
-# NetworkThrottlingIndex — disable network throttling
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" `
-    -Name "NetworkThrottlingIndex" -Value 0xffffffff -Type DWord -Force
-
-# SystemResponsiveness — max CPU to foreground
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" `
-    -Name "SystemResponsiveness" -Value 0 -Type DWord -Force
-
-# Games task — GPU priority
-$gamesPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games"
-if (-not (Test-Path $gamesPath)) { New-Item -Path $gamesPath -Force | Out-Null }
-Set-ItemProperty -Path $gamesPath -Name "GPU Priority"          -Value 8       -Type DWord  -Force
-Set-ItemProperty -Path $gamesPath -Name "Priority"              -Value 6       -Type DWord  -Force
-Set-ItemProperty -Path $gamesPath -Name "Scheduling Category"   -Value "High"  -Type String -Force
-Set-ItemProperty -Path $gamesPath -Name "SFIO Priority"         -Value "High"  -Type String -Force
-
-# Priority separation
-Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl" `
-    -Name "Win32PrioritySeparation" -Value 0x26 -Type DWord -Force
-
-# HAGS (Hardware-Accelerated GPU Scheduling)
-Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" `
-    -Name "HwSchMode" -Value 2 -Type DWord -Force
-
-# MPO (Multi-Plane Overlay) — disable to fix stutter on NVIDIA + Windows 11
-# NOTE: rollback requires DELETING this value, not setting it to 0.
-# The reg export backup above captures the pre-change DWM hive (which lacks this key),
-# so importing that backup file correctly restores the default by removing the value.
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Dwm" `
-    -Name "OverlayTestMode" -Value 5 -Type DWord -Force
-```
-
-After applying registry changes, inform the user that **a system restart is required** for some settings to take effect.
+When the user confirms "yes" to a Change Preview, read the **apply-changes** skill (`.github/skills/apply-changes/SKILL.md`) for the full backup and apply procedures.
 
 ---
 
 ### 6. Rollback (`rollback <game name>` or `rollback last`)
 
-List available backups and restore the selected one:
-
-```powershell
-$backupRoot = "$env:LOCALAPPDATA\ReFrame\Backups"
-Get-ChildItem -Path $backupRoot -Directory -ErrorAction SilentlyContinue |
-    Sort-Object CreationTime -Descending |
-    Select-Object Name, CreationTime, FullName
-```
-
-Present numbered list, confirm selection, restore files, report each restored file.
-
-#### Registry rollback
-
-Registry backups are stored alongside config file backups in `%LOCALAPPDATA%\ReFrame\Backups\registry_<timestamp>\`. List available registry backup sets and confirm with the user before restoring:
-
-```powershell
-# List available registry backup sets — run elevated
-$backupRoot = "$env:LOCALAPPDATA\ReFrame\Backups"
-Get-ChildItem -Path $backupRoot -Directory -Filter "registry_*" -ErrorAction SilentlyContinue |
-    Sort-Object CreationTime -Descending |
-    Select-Object Name, CreationTime, FullName
-
-# Restore the selected set (replace <timestamp> with chosen folder name)
-$regBackupDir = "$env:LOCALAPPDATA\ReFrame\Backups\registry_<timestamp>"
-reg import "$regBackupDir\PriorityControl.reg"
-reg import "$regBackupDir\MMCSS.reg"
-reg import "$regBackupDir\DWM.reg"
-```
-
-> **OverlayTestMode (MPO) — critical rollback note:**
-> Importing the `DWM-<timestamp>.reg` file correctly restores the default because the backup was taken before `OverlayTestMode` existed — the import removes the value by replacing the hive with the pre-change state.
-> If for any reason the import is not available, restore with:
->
-> ```powershell
-> reg delete "HKLM\SOFTWARE\Microsoft\Windows\Dwm" /v OverlayTestMode /f
-> ```
->
-> **Do NOT** set `OverlayTestMode` to `0` as a rollback — `0` does not re-enable MPO. The value must be absent for Windows to use its built-in MPO default.
-
-A reboot is required after registry rollback for `Win32PrioritySeparation` to take effect.
+Read the **apply-changes** skill (`.github/skills/apply-changes/SKILL.md`) for the full rollback procedure including registry restore and the OverlayTestMode delete caveat.
 
 ---
 
 ## GPU Vendor Detection and Vendor-Specific Guidance
 
-After system scan, identify GPU vendor:
-
-```powershell
-$gpu = (Get-CimInstance Win32_VideoController | Select-Object -First 1 -ExpandProperty Name)
-if     ($gpu -match "NVIDIA|GeForce|RTX|GTX")    { "NVIDIA" }
-elseif ($gpu -match "AMD|Radeon|RX\s?\d")         { "AMD" }
-elseif ($gpu -match "Intel|Iris|Arc")              { "Intel" }
-else                                               { "Unknown" }
-```
-
-Tailor recommendations by vendor:
-
-### NVIDIA (GeForce / RTX / GTX)
-
-- Recommend **DLSS** (2.0+ for upscaling, 3.x Frame Generation for RTX 40-series) in supported games
-- Suggest enabling **Resizable BAR** in BIOS if not active
-- Note that **NVIDIA Control Panel** settings (Low Latency Mode, Max Frame Rate, Texture Filtering quality) can further improve performance — these are currently outside the agent's write scope but will be noted as manual steps
-- `nvlddmkm` service presence confirms NVIDIA driver installation
-
-### AMD (Radeon / RX)
-
-- Recommend **FSR** (FidelityFX Super Resolution) in supported games — FSR 2/3 for quality upscaling
-- Suggest **Radeon Anti-Lag** and **Radeon Chill** where supported
-- Note that **AMD Software: Adrenalin Edition** settings are outside the agent's current write scope — flag as manual steps
-- Check for `amdkmdag` or `amdkmdap` services for AMD driver confirmation
-
-### Intel (Arc / Iris Xe)
-
-- Recommend **XeSS** (Xe Super Sampling) in supported games
-- Check for `igfx` or `IntcDAud` services
-
-> **Future capability:** Direct integration with AMD Adrenalin, NVIDIA Control Panel, and Intel Arc Control for in-agent driver-level configuration is planned for a future release.
+The **system-scan** skill (`.github/skills/system-scan/SKILL.md`) handles GPU vendor detection and vendor-specific guidance (DLSS / FSR / XeSS recommendations, manual driver steps). Read that skill after a system scan to apply vendor-appropriate recommendations.
 
 ---
 
@@ -567,132 +403,7 @@ For each config key, apply the direction from this table. For `balanced`, start 
 
 ### Modifiers (non-exclusive — any combination)
 
-Modifiers override specific settings regardless of the active goal. They are grouped by category; any combination is valid (e.g. `quality arachnophobia dyslexia`).
-
-For settings the agent cannot change directly — because they are exposed only through in-game menus or require game-specific config keys not yet in `docs/GAMES.md` — add a **Manual** row in the recommendations table and describe exactly where the user will find the option.
-
----
-
-#### Vestibular and sensory comfort
-
-##### `motion_comfort`
-
-For users sensitive to motion sickness, nausea, or visual fatigue.
-
-| Setting                    | Recommended                          | Reason                                                                 |
-| -------------------------- | ------------------------------------ | ---------------------------------------------------------------------- |
-| Motion blur                | Off                                  | Primary nausea trigger; affects all movement                           |
-| Head bob / view bob        | Off                                  | Walking/running camera oscillation; strong nausea trigger in FPS games |
-| Camera shake               | Off                                  | Impact and event-driven camera jolt                                    |
-| Screen bob / weapon bob    | Off                                  | Weapon and HUD sway during movement                                    |
-| Depth of field             | Off                                  | Inconsistent focus plane causes eye strain                             |
-| Chromatic aberration       | Off                                  | Peripheral colour fringing; peripheral distortion trigger              |
-| Film grain                 | Off                                  | Persistent visual noise increases perceptual fatigue                   |
-| Vignette                   | Off                                  | Edge darkening increases tunnel vision perception                      |
-| FOV                        | 90–100° horizontal (if configurable) | Below ~80° increases nausea; above ~115° causes distortion             |
-| Screen flash / hit effects | Reduced / Off                        | High-contrast sudden flashes                                           |
-| Speed lines / radial blur  | Off (if configurable)                | Radial post-process effects amplify motion perception                  |
-
-##### `photosensitivity`
-
-For users with photosensitive epilepsy or seizure risk from flashing or strobing visuals.
-
-> **Safety notice — display before the Change Preview whenever this modifier is active:**
->
-> The config changes below reduce known photosensitive triggers in game files, but they are a **partial mitigation only**. Many photosensitive effects (cutscene flashes, UI transitions, environmental lighting) are not exposed as config keys and cannot be changed by ReFrame. If this game has a dedicated **Photosensitivity** or **Epilepsy Mode** toggle in its Accessibility settings, enabling that option is the most complete protection and should be done first. ReFrame will flag it as a Manual step in the recommendations table.
-
-> **Important:** If a game has a dedicated accessibility photosensitivity toggle in-game (common since 2020), flag it as the first **Manual** recommendation — it is typically more comprehensive than individual config keys.
-
-| Setting                                | Recommended                                   | Reason                                         |
-| -------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
-| Screen flash / hit effects             | Off                                           | Direct strobe risk                             |
-| Lens flare                             | Off                                           | High-contrast burst                            |
-| Lightning / environmental flashes      | Off or Reduced (if configurable)              | Environmental strobe                           |
-| Particle effect density / intensity    | Reduced (if configurable)                     | Rapid high-contrast particle bursts            |
-| HDR peak brightness                    | Reduced (if configurable)                     | Sudden HDR peaks amplify flash severity        |
-| Photosensitivity mode (in-game toggle) | **Manual** — enable in Accessibility settings | Game-level toggle covers effects not in config |
-
----
-
-#### Vision
-
-##### `low_vision`
-
-For users with low vision, visual impairment, or contrast sensitivity needs.
-
-| Setting                        | Recommended                                            | Reason                               |
-| ------------------------------ | ------------------------------------------------------ | ------------------------------------ |
-| UI / HUD scale                 | Max / Largest (if configurable)                        | Improves readability                 |
-| Subtitle font size             | Large / Largest (if configurable)                      |                                      |
-| Subtitle background opacity    | High (if configurable)                                 | Improves contrast against scene      |
-| HUD opacity                    | Max (if configurable)                                  |                                      |
-| High-contrast mode             | On (if configurable)                                   |                                      |
-| UI scale / font size (in-game) | **Manual** — check Accessibility or Interface settings | Most games only expose this in menus |
-
-##### `colour_vision`
-
-For users with colour vision deficiency (colour blindness).
-
-> Colour blind modes are almost always exposed only through in-game menus, not config files. Check GAMES.md and web for game-specific config keys before flagging as Manual.
-
-| Setting                                         | Recommended                                                                                             | Reason                                           |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| Colour blind mode / type                        | **Manual** — select appropriate mode (Protanopia / Deuteranopia / Tritanopia) in Accessibility settings | Rarely in config files                           |
-| Enemy / ally highlight colour (if configurable) | Game-specific — check GAMES.md                                                                          | Some games expose outline colours as config keys |
-
----
-
-#### Content (phobias)
-
-Phobia-related settings are almost always game-specific toggles. The agent checks GAMES.md and web for known config keys, then flags unavailable settings as **Manual** in the output.
-
-##### `arachnophobia`
-
-For users who want spider models or animations replaced or hidden.
-
-| Setting                             | Recommended                                           | Reason                                                  |
-| ----------------------------------- | ----------------------------------------------------- | ------------------------------------------------------- |
-| Spider / arachnid model replacement | On / Enabled (if configurable)                        | Replaces models with alternative (e.g. cats, blobs)     |
-| Arachnophobia mode (in-game)        | **Manual** — check Accessibility or Gameplay settings | Available in: Grounded, Valheim, Green Hell, and others |
-
-If no setting is found via GAMES.md or web search, state explicitly that the game does not appear to support arachnophobia mode in config.
-
-##### `trypophobia`
-
-For users sensitive to clustered holes, irregular patterns, or organic textures.
-
-| Setting                            | Recommended                                                      | Reason                                             |
-| ---------------------------------- | ---------------------------------------------------------------- | -------------------------------------------------- |
-| Trypophobia / cluster pattern mode | On / Reduced (if configurable)                                   | Very rare as a config key — check GAMES.md and web |
-| Texture detail on organic surfaces | Reduced (if game-specific key exists)                            | High detail amplifies trigger patterns             |
-| Trypophobia mode (in-game)         | **Manual** — check Accessibility or Visual settings if available | Few games currently support this                   |
-
----
-
-#### Cognitive
-
-##### `dyslexia`
-
-For users who find standard game fonts or text layouts difficult to read.
-
-| Setting                           | Recommended                                                        | Reason                           |
-| --------------------------------- | ------------------------------------------------------------------ | -------------------------------- |
-| Font / typeface (if configurable) | Dyslexia-friendly font (e.g. OpenDyslexic) if the game supports it | Improves letter recognition      |
-| Subtitle / dialogue text size     | Large / Largest                                                    |                                  |
-| Text auto-advance speed           | Slow / Off (if configurable)                                       | Allows reading at own pace       |
-| Dyslexia font mode (in-game)      | **Manual** — check Accessibility or Text settings                  | Supported in: Dislyte, some RPGs |
-
-##### `dyscalculia`
-
-For users who find numerical displays confusing or overwhelming.
-
-| Setting                        | Recommended                                      | Reason                                |
-| ------------------------------ | ------------------------------------------------ | ------------------------------------- |
-| Floating damage numbers        | Off (if configurable)                            | High-frequency number display         |
-| Damage numbers                 | Off (if configurable)                            |                                       |
-| XP / score popups              | Off / Simplified (if configurable)               | Reduces numerical noise               |
-| Minimap numerical indicators   | Simplified (if configurable)                     |                                       |
-| Numeric HUD elements (in-game) | **Manual** — check HUD or Accessibility settings | Many number toggles are only in menus |
+When `optimisation_modifiers` is non-empty, read the **accessibility-modifiers** skill (`.github/skills/accessibility-modifiers/SKILL.md`) for the full per-modifier setting tables. Apply every active modifier; any combination is valid.
 
 ---
 
@@ -764,52 +475,6 @@ If Tier 1 and Tier 2 both cover the same key and conflict, **Tier 1 wins** for t
 | Minecraft Java       | `options.txt`                                           | Flat `key:value` format, `renderDistance`, `maxFps`                      |
 
 When the engine cannot be determined from signatures, record it as **Unknown** and rely only on Tier 3 (generic) recommendations until the user confirms the engine or a `web` search identifies it.
-
----
-
-### Tier 2 — Engine Default Recommendations
-
-These embedded defaults are used when no `knowledge/game-engines/` file is found for the detected engine. **Always check Tier 1 (game-specific) before applying any of these.**
-
-#### Unreal Engine 4 / 5
-
-| Key                     | Performance-friendly value                | Notes                                                                                      |
-| ----------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `sg.ResolutionQuality`  | `75` (mid) / `100` (high-end)             | Scalability group. Some games replace this with their own scaler — verify before changing. |
-| `sg.ShadowQuality`      | `2` (mid) / `3` (high-end)                | Scalability group.                                                                         |
-| `sg.TextureQuality`     | `2` (mid) / `3` (high-end)                |                                                                                            |
-| `sg.EffectsQuality`     | `2` (mid) / `3` (high-end)                |                                                                                            |
-| `sg.PostProcessQuality` | `1` (mid) / `2` (high-end)                |                                                                                            |
-| `r.Streaming.PoolSize`  | `1000`–`4000` (scale with available VRAM) | Higher = smoother texture streaming.                                                       |
-| `bUseVSync`             | `False`                                   | Use G-Sync/FreeSync instead.                                                               |
-| `FrameRateLimit`        | Match monitor refresh rate                | Set in `[/Script/Engine.GameUserSettings]`.                                                |
-
-> **Game override example — Ark: Survival Evolved:** Ark uses UE4 but ships a heavily modified scalability system. `sg.ResolutionQuality`, `sg.ShadowQuality`, and related scalability groups are managed by Ark's own graphics menu and may be reset on launch. Directly editing these keys in `GameUserSettings.ini` can work but will be overwritten by the in-game slider. Prefer Ark's in-game graphics settings for scalability group values; reserve INI edits for keys Ark's menu does not expose (e.g. `r.Streaming.PoolSize`, `r.Shadow.RadiusThreshold`). See `docs/GAMES.md → Ark: Survival Evolved` for the full override list.
-
-#### Source / Source 2
-
-| Key                  | Performance-friendly value | Notes                   |
-| -------------------- | -------------------------- | ----------------------- |
-| `mat_queue_mode`     | `2`                        | Async material loading. |
-| `fps_max`            | Match monitor refresh rate |                         |
-| `r_dynamic_lighting` | `0` (competitive) / `1`    |                         |
-
-#### Creation Engine (Skyrim / Fallout / Starfield)
-
-| Key                    | Recommended                  | Notes                                          |
-| ---------------------- | ---------------------------- | ---------------------------------------------- |
-| `iPresentInterval`     | `0`                          | Disables VSync. Use driver-level sync instead. |
-| `iShadowMapResolution` | `2048` (mid) / `4096` (high) |                                                |
-| `fShadowDistance`      | `2500`–`4000`                |                                                |
-
-> **Note for Bethesda games:** Always edit `*Custom.ini` (e.g. `FalloutCustom.ini`, `SkyrimCustom.ini`) rather than the base ini — the launcher overwrites base files on launch.
-
-#### Minecraft Java Edition
-
-| Key              | Recommended             |
-| ---------------- | ----------------------- |
-| `renderDistance` | `8` (mid) / `16` (high) |
-| `maxFps`         | Match monitor Hz        |
 
 ---
 
