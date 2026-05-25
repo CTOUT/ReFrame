@@ -2,8 +2,8 @@
   "game": "Outriders",
   "engine": "Unreal Engine 4",
   "engine_version": "4.x",
-  "profile_version": "1.1.0",
-  "updated": "2026-05-23",
+  "profile_version": "1.2.0",
+  "updated": "2026-05-25",
 
   "platforms": [
     {
@@ -204,6 +204,19 @@
         }
       ],
       "notes": "The Steam install folder is typically named 'Outriders'. The internal subdirectory 'Madness' matches the game's codename. Renaming rather than deleting allows reverting by restoring the original filename. If a game update recreates the file, repeat this step."
+    },
+    {
+      "type": "ini",
+      "label": "Make startup movies skippable via Game.ini",
+      "reversible": true,
+      "file": "Game.ini",
+      "path": "%LOCALAPPDATA%\\Madness\\Saved\\Config\\WindowsNoEditor\\Game.ini",
+      "section": "[/Script/MoviePlayer.MoviePlayerSettings]",
+      "keys": [
+        { "key": "bMoviesAreSkippable", "value": "True" },
+        { "key": "bWaitForMoviesToComplete", "value": "False" }
+      ],
+      "notes": "Verified working. Overrides the game's shipped defaults (bMoviesAreSkippable=False, bWaitForMoviesToComplete=True). An ESC-to-skip prompt appears at the lower-right of each startup movie; pressing Escape dismisses it immediately. The videos still play until skipped — !StartupMovies=ClearArray has no effect in this game. Must be in Game.ini, NOT Engine.ini (Outriders ignores this section in Engine.ini). Can be combined with the file-rename entry above to both prevent playback and retain the ESC fallback for any movies a game update might restore."
     }
   ],
 
