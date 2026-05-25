@@ -1,7 +1,7 @@
 ---
 name: knowledge-capture
 description: >
-  Capture findings for unknown games into a new knowledge/games/<game>.json file.
+  Capture findings for unknown games into a new knowledge/games/game-name.json file.
   Loaded on-demand only when analysis used web or Tier 3 generic fallback and no
   game knowledge file exists yet.
 ---
@@ -11,7 +11,7 @@ description: >
 ## Purpose
 
 Use this workflow only after presenting the config analysis table for a game that
-has no existing `knowledge/games/<game>.json` file and where one or more
+has no existing `knowledge/games/game-name.json` file and where one or more
 recommendations came from `web` or Tier 3 generic fallback.
 
 Offer once per session:
@@ -19,7 +19,7 @@ Offer once per session:
 > **No knowledge file exists for [game].** Want me to create one from this
 > session's findings so future analyses are faster and more accurate?
 >
-> - **Yes** — I'll write `knowledge/games/<kebab-game-name>.json` now.
+> - **Yes** — I'll write `knowledge/games/game-name.json` now (using kebab-case).
 > - **No** — skip for this session.
 
 If the user declines, do not ask again in the same session.
@@ -39,8 +39,8 @@ If the user declines, do not ask again in the same session.
    - `notes` — version caveats or anomalies observed
    - `sources` — every URL consulted via `web` during this session
    - Remove all `_instructions` and `_comment` fields
-2. Write the file to `knowledge/games/<kebab-game-name>.json` using `edit/createFile`.
-3. Report: `Written to knowledge/games/<kebab-game-name>.json — [N] keys captured.`
+2. Write the file to `knowledge/games/game-name.json` using `edit/createFile`.
+3. Report: `Written to knowledge/games/game-name.json — [N] keys captured.`
 4. Show both contribution paths:
 
 > **Want to share this with other ReFrame users?**
