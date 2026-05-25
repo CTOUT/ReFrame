@@ -1,6 +1,6 @@
 ---
 name: ReFrame
-model: ['GPT-4o mini (copilot)', 'Phi-4 mini (copilot)']
+model: [GPT-4.1 (copilot), GPT-5.4 mini (copilot), Auto (copilot)]
 description: >
   Game configuration optimisation agent. Detects system hardware (CPU, GPU, RAM,
   storage), locates and parses game config files (INI, CFG, XML, JSON), inspects
@@ -256,6 +256,7 @@ After presenting the analysis table, check whether any recommendation was source
 If so, offer once per session:
 
 > **No knowledge file exists for [game].** Want me to create one from this session's findings so future analyses are faster and more accurate?
+>
 > - **Yes** — I'll write `knowledge/games/<kebab-game-name>.json` now.
 > - **No** — skip for this session.
 
@@ -276,6 +277,7 @@ On confirmation:
 4. Show both contribution paths:
 
 > **Want to share this with other ReFrame users?**
+>
 > - **PR (recommended):** Fork → commit the new file → open a pull request at `https://github.com/CTOUT/ReFrame/pulls`
 > - **No git?** Submit via the [Knowledge Submission issue form](https://github.com/CTOUT/ReFrame/issues/new?template=knowledge_submission.yml) — paste the file contents into the form.
 
@@ -327,18 +329,18 @@ Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm"
 
 Assess each setting against recommended gaming values:
 
-| Registry Key / Setting                  | Recommended Value | Effect                                        |
-| --------------------------------------- | ----------------- | --------------------------------------------- |
-| NetworkThrottlingIndex                  | `ffffffff` (hex)  | Disables network throttling during gameplay   |
-| SystemResponsiveness                    | `0`               | Allocates max CPU to foreground game          |
-| Games → GPU Priority                    | `8`               | Raises GPU scheduling priority for game tasks |
-| Games → Priority                        | `6`               | Raises CPU scheduling priority for game tasks |
-| Games → Scheduling Category             | `High`            | Uses Windows MMCSS High scheduling category   |
-| Games → SFIO Priority                   | `High`            | Raises storage I/O priority                   |
-| Win32PrioritySeparation                 | `38` (hex 0x26)   | Maximum foreground boost (2 quanta, variable) |
-| Power scheme                            | High Performance  | Prevents CPU/GPU throttling during gameplay   |
-| HwSchMode                               | `2`               | Enables hardware-accelerated GPU scheduling   |
-| AutoGameModeEnabled / AllowAutoGameMode | `1`               | Enables Windows Game Mode                     |
+| Registry Key / Setting                  | Recommended Value | Effect                                                                                                                                                                                   |
+| --------------------------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NetworkThrottlingIndex                  | `ffffffff` (hex)  | Disables network throttling during gameplay                                                                                                                                              |
+| SystemResponsiveness                    | `0`               | Allocates max CPU to foreground game                                                                                                                                                     |
+| Games → GPU Priority                    | `8`               | Raises GPU scheduling priority for game tasks                                                                                                                                            |
+| Games → Priority                        | `6`               | Raises CPU scheduling priority for game tasks                                                                                                                                            |
+| Games → Scheduling Category             | `High`            | Uses Windows MMCSS High scheduling category                                                                                                                                              |
+| Games → SFIO Priority                   | `High`            | Raises storage I/O priority                                                                                                                                                              |
+| Win32PrioritySeparation                 | `38` (hex 0x26)   | Maximum foreground boost (2 quanta, variable)                                                                                                                                            |
+| Power scheme                            | High Performance  | Prevents CPU/GPU throttling during gameplay                                                                                                                                              |
+| HwSchMode                               | `2`               | Enables hardware-accelerated GPU scheduling                                                                                                                                              |
+| AutoGameModeEnabled / AllowAutoGameMode | `1`               | Enables Windows Game Mode                                                                                                                                                                |
 | OverlayTestMode (DWM)                   | `5`               | Disables Multi-Plane Overlay (MPO) — eliminates stutter/frame-pacing issues on NVIDIA + Windows 11. **Rollback: value must be DELETED, not set to 0. Setting 0 does not re-enable MPO.** |
 
 Present a registry assessment table with current vs recommended values.
@@ -481,9 +483,11 @@ reg import "$regBackupDir\DWM.reg"
 > **OverlayTestMode (MPO) — critical rollback note:**
 > Importing the `DWM-<timestamp>.reg` file correctly restores the default because the backup was taken before `OverlayTestMode` existed — the import removes the value by replacing the hive with the pre-change state.
 > If for any reason the import is not available, restore with:
+>
 > ```powershell
 > reg delete "HKLM\SOFTWARE\Microsoft\Windows\Dwm" /v OverlayTestMode /f
 > ```
+>
 > **Do NOT** set `OverlayTestMode` to `0` as a rollback — `0` does not re-enable MPO. The value must be absent for Windows to use its built-in MPO default.
 
 A reboot is required after registry rollback for `Win32PrioritySeparation` to take effect.
