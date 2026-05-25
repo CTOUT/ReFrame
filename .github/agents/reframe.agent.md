@@ -251,99 +251,13 @@ Explain your reasoning for each recommendation in plain English. Where a row is 
 
 #### Step 6 — Knowledge capture (unknown games only)
 
-After presenting the analysis table, check whether any recommendation was sourced from `web` or Tier 3 generic fallback — meaning no `knowledge/games/<game>.json` file exists for this game.
-
-If so, offer once per session:
-
-> **No knowledge file exists for [game].** Want me to create one from this session's findings so future analyses are faster and more accurate?
->
-> - **Yes** — I'll write `knowledge/games/<kebab-game-name>.json` now.
-> - **No** — skip for this session.
-
-On confirmation:
-
-1. Build the JSON document conforming to `knowledge/templates/game.template.json`. Populate every field from session data:
-   - `game` — exact display name
-   - `engine` — detected engine (or `"unknown"`)
-   - `platforms` — store and config file paths discovered during Step 2 of this workflow
-   - `keys` — every key from the analysis table that had a concrete recommendation; include `effect`, `recommendations` per goal, and any `notes` observed
-   - `engine_overrides` — any key where game behaviour differed from engine defaults
-   - `manual_only_settings` — any settings flagged as Manual in the recommendations table
-   - `notes` — version caveats or anomalies observed
-   - `sources` — every URL consulted via `web` during this session
-   - Remove all `_instructions` and `_comment` fields
-2. Write the file to `knowledge/games/<kebab-game-name>.json` using `edit/createFile`.
-3. Report: "Written to `knowledge/games/<kebab-game-name>.json` — [N] keys captured."
-4. Show both contribution paths:
-
-> **Want to share this with other ReFrame users?**
->
-> - **PR (recommended):** Fork → commit the new file → open a pull request at `https://github.com/CTOUT/ReFrame/pulls`
-> - **No git?** Submit via the [Knowledge Submission issue form](https://github.com/CTOUT/ReFrame/issues/new?template=knowledge_submission.yml) — paste the file contents into the form.
-
-If the user declines the initial offer, do not ask again in the same session.
+Read the **knowledge-capture** skill (`.github/skills/knowledge-capture/SKILL.md`) only when the analysed game has no existing knowledge file and one or more recommendations came from `web` or Tier 3 generic fallback.
 
 ---
 
 ### 4. Registry Analysis (`check registry` or as part of a full optimisation)
 
-Check the Windows registry settings that affect gaming performance:
-
-```powershell
-# Multimedia system profile — gaming
-$mmPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile"
-if (Test-Path $mmPath) {
-    Get-ItemProperty -Path $mmPath | Select-Object NetworkThrottlingIndex, SystemResponsiveness
-} else { "[not found] $mmPath" }
-
-# Games task scheduling
-$gamesPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games"
-if (Test-Path $gamesPath) {
-    Get-ItemProperty -Path $gamesPath
-} else { "[not found] $gamesPath" }
-
-# Priority separation (foreground boost)
-$prioPath = "HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl"
-if (Test-Path $prioPath) {
-    Get-ItemProperty -Path $prioPath | Select-Object Win32PrioritySeparation
-} else { "[not found] $prioPath" }
-
-# Power plan GUID
-powercfg /getactivescheme
-
-# Hardware-accelerated GPU scheduling
-$hgsPath = "HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers"
-if (Test-Path $hgsPath) {
-    Get-ItemProperty -Path $hgsPath -Name "HwSchMode" -ErrorAction SilentlyContinue
-} else { "[not found] $hgsPath" }
-
-# Game Mode / Game Bar
-$gmPath = "HKLM:\SOFTWARE\Microsoft\GameBar"
-if (Test-Path $gmPath) {
-    Get-ItemProperty -Path $gmPath | Select-Object AllowAutoGameMode, AutoGameModeEnabled
-} else { "[not found] $gmPath" }
-
-# NVIDIA (if present) — current driver settings location
-Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm"
-```
-
-Assess each setting against recommended gaming values:
-
-| Registry Key / Setting                  | Recommended Value | Effect                                                                                                                                                                                   |
-| --------------------------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NetworkThrottlingIndex                  | `ffffffff` (hex)  | Disables network throttling during gameplay                                                                                                                                              |
-| SystemResponsiveness                    | `0`               | Allocates max CPU to foreground game                                                                                                                                                     |
-| Games → GPU Priority                    | `8`               | Raises GPU scheduling priority for game tasks                                                                                                                                            |
-| Games → Priority                        | `6`               | Raises CPU scheduling priority for game tasks                                                                                                                                            |
-| Games → Scheduling Category             | `High`            | Uses Windows MMCSS High scheduling category                                                                                                                                              |
-| Games → SFIO Priority                   | `High`            | Raises storage I/O priority                                                                                                                                                              |
-| Win32PrioritySeparation                 | `38` (hex 0x26)   | Maximum foreground boost (2 quanta, variable)                                                                                                                                            |
-| Power scheme                            | High Performance  | Prevents CPU/GPU throttling during gameplay                                                                                                                                              |
-| HwSchMode                               | `2`               | Enables hardware-accelerated GPU scheduling                                                                                                                                              |
-| AutoGameModeEnabled / AllowAutoGameMode | `1`               | Enables Windows Game Mode                                                                                                                                                                |
-| OverlayTestMode (DWM)                   | `5`               | Disables Multi-Plane Overlay (MPO) — eliminates stutter/frame-pacing issues on NVIDIA + Windows 11. **Rollback: value must be DELETED, not set to 0. Setting 0 does not re-enable MPO.** |
-
-Present a registry assessment table with current vs recommended values.
+Read the **registry-analysis** skill (`.github/skills/registry-analysis/SKILL.md`) when the user runs `check registry` or when a full optimisation explicitly includes registry review.
 
 ---
 
