@@ -8,6 +8,13 @@ A [pull request template](.github/pull_request_template.md) is pre-filled when y
 
 ## Pre-commit Checklist
 
+For documentation and repo-housekeeping changes, install the local tooling once and run:
+
+```powershell
+npm install
+npm run spellcheck
+```
+
 ### Agent changes (`reframe.agent.md`)
 
 - [ ] Instructions are clear, unambiguous, and internally consistent
@@ -40,6 +47,7 @@ A [pull request template](.github/pull_request_template.md) is pre-filled when y
 - [ ] `README.md` Repository Structure section reflects any new/removed files
 - [ ] `CHANGELOG.md` updated
 - [ ] `TODO.md` updated if a tracked item is completed or a new one is added
+- [ ] `npm run spellcheck` passes
 
 ---
 

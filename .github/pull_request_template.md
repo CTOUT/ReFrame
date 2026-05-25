@@ -51,3 +51,4 @@
 - [ ] `README.md` Repository Structure section updated if files were added or removed
 - [ ] `CHANGELOG.md` updated
 - [ ] `TODO.md` updated if a tracked item is completed or a new one added
+- [ ] `npm run spellcheck` passes

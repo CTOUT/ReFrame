@@ -43,7 +43,6 @@ Installs the agent to your VS Code user prompts folder so `@ReFrame` is availabl
 irm https://raw.githubusercontent.com/CTOUT/ReFrame/main/install.ps1 | iex
 ```
 
-> **Note:** User-level installs do not include the `knowledge/` files. Game-specific profiles (Tier 1) and per-engine JSON defaults (Tier 2) are unavailable — the agent falls back to its embedded engine defaults and web lookups. For full knowledge base coverage, use the repo-level install above.
 > **Note:** User-level installs do not include the `knowledge/` files. Game-specific profiles (Tier 1) and per-engine JSON defaults (Tier 2) are unavailable — the agent falls back to generic best-practice rules (Tier 3) and web lookups when needed. For full knowledge base coverage, use the repo-level install above.
 
 ### Manual install
@@ -143,7 +142,8 @@ ReFrame/
 │   │   ├── registry-analysis/      ← on-demand registry review
 │   │   └── system-scan/            ← hardware detection skill
 │   ├── workflows/
-│   │   └── release.yml             ← GitHub Actions release workflow
+│   │   ├── release.yml             ← GitHub Actions release workflow
+│   │   └── spellcheck.yml          ← Documentation spellcheck CI
 │   └── CODEOWNERS
 ├── .vscode/
 │   └── extensions.json
@@ -161,9 +161,12 @@ ReFrame/
 ├── CHANGELOG.md
 ├── CITATION.cff
 ├── CONTRIBUTING.md
+├── cspell.json
 ├── install.ps1
 ├── LICENSE
 ├── llms.txt                        ← AI crawler guidance
+├── package-lock.json
+├── package.json
 ├── README.md
 ├── SECURITY.md
 └── TODO.md
@@ -206,6 +209,13 @@ No. The agent works entirely offline using your local knowledge base and system 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+For documentation and repo-housekeeping changes, run the spellcheck before opening a PR:
+
+```powershell
+npm install
+npm run spellcheck
+```
 
 ## Security
 
