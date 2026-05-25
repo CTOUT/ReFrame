@@ -44,6 +44,7 @@ irm https://raw.githubusercontent.com/CTOUT/ReFrame/main/install.ps1 | iex
 ```
 
 > **Note:** User-level installs do not include the `knowledge/` files. Game-specific profiles (Tier 1) and per-engine JSON defaults (Tier 2) are unavailable — the agent falls back to its embedded engine defaults and web lookups. For full knowledge base coverage, use the repo-level install above.
+> **Note:** User-level installs do not include the `knowledge/` files. Game-specific profiles (Tier 1) and per-engine JSON defaults (Tier 2) are unavailable — the agent falls back to generic best-practice rules (Tier 3) and web lookups when needed. For full knowledge base coverage, use the repo-level install above.
 
 ### Manual install
 
@@ -136,6 +137,10 @@ ReFrame/
 │   ├── agents/
 │   │   └── reframe.agent.md        ← the agent definition
 │   ├── skills/
+│   │   ├── accessibility-modifiers/← on-demand modifier guidance
+│   │   ├── apply-changes/          ← backup/apply/rollback workflow
+│   │   ├── knowledge-capture/      ← unknown-game profile capture
+│   │   ├── registry-analysis/      ← on-demand registry review
 │   │   └── system-scan/            ← hardware detection skill
 │   ├── workflows/
 │   │   └── release.yml             ← GitHub Actions release workflow
@@ -169,7 +174,7 @@ ReFrame/
 ## FAQ
 
 **Does ReFrame work with any game?**
-ReFrame works with any game that stores configuration in INI, CFG, XML, or JSON files. It ships with a knowledge base of **22 game profiles** (Cyberpunk 2077, World of Warcraft, Counter-Strike 2, Apex Legends, Minecraft, Baldur's Gate 3, and more) across **14 engine profiles** (UE4/UE5, Source 2, REDengine 4, Unity, and more). Use `optimise <game name>` and ReFrame will locate and analyse whatever configs it finds — even for titles without a dedicated profile.
+ReFrame works with any game that stores configuration in INI, CFG, XML, or JSON files. It ships with a knowledge base of **26 game profiles** (Cyberpunk 2077, World of Warcraft, Counter-Strike 2, Apex Legends, Minecraft, Baldur's Gate 3, and more) across **14 engine profiles** (UE4/UE5, Source 2, REDengine 4, Unity, and more). Use `optimise <game name>` and ReFrame will locate and analyse whatever configs it finds — even for titles without a dedicated profile.
 
 **Will ReFrame break my game or corrupt my save files?**
 No. ReFrame only modifies game configuration files and Windows registry settings — never save data. Every change is backed up to `%LOCALAPPDATA%\ReFrame\Backups\` before being applied, and `rollback <game>` restores the original state in seconds.

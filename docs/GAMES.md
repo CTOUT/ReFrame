@@ -229,6 +229,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `cl_showfps 4` | Detailed FPS + frame time overlay | Optional |
 
 **Notes:**
+
 - Apex runs EasyAntiCheat. Both config files are EAC-safe.
 - Uncapped FPS in lobby/menus causes runaway GPU heat — always set `fps_max` in autoexec.cfg.
 - Disabling `setting.csm_enabled` alongside `setting.shadow_detail 0` is the competitive standard for maximum consistent frame time.
@@ -256,6 +257,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `SSREnabled` | Screen-space reflections (0=off, 1=on) | `0` | `0` | `1` |
 
 **Notes:**
+
 - Act 2 (Shadow-Cursed Lands) is the most GPU-expensive area — shadow quality is the primary lever. Expect 20–40% lower FPS vs Act 1 at the same settings.
 - Act 3 (Lower City) has high VRAM pressure. Users with < 8 GB VRAM should reduce TextureQuality to 1.
 - DLSS 3 (RTX) and FSR (AMD/all) are available in Settings > Display. FSR 1.0 is the only FSR version available — quality is noticeably lower than FSR 2+.
@@ -284,6 +286,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `seta r_filmUseToneMap` | Film-style tone mapping (0=off, 1=on) | `0` | `1` | `1` |
 
 **Notes:**
+
 - Config is protected by Ricochet anti-cheat. All keys listed here are Ricochet-safe.
 - BO6 introduced Omnimovement — a wider FOV (100–110) aids tracking the faster omnidirectional movement.
 - `r_filmUseToneMap 0` brightens mid-tones, improving visibility of enemies in dark areas — common competitive choice.
@@ -314,6 +317,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `setting.water_quality` | Water rendering quality (0–2) | `0` | `1` | `2` |
 
 **Notes:**
+
 - Dota 2 is CPU-bound during complex teamfights (Roshan fights, high-level tournaments). GPU settings have limited impact during peak combat moments — CPU optimisation matters more.
 - Vulkan launch option (`-vulkan`) can improve CPU overhead on some systems; add via Steam > Properties > Launch Options.
 - **Sources:** [PCGamingWiki — Dota 2](https://www.pcgamingwiki.com/wiki/Dota_2)
@@ -339,6 +343,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `VolumetricFog` | Volumetric fog (0=off, 1=low, 2=high) | `0` | `1` | `2` |
 
 **Notes:**
+
 - The Shroud (the game's signature fog-of-curse mechanic) is a significant GPU cost area — volumetric fog and particle effects are heavier inside Shroud zones. Expect 10–30% lower FPS in Shroud vs clear-sky areas.
 - Enshrouded supports dedicated multiplayer servers up to 24 players. Simulation load scales with player count.
 - DLSS (NVIDIA), FSR (AMD), and XeSS (Intel) are available in Settings > Graphics > Upscaling.
@@ -367,6 +372,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `FrameRateLimit` | Frame rate cap | Monitor Hz | Monitor Hz | Monitor Hz |
 
 **Notes:**
+
 - Epic resets some `sg.*` values to defaults in seasonal patches — verify settings after each major update.
 - **Lumen** (UE5 global illumination) is available in Performance settings but is server-side controlled per match type — cannot be forced on in standard modes.
 - Performance Mode (DX11 renderer) in Settings > Video > Rendering Mode offers a significant FPS improvement on lower-end hardware at the cost of visual quality.
@@ -397,6 +403,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `MotionBlurStrength` | Motion blur intensity (0.0–1.0) | `0` | `0` | `0` |
 
 **Notes:**
+
 - `settings.xml` is overwritten by the in-game Graphics menu. Edit only while GTA V is fully closed.
 - Population Density and Population Variety (pedestrian and vehicle count) are significant CPU cost levers — only adjustable in-game.
 - The 2022 Enhanced Edition added DLSS 3, FSR 2, and ray tracing on PC.
@@ -425,6 +432,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `fps_cap_value` | Frame rate cap (fps_cap must = Custom) | Monitor Hz | Monitor Hz | Monitor Hz |
 
 **Notes:**
+
 - League of Legends is CPU-bound; the GPU is rarely the bottleneck except at maximum quality settings or 4K.
 - ARAM has significantly more on-screen ability effects than Summoner's Rift — `EffectsQuality` is the most impactful setting in ARAM specifically.
 - Colourblind mode is available in Accessibility settings (in-game only) — an important accessibility consideration.
@@ -453,6 +461,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `FrameRateLimit` | Frame rate cap | Monitor Hz | Monitor Hz | Monitor Hz |
 
 **Notes:**
+
 - `sg.EffectsQuality 0` is the most impactful performance setting. Marvel Rivals has extremely high particle density from hero abilities — effects quality directly affects frame time consistency during teamfights.
 - DLSS 4 Multi-Frame Generation (RTX), FSR 4, and XeSS are available in-game. These are the primary recommended optimisation path on capable hardware.
 - Per-hero VFX reduction (in-game > Accessibility > Reduce Particle Effects) can further reduce visual noise without affecting core settings.
@@ -501,6 +510,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | Iris Shaders | Shader pack support for Sodium-based installs |
 
 **Notes:**
+
 - `renderDistance` is by far the dominant performance variable — more impactful than all GPU settings combined.
 - `simulationDistance` can be set lower than `renderDistance` without visual impact; distant chunks render but don't tick.
 - Minecraft Java Edition with Sodium is a fundamentally different performance profile from vanilla.
@@ -538,6 +548,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `r.DepthOfFieldQuality=0` | Disable depth of field | All tiers |
 
 **Notes:**
+
 - BattlEye anti-cheat does not scan config INI files. All keys listed are BattlEye-safe.
 - `sg.FoliageQuality` is intentionally omitted — low foliage reduces grass cover used for concealment and provides an unfair competitive advantage.
 - `sg.ViewDistanceQuality` should stay at 2+ — reducing it causes enemies to pop in at close range.
@@ -568,9 +579,10 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `gfx-enable-native-gfx-jobs` | Native GPU job scheduling (0=off, 1=on) | `1` | `1` | `1` |
 
 **Notes:**
+
 - `gfx-enable-gfx-jobs 1` and `gfx-enable-native-gfx-jobs 1` should be enabled at all tiers — 20–40% FPS gain on 6+ core CPUs with negligible downside.
 - `graphics.shadow_distance 40` (performance) eliminates shadow rendering overhead almost entirely. Competitive players commonly use 40–80.
-- Max Gibs (`grass.forceredraw`): the ragdoll/giblet cap progressively degrades performance over a long session as the limit accumulates. Reduce in-game if FPS degresses over time.
+- Max Gibs (`grass.forceredraw`): the ragdoll/giblet cap progressively degrades performance over a long session as the limit accumulates. Reduce it in-game if FPS degrades over time.
 - EasyAntiCheat does not scan `client.cfg`. All keys listed are EAC-safe.
 - **Sources:** [PCGamingWiki — Rust](https://www.pcgamingwiki.com/wiki/Rust)
 
@@ -604,6 +616,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | Terrain Quality | Terrain mesh detail | Low | Medium | High |
 
 **Notes:**
+
 - The most impactful optimisation is adding `gfx-enable-gfx-jobs=1` and `gfx-enable-native-gfx-jobs=1` to `boot.config` — significant FPS gain on multi-core CPUs from Valheim's Unity build.
 - Performance varies significantly by biome: Mistlands (dense procedural fog) and Plains (open terrain + high entity count) are the heaviest biomes. Mistlands specifically causes GPU pressure from fog shaders.
 - **Sources:** [PCGamingWiki — Valheim](https://www.pcgamingwiki.com/wiki/Valheim)
@@ -632,6 +645,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `FrameRateLimit` | Frame rate cap | Monitor Hz | Monitor Hz | Monitor Hz |
 
 **Notes:**
+
 - Valorant is CPU-bound, not GPU-bound. GPU settings have limited impact on frame rate for most users — CPU and `FrameRateLimit` matter more.
 - Vanguard anti-cheat does not scan INI config files. All keys listed are Vanguard-safe.
 - Vanguard requires TPM 2.0 and Secure Boot on Windows 11. If the game fails to launch, check BIOS settings.
@@ -662,6 +676,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `Graphics.RefreshRate` | Frame rate cap | Monitor Hz | Monitor Hz | Monitor Hz |
 
 **Notes:**
+
 - `Graphics.ParticleSystem` is the most impactful setting for endgame content (Steel Path, Arbitrations, Netracells) — Warframe abilities produce extreme particle density. High particle quality in late-game missions can cause severe frame drops.
 - `Graphics.TextureStreaming 0` (off) on 16 GB+ RAM + fast SSD eliminates mid-mission texture pop-in at the cost of longer initial load times.
 - `EE.cfg` overwrite: always verify settings survive a game restart before assuming the edit persisted.
@@ -698,48 +713,11 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 | `SET maxFPSbk` | Background frame rate cap | `30` | `30` | `30` |
 
 **Notes:**
+
 - `graphicsSpellDensity` is the single most impactful setting for raid performance — high-end raid encounters (Mythic) have hundreds of simultaneous spell effects. Value 3 is the competitive standard in progression raiding.
 - `maxFPSbk 30` ensures WoW does not consume full GPU resources when alt-tabbed.
 - DLSS 4 and FSR 3.1 are available in System > Advanced. Setting a "Raid" graphics preset (lower `graphicsSpellDensity`) vs a "World/Questing" preset is a common practice.
 - **Sources:** [PCGamingWiki — World of Warcraft](https://www.pcgamingwiki.com/wiki/World_of_Warcraft), [Wowpedia — Config.wtf](https://wowpedia.fandom.com/wiki/Config.wtf)
-
----
-
-## Fortnite
-
-| Platform | Config Path                                                                   | Format |
-| -------- | ----------------------------------------------------------------------------- | ------ |
-| Epic     | `%LOCALAPPDATA%\FortniteGame\Saved\Config\WindowsClient\GameUserSettings.ini` | INI    |
-
-**Key settings (Unreal Engine 4):**
-
-| Key                     | Effect                     | Recommended (mid) | Recommended (high) |
-| ----------------------- | -------------------------- | ----------------- | ------------------ |
-| `sg.ResolutionQuality`  | Resolution scale (50–100)  | `75`              | `100`              |
-| `sg.ShadowQuality`      | Shadow quality (0–3)       | `2`               | `3`                |
-| `sg.EffectsQuality`     | Effects quality (0–3)      | `2`               | `3`                |
-| `sg.TextureQuality`     | Texture quality (0–3)      | `2`               | `3`                |
-| `sg.PostProcessQuality` | Post process quality (0–3) | `1`               | `2`                |
-| `bShowFPS`              | Show FPS counter           | `True` (optional) | `True` (optional)  |
-| `FrameRateLimit`        | Maximum frame rate         | Monitor Hz        | Monitor Hz         |
-
----
-
-## Minecraft (Java Edition)
-
-| Platform | Config Path                                        | Format    |
-| -------- | -------------------------------------------------- | --------- |
-| All      | `%APPDATA%\.minecraft\options.txt`                 | Custom KV |
-| All      | `%APPDATA%\.minecraft\config\` (Fabric/Forge mods) | Various   |
-
-**Key settings:**
-
-| Key              | Effect                 | Recommended (mid) | Recommended (high) |
-| ---------------- | ---------------------- | ----------------- | ------------------ |
-| `renderDistance` | Chunk render distance  | `8`               | `16`               |
-| `maxFps`         | Frame rate cap         | `120`             | Match refresh rate |
-| `guiScale`       | UI scale               | `2` or `3`        | `3`                |
-| `fancyGraphics`  | Fancy vs fast graphics | `false`           | `true`             |
 
 ---
 

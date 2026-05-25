@@ -40,7 +40,7 @@ Vulnerabilities in any of these are in scope. Areas of particular interest:
 
 - The installer script fetching and executing remote content
 - Prompt injection risks in agent instructions
-- The agent's use of `run/runInTerminal` to execute PowerShell — ensure injected user input cannot be passed unsanitised to shell commands
+- The agent's use of `execute/runInTerminal` to execute PowerShell — ensure injected user input cannot be passed unsanitised to shell commands
 - Registry key paths used by the agent — ensure no path traversal or privilege escalation is possible
 
 ## Installer Verification
@@ -63,7 +63,7 @@ if ($actual -eq $expected) { "Verified" } else { "MISMATCH — do not run" }
 
 ## Agent Security Notes
 
-ReFrame uses `run/runInTerminal` to execute PowerShell for hardware detection and registry operations. The agent instructions enforce:
+ReFrame uses `execute/runInTerminal` to execute PowerShell for hardware detection and registry operations. The agent instructions enforce:
 
 - Registry changes use `Set-ItemProperty` only — no `Remove-Item`, `Remove-ItemProperty`, or `reg delete`
 - All PowerShell commands in the agent use only well-known registry paths with no dynamic path construction from user input

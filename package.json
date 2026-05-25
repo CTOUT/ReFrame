@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "spellcheck": "cspell --config cspell.json \"README.md\" \"CONTRIBUTING.md\" \"SECURITY.md\" \"CHANGELOG.md\" \"TODO.md\" \"docs/*.md\""
+  },
+  "devDependencies": {
+    "cspell": "^10.0.0"
+  }
+}

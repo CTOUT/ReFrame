@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `knowledge/game-engines/iw-engine-9.json` — IW Engine 9 profile: BO6 config paths; Quake-style seta syntax; Omnimovement FOV note
 - `knowledge/games/call-of-duty-bo6.json` — CoD: Black Ops 6 profile: Steam + Battle.net + Xbox App (Game Pass); 6 keys; Omnimovement FOV recommendation; r_filmUseToneMap competitive visibility note; Ricochet anti-cheat safety
 - `knowledge/game-engines/riot-engine.json` — Riot Engine profile: LoL game.cfg + PersistedSettings.json; fps_cap_value pattern
-- `knowledge/games/league-of-legends.json` — League of Legends profile: Riot Launcher; 6 keys; ARAM effects note; accessibility colorblind mode; CPU-bound architecture note
+- `knowledge/games/league-of-legends.json` — League of Legends profile: Riot Launcher; 6 keys; ARAM effects note; accessibility colourblind mode; CPU-bound architecture note
 - `knowledge/game-engines/keen-engine.json` — Keen Engine profile (Enshrouded): graphics.cfg detection
 - `knowledge/games/enshrouded.json` — Enshrouded profile: Steam; 5 keys; Shroud volumetric fog performance note; multiplayer player count scaling; EA-to-1.0 benchmark caveat
 - `knowledge/game-engines/source-modified.json` — Source (Modified) engine profile (Apex Legends/Respawn): videoconfig.txt + autoexec.cfg detection
@@ -42,15 +42,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `knowledge/games/gta-v.json` — Grand Theft Auto V profile (aliases: GTA V, GTA 5): Steam, Epic, and Rockstar Launcher paths; 8 keys including MotionBlurStrength with motion_comfort modifier; 3 manual-only settings (population density/variety, extended distance); Enhanced Edition (2022) DLSS/FSR and ray tracing notes
 - `knowledge/game-engines/redengine-4.json` — REDengine 4 engine profile (4.x): 3 keys covering texture streaming distance, NPC physics rig limit, and SSR quality; documents dual-location config model (UserSettings.json in Documents + engine override INIs in game install); notes that UserSettings.json is overwritten by the in-game menu
 - `knowledge/games/cyberpunk-2077.json` — Cyberpunk 2077 profile: Steam, GOG, and Epic config paths; 5 engine override INI keys (streaming, rig limit, SSR, AO, volumetric fog); engine_overrides documenting UserSettings.json overwrite behaviour and SpawnSystem/crowd density deprecation in patch 2.0; 4 manual-only settings (upscaling, RT/path tracing, crowd density, FOV with motion_comfort modifier); DLSS DLL replacement note
-
-### Fixed
-
-- `system-scan` skill — DxDiag post-exit polling: added a stability loop after `WaitForExit` that waits until the XML file size is stable for two consecutive 500 ms checks before proceeding, preventing partial-read failures on slower systems
-- `system-scan` skill — cache policy: `scan system` now reuses a valid post-boot cache instead of always regenerating; use `scan system --fresh` (or say "rescan", "re-scan", "fresh scan") to force a new DxDiag run
-- `reframe.agent.md` — greeting updated to document `scan system --fresh`
-
-### Added
-
 - `knowledge/game-engines/unreal-engine-5.json` — Unreal Engine 5 engine profile (5.x): 17 keys covering TSR, Lumen GI, Lumen Reflections, Virtual Shadow Maps, scalability groups (sg.GlobalIlluminationQuality and sg.ReflectionQuality are new to UE5), texture streaming pool, VSync, and frame rate cap; documents Windows config path change from WindowsNoEditor (UE4) to Windows (UE5); 0-4 scalability range throughout; four sources
 - `knowledge/games/skyrim-special-edition.json` — Skyrim Special Edition profile: Steam, GOG, and Xbox Game Pass config paths; 11 INI keys across Display, Imagespace, and Grass sections; engine override note (in-game menu overwrites INI); manual-only settings (resolution, AA / Skyrim Upscaler); notes covering SKSE64, ENB, Community Shaders, BethINI, and Anniversary Edition
 - `knowledge/INDEX.json` — machine-readable index of all game and engine profiles; lists name, file, engine, platforms, key count, profile version, and last-updated date for each entry; updated with every new or changed profile
@@ -66,6 +57,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `.github/ISSUE_TEMPLATE/knowledge_submission.yml` — Knowledge Submission issue form for non-git contributors; accepts generated or hand-authored JSON with verification checklist
 - `CONTRIBUTING.md` — two-path contribution guide: PR workflow (existing) and no-git issue form path (new)
 - `.github/ISSUE_TEMPLATE/config.yml` — added "Browse game knowledge" contact link
+
+### Fixed
+
+- `system-scan` skill — DxDiag post-exit polling: added a stability loop after `WaitForExit` that waits until the XML file size is stable for two consecutive 500 ms checks before proceeding, preventing partial-read failures on slower systems
+- `system-scan` skill — cache policy: `scan system` now reuses a valid post-boot cache instead of always regenerating; use `scan system --fresh` (or say "rescan", "re-scan", "fresh scan") to force a new DxDiag run
+- `reframe.agent.md` — greeting updated to document `scan system --fresh`
 
 ---
 

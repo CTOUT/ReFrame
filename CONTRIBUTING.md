@@ -2,7 +2,7 @@
 
 Thanks for your interest in contributing. This document covers the development workflow and pre-commit checklist.
 
-A [pull request template](../.github/pull_request_template.md) is pre-filled when you open a PR on GitHub — it mirrors the checklist below.
+A [pull request template](.github/pull_request_template.md) is pre-filled when you open a PR on GitHub — it mirrors the checklist below.
 
 ---
 

@@ -6,7 +6,7 @@ Tracked work items for ReFrame. Items are moved from here to `CHANGELOG.md` when
 
 ## In Progress
 
-- [x] **Game-specific knowledge base** — all 19 queued game profiles completed: 22 games total, 14 engine profiles; covers UE4/UE5, Source 2, REDengine 4, RAGE, Blizzard WoW Engine, Unity, Divinity Engine 4.0, IW Engine 9, Riot Engine, Keen Engine, Source (Modified), Evolution Engine, and Minecraft Java Engine.
+- [x] **Game-specific knowledge base** — all 19 queued game profiles completed: 26 games total, 14 engine profiles; covers UE4/UE5, Source 2, REDengine 4, RAGE, Blizzard WoW Engine, Unity, Divinity Engine 4.0, IW Engine 9, Riot Engine, Keen Engine, Source (Modified), Evolution Engine, and Minecraft Java Engine.
 
 ### Knowledge Base Queue
 
