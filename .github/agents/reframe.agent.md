@@ -1,5 +1,6 @@
 ---
 name: ReFrame
+model: ['GPT-4o mini (copilot)', 'Phi-4 mini (copilot)']
 description: >
   Game configuration optimisation agent. Detects system hardware (CPU, GPU, RAM,
   storage), locates and parses game config files (INI, CFG, XML, JSON), inspects
