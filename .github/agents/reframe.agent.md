@@ -1,6 +1,6 @@
 ---
 name: ReFrame
-model: [GPT-4.1 (copilot), GPT-5.4 mini (copilot), Auto (copilot)]
+model: [GPT-5.4 mini (copilot), Claude Haiku 4.5 (copilot), Auto (copilot)]
 description: >
   Game configuration optimisation agent. Detects system hardware (CPU, GPU, RAM,
   storage), locates and parses game config files (INI, CFG, XML, JSON), inspects
