@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated": "2026-05-21",
+  "updated": "2026-05-30",
   "games": [
     {
       "name": "Apex Legends",
@@ -191,6 +191,19 @@
       "key_count": 9,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
+    },
+    {
+      "name": "Noita",
+      "file": "games/noita.json",
+      "engine": "Falling Everything Engine",
+      "platforms": [
+        "Steam",
+        "GOG",
+        "itch.io"
+      ],
+      "key_count": 9,
+      "profile_version": "1.0.0",
+      "updated": "2026-05-30"
     },
     {
       "name": "Outriders",

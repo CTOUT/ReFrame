@@ -1,0 +1,191 @@
+{
+  "game": "Noita",
+  "engine": "Falling Everything Engine",
+  "profile_version": "1.0.0",
+  "updated": "2026-05-30",
+
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\AppData\\LocalLow\\Nolla_Games_Noita\\save_shared\\config.xml",
+          "format": "xml"
+        }
+      ]
+    },
+    {
+      "store": "GOG",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\AppData\\LocalLow\\Nolla_Games_Noita\\save_shared\\config.xml",
+          "format": "xml"
+        }
+      ]
+    },
+    {
+      "store": "itch.io",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\AppData\\LocalLow\\Nolla_Games_Noita\\save_shared\\config.xml",
+          "format": "xml"
+        }
+      ]
+    }
+  ],
+
+  "keys": [
+    {
+      "key": "rendering_filmgrain",
+      "file": "config.xml",
+      "effect": "Applies a film grain overlay to the image. Softens the pixel-art look; disabling it keeps edges sharper and cleaner.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended Off in all goals — it is a low-quality post-process effect that degrades the crispness of pixel art at any resolution."
+    },
+    {
+      "key": "rendering_pixel_art_antialiasing",
+      "file": "config.xml",
+      "effect": "Enables temporal anti-aliasing tuned for pixel art (listed in-game as 'Pixel art anti-aliasing'). Smooths sub-pixel edges.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Enable for quality/balanced goals; disable for performance. PCGamingWiki confirms this is a TAA implementation."
+    },
+    {
+      "key": "rendering_low_quality",
+      "file": "config.xml",
+      "effect": "Master low-quality rendering flag; disabling enables higher fidelity post-processing and particle effects.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "0",
+        "quality": "0"
+      }
+    },
+    {
+      "key": "rendering_low_resolution",
+      "file": "config.xml",
+      "effect": "Renders at a reduced internal resolution. Disabling this renders at the full internal_size values.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "0",
+        "quality": "0"
+      }
+    },
+    {
+      "key": "vsync",
+      "file": "config.xml",
+      "effect": "Vertical sync — On, Adaptive, or Off (0/1/2). Disabling is recommended when VRR (G-Sync/FreeSync) is active.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Use monitor-level VRR instead. Noita's in-game VSync supports On, Adaptive, and Off modes."
+    },
+    {
+      "key": "framerate",
+      "file": "config.xml",
+      "effect": "Hard frame-rate cap. Set to monitor refresh rate to prevent tearing and unnecessary GPU heat.",
+      "recommendations": {
+        "performance": "Match monitor Hz",
+        "balanced": "Match monitor Hz",
+        "quality": "Match monitor Hz"
+      },
+      "notes": "Uncapped (0) is not listed as an option in the in-game menu; set to monitor Hz."
+    },
+    {
+      "key": "graphics_settings.textures_resize_to_power_of_two",
+      "file": "config.xml",
+      "effect": "Forces all textures to the nearest power-of-two dimension before upload to the GPU.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "0"
+      },
+      "notes": "Must be set to 0 at non-standard or ultrawide resolutions (e.g. 5120×1440 32:9). At those sizes the power-of-two rounding corrupts UI element scaling, producing broken or misaligned HUD elements. Safe to leave at 1 on standard 16:9 resolutions. Verified during session on a 5120×1440 display."
+    },
+    {
+      "key": "internal_size_w",
+      "file": "config.xml",
+      "effect": "Game-internal render canvas width. Controls zoom level and how much of the world is visible horizontally. Smaller values zoom in; larger values zoom out.",
+      "recommendations": {
+        "performance": "Match backbuffer_width",
+        "balanced": "Match backbuffer_width",
+        "quality": "Match backbuffer_width"
+      },
+      "notes": "Should match window_w and backbuffer_width for a 1:1 render path. At 32:9 (e.g. 5120×1440) set all three to 5120. Setting internal_size_w lower than the display width (e.g. 2560 on a 5120-wide panel) makes the game appear overly zoomed in."
+    },
+    {
+      "key": "rendering_cosmetic_particle_count_coeff",
+      "file": "config.xml",
+      "effect": "Multiplier for cosmetic (non-gameplay) particle count. Higher values produce denser visual effects.",
+      "recommendations": {
+        "performance": "0.5",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Noita is CPU-bound on its particle physics simulation. This key only affects cosmetic particles, not gameplay-relevant physics pixels. Reducing it can help on CPU-limited systems."
+    }
+  ],
+
+  "engine_overrides": [
+    {
+      "key": "graphics_settings.textures_resize_to_power_of_two",
+      "behaviour": "Default value is 1 (enabled), which is fine for standard 16:9 resolutions. At 32:9 or other non-standard aspect ratios the power-of-two rounding corrupts UI element dimensions, producing broken or missing HUD elements. The game does not warn about this.",
+      "action": "Set to 0 for any non-standard or ultrawide resolution. Leave at 1 for standard 16:9 installations."
+    },
+    {
+      "key": "internal_size_w",
+      "behaviour": "Noita uses internal_size_w as the game world viewport width, not just a render scale hint. Setting it below the display width (e.g. 2560 on a 5120-wide panel) effectively zooms the camera in rather than pillarboxing or scaling. The game does not automatically match this to the output resolution.",
+      "action": "Always set internal_size_w, window_w, and backbuffer_width to the same value matching the display width."
+    }
+  ],
+
+  "manual_only_settings": [
+    {
+      "setting": "Pixel art anti-aliasing",
+      "location": "Options → Graphics",
+      "recommendation": "On for quality/balanced; Off for performance",
+      "reason": "Maps to rendering_pixel_art_antialiasing in config.xml. Can also be set directly in the config file."
+    },
+    {
+      "setting": "Film grain",
+      "location": "Options → Graphics",
+      "recommendation": "Off",
+      "reason": "Maps to rendering_filmgrain in config.xml. Can also be set directly in the config file."
+    }
+  ],
+
+  "notes": [
+    "HDR is forced off by the game engine. There is no way to enable it while the game is running (PCGamingWiki, verified 2024-03-26).",
+    "32:9 ultrawide requires the community 'superwide' mod to remove pillarboxing. The mod folder is typically inside the game installation directory at mods\\superwide\\. Mod files are available via the PCGamingWiki community file library.",
+    "Enabling non-translation mods (including the superwide mod) disables Steam and GOG achievements unless a mod-restriction bypass mod is also active.",
+    "The game binary is 64-bit only. OpenGL 3.0 is the rendering API.",
+    "save_shared\\config.xml is the live user config. The config.xml in the game installation directory is a stub with default values only — do not edit it.",
+    "config_format_version=\"14\" was current as of game version hash 9dbd52ced019a643169a2db02f46c77f8766c6e5 (observed May 2026)."
+  ],
+
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Noita",
+      "type": "wiki",
+      "label": "PCGamingWiki — Noita"
+    },
+    {
+      "url": "https://community.pcgamingwiki.com/files/file/1447-noita-ultrawide-mod/",
+      "type": "community",
+      "label": "PCGamingWiki Community — Noita Ultrawide Mod"
+    },
+    {
+      "url": "https://noita.wiki.gg/wiki/Noita_Wiki",
+      "type": "wiki",
+      "label": "Noita Wiki — Main Page"
+    }
+  ]
+}

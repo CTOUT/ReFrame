@@ -34,6 +34,61 @@ custom scaler, broken implementation, deliberate rebalance by the developer).
 
 ---
 
+## Noita
+
+**Engine:** Falling Everything Engine (custom, in-house at Nolla Games)
+
+| Platform | Config Path                                                                           | Format |
+| -------- | ------------------------------------------------------------------------------------- | ------ |
+| Steam    | `%USERPROFILE%\AppData\LocalLow\Nolla_Games_Noita\save_shared\config.xml`            | XML    |
+| GOG      | `%USERPROFILE%\AppData\LocalLow\Nolla_Games_Noita\save_shared\config.xml`            | XML    |
+| itch.io  | `%USERPROFILE%\AppData\LocalLow\Nolla_Games_Noita\save_shared\config.xml`            | XML    |
+
+> **Note:** The `config.xml` inside the game installation folder is a stub with defaults only. The live user config is always in `AppData\LocalLow\Nolla_Games_Noita\save_shared\config.xml`.
+
+**Key settings:**
+
+| Key                                              | Effect                                              | Recommended (performance) | Recommended (quality) |
+| ------------------------------------------------ | --------------------------------------------------- | ------------------------- | --------------------- |
+| `rendering_filmgrain`                            | Film grain overlay                                  | `0`                       | `0`                   |
+| `rendering_pixel_art_antialiasing`               | Temporal AA for pixel art                           | `0`                       | `1`                   |
+| `rendering_low_quality`                          | Master low-quality rendering flag                   | `1`                       | `0`                   |
+| `rendering_low_resolution`                       | Reduced internal resolution                         | `1`                       | `0`                   |
+| `vsync`                                          | VSync (0=off, 1=on, 2=adaptive)                     | `0`                       | `0`                   |
+| `framerate`                                      | Frame-rate cap                                      | Match monitor Hz          | Match monitor Hz      |
+| `graphics_settings.textures_resize_to_power_of_two` | Force textures to power-of-two dimensions        | `1`                       | `0` (see note)        |
+| `internal_size_w`                                | Game world viewport width (affects zoom)            | Match display width       | Match display width   |
+| `rendering_cosmetic_particle_count_coeff`        | Cosmetic particle density multiplier               | `0.5`                     | `1`                   |
+
+### Noita: Engine Overrides
+
+| Key | Default Behaviour | Issue | What to do |
+| --- | --- | --- | --- |
+| `graphics_settings.textures_resize_to_power_of_two` | `1` | Corrupts UI element scaling at 32:9 (e.g. 5120×1440) — HUD elements break or disappear | Set to `0` for any non-standard or ultrawide resolution. Leave at `1` for 16:9. |
+| `internal_size_w` | Not auto-matched to display | Setting this below the display width (e.g. 2560 on a 5120-wide panel) zooms the camera in rather than pillarboxing | Always set `internal_size_w`, `window_w`, and `backbuffer_width` to the same value matching the display width. |
+
+### Noita: Ultrawide (32:9) Setup
+
+Noita does not natively support 32:9. The community **superwide** mod removes pillarboxing:
+
+1. Download `superwide.zip` (32:9) or `superwide-spanned-hud.zip` (32:9 + wide HUD) from the [PCGamingWiki community file library](https://community.pcgamingwiki.com/files/file/1447-noita-ultrawide-mod/).
+2. Extract into `<game install>\mods\` so the result is `mods\superwide\mod.xml`.
+3. Enable the mod in Noita's in-game mod menu.
+4. Set `graphics_settings.textures_resize_to_power_of_two="0"` in `save_shared\config.xml`.
+5. Set `internal_size_w`, `window_w`, and `backbuffer_width` to your display width (e.g. `5120`).
+
+> **Achievement note:** Enabling non-translation mods disables Steam and GOG achievements unless a mod-restriction bypass mod is also active.
+
+**Notes:**
+
+- HDR is forced off by the engine and cannot be enabled while the game is running.
+- The game binary is 64-bit only; OpenGL 3.0 is the rendering API.
+- `rendering_filmgrain` is recommended Off in all goals — it degrades the crispness of pixel art.
+
+**Sources:** [PCGamingWiki — Noita](https://www.pcgamingwiki.com/wiki/Noita), [PCGamingWiki Community — Noita Ultrawide Mod](https://community.pcgamingwiki.com/files/file/1447-noita-ultrawide-mod/)
+
+---
+
 ## Ark: Survival Evolved
 
 **Engine:** Unreal Engine 4 (heavily modified)
