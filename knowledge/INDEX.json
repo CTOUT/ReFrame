@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated": "2026-05-30",
+  "updated": "2026-06-07",
   "games": [
     {
       "name": "Apex Legends",
@@ -268,6 +268,44 @@
       "updated": "2026-04-28"
     },
     {
+      "name": "Tom Clancy's The Division",
+      "file": "games/tom-clancys-the-division.json",
+      "engine": "Snowdrop",
+      "platforms": [
+        "Steam",
+        "Epic Games Store",
+        "Ubisoft Store",
+        "Microsoft Store"
+      ],
+      "key_count": 21,
+      "profile_version": "1.2.0",
+      "updated": "2026-06-07"
+    },
+    {
+      "name": "Tom Clancy's The Division 2",
+      "file": "games/tom-clancys-the-division-2.json",
+      "engine": "Snowdrop",
+      "platforms": [
+        "Steam",
+        "Epic Games Store",
+        "Ubisoft Store"
+      ],
+      "key_count": 18,
+      "profile_version": "1.0.0",
+      "updated": "2026-06-07"
+    },
+    {
+      "name": "Tom Clancy's The Division Resurgence",
+      "file": "games/the-division-resurgence.json",
+      "engine": "Unreal Engine 4",
+      "platforms": [
+        "Ubisoft Connect"
+      ],
+      "key_count": 20,
+      "profile_version": "1.0.0",
+      "updated": "2026-06-07"
+    },
+    {
       "name": "Valheim",
       "file": "games/valheim.json",
       "engine": "Unity",
@@ -410,6 +448,18 @@
       "key_count": 3,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
+    },
+    {
+      "name": "Snowdrop",
+      "file": "game-engines/snowdrop.json",
+      "version_range": "all",
+      "fallback_for": [
+        "Snowdrop 2.0",
+        "Snowdrop 3.0"
+      ],
+      "key_count": 2,
+      "profile_version": "1.0.0",
+      "updated": "2026-06-07"
     },
     {
       "name": "Source (Modified)",

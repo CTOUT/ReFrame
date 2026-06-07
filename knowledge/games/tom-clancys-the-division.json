@@ -1,0 +1,371 @@
+{
+  "_template_version": "1",
+  "game": "Tom Clancy's The Division",
+  "engine": "Snowdrop",
+  "profile_version": "1.2.0",
+  "updated": "2026-06-07",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "file": "GFXSettings.TheDivision.exe.xml",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\GFXSettings.TheDivision.exe.xml",
+          "format": "xml",
+          "notes": "Primary graphics profile. The live files were observed in Documents; some XML exports may still contain a CONFIGPATH value that points elsewhere on OneDrive-backed installs."
+        },
+        {
+          "file": "state.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\state.cfg",
+          "format": "cfg",
+          "notes": "Mirrors startup/render flags such as dx12."
+        },
+        {
+          "file": "graphic settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\graphic settings.cfg",
+          "format": "cfg",
+          "notes": "Legacy/alternate graphics mirror. Treat the XML file as the source of truth for active graphics tuning."
+        }
+      ]
+    },
+    {
+      "store": "Epic Games Store",
+      "config_files": [
+        {
+          "file": "GFXSettings.TheDivision.exe.xml",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\GFXSettings.TheDivision.exe.xml",
+          "format": "xml"
+        },
+        {
+          "file": "state.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\state.cfg",
+          "format": "cfg"
+        },
+        {
+          "file": "graphic settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\graphic settings.cfg",
+          "format": "cfg"
+        }
+      ]
+    },
+    {
+      "store": "Ubisoft Store",
+      "config_files": [
+        {
+          "file": "GFXSettings.TheDivision.exe.xml",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\GFXSettings.TheDivision.exe.xml",
+          "format": "xml"
+        },
+        {
+          "file": "state.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\state.cfg",
+          "format": "cfg"
+        },
+        {
+          "file": "graphic settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\graphic settings.cfg",
+          "format": "cfg"
+        }
+      ]
+    },
+    {
+      "store": "Microsoft Store",
+      "config_files": [
+        {
+          "file": "GFXSettings.TheDivision.exe.xml",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\GFXSettings.TheDivision.exe.xml",
+          "format": "xml"
+        },
+        {
+          "file": "state.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\state.cfg",
+          "format": "cfg"
+        },
+        {
+          "file": "graphic settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division\\graphic settings.cfg",
+          "format": "cfg"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "DirectX 12",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Enables the DirectX 12 renderer.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "PCGamingWiki reports DX12 can stutter in The Division on select systems. On the RTX 4070 SUPER test system it did not improve the benchmark, so DX11 is the safer default."
+    },
+    {
+      "key": "Contact Shadows",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Dedicated contact shadows from sun, moon, and many artificial lights.",
+      "recommendations": {
+        "performance": "Off",
+        "balanced": "All Low",
+        "quality": "All High"
+      },
+      "notes": "All High looks best but costs several FPS; All Low is the best compromise when chasing 90+ FPS on ultrawide."
+    },
+    {
+      "key": "PostFx AA",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Post-process anti-aliasing for alpha edges, particles, and other transparent detail.",
+      "recommendations": {
+        "performance": "Off",
+        "balanced": "High",
+        "quality": "Ultra"
+      },
+      "notes": "Temporal AA is always on and does most of the work; PostFx AA is a subtle extra pass. Ultra costs more than it usually looks like it should."
+    },
+    {
+      "key": "Volumetric Fog",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Resolution of the game's volumetric fog and haze.",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "Ultra"
+      },
+      "notes": "High is close to Ultra visually; Medium is the first sensible cut if FPS needs to recover."
+    },
+    {
+      "key": "Extra Streaming Distance",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "How much distant world detail streams in and how far the engine tries to keep it loaded.",
+      "recommendations": {
+        "performance": "6",
+        "balanced": "7",
+        "quality": "8"
+      },
+      "notes": "Mixed HDD/NVMe Storage Spaces can amplify the cost of aggressive streaming values. On the test system, 7 was the practical quality/performance balance; 8 is only worth it if the game remains smooth on the mixed pool."
+    },
+    {
+      "key": "Object Detail",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Level of detail and mesh complexity for distant objects such as bridges, road barriers, and city geometry.",
+      "recommendations": {
+        "performance": "16",
+        "balanced": "17",
+        "quality": "18"
+      },
+      "notes": "This is the main fix for low-poly distant bridges. 16 was too low at 5120x1440; 17 is the first useful quality bump without pushing the benchmark too far from the 90 FPS floor."
+    },
+    {
+      "key": "Chromatic Aberration",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Peripheral colour-fringing post effect.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Keep off for clarity; it has no gameplay value and is a common eye-strain trigger."
+    },
+    {
+      "key": "Shadow Quality",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Shadowing technique used for world shadows.",
+      "recommendations": {
+        "performance": "Low",
+        "balanced": "High",
+        "quality": "PCSS+"
+      },
+      "notes": "HFTS is a GTX 900 Maxwell-only path. GTX 8xx cards should not expect HFTS; use High or PCSS+ instead. RTX 40-series cards should use PCSS+ if the option is available."
+    },
+    {
+      "key": "Shadow Resolution",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Shadow map detail for the selected shadow technique.",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "High"
+      },
+      "notes": "Keep High if you're using High or PCSS+ shadows; lower values are visibly softer and can make contact points float."
+    },
+    {
+      "key": "Local Reflections",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Screen-space reflection quality for wet streets, windows, and reflective surfaces.",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "Very High"
+      },
+      "notes": "Very High is the cleanest look, but High is the usual sweet spot when you still want 90+ FPS."
+    },
+    {
+      "key": "Ambient Occlusion Quality",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Ambient occlusion technique for contact shadows and scene depth.",
+      "recommendations": {
+        "performance": "Off",
+        "balanced": "NVIDIA HBAO+",
+        "quality": "NVIDIA HBAO+"
+      },
+      "notes": "NVIDIA HBAO+ is the most accurate option and was worth keeping on the high-end RTX 4070 SUPER test system."
+    },
+    {
+      "key": "Anisotropy",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Texture filtering quality.",
+      "recommendations": {
+        "performance": "16x",
+        "balanced": "16x",
+        "quality": "16x"
+      },
+      "notes": "Very low cost; keep maxed. The visual improvement is obvious at ultrawide resolutions and the performance cost is tiny."
+    },
+    {
+      "key": "Temporal AA",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Temporal anti-aliasing mode.",
+      "recommendations": {
+        "performance": "Stabilization",
+        "balanced": "Supersampling",
+        "quality": "Supersampling"
+      },
+      "notes": "Stabilization is only worth using if you are chasing every last frame and can tolerate a little more shimmer; Supersampling is usually the right pick even on high-end GPUs."
+    },
+    {
+      "key": "VSyncMode",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "In-game VSync.",
+      "recommendations": {
+        "performance": "Off",
+        "balanced": "Off",
+        "quality": "Off"
+      },
+      "notes": "Use VRR/G-Sync instead."
+    },
+    {
+      "key": "Frame Rate Limit",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Limiter mode for the custom frame cap.",
+      "recommendations": {
+        "performance": "Custom",
+        "balanced": "Custom",
+        "quality": "Custom"
+      },
+      "notes": "Pair with Custom Fps to keep frame pacing stable on the mixed storage pool."
+    },
+    {
+      "key": "Custom Fps",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Custom frame-rate ceiling in FPS.",
+      "recommendations": {
+        "performance": "144",
+        "balanced": "108",
+        "quality": "120"
+      },
+      "notes": "108 is the practical cap for the current 90+ FPS target on this ultrawide; 120 is only worthwhile if you later recover more headroom."
+    },
+    {
+      "key": "View Scale",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Internal render scale.",
+      "recommendations": {
+        "performance": "100%",
+        "balanced": "100%",
+        "quality": "100%"
+      },
+      "notes": "Keep native at 100% on this RTX 4070 SUPER / 5120x1440 display pair. Lowering view scale should be a last-resort fix only."
+    },
+    {
+      "key": "Depth of Field",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Adds cinematic blur and bokeh in cutscenes, aiming down sights, and Echoes.",
+      "recommendations": {
+        "performance": "Off",
+        "balanced": "Medium",
+        "quality": "High"
+      },
+      "notes": "For motion comfort, override this to Off. NVIDIA notes the gameplay difference between Medium and High is subtle, so this is a good comfort setting to trim first if you feel eye strain or nausea."
+    },
+    {
+      "key": "Vignette Effect",
+      "file": "GFXSettings.TheDivision.exe.xml",
+      "effect": "Darkens the corners of the image.",
+      "recommendations": {
+        "performance": "Off",
+        "balanced": "Off",
+        "quality": "Off"
+      },
+      "notes": "Keep Off for cleaner edges and lower tunnel-vision sensation. The effect is subtle, so there is little reason to leave it enabled if motion comfort matters."
+    },
+    {
+      "key": "maxMouseSensitivity",
+      "file": "state.cfg",
+      "effect": "Upper bound of the in-game mouse sensitivity slider range.",
+      "recommendations": {
+        "performance": "—",
+        "balanced": "—",
+        "quality": "—"
+      },
+      "notes": "Defines the slider ceiling, not the actual sensitivity you play at. The live value is set via the in-game Controls menu and is not stored as a readable config key. Increase this value if the default maximum (80) feels too low."
+    },
+    {
+      "key": "minMouseSensitivity",
+      "file": "state.cfg",
+      "effect": "Lower bound of the in-game mouse sensitivity slider range.",
+      "recommendations": {
+        "performance": "—",
+        "balanced": "—",
+        "quality": "—"
+      },
+      "notes": "Defines the slider floor. The default of 2 is already very low; rarely needs adjusting."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Motion blur",
+      "location": "In-game graphics menu (if exposed)",
+      "recommendation": "Off",
+      "reason": "Motion blur is a primary nausea trigger. No verified motion-blur config key was found in the live files, so this is the first comfort toggle to disable if the menu exposes it."
+    },
+    {
+      "setting": "Camera shake / screen shake",
+      "location": "In-game gameplay or accessibility menu (if exposed)",
+      "recommendation": "Off / Reduced",
+      "reason": "Impact-driven camera jolts and scripted shake can trigger nausea even when the FPS is stable. No verified config key was found in the live files."
+    },
+    {
+      "setting": "Field of view",
+      "location": "In-game FOV slider (if exposed)",
+      "recommendation": "Set to the widest comfortable value",
+      "reason": "A wider FOV reduces tunnel-vision sensation and often helps with motion sickness. On ultrawide, keep it as wide as you can comfortably tolerate without distortion."
+    },
+    {
+      "setting": "Head bob / camera bob",
+      "location": "In-game Gameplay or Controls menu (if exposed)",
+      "recommendation": "Off",
+      "reason": "Walking-camera oscillation is a primary motion-sickness trigger. No config key was found for head bob in any Division file (GFXSettings XML, state.cfg, graphic settings.cfg) — this setting is in-game menu only, and may not be separately exposed in this game."
+    }
+  ],
+  "notes": [
+    "Tom Clancy's The Division runs on the Ubisoft Snowdrop engine. See knowledge/game-engines/snowdrop.json for engine-level defaults.",
+    "On the tested RTX 4070 SUPER / 32 GB / 5120x1440 system, benchmark runs stabilized around 83-85 FPS average with 87-89 typical FPS, indicating persistent streaming and main-thread pressure rather than only first-run shader compilation.",
+    "The mixed HDD/NVMe Storage Spaces pool magnifies the cost of aggressive streaming settings. Extra Streaming Distance and Object Detail are the main levers for distant pop-in and bridge LOD quality.",
+    "Object Detail 16 was too low for distant bridge geometry at 5120x1440; 17 is the first useful quality bump.",
+    "Motion-comfort pass: no verified motion-blur, head-bob, or screen-shake config key was found in any Division config file (GFXSettings XML, state.cfg, graphic settings.cfg). Use the in-game menu to disable motion blur, camera shake, and head bob if those options are exposed; depth of field, chromatic aberration, and vignette can all be turned off via config.",
+    "Mouse sensitivity: maxMouseSensitivity and minMouseSensitivity in state.cfg define only the slider range bounds (defaults: 80 and 2). The actual sensitivity value is set exclusively via the in-game Controls menu and is not readable from the config files."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Tom_Clancy%27s_The_Division",
+      "type": "wiki",
+      "label": "PCGamingWiki - Tom Clancy's The Division"
+    },
+    {
+      "url": "https://www.nvidia.com/en-us/geforce/news/gfecnt/tom-clancys-the-division-graphics-and-performance-guide/",
+      "type": "official",
+      "label": "NVIDIA GeForce - Tom Clancy's The Division Graphics & Performance Guide"
+    }
+  ]
+}

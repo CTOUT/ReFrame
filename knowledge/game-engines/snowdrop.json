@@ -1,0 +1,84 @@
+{
+  "engine": "Snowdrop",
+  "version_range": "all",
+  "profile_version": "1.0.0",
+  "updated": "2026-06-07",
+
+  "fallback_for": [
+    "Snowdrop 2.0",
+    "Snowdrop 3.0"
+  ],
+
+  "detection_signatures": {
+    "file_names": [
+      "GFXSettings.*.exe.xml"
+    ],
+    "root_xml_element": [
+      "GSA_SDK"
+    ],
+    "path_fragments": [
+      "Documents\\My Games\\"
+    ],
+    "notes": "Snowdrop config files use a Ubisoft GSA_SDK XML wrapper. The root element is <GSA_SDK Version=\"1.0.x.x\"> and settings are stored as <OPTION Name=\"...\" Value=\"...\"> nodes inside <GAMESETTINGS>. File names follow the pattern GFXSettings.<GameExeName>.exe.xml."
+  },
+
+  "config_file_locations": {
+    "windows": "%USERPROFILE%\\Documents\\My Games\\<GameTitle>\\",
+    "notes": "The CONFIGPATH attribute embedded in the XML file may point to a OneDrive-synced Documents folder (e.g. D:\\OneDrive\\Documents\\...) rather than the canonical local path. On OneDrive-backed installs both paths resolve to the same physical file — edit either."
+  },
+
+  "known_games": [
+    "Tom Clancy's The Division",
+    "Tom Clancy's The Division 2",
+    "For Honor",
+    "South Park: The Fractured But Whole",
+    "Immortals Fenyx Rising",
+    "Riders Republic",
+    "Avatar: Frontiers of Pandora"
+  ],
+
+  "keys": [
+    {
+      "key": "VSyncMode",
+      "file": "GFXSettings.<game>.exe.xml",
+      "effect": "In-game vertical sync.",
+      "recommendations": {
+        "performance": "Off",
+        "balanced": "Off",
+        "quality": "Off"
+      },
+      "notes": "Present as an OPTION element in the GSA_SDK XML with values 'On' / 'Off'. Use G-Sync, FreeSync, or driver-level VSync instead of the in-game toggle. Verified in The Division; confirm the exact enum values in the game-specific profile for other titles."
+    },
+    {
+      "key": "DirectX 12",
+      "file": "GFXSettings.<game>.exe.xml",
+      "effect": "Enables the DirectX 12 renderer instead of DirectX 11.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "DX12 in Snowdrop titles has historically introduced stutter and inconsistent frame pacing on some hardware/driver combinations. DX11 is the safer default unless a game-specific profile explicitly recommends DX12. Verified in The Division; other Snowdrop titles may behave differently — always defer to the game-specific profile."
+    }
+  ],
+
+  "notes": [
+    "Snowdrop is a Ubisoft proprietary engine. Unlike engines with a shared CVar namespace (e.g. Unreal Engine's sg.* / r.* prefixes), Snowdrop games each expose their own XML schema. There is no universal set of key names shared across all Snowdrop titles — always use a game-specific profile when one exists.",
+    "Config files are encoded in UTF-16 LE. Use Get-Content -Encoding Unicode (PowerShell) or an equivalent UTF-16 reader; treating the file as UTF-8 or ASCII will produce garbage output.",
+    "The GSA_SDK XML OPTION element lists valid enum values inline as child <ENUM EnumValue=\"...\"> nodes. These can be inspected to confirm valid values for a given key without opening the game.",
+    "Snowdrop game config directories are typically located at %USERPROFILE%\\Documents\\My Games\\<GameTitle>\\."
+  ],
+
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Tom_Clancy%27s_The_Division",
+      "type": "wiki",
+      "label": "PCGamingWiki - Tom Clancy's The Division"
+    },
+    {
+      "url": "https://www.nvidia.com/en-us/geforce/news/gfecnt/tom-clancys-the-division-graphics-and-performance-guide/",
+      "type": "official",
+      "label": "NVIDIA GeForce - Tom Clancy's The Division Graphics & Performance Guide"
+    }
+  ]
+}

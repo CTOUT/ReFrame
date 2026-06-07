@@ -1,0 +1,337 @@
+{
+  "_template_version": "1",
+  "game": "Tom Clancy's The Division Resurgence",
+  "engine": "Unreal Engine 4",
+  "profile_version": "1.0.0",
+  "updated": "2026-06-07",
+
+  "platforms": [
+    {
+      "store": "Ubisoft Connect",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\TheDivision\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini",
+          "notes": "Primary graphics and display settings. Section header for game-specific keys is [/Script/TheDivision.TDGameUserSettings], not the standard [/Script/Engine.GameUserSettings]. Scalability groups live in [ScalabilityGroups] as normal."
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\TheDivision\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini",
+          "notes": "Does not exist on a fresh install. Create it and add a [SystemSettings] section for CVar overrides. Values here take precedence over the shipped DefaultEngine.ini."
+        }
+      ]
+    }
+  ],
+
+  "keys": [
+    {
+      "key": "bUseVSync",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheDivision.TDGameUserSettings]",
+      "effect": "Enables or disables in-game vertical sync.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Defaults to True in this game — unlike most UE4 titles. Always disable and use G-Sync, FreeSync, or driver-level VSync instead to avoid input latency and frame judder."
+    },
+    {
+      "key": "FrameRateLimit",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheDivision.TDGameUserSettings]",
+      "effect": "Maximum frame rate cap in Hz. 0 = unlimited.",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "match_monitor_hz"
+      },
+      "notes": "Defaults to 0 (uncapped). Set to monitor refresh rate to prevent screen tearing and unnecessary GPU heat when VSync is off. Use a float value, e.g. 240.000000."
+    },
+    {
+      "key": "sg.ResolutionQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Render resolution scale as a percentage (50–100). Does not affect UI resolution.",
+      "recommendations": {
+        "performance": "75",
+        "balanced": "85",
+        "quality": "100"
+      }
+    },
+    {
+      "key": "sg.ViewDistanceQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Draw distance and LOD for distant world geometry: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.AntiAliasingQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Anti-aliasing quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "DefaultEngine.ini ships with r.DefaultFeature.AntiAliasing=0 (AA off at engine level from mobile origin). The sg.AntiAliasingQuality group may be overridden or have no effect — verify in-game that AA is visually active at higher scalability values."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Shadow rendering quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Post-process effects quality (ambient occlusion quality tier, etc.): 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Keep at the scalability group level for AO and general quality. Individual disruptive effects (motion blur, depth of field, chromatic aberration) are controlled via separate Engine.ini CVars and should be disabled independently of this group."
+    },
+    {
+      "key": "sg.TextureQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Texture streaming pool quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "3"
+      },
+      "notes": "Texture quality is bandwidth-bound rather than GPU-compute-bound. Dropping below 2 rarely improves frame rate on mid/high-end hardware."
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Particle and visual effects quality: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.FoliageQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Vegetation density and draw distance: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.ShadingQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Material shading complexity: 0=low, 1=medium, 2=high, 3=epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.LevelQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Custom scalability group — likely controls level-of-detail for world streaming (mobile port origin). Exact behaviour not fully documented.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Non-standard UE4 scalability group added by the game. Present in the live config at default value 3. Full behaviour unverified — treat as a general quality/draw-distance slider until better data is available."
+    },
+    {
+      "key": "sg.PlayerQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Custom scalability group — likely controls character/player model LOD and skin detail (mobile port origin). Exact behaviour not fully documented.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Non-standard UE4 scalability group added by the game. Present in the live config at default value 3. Full behaviour unverified."
+    },
+    {
+      "key": "sg.CustomQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Custom scalability group — purpose unverified. Present in live config at default value 3.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Non-standard UE4 scalability group added by the game. Full behaviour unverified — adjust with caution."
+    },
+    {
+      "key": "r.MotionBlurQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Motion blur quality: 0=off, 1=low, 2=medium, 3=high, 4=very high.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off for all goals. Primary nausea trigger for motion_comfort users; also a zero-benefit cost at high frame rates. Set alongside r.DefaultFeature.MotionBlur=0."
+    },
+    {
+      "key": "r.DefaultFeature.MotionBlur",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Allows post-process volumes in the scene to enable motion blur (0=off, 1=on). Prevents level-placed volumes from overriding r.MotionBlurQuality=0.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Set together with r.MotionBlurQuality=0. Without this, a post-process volume in the game world can re-enable motion blur regardless of the quality CVar."
+    },
+    {
+      "key": "r.DepthOfFieldQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Depth of field quality: 0=off, 1=low (Gaussian), 2=high (Bokeh / Circle DoF).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off for all goals. motion_comfort: inconsistent focus plane causes eye strain and visual fatigue. Also a notable GPU cost for minimal gameplay benefit in a third-person action game."
+    },
+    {
+      "key": "r.SceneColorFringeQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Chromatic aberration (peripheral colour fringing): 0=off, 1=fast, 2=higher quality.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off for all goals. motion_comfort: peripheral colour distortion is a nausea trigger. Has no gameplay value and reduces perceived sharpness."
+    },
+    {
+      "key": "r.DefaultFeature.LensFlare",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Enables or disables the lens flare post-process effect (0=off, 1=on).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended off for all goals. motion_comfort: sudden high-contrast bursts. Also distracting in a tactical shooter environment."
+    },
+    {
+      "key": "r.Tonemapper.GrainIntensity",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Film grain intensity applied by the tonemapper. 0=off.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Already disabled in DefaultEngine.ini (r.filmgrain.enabled=0). This Engine.ini entry is a safety override that survives a game update changing DefaultEngine.ini."
+    }
+  ],
+
+  "engine_overrides": [
+    {
+      "key": "r.BloomQuality",
+      "behaviour": "Set to 0 in DefaultEngine.ini. Bloom is disabled at the engine level for this mobile port and cannot be enabled via sg.PostProcessQuality.",
+      "action": "Do not attempt to enable bloom via Engine.ini overrides — the game's visual design does not include it."
+    },
+    {
+      "key": "r.DefaultFeature.AntiAliasing",
+      "behaviour": "Set to 0 in DefaultEngine.ini. AA may be handled by a mobile-path renderer and the sg.AntiAliasingQuality scalability group may have no effect.",
+      "action": "Verify in-game that anti-aliasing is visually active when sg.AntiAliasingQuality=3. If not, check the in-game settings menu for a separate AA toggle."
+    },
+    {
+      "key": "r.filmgrain.enabled",
+      "behaviour": "Set to 0 in DefaultEngine.ini. Film grain is disabled at the engine level.",
+      "action": "No action needed. r.Tonemapper.GrainIntensity=0 in Engine.ini is a safety override in case DefaultEngine.ini changes on update."
+    }
+  ],
+
+  "manual_only_settings": [
+    {
+      "setting": "Camera Shake",
+      "location": "Settings → Video or Accessibility",
+      "recommendation": "Off or minimum",
+      "reason": "motion_comfort: impact and event-driven camera jolts are a strong nausea trigger"
+    },
+    {
+      "setting": "Head Bob / Weapon Sway",
+      "location": "Settings → Video or Accessibility",
+      "recommendation": "Off or minimum",
+      "reason": "motion_comfort: oscillating camera movement during locomotion is a primary nausea trigger in third-person games"
+    },
+    {
+      "setting": "Field of View",
+      "location": "Settings → Video",
+      "recommendation": "90°+ if the slider is available",
+      "reason": "motion_comfort: FOV below ~80° increases nausea susceptibility; this game may lock FOV as a mobile port"
+    },
+    {
+      "setting": "Hit Screen Effects / Screen Flash",
+      "location": "Settings → Accessibility or Gameplay",
+      "recommendation": "Off or minimum",
+      "reason": "motion_comfort / photosensitivity: high-contrast flash on hit events"
+    }
+  ],
+
+  "notes": [
+    "Tom Clancy's The Division Resurgence is primarily a mobile title (iOS / Android) with a PC client distributed via Ubisoft Connect. The PC build uses a Unreal Engine 4 base adapted from the mobile code path.",
+    "Config path uses WindowsNoEditor (not Windows) — standard for mobile-origin UE4 ports; differs from native PC UE4 games.",
+    "Game-specific settings use the section header [/Script/TheDivision.TDGameUserSettings], not the standard [/Script/Engine.GameUserSettings].",
+    "Film grain (r.filmgrain.enabled=0) and bloom (r.BloomQuality=0) are shipped off in DefaultEngine.ini and cannot be re-enabled via user Engine.ini overrides alone.",
+    "All scalability groups default to 3 (Epic) — the game does not appear to run a hardware benchmark on first launch.",
+    "Three non-standard scalability groups exist in the live config: sg.LevelQuality, sg.PlayerQuality, sg.CustomQuality. Their exact effects are unverified as of 2026-06-07.",
+    "Profile sourced from live config analysis of an installed PC build on 2026-06-07. No PCGamingWiki article exists for the PC version at time of writing."
+  ],
+
+  "sources": [
+    {
+      "url": "https://www.ubisoft.com/en-gb/game/the-division/resurgence",
+      "type": "official",
+      "label": "Ubisoft — Tom Clancy's The Division Resurgence official page"
+    },
+    {
+      "url": "https://docs.unrealengine.com/4.27/en-US/TestingAndOptimization/PerformanceAndProfiling/",
+      "type": "official",
+      "label": "Unreal Engine 4 Docs — Performance and Profiling (CVar reference)"
+    },
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Engine:Unreal_Engine_4",
+      "type": "wiki",
+      "label": "PCGamingWiki — Unreal Engine 4 (scalability group and CVar reference)"
+    }
+  ]
+}

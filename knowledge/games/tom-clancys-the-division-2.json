@@ -1,0 +1,317 @@
+{
+  "_template_version": "1",
+  "game": "Tom Clancy's The Division 2",
+  "engine": "Snowdrop",
+  "profile_version": "1.0.0",
+  "updated": "2026-06-07",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "file": "graphic settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division 2\\graphic settings.cfg",
+          "format": "cfg",
+          "notes": "UTF-8 encoded. Lua-style flat key-value table (keys in [\"square brackets\"]). Primary graphics tuning file. Unlike Division 1, this is NOT a GSA_SDK XML file."
+        },
+        {
+          "file": "state.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division 2\\state.cfg",
+          "format": "cfg",
+          "notes": "UTF-8 encoded. Nested Lua-style table. Contains graphics subsystem flags (dx12, VRR settings, resolution), audio, input, and localisation."
+        },
+        {
+          "file": "persistent_settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division 2\\persistent_settings.cfg",
+          "format": "cfg",
+          "notes": "UTF-8 encoded. Stores gameplay and keybind state. Not analysed in this profile."
+        },
+        {
+          "file": "ui config.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division 2\\ui config.cfg",
+          "format": "cfg",
+          "notes": "UTF-8 encoded. HUD and UI layout settings. Not analysed in this profile."
+        }
+      ]
+    },
+    {
+      "store": "Epic Games Store",
+      "config_files": [
+        {
+          "file": "graphic settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division 2\\graphic settings.cfg",
+          "format": "cfg"
+        },
+        {
+          "file": "state.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division 2\\state.cfg",
+          "format": "cfg"
+        }
+      ]
+    },
+    {
+      "store": "Ubisoft Store",
+      "config_files": [
+        {
+          "file": "graphic settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division 2\\graphic settings.cfg",
+          "format": "cfg"
+        },
+        {
+          "file": "state.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Tom Clancy's The Division 2\\state.cfg",
+          "format": "cfg"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "chromatic aberration",
+      "file": "graphic settings.cfg",
+      "effect": "Peripheral colour-fringing post effect that simulates lens imperfection.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Keep off for all goals. No gameplay value; peripheral colour distortion is a common eye-strain and motion-sickness trigger. Observed already off on a default install."
+    },
+    {
+      "key": "customFPSLimit",
+      "file": "graphic settings.cfg",
+      "effect": "Custom frame-rate ceiling in FPS when maxFramerate is 0.",
+      "recommendations": {
+        "performance": "144",
+        "balanced": "72",
+        "quality": "120"
+      },
+      "notes": "Acts as the active frame cap when [\"maxFramerate\"] = 0 (do not change maxFramerate). Default 200 is effectively uncapped for most displays and causes excess GPU heat. Set to your monitor refresh rate for performance, or at/above fps_floor × 1.15 for balanced."
+    },
+    {
+      "key": "dof",
+      "file": "graphic settings.cfg",
+      "effect": "Enables depth-of-field blur in cutscenes, Echoes, and aiming-down-sights sequences.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "true",
+        "quality": "true"
+      },
+      "notes": "DoF is a cinematic quality effect with low FPS cost. Override to false whenever the motion_comfort modifier is active — inconsistent focus planes are a primary eye-strain and nausea trigger."
+    },
+    {
+      "key": "extra streaming distance",
+      "file": "graphic settings.cfg",
+      "effect": "Normalised multiplier controlling how far the engine streams world geometry and texture detail.",
+      "recommendations": {
+        "performance": "0.7",
+        "balanced": "0.85",
+        "quality": "1.0"
+      },
+      "notes": "Scale is 0.0–1.0 in Division 2 (differs from Division 1's discrete 6/7/8 integer scale). Higher values improve distant pop-in quality but increase streaming load — particularly relevant on HDDs or mixed HDD+NVMe Storage Spaces pools."
+    },
+    {
+      "key": "max anisotropy",
+      "file": "graphic settings.cfg",
+      "effect": "Anisotropic filtering level for texture sharpness at oblique viewing angles.",
+      "recommendations": {
+        "performance": "16",
+        "balanced": "16",
+        "quality": "16"
+      },
+      "notes": "16x AF costs negligible GPU performance on modern hardware and provides a clear improvement over lower values at any resolution. Default on a fresh install was observed at 4 — this is a high-value change for minimal cost."
+    },
+    {
+      "key": "object detail",
+      "file": "graphic settings.cfg",
+      "effect": "LOD complexity multiplier for distant world geometry including bridges, road barriers, and building facades.",
+      "recommendations": {
+        "performance": "1.5",
+        "balanced": "1.75",
+        "quality": "2.0"
+      },
+      "notes": "Scale appears to be 0.0–2.0 (differs from Division 1's integer 16–18 scale). Values below 1.75 produce noticeably low-poly distant geometry at ultrawide and 4K resolutions. 2.0 is the observed maximum."
+    },
+    {
+      "key": "presentInterval",
+      "file": "graphic settings.cfg",
+      "effect": "In-game vertical sync toggle. 0 = off, 1 = on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Keep at 0 for all goals. Use G-Sync, FreeSync, or driver-level VRR instead. In-game VSync adds input latency and can cause frame-pacing issues."
+    },
+    {
+      "key": "reflected objects quality",
+      "file": "graphic settings.cfg",
+      "effect": "Quality of objects rendered in wet surface reflections, windows, and reflective geometry.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Integer scale 0–3; 3 is the observed maximum. High-impact setting in Division 2's rain-soaked Washington D.C. environments, where wet streets and glass surfaces are omnipresent."
+    },
+    {
+      "key": "shadow quality2",
+      "file": "graphic settings.cfg",
+      "effect": "Shadowing technique and quality tier for world shadows.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "Integer scale; 4 is the observed maximum. Exact enum mapping is unconfirmed — scale likely runs 0 (off/lowest) to 4 (maximum quality). Monitor frametimes when lowering; shadows are expensive in Division 2's dense urban environments."
+    },
+    {
+      "key": "spot shadow resolution",
+      "file": "graphic settings.cfg",
+      "effect": "Shadow map resolution for local light sources including street lights, lanterns, and tactical flashlights.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Integer scale 0–3; 3 is the observed maximum. Low values produce visible shadow aliasing beneath artificial lighting in Division 2's night missions and indoor environments."
+    },
+    {
+      "key": "ss reflection3",
+      "file": "graphic settings.cfg",
+      "effect": "Screen-space reflection quality and resolution.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "Integer scale; 4 is the observed maximum. One of the most visually impactful settings in Division 2 due to the prevalence of wet streets and water features. Consider keeping at 3 on mid-range GPUs even for a quality goal."
+    },
+    {
+      "key": "ssao quality 2",
+      "file": "graphic settings.cfg",
+      "effect": "Ambient occlusion technique and quality level for contact shadows and scene depth.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "Integer scale; 4 is the observed maximum (equivalent to HBAO+ in Division 1 — the highest-quality AO path). 0 disables AO entirely. Values 1–3 represent lower quality tiers."
+    },
+    {
+      "key": "taa",
+      "file": "graphic settings.cfg",
+      "effect": "Temporal anti-aliasing mode and quality level.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "4",
+        "quality": "4"
+      },
+      "notes": "Integer scale; 4 is the observed maximum (equivalent to Supersampling mode in Division 1). Value 2 approximates Stabilization mode. Do not set to 0 — the game lacks a non-TAA anti-aliasing path and will look unacceptably aliased."
+    },
+    {
+      "key": "vegetation quality",
+      "file": "graphic settings.cfg",
+      "effect": "Density and complexity of foliage, grass, undergrowth, and plant geometry.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Integer scale 0–3; 3 is the observed maximum. At 0–1, foliage density is noticeably sparse in open outdoor zones such as Capitol Hill, Roosevelt Island, and the Tidal Basin."
+    },
+    {
+      "key": "view scale",
+      "file": "graphic settings.cfg",
+      "effect": "Internal render scale relative to display resolution. 1.0 = native; 0.5 = 50% resolution.",
+      "recommendations": {
+        "performance": "1.0",
+        "balanced": "1.0",
+        "quality": "1.0"
+      },
+      "notes": "Keep at 1.0 for all goals unless the GPU is severely constrained. Minimum is 0.5; do not set below 0.75 except as an emergency measure. Division 2 has no DLSS, FSR, or XeSS upscaling to compensate for sub-native rendering — quality loss is unmitigated."
+    },
+    {
+      "key": "vignette",
+      "file": "graphic settings.cfg",
+      "effect": "Darkens screen edges to simulate camera lens vignetting.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Keep off for all goals. Adds a subtle tunnel-vision sensation with no gameplay benefit. Particularly important to disable when the motion_comfort modifier is active."
+    },
+    {
+      "key": "water quality",
+      "file": "graphic settings.cfg",
+      "effect": "Rendering quality, wave simulation, and detail of water surfaces including rivers and flooded areas.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Integer scale 0–3; 3 is the observed maximum. Division 2 features extensive water environments (Tidal Basin, Roosevelt Island, Canal Zone) where this setting is prominently visible."
+    },
+    {
+      "key": "dx12",
+      "file": "state.cfg",
+      "section": "[\"graphics\"]",
+      "effect": "Enables the DirectX 12 renderer. false uses DirectX 11.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Division 2 shipped with improved DX12 support compared to Division 1, and was observed running with dx12 = true on the test system (RTX 4070 SUPER) without confirmed stutters during this session. However, the Snowdrop engine's DX12 path has a documented stutter history across this franchise. Default recommendation is false (DX11) for stability across a wider range of hardware. If stutters occur with dx12 = true, switch to false as the first diagnostic step."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Motion blur",
+      "location": "In-game Graphics menu (Post-processing or Advanced section)",
+      "recommendation": "Off",
+      "reason": "Primary motion sickness trigger. No config key was found in any Division 2 file (graphic settings.cfg, state.cfg, persistent_settings.cfg). Must be disabled via the in-game menu — highest priority motion_comfort step."
+    },
+    {
+      "setting": "Camera shake / screen shake",
+      "location": "In-game Gameplay or Accessibility menu",
+      "recommendation": "Off or Reduced",
+      "reason": "Impact-driven camera jolts trigger nausea even when FPS is stable. No config key was found in the live files."
+    },
+    {
+      "setting": "Field of view",
+      "location": "In-game Graphics menu → FOV slider",
+      "recommendation": "90–100° horizontal",
+      "reason": "Wider FOV reduces tunnel-vision sensation and is one of the most effective motion-comfort adjustments. Below ~80° noticeably increases nausea risk, particularly during sprint sequences."
+    },
+    {
+      "setting": "Head bob",
+      "location": "In-game Gameplay or Controls menu",
+      "recommendation": "Off (if exposed)",
+      "reason": "Walking-camera oscillation is a strong nausea trigger. This option may not be separately exposed in Division 2 — check the Gameplay and Controls sections."
+    }
+  ],
+  "notes": [
+    "Tom Clancy's The Division 2 runs on the Ubisoft Snowdrop engine. See knowledge/game-engines/snowdrop.json for engine-level defaults.",
+    "Config files are UTF-8 encoded — not UTF-16 LE as in Division 1. Use Get-Content -Encoding UTF8 (PowerShell) or equivalent. Standard text editors and most tools will read them correctly without any special handling.",
+    "The graphic settings.cfg format is a flat Lua-style key-value table, not the GSA_SDK XML wrapper used in Division 1. Keys appear as [\"key name\"] = value.",
+    "The state.cfg is a nested Lua-style table. The dx12 flag lives at [\"graphics\"][\"dx12\"]. Edit state.cfg keys with awareness of the nesting depth.",
+    "Division 2 has no built-in upscaling (DLSS, FSR, or XeSS). view scale is the only resolution-reduction lever and incurs unmitigated quality loss — prefer native rendering.",
+    "All integer scale maximums (shadow quality2, ss reflection3, ssao quality 2, taa, etc.) are observed values from the test system and may vary if the engine exposes higher tiers on different hardware configurations.",
+    "Profile tested on: RTX 4070 SUPER / 32 GB RAM / 5120×1440 ultrawide / mixed HDD+NVMe Storage Spaces.",
+    "Performance and balanced recommendations are inferred from quality findings and Division 1 cross-reference, not directly benchmarked. Use them as a calibration starting point."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Tom_Clancy%27s_The_Division_2",
+      "type": "wiki",
+      "label": "PCGamingWiki — Tom Clancy's The Division 2"
+    },
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Tom_Clancy%27s_The_Division",
+      "type": "wiki",
+      "label": "PCGamingWiki — Tom Clancy's The Division (Snowdrop schema cross-reference)"
+    }
+  ]
+}
