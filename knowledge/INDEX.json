@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated": "2026-06-07",
+  "updated": "2026-06-15",
   "games": [
     {
       "name": "Apex Legends",
@@ -278,7 +278,7 @@
         "Microsoft Store"
       ],
       "key_count": 21,
-      "profile_version": "1.2.0",
+      "profile_version": "1.3.0",
       "updated": "2026-06-07"
     },
     {
@@ -339,6 +339,17 @@
       "key_count": 6,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
+    },
+    {
+      "name": "Wild Terra 2: New Lands",
+      "file": "games/wild-terra-2-new-lands.json",
+      "engine": "Unity",
+      "platforms": [
+        "Steam"
+      ],
+      "key_count": 14,
+      "profile_version": "1.3.0",
+      "updated": "2026-06-15"
     },
     {
       "name": "Windrose",

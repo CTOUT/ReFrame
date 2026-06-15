@@ -1,0 +1,353 @@
+{
+  "game": "Wild Terra 2: New Lands",
+  "engine": "Unity",
+  "profile_version": "1.3.0",
+  "updated": "2026-06-15",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "1134700",
+      "config_files": [
+        {
+          "file": "registry (PlayerPrefs)",
+          "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+          "format": "registry",
+          "notes": "All graphics, audio, and display settings are stored here as Unity PlayerPrefs DWORD/binary values. Keys use Unity hash suffixes. Edit only while the game is fully closed. Session keys (xsolla_login_*, unity.player_session*, WTUILayout, LoginServerKeyName) are written at runtime — do not modify those."
+        },
+        {
+          "file": "boot.config",
+          "path": "%GAME_DIR%\\Wild-Terra-2_Data\\boot.config",
+          "format": "text",
+          "notes": "Low-level Unity renderer configuration (key=value, one per line). The developer ships this file with performance-optimised defaults already applied — do not duplicate existing lines. The only user-actionable key for most players is hdr-display-enabled. This file may be overwritten on game updates; re-apply changes after an update if needed."
+        },
+        {
+          "file": "client.json",
+          "path": "%GAME_DIR%\\client.json",
+          "format": "json",
+          "notes": "Build configuration deployed by the developer. Contains the GRAPHIC section with anti-aliasing add-on toggles. Do not modify AUTH_API, USE_WEB_AUTH, STEAM_AUTH, VKPLAY, or TEST_SERVER_CLIENT — these are platform authentication values. This file may be overwritten on game updates."
+        },
+        {
+          "file": "gameplay.json",
+          "path": "%GAME_DIR%\\gameplay.json",
+          "format": "json",
+          "notes": "Server-side gameplay configuration (XP ratios, crafting times, quest flags). No graphics or performance settings. Not a target for ReFrame optimisation."
+        },
+        {
+          "file": "input.xml",
+          "path": "%USERPROFILE%\\AppData\\LocalLow\\Juvty Worlds\\Wild-Terra-2\\input.xml",
+          "format": "xml",
+          "notes": "Keybinding and controller configuration only. No graphics or performance settings. Not a target for ReFrame optimisation."
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "QualityValue_h4053189507",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "GRAPHICS",
+      "effect": "Overall graphics quality preset index. Confirmed label: 4=Ultra. Inferred full scale: 0=Very Low, 1=Low, 2=Medium, 3=High, 4=Ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "Confirmed via in-game Video menu: value 4 displays as 'Ultra'. Labels for values 0–3 are inferred from Unity conventions — verify by cycling through options in-game and reading back the resulting registry value. Also update UnityGraphicsQuality_h1669003810 to the same value — the game mirrors both keys and inconsistency may cause unexpected behaviour."
+    },
+    {
+      "key": "UnityGraphicsQuality_h1669003810",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "GRAPHICS",
+      "effect": "Unity engine-level quality index. Mirrors QualityValue — both must be kept in sync. Same scale: 0=Very Low … 5=Ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "Always set to the same value as QualityValue_h4053189507. Wild Terra 2 writes both keys when the in-game quality slider is changed."
+    },
+    {
+      "key": "VsyncValue_h2071941855",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "PERFORMANCE",
+      "effect": "VSync toggle: 0=off, 1=on.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disable in-game VSync on all goals. Use G-Sync or FreeSync via the GPU control panel instead. In-game VSync adds input latency and can cause frame time hitching when the server load spikes."
+    },
+    {
+      "key": "FPSValue_h2302949355",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "PERFORMANCE",
+      "effect": "Frame rate cap preset index. Fully confirmed: 0=30 FPS, 1=60 FPS, 2=No limit (Unlimited).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "All three options confirmed against the in-game Video menu and live registry values. Avoid No limit (2) on performance and balanced goals — uncapped FPS causes excessive GPU heat and power draw without gameplay benefit beyond monitor refresh rate. Quality goal may leave uncapped if the user has G-Sync or FreeSync active; otherwise cap at 60 (1) or use the GPU driver frame rate limiter to target monitor refresh rate."
+    },
+    {
+      "key": "Screenmanager Fullscreen mode_h3630240806",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "GRAPHICS",
+      "effect": "Display mode: 0=exclusive fullscreen, 1=borderless window (fullscreen window), 3=windowed.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "0"
+      },
+      "notes": "Exclusive fullscreen (0) gives the GPU direct page-flip access for lowest input latency. Borderless (1) is more convenient for alt-tabbing on multi-monitor setups but adds DWM composition overhead."
+    },
+    {
+      "key": "Screenmanager Resolution Width_h182942802",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "GRAPHICS",
+      "effect": "Horizontal render resolution in pixels. Set to match native monitor width."
+    },
+    {
+      "key": "Screenmanager Resolution Height_h2627697771",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "GRAPHICS",
+      "effect": "Vertical render resolution in pixels. Set to match native monitor height."
+    },
+    {
+      "key": "Screenmanager Resolution Use Native_h1405027254",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "GRAPHICS",
+      "effect": "Use native display resolution: 0=use explicit Width/Height values, 1=match OS desktop resolution automatically.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Leave at 1 (native) unless the user is deliberately running at a non-native resolution to reduce GPU load, in which case set to 0 and write the target resolution into the Width and Height keys."
+    },
+    {
+      "key": "UnitySelectMonitor_h17969598",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "GRAPHICS",
+      "effect": "Target monitor index (0=primary monitor, 1=second monitor, etc.). Useful on multi-monitor setups."
+    },
+    {
+      "key": "ScaleHUDValue_h830151247",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "GRAPHICS",
+      "effect": "HUD and UI scale multiplier. Larger values increase UI element size.",
+      "notes": "Relevant for the low_vision accessibility modifier. Exact value range unconfirmed — set via Options > Interface in-game and read back the resulting registry value."
+    },
+    {
+      "key": "MasterVolume_h2602803985",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "AUDIO",
+      "effect": "Master volume level. Set in Options > Audio."
+    },
+    {
+      "key": "MusicVolume_h3041295148",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "AUDIO",
+      "effect": "Background music volume. Setting to 0 removes music overhead with negligible CPU saving."
+    },
+    {
+      "key": "EffectsVolume_h1758039881",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "AUDIO",
+      "effect": "Sound effects volume. Set in Options > Audio."
+    },
+    {
+      "key": "AmbienceVolume_h1578700999",
+      "registry_path": "HKCU\\Software\\Juvty Worlds\\Wild-Terra-2",
+      "file": "registry (PlayerPrefs)",
+      "format": "registry_dword",
+      "category": "AUDIO",
+      "effect": "Ambient environmental audio volume. Set in Options > Audio."
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "QualityValue_*",
+      "behaviour": "Wild Terra 2 uses its own QualityValue key in parallel with Unity's built-in UnityGraphicsQuality key. Both are written simultaneously by the in-game quality slider and must always hold the same value. Setting one without the other may cause inconsistent rendering behaviour.",
+      "action": "When writing QualityValue_h4053189507, always write the same value to UnityGraphicsQuality_h1669003810 in the same operation."
+    },
+    {
+      "key": "sg.*",
+      "behaviour": "Wild Terra 2 does not use Unreal-style sg.* scalability CVars. The Unity-based quality system is controlled entirely by QualityValue and UnityGraphicsQuality. Individual sub-settings (shadows, textures, draw distance) are not exposed as separate registry keys — they are bundled into the quality preset.",
+      "action": "Do not apply sg.* or other Unreal/generic engine recommendations. Use QualityValue for quality changes and manual_only_settings entries for granular per-setting guidance."
+    }
+  ],
+  "boot_config_keys": [
+    {
+      "key": "gfx-enable-gfx-jobs",
+      "file": "boot.config",
+      "effect": "Enables Unity's multi-threaded rendering job system. Distributes draw call preparation across CPU cores.",
+      "default_value": "1",
+      "developer_shipped": true,
+      "notes": "Already set to 1 by the developer. Do not add a duplicate line. This is active for all players out of the box."
+    },
+    {
+      "key": "gfx-enable-native-gfx-jobs",
+      "file": "boot.config",
+      "effect": "Enables native graphics job rendering alongside gfx-enable-gfx-jobs. Provides additional CPU thread utilisation for graphics command submission.",
+      "default_value": "1",
+      "developer_shipped": true,
+      "notes": "Already set to 1 by the developer. Do not add a duplicate line."
+    },
+    {
+      "key": "gc-max-time-slice",
+      "file": "boot.config",
+      "effect": "Maximum milliseconds Unity's incremental garbage collector may run per frame. Lower values reduce GC-caused frame hitches at the cost of more frequent GC passes.",
+      "default_value": "3",
+      "developer_shipped": true,
+      "notes": "Already set to 3 ms by the developer — this is an optimised value (Unity default is higher). Do not change without specific GC profiling evidence."
+    },
+    {
+      "key": "wait-for-native-debugger",
+      "file": "boot.config",
+      "effect": "If set to 1, the Unity player waits for a native debugger to attach before starting. 0 disables the wait.",
+      "default_value": "0",
+      "developer_shipped": true,
+      "notes": "Already set to 0 by the developer. No action needed."
+    },
+    {
+      "key": "hdr-display-enabled",
+      "file": "boot.config",
+      "effect": "Enables HDR output pipeline: 0=SDR (standard), 1=HDR. Requires an HDR-capable display and HDR enabled in Windows Display Settings.",
+      "default_value": "0",
+      "developer_shipped": true,
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      },
+      "notes": "The developer ships this as 0 (SDR). Change to 1 only if the user has an HDR monitor with HDR active in Windows. HDR output adds a small GPU compositing cost; only recommend for quality goal on HDR-capable hardware. Edit boot.config while the game is closed; the file may be overwritten on game updates."
+    }
+  ],
+  "client_json_keys": [
+    {
+      "key": "GRAPHIC.CTAA_ADDON",
+      "file": "client.json",
+      "format": "json_bool",
+      "effect": "Enables CTAA (Cinematic Temporal Anti-Aliasing), a premium Unity add-on. Higher quality than Unity's built-in TAA but at greater GPU cost.",
+      "default_value": true,
+      "recommendations": {
+        "performance": false,
+        "balanced": true,
+        "quality": true
+      },
+      "notes": "CTAA is a paid Unity asset (Asset Store) known for high-quality temporal AA with ghosting reduction. Disabling it (false) falls back to whatever AA option is selected in the in-game Quality preset. If disabling CTAA, also set CTAA_CAMERA_UI_FIX to false. This file may be overwritten on game updates — re-apply after an update if needed."
+    },
+    {
+      "key": "GRAPHIC.CTAA_CAMERA_UI_FIX",
+      "file": "client.json",
+      "format": "json_bool",
+      "effect": "Applies a camera/UI rendering fix that prevents CTAA from ghosting or distorting UI elements rendered on the camera.",
+      "default_value": true,
+      "recommendations": {
+        "performance": false,
+        "balanced": true,
+        "quality": true
+      },
+      "notes": "Keep in sync with CTAA_ADDON. Set to false when CTAA_ADDON is false; set to true when CTAA_ADDON is true. Mismatching these values may cause UI rendering artefacts."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Shadow Quality",
+      "location": "Options > Graphics > Shadows",
+      "recommendation": "Reduce to Low or Disabled on performance hardware. This is the single largest FPS lever in the quality preset — commonly worth 20–40% FPS improvement on mid-range hardware.",
+      "reason": "Shadow quality is not exposed as a separate registry key; it is bundled into the QualityValue preset. If the overall preset is too blunt, adjust shadow quality individually via the in-game menu."
+    },
+    {
+      "setting": "View Distance / Draw Distance",
+      "location": "Options > Graphics > View Distance",
+      "recommendation": "50–60% on performance hardware. 75–80% on balanced. Max on quality hardware.",
+      "reason": "As an open-world MMO, Wild Terra 2 renders many simultaneous player characters and objects. Draw distance is the dominant CPU-side cost in crowded zones and towns."
+    },
+    {
+      "setting": "Anti-Aliasing",
+      "location": "Options > Graphics > Anti-Aliasing",
+      "recommendation": "Off or FXAA on performance hardware. TAA on balanced/quality hardware.",
+      "reason": "Not stored as a separate registry key. Wild Terra 2 is not a fast-paced shooter — aliasing is less disruptive than in twitch games, so Off is an acceptable performance trade."
+    },
+    {
+      "setting": "Ambient Occlusion",
+      "location": "Options > Graphics > Ambient Occlusion",
+      "recommendation": "Off on performance and balanced hardware. On for quality hardware only.",
+      "reason": "Not stored as a separate registry key. Adds soft contact shadow depth at moderate GPU cost."
+    },
+    {
+      "setting": "Post-Processing (Bloom, Depth of Field, Vignette)",
+      "location": "Options > Graphics > Post-Processing",
+      "recommendation": "Disable Depth of Field and Vignette on all hardware. Bloom: Off on performance; Off or Low on balanced; Low on quality.",
+      "reason": "Depth of Field reduces clarity when targeting items or reading world text — particularly counterproductive in an MMO context."
+    }
+  ],
+  "notes": [
+    "Registry path uses hyphens: HKCU\\Software\\Juvty Worlds\\Wild-Terra-2. Do not use the space-separated form 'Wild Terra 2' — that path will not be found.",
+    "LocalLow data directory also uses hyphens: %USERPROFILE%\\AppData\\LocalLow\\Juvty Worlds\\Wild-Terra-2.",
+    "Wild Terra 2: New Lands is an MMO. Perceived lag (rubber-banding, delayed skill activation, animation stutters) is frequently server-side latency, not a graphics performance issue. Always select the server geographically closest to you before adjusting graphics settings.",
+    "Individual graphics sub-settings (shadow quality, draw distance, AA, AO, post-processing) are not exposed as separate registry keys — they are bundled into the QualityValue/UnityGraphicsQuality quality preset. Granular tuning requires the in-game Options menu.",
+    "boot.config ships with Unity gfx-jobs threading already enabled by the developer (gfx-enable-gfx-jobs=1, gfx-enable-native-gfx-jobs=1, gc-max-time-slice=3). Do not add duplicate lines. The only user-actionable key is hdr-display-enabled for HDR monitor users.",
+    "client.json ships with CTAA (Cinematic Temporal Anti-Aliasing) enabled by default. Disabling CTAA_ADDON reduces GPU cost at the expense of anti-aliasing quality. Both client.json and boot.config live in the game install directory and may be overwritten by Steam game updates — re-apply changes after an update.",
+    "Wild Terra 2 does not support DLSS, FSR, or XeSS upscaling as of this profile version. Monitor patch notes for additions.",
+    "The game uses DirectX 11. Forcing an alternative API via Unity launch arguments is not officially supported and may cause instability.",
+    "Do not modify runtime-written registry keys: xsolla_login_last_success_oauth_refresh_token (OAuth credential), WTUILayout (UI window positions), LoginServerKeyName (last connected server), unity.player_session*, EulaAccepted.",
+    "Do not modify auth/platform fields in client.json: AUTH_API, USE_WEB_AUTH, STEAM_AUTH, VKPLAY, FREE_DEMO_AUTH, TEST_SERVER_CLIENT. gameplay.json (XP ratios, crafting timers) and input.xml (keybindings) are not targets for ReFrame optimisation."
+  ],
+  "sources": [
+    {
+      "url": "https://store.steampowered.com/app/1134700/Wild_Terra_2_New_Lands/",
+      "type": "official",
+      "label": "Steam Store Page — Wild Terra 2: New Lands"
+    },
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Wild_Terra_2:_New_Lands",
+      "type": "wiki",
+      "label": "PCGamingWiki — Wild Terra 2: New Lands"
+    },
+    {
+      "url": "https://steamdb.info/app/1134700/",
+      "type": "wiki",
+      "label": "SteamDB — Wild Terra 2: New Lands (engine: Unity confirmed)"
+    },
+    {
+      "url": "https://steamcommunity.com/app/1134700/discussions/",
+      "type": "community",
+      "label": "Steam Community Discussions — Wild Terra 2: New Lands"
+    },
+    {
+      "url": "https://docs.unity3d.com/Manual/class-PlayerSettings.html",
+      "type": "official",
+      "label": "Unity Docs — Player Settings (PlayerPrefs registry location)"
+    }
+  ]
+}
