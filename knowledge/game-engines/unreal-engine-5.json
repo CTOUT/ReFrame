@@ -4,20 +4,12 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
   "detection_signatures": {
-    "file_names": [
-      "GameUserSettings.ini",
-      "Engine.ini",
-      "Scalability.ini"
-    ],
+    "file_names": ["GameUserSettings.ini", "Engine.ini", "Scalability.ini"],
     "section_headers": [
       "[/Script/Engine.GameUserSettings]",
       "[/Script/Engine.Engine]"
     ],
-    "key_prefixes": [
-      "sg.",
-      "r.",
-      "b"
-    ],
+    "key_prefixes": ["sg.", "r.", "b"],
     "ue5_specific_signatures": [
       "r.Lumen",
       "r.Nanite",

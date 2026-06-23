@@ -15,7 +15,6 @@ ReFrame follows [Semantic Versioning](https://semver.org/). Security fixes are a
 
 Open a [GitHub Security Advisory](https://github.com/CTOUT/ReFrame/security/advisories/new) to report a vulnerability privately.
 
-
 Include:
 
 - A description of the vulnerability and its potential impact

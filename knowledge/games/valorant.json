@@ -3,9 +3,7 @@
   "engine": "Unreal Engine 4",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": [
-    "VALORANT"
-  ],
+  "aliases": ["VALORANT"],
   "platforms": [
     {
       "name": "Riot Games Launcher",

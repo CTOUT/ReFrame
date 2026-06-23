@@ -3,11 +3,7 @@
   "engine": "Blizzard WoW Engine",
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
-  "aliases": [
-    "WoW",
-    "World of Warcraft: The War Within",
-    "WoW Retail"
-  ],
+  "aliases": ["WoW", "World of Warcraft: The War Within", "WoW Retail"],
   "platforms": [
     {
       "name": "Battle.net",

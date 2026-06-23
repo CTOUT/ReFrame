@@ -60,18 +60,18 @@ Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm"
 
 ## Recommended values
 
-| Registry Key / Setting                  | Recommended Value | Effect |
-| --------------------------------------- | ----------------- | ------ |
-| NetworkThrottlingIndex                  | `ffffffff` (hex)  | Disables network throttling during gameplay |
-| SystemResponsiveness                    | `0`               | Allocates max CPU to foreground game |
-| Games → GPU Priority                    | `8`               | Raises GPU scheduling priority for game tasks |
-| Games → Priority                        | `6`               | Raises CPU scheduling priority for game tasks |
-| Games → Scheduling Category             | `High`            | Uses Windows MMCSS High scheduling category |
-| Games → SFIO Priority                   | `High`            | Raises storage I/O priority |
-| Win32PrioritySeparation                 | `38` (hex 0x26)   | Maximum foreground boost (2 quanta, variable) |
-| Power scheme                            | High Performance  | Prevents CPU/GPU throttling during gameplay |
-| HwSchMode                               | `2`               | Enables hardware-accelerated GPU scheduling |
-| AutoGameModeEnabled / AllowAutoGameMode | `1`               | Enables Windows Game Mode |
+| Registry Key / Setting                  | Recommended Value | Effect                                                                                                                                                                                   |
+| --------------------------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NetworkThrottlingIndex                  | `ffffffff` (hex)  | Disables network throttling during gameplay                                                                                                                                              |
+| SystemResponsiveness                    | `0`               | Allocates max CPU to foreground game                                                                                                                                                     |
+| Games → GPU Priority                    | `8`               | Raises GPU scheduling priority for game tasks                                                                                                                                            |
+| Games → Priority                        | `6`               | Raises CPU scheduling priority for game tasks                                                                                                                                            |
+| Games → Scheduling Category             | `High`            | Uses Windows MMCSS High scheduling category                                                                                                                                              |
+| Games → SFIO Priority                   | `High`            | Raises storage I/O priority                                                                                                                                                              |
+| Win32PrioritySeparation                 | `38` (hex 0x26)   | Maximum foreground boost (2 quanta, variable)                                                                                                                                            |
+| Power scheme                            | High Performance  | Prevents CPU/GPU throttling during gameplay                                                                                                                                              |
+| HwSchMode                               | `2`               | Enables hardware-accelerated GPU scheduling                                                                                                                                              |
+| AutoGameModeEnabled / AllowAutoGameMode | `1`               | Enables Windows Game Mode                                                                                                                                                                |
 | OverlayTestMode (DWM)                   | `5`               | Disables Multi-Plane Overlay (MPO) — eliminates stutter/frame-pacing issues on NVIDIA + Windows 11. **Rollback: value must be DELETED, not set to 0. Setting 0 does not re-enable MPO.** |
 
 ---

@@ -3,10 +3,7 @@
   "engine": "Riot Engine",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": [
-    "LoL",
-    "League"
-  ],
+  "aliases": ["LoL", "League"],
   "platforms": [
     {
       "name": "Riot Games Launcher",

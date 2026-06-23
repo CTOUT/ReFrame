@@ -6,10 +6,7 @@
       "name": "Apex Legends",
       "file": "games/apex-legends.json",
       "engine": "Source (Modified)",
-      "platforms": [
-        "Steam",
-        "EA App"
-      ],
+      "platforms": ["Steam", "EA App"],
       "key_count": 8,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -19,10 +16,7 @@
       "file": "games/ark-survival-ascended.json",
       "engine": "Unreal Engine 5",
       "engine_version": "5.x",
-      "platforms": [
-        "Steam",
-        "Epic Games Store"
-      ],
+      "platforms": ["Steam", "Epic Games Store"],
       "key_count": 10,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -32,10 +26,7 @@
       "file": "games/ark-survival-evolved.json",
       "engine": "Unreal Engine 4",
       "engine_version": "4.27",
-      "platforms": [
-        "Steam",
-        "Epic Games Store"
-      ],
+      "platforms": ["Steam", "Epic Games Store"],
       "key_count": 7,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -44,10 +35,7 @@
       "name": "Baldur's Gate 3",
       "file": "games/baldurs-gate-3.json",
       "engine": "Divinity Engine 4.0",
-      "platforms": [
-        "Steam",
-        "GOG"
-      ],
+      "platforms": ["Steam", "GOG"],
       "key_count": 5,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -56,11 +44,7 @@
       "name": "Call of Duty: Black Ops 6",
       "file": "games/call-of-duty-bo6.json",
       "engine": "IW Engine 9",
-      "platforms": [
-        "Steam",
-        "Battle.net",
-        "Xbox App"
-      ],
+      "platforms": ["Steam", "Battle.net", "Xbox App"],
       "key_count": 6,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -69,9 +53,7 @@
       "name": "Counter-Strike 2",
       "file": "games/counter-strike-2.json",
       "engine": "Source 2",
-      "platforms": [
-        "Steam"
-      ],
+      "platforms": ["Steam"],
       "key_count": 10,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
@@ -80,11 +62,7 @@
       "name": "Cyberpunk 2077",
       "file": "games/cyberpunk-2077.json",
       "engine": "REDengine 4",
-      "platforms": [
-        "Steam",
-        "GOG",
-        "Epic Games Store"
-      ],
+      "platforms": ["Steam", "GOG", "Epic Games Store"],
       "key_count": 5,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
@@ -94,10 +72,7 @@
       "file": "games/dead-island-2.json",
       "engine": "Unreal Engine 4",
       "engine_version": "4.25",
-      "platforms": [
-        "Steam",
-        "Epic Games Store"
-      ],
+      "platforms": ["Steam", "Epic Games Store"],
       "key_count": 26,
       "profile_version": "1.0.0",
       "updated": "2026-04-27"
@@ -106,9 +81,7 @@
       "name": "Dota 2",
       "file": "games/dota-2.json",
       "engine": "Source 2",
-      "platforms": [
-        "Steam"
-      ],
+      "platforms": ["Steam"],
       "key_count": 6,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -117,9 +90,7 @@
       "name": "Elden Ring",
       "file": "games/elden-ring.json",
       "engine": "unknown",
-      "platforms": [
-        "Steam"
-      ],
+      "platforms": ["Steam"],
       "key_count": 4,
       "profile_version": "1.0.0",
       "updated": "2026-04-27"
@@ -128,9 +99,7 @@
       "name": "Enshrouded",
       "file": "games/enshrouded.json",
       "engine": "Keen Engine",
-      "platforms": [
-        "Steam"
-      ],
+      "platforms": ["Steam"],
       "key_count": 5,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -139,9 +108,7 @@
       "name": "Fortnite",
       "file": "games/fortnite.json",
       "engine": "Unreal Engine 5",
-      "platforms": [
-        "Epic Games Store"
-      ],
+      "platforms": ["Epic Games Store"],
       "key_count": 7,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -150,11 +117,7 @@
       "name": "Grand Theft Auto V",
       "file": "games/gta-v.json",
       "engine": "RAGE",
-      "platforms": [
-        "Steam",
-        "Epic Games Store",
-        "Rockstar Games Launcher"
-      ],
+      "platforms": ["Steam", "Epic Games Store", "Rockstar Games Launcher"],
       "key_count": 8,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
@@ -163,9 +126,7 @@
       "name": "League of Legends",
       "file": "games/league-of-legends.json",
       "engine": "Riot Engine",
-      "platforms": [
-        "Riot Games Launcher"
-      ],
+      "platforms": ["Riot Games Launcher"],
       "key_count": 6,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -174,9 +135,7 @@
       "name": "Marvel Rivals",
       "file": "games/marvel-rivals.json",
       "engine": "Unreal Engine 5",
-      "platforms": [
-        "Steam"
-      ],
+      "platforms": ["Steam"],
       "key_count": 7,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -185,9 +144,7 @@
       "name": "Minecraft",
       "file": "games/minecraft.json",
       "engine": "Minecraft Java Engine",
-      "platforms": [
-        "Minecraft Launcher (Official)"
-      ],
+      "platforms": ["Minecraft Launcher (Official)"],
       "key_count": 9,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -196,11 +153,7 @@
       "name": "Noita",
       "file": "games/noita.json",
       "engine": "Falling Everything Engine",
-      "platforms": [
-        "Steam",
-        "GOG",
-        "itch.io"
-      ],
+      "platforms": ["Steam", "GOG", "itch.io"],
       "key_count": 9,
       "profile_version": "1.0.0",
       "updated": "2026-05-30"
@@ -209,11 +162,7 @@
       "name": "Outriders",
       "file": "games/outriders.json",
       "engine": "Unreal Engine 4",
-      "platforms": [
-        "Steam",
-        "Epic Games Store",
-        "Microsoft Store"
-      ],
+      "platforms": ["Steam", "Epic Games Store", "Microsoft Store"],
       "key_count": 9,
       "profile_version": "1.1.0",
       "updated": "2026-05-23"
@@ -222,9 +171,7 @@
       "name": "PUBG: Battlegrounds",
       "file": "games/pubg-battlegrounds.json",
       "engine": "Unreal Engine 4",
-      "platforms": [
-        "Steam"
-      ],
+      "platforms": ["Steam"],
       "key_count": 8,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -233,9 +180,7 @@
       "name": "Rust",
       "file": "games/rust.json",
       "engine": "Unity",
-      "platforms": [
-        "Steam"
-      ],
+      "platforms": ["Steam"],
       "key_count": 7,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -258,11 +203,7 @@
       "name": "The Elder Scrolls V: Skyrim Special Edition",
       "file": "games/skyrim-special-edition.json",
       "engine": "Creation Engine",
-      "platforms": [
-        "Steam",
-        "GOG",
-        "Xbox Game Pass"
-      ],
+      "platforms": ["Steam", "GOG", "Xbox Game Pass"],
       "key_count": 11,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
@@ -285,11 +226,7 @@
       "name": "Tom Clancy's The Division 2",
       "file": "games/tom-clancys-the-division-2.json",
       "engine": "Snowdrop",
-      "platforms": [
-        "Steam",
-        "Epic Games Store",
-        "Ubisoft Store"
-      ],
+      "platforms": ["Steam", "Epic Games Store", "Ubisoft Store"],
       "key_count": 18,
       "profile_version": "1.0.0",
       "updated": "2026-06-07"
@@ -298,9 +235,7 @@
       "name": "Tom Clancy's The Division Resurgence",
       "file": "games/the-division-resurgence.json",
       "engine": "Unreal Engine 4",
-      "platforms": [
-        "Ubisoft Connect"
-      ],
+      "platforms": ["Ubisoft Connect"],
       "key_count": 20,
       "profile_version": "1.0.0",
       "updated": "2026-06-07"
@@ -309,9 +244,7 @@
       "name": "Valheim",
       "file": "games/valheim.json",
       "engine": "Unity",
-      "platforms": [
-        "Steam"
-      ],
+      "platforms": ["Steam"],
       "key_count": 5,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -320,9 +253,7 @@
       "name": "Valorant",
       "file": "games/valorant.json",
       "engine": "Unreal Engine 4",
-      "platforms": [
-        "Riot Games Launcher"
-      ],
+      "platforms": ["Riot Games Launcher"],
       "key_count": 6,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -331,11 +262,7 @@
       "name": "Warframe",
       "file": "games/warframe.json",
       "engine": "Evolution Engine",
-      "platforms": [
-        "Steam",
-        "Epic Games Store",
-        "Standalone"
-      ],
+      "platforms": ["Steam", "Epic Games Store", "Standalone"],
       "key_count": 6,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -344,9 +271,7 @@
       "name": "Wild Terra 2: New Lands",
       "file": "games/wild-terra-2-new-lands.json",
       "engine": "Unity",
-      "platforms": [
-        "Steam"
-      ],
+      "platforms": ["Steam"],
       "key_count": 14,
       "profile_version": "1.3.0",
       "updated": "2026-06-15"
@@ -356,9 +281,7 @@
       "file": "games/windrose.json",
       "engine": "Unreal Engine 5",
       "engine_confidence": "suspected",
-      "platforms": [
-        "Steam"
-      ],
+      "platforms": ["Steam"],
       "key_count": 6,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
@@ -367,9 +290,7 @@
       "name": "World of Warcraft",
       "file": "games/world-of-warcraft.json",
       "engine": "Blizzard WoW Engine",
-      "platforms": [
-        "Battle.net"
-      ],
+      "platforms": ["Battle.net"],
       "key_count": 9,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
@@ -434,10 +355,7 @@
       "name": "RAGE",
       "file": "game-engines/rage.json",
       "version_range": "5.x",
-      "fallback_for": [
-        "RAGE 6",
-        "RAGE 7"
-      ],
+      "fallback_for": ["RAGE 6", "RAGE 7"],
       "key_count": 7,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
@@ -464,10 +382,7 @@
       "name": "Snowdrop",
       "file": "game-engines/snowdrop.json",
       "version_range": "all",
-      "fallback_for": [
-        "Snowdrop 2.0",
-        "Snowdrop 3.0"
-      ],
+      "fallback_for": ["Snowdrop 2.0", "Snowdrop 3.0"],
       "key_count": 2,
       "profile_version": "1.0.0",
       "updated": "2026-06-07"

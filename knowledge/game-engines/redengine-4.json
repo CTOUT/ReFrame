@@ -4,12 +4,8 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
   "detection_signatures": {
-    "file_names": [
-      "UserSettings.json"
-    ],
-    "path_fragments": [
-      "CD Projekt Red\\Cyberpunk 2077"
-    ],
+    "file_names": ["UserSettings.json"],
+    "path_fragments": ["CD Projekt Red\\Cyberpunk 2077"],
     "key_prefixes": [
       "Rendering.",
       "LevelOfDetail.",

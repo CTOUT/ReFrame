@@ -4,12 +4,8 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": [
-      "graphics.cfg"
-    ],
-    "path_fragments": [
-      "Keen Games\\Enshrouded"
-    ]
+    "file_names": ["graphics.cfg"],
+    "path_fragments": ["Keen Games\\Enshrouded"]
   },
   "config_file_locations": {
     "windows": "%USERPROFILE%\\AppData\\Local\\Keen Games\\Enshrouded\\",

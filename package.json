@@ -1,8 +1,10 @@
 {
   "scripts": {
-    "spellcheck": "cspell --config cspell.json \"README.md\" \"CONTRIBUTING.md\" \"SECURITY.md\" \"CHANGELOG.md\" \"TODO.md\" \"docs/*.md\""
+    "spellcheck": "cspell --config cspell.json \"README.md\" \"CONTRIBUTING.md\" \"SECURITY.md\" \"CHANGELOG.md\" \"TODO.md\" \"docs/*.md\"",
+    "format": "prettier --write \"**/*.{md,json,yml,yaml}\""
   },
   "devDependencies": {
-    "cspell": "^10.0.0"
+    "cspell": "^10.0.0",
+    "prettier": "^3.8.4"
   }
 }

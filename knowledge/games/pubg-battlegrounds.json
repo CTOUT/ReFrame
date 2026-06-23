@@ -3,10 +3,7 @@
   "engine": "Unreal Engine 4",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": [
-    "PUBG",
-    "PlayerUnknown's Battlegrounds"
-  ],
+  "aliases": ["PUBG", "PlayerUnknown's Battlegrounds"],
   "platforms": [
     {
       "name": "Steam",

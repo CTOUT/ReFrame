@@ -41,8 +41,8 @@ Choose the source in this order:
                  ((Get-Item $dxPath).LastWriteTime -gt $lastBoot)
    ```
 
-   If the cache is valid, tell the user: *"Using cached hardware profile from
-   this session. Run `scan system --fresh` to regenerate."*
+   If the cache is valid, tell the user: _"Using cached hardware profile from
+   this session. Run `scan system --fresh` to regenerate."_
 
 3. **Generate on the fly** — run dxdiag now (Step 2).
 

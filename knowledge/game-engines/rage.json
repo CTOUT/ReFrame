@@ -3,19 +3,11 @@
   "version_range": "5.x",
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
-  "fallback_for": [
-    "RAGE 6",
-    "RAGE 7"
-  ],
+  "fallback_for": ["RAGE 6", "RAGE 7"],
   "fallback_for_note": "GTA V uses RAGE 5.x. Red Dead Redemption 2 uses a later iteration — use this file as fallback only if no dedicated rdr2 engine file exists.",
   "detection_signatures": {
-    "file_names": [
-      "settings.xml"
-    ],
-    "section_headers": [
-      "<graphics>",
-      "<video>"
-    ],
+    "file_names": ["settings.xml"],
+    "section_headers": ["<graphics>", "<video>"],
     "path_fragments": [
       "Rockstar Games\\GTA V",
       "Rockstar Games\\Red Dead Redemption 2"

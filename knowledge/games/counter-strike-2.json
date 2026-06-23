@@ -3,11 +3,7 @@
   "engine": "Source 2",
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
-  "aliases": [
-    "CS2",
-    "Counter-Strike 2",
-    "CS:GO"
-  ],
+  "aliases": ["CS2", "Counter-Strike 2", "CS:GO"],
   "platforms": [
     {
       "name": "Steam",

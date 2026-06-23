@@ -3,10 +3,7 @@
   "engine": "Divinity Engine 4.0",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": [
-    "BG3",
-    "Baldurs Gate 3"
-  ],
+  "aliases": ["BG3", "Baldurs Gate 3"],
   "platforms": [
     {
       "name": "Steam",

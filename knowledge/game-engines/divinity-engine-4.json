@@ -4,16 +4,9 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": [
-      "GraphicSettings.lsx",
-      "GraphicSettings.lsf"
-    ],
-    "path_fragments": [
-      "Larian Studios\\Baldur's Gate 3\\PlayerProfiles"
-    ],
-    "key_prefixes": [
-      "GraphicSettings"
-    ]
+    "file_names": ["GraphicSettings.lsx", "GraphicSettings.lsf"],
+    "path_fragments": ["Larian Studios\\Baldur's Gate 3\\PlayerProfiles"],
+    "key_prefixes": ["GraphicSettings"]
   },
   "config_file_locations": {
     "windows": "%LOCALAPPDATA%\\Larian Studios\\Baldur's Gate 3\\PlayerProfiles\\Public\\",

@@ -4,13 +4,8 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": [
-      "EE.cfg"
-    ],
-    "path_fragments": [
-      "Warframe\\EE.cfg",
-      "AppData\\Local\\Warframe"
-    ]
+    "file_names": ["EE.cfg"],
+    "path_fragments": ["Warframe\\EE.cfg", "AppData\\Local\\Warframe"]
   },
   "config_file_locations": {
     "windows": "%LOCALAPPDATA%\\Warframe\\EE.cfg",

@@ -1,6 +1,3 @@
 {
-  "recommendations": [
-    "GitHub.copilot-chat",
-    "DavidAnson.vscode-markdownlint"
-  ]
+  "recommendations": ["GitHub.copilot-chat", "DavidAnson.vscode-markdownlint"]
 }

@@ -6,20 +6,12 @@
   "fallback_for": [],
   "fallback_for_note": "No longer covers Unreal Engine 5 as a fallback — unreal-engine-5.json exists and takes precedence unconditionally for all UE5 games.",
   "detection_signatures": {
-    "file_names": [
-      "GameUserSettings.ini",
-      "Engine.ini",
-      "Scalability.ini"
-    ],
+    "file_names": ["GameUserSettings.ini", "Engine.ini", "Scalability.ini"],
     "section_headers": [
       "[/Script/Engine.GameUserSettings]",
       "[/Script/Engine.Engine]"
     ],
-    "key_prefixes": [
-      "sg.",
-      "r.",
-      "b"
-    ]
+    "key_prefixes": ["sg.", "r.", "b"]
   },
   "config_file_locations": {
     "windows": "%LOCALAPPDATA%\\<GameName>\\Saved\\Config\\WindowsNoEditor\\"

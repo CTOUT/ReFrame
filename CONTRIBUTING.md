@@ -91,10 +91,10 @@ The release workflow will package `reframe-agent.zip` and publish it automatical
 
 ### Two ways to contribute
 
-| Path | When to use |
-| ---- | ----------- |
-| **Pull request** | You're comfortable with Git. Fork the repo, add or edit a JSON file, open a PR. The PR template will guide you through the checklist. |
-| **Issue form** | No Git experience needed. Run ReFrame — if it analyses an unknown game it will offer to generate the JSON file for you. Copy the output and paste it into the [Knowledge Submission issue form](https://github.com/CTOUT/ReFrame/issues/new?template=knowledge_submission.yml). A maintainer will review and merge it. |
+| Path             | When to use                                                                                                                                                                                                                                                                                                            |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Pull request** | You're comfortable with Git. Fork the repo, add or edit a JSON file, open a PR. The PR template will guide you through the checklist.                                                                                                                                                                                  |
+| **Issue form**   | No Git experience needed. Run ReFrame — if it analyses an unknown game it will offer to generate the JSON file for you. Copy the output and paste it into the [Knowledge Submission issue form](https://github.com/CTOUT/ReFrame/issues/new?template=knowledge_submission.yml). A maintainer will review and merge it. |
 
 ### Knowledge file locations
 
@@ -149,13 +149,13 @@ The agent resolves Tier 2 (engine defaults) using these rules, evaluated in orde
 
 **One file per major engine version only.** Never create separate files for minor versions.
 
-| Do | Don't |
-| -- | ----- |
+| Do                                    | Don't                     |
+| ------------------------------------- | ------------------------- |
 | `unreal-engine-4.json` covering `4.x` | `unreal-engine-4.27.json` |
-| `unreal-engine-5.json` covering `5.x` | `unreal-engine-5.3.json` |
+| `unreal-engine-5.json` covering `5.x` | `unreal-engine-5.3.json`  |
 
 The rationale: engine files contain defaults that are **widely applicable** across all games on that engine. Minor-version differences — keys added in 4.27, deprecated in 5.1, or behaving differently for a specific title — are by definition game-specific. They belong in the Tier 1 game file's `engine_overrides` section, not in a split engine file.
 
-**When to create a new engine file:** only when a new *major* version introduces a meaningfully different set of defaults (e.g. Lumen replacing SSGI in UE5, a new renderer architecture). If the defaults are largely the same, extend `fallback_for` on the existing file instead.
+**When to create a new engine file:** only when a new _major_ version introduces a meaningfully different set of defaults (e.g. Lumen replacing SSGI in UE5, a new renderer architecture). If the defaults are largely the same, extend `fallback_for` on the existing file instead.
 
 **When to edit an existing engine file:** when a default value changes across most games built on that major version, or when a new key becomes widely applicable. Increment `profile_version` (minor for new/changed keys, patch for corrections) and update `updated`.

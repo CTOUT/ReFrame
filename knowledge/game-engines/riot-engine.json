@@ -4,10 +4,7 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": [
-      "game.cfg",
-      "PersistedSettings.json"
-    ],
+    "file_names": ["game.cfg", "PersistedSettings.json"],
     "path_fragments": [
       "Riot Games\\League of Legends\\Config",
       "Riot Games\\VALORANT"

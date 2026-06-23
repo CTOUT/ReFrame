@@ -36,7 +36,7 @@ irm https://raw.githubusercontent.com/CTOUT/ReFrame/main/install.ps1 | iex
 Remove-Item "$env:TEMP\ReFrame-DxDiag.xml" -ErrorAction SilentlyContinue
 ```
 
-   Then type `scan system` again.
+Then type `scan system` again.
 
 2. **DxDiag unavailable.** Some locked-down or virtualised environments block DxDiag. The agent automatically falls back to PowerShell queries (`Get-CimInstance`, `Get-PhysicalDisk`, `powercfg`). The fallback profile is slightly less detailed but fully functional.
 
@@ -138,7 +138,7 @@ See [README.md — Installation](../README.md#installation) for full details.
 Get-ChildItem "$env:LOCALAPPDATA\ReFrame\Backups" -ErrorAction SilentlyContinue
 ```
 
-   If empty or missing, no backup was created — either the session was cancelled before applying, or a previous apply failed before the backup step.
+If empty or missing, no backup was created — either the session was cancelled before applying, or a previous apply failed before the backup step.
 
 2. **Wrong game name.** `rollback <game>` matches against the backup folder name, which uses the game name as supplied. Try `list backups` to see exact folder names.
 
@@ -155,12 +155,12 @@ Copy-Item "$env:LOCALAPPDATA\ReFrame\Backups\<GameName>_<timestamp>\GameUserSett
 
 **ReFrame is currently Windows-only.** The following features are unavailable on other platforms:
 
-| Feature | Reason |
-| ------- | ------ |
-| System scan (`scan system`) | Uses `dxdiag.exe` and `Get-CimInstance` — Windows-only |
-| Registry analysis and changes | Windows registry does not exist on Linux / macOS |
-| Power plan detection | Uses `powercfg` — Windows-only |
-| Hardware tier (HAGS, VRR) | DxDiag attributes used for detection |
+| Feature                       | Reason                                                 |
+| ----------------------------- | ------------------------------------------------------ |
+| System scan (`scan system`)   | Uses `dxdiag.exe` and `Get-CimInstance` — Windows-only |
+| Registry analysis and changes | Windows registry does not exist on Linux / macOS       |
+| Power plan detection          | Uses `powercfg` — Windows-only                         |
+| Hardware tier (HAGS, VRR)     | DxDiag attributes used for detection                   |
 
 **What still works on non-Windows systems:**
 

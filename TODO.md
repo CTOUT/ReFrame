@@ -12,27 +12,27 @@ Tracked work items for ReFrame. Items are moved from here to `CHANGELOG.md` when
 
 Completed items are struck through. Each item requires an engine profile (if new) + a game profile.
 
-| # | Game | Engine | Engine profile | Status |
-|---|---|---|---|---|
-| 1 | Cyberpunk 2077 | REDengine 4 | ✅ `redengine-4.json` | ✅ Done |
-| 2 | GTA V | RAGE | ✅ `rage.json` | ✅ Done |
-| 3 | Counter-Strike 2 | Source 2 | ✅ `source-2.json` | ✅ Done |
-| 4 | World of Warcraft | Blizzard WoW engine | ✅ `blizzard-wow-engine.json` | ✅ Done |
-| 5 | PUBG: Battlegrounds | UE4 | ✅ Done | ✅ Done |
-| 6 | Valorant | UE4 | ✅ Done | ✅ Done |
-| 7 | Fortnite | UE5 | ✅ Done | ✅ Done |
-| 8 | Marvel Rivals | UE5 | ✅ Done | ✅ Done |
-| 9 | Windrose | UE5 (suspected) | ✅ Done | ✅ Done |
-| 10 | Valheim | Unity | ✅ `unity.json` | ✅ Done |
-| 11 | Rust | Unity | ✅ (reuses #10) | ✅ Done |
-| 12 | Dota 2 | Source 2 | ✅ (reuses #3) | ✅ Done |
-| 13 | Baldur's Gate 3 | Divinity 4.0 | ✅ `divinity-engine-4.json` | ✅ Done |
-| 14 | Call of Duty: BO6 | IW Engine 9 | ✅ `iw-engine-9.json` | ✅ Done |
-| 15 | League of Legends | Riot custom engine | ✅ `riot-engine.json` | ✅ Done |
-| 16 | Enshrouded | Keen proprietary | ✅ `keen-engine.json` | ✅ Done |
-| 17 | Apex Legends | Modified Source | ✅ `source-modified.json` | ✅ Done |
-| 18 | Warframe | Evolution Engine | ✅ `evolution-engine.json` | ✅ Done |
-| 19 | Minecraft | Minecraft Java Engine | ✅ `minecraft-java-engine.json` | ✅ Done |
+| #   | Game                | Engine                | Engine profile                  | Status  |
+| --- | ------------------- | --------------------- | ------------------------------- | ------- |
+| 1   | Cyberpunk 2077      | REDengine 4           | ✅ `redengine-4.json`           | ✅ Done |
+| 2   | GTA V               | RAGE                  | ✅ `rage.json`                  | ✅ Done |
+| 3   | Counter-Strike 2    | Source 2              | ✅ `source-2.json`              | ✅ Done |
+| 4   | World of Warcraft   | Blizzard WoW engine   | ✅ `blizzard-wow-engine.json`   | ✅ Done |
+| 5   | PUBG: Battlegrounds | UE4                   | ✅ Done                         | ✅ Done |
+| 6   | Valorant            | UE4                   | ✅ Done                         | ✅ Done |
+| 7   | Fortnite            | UE5                   | ✅ Done                         | ✅ Done |
+| 8   | Marvel Rivals       | UE5                   | ✅ Done                         | ✅ Done |
+| 9   | Windrose            | UE5 (suspected)       | ✅ Done                         | ✅ Done |
+| 10  | Valheim             | Unity                 | ✅ `unity.json`                 | ✅ Done |
+| 11  | Rust                | Unity                 | ✅ (reuses #10)                 | ✅ Done |
+| 12  | Dota 2              | Source 2              | ✅ (reuses #3)                  | ✅ Done |
+| 13  | Baldur's Gate 3     | Divinity 4.0          | ✅ `divinity-engine-4.json`     | ✅ Done |
+| 14  | Call of Duty: BO6   | IW Engine 9           | ✅ `iw-engine-9.json`           | ✅ Done |
+| 15  | League of Legends   | Riot custom engine    | ✅ `riot-engine.json`           | ✅ Done |
+| 16  | Enshrouded          | Keen proprietary      | ✅ `keen-engine.json`           | ✅ Done |
+| 17  | Apex Legends        | Modified Source       | ✅ `source-modified.json`       | ✅ Done |
+| 18  | Warframe            | Evolution Engine      | ✅ `evolution-engine.json`      | ✅ Done |
+| 19  | Minecraft           | Minecraft Java Engine | ✅ `minecraft-java-engine.json` | ✅ Done |
 
 ## Planned
 

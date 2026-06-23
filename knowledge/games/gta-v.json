@@ -3,11 +3,7 @@
   "engine": "RAGE",
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
-  "aliases": [
-    "GTA V",
-    "GTA 5",
-    "Grand Theft Auto 5"
-  ],
+  "aliases": ["GTA V", "GTA 5", "Grand Theft Auto 5"],
   "platforms": [
     {
       "name": "Steam",

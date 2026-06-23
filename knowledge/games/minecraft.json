@@ -3,11 +3,7 @@
   "engine": "Minecraft Java Engine",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": [
-    "Minecraft Java Edition",
-    "Minecraft Java",
-    "MC"
-  ],
+  "aliases": ["Minecraft Java Edition", "Minecraft Java", "MC"],
   "editions": [
     {
       "name": "Java Edition",

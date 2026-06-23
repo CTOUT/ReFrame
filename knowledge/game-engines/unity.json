@@ -4,18 +4,9 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
   "detection_signatures": {
-    "file_names": [
-      "prefs",
-      "Player.log",
-      "output_log.txt"
-    ],
-    "path_fragments": [
-      "LocalLow\\",
-      "AppData\\LocalLow"
-    ],
-    "registry_keys": [
-      "HKCU\\Software\\<CompanyName>\\<ProductName>\\"
-    ]
+    "file_names": ["prefs", "Player.log", "output_log.txt"],
+    "path_fragments": ["LocalLow\\", "AppData\\LocalLow"],
+    "registry_keys": ["HKCU\\Software\\<CompanyName>\\<ProductName>\\"]
   },
   "config_file_locations": {
     "windows_registry": "HKCU\\Software\\<CompanyName>\\<ProductName>\\",

@@ -4,21 +4,12 @@
   "profile_version": "1.0.0",
   "updated": "2026-06-07",
 
-  "fallback_for": [
-    "Snowdrop 2.0",
-    "Snowdrop 3.0"
-  ],
+  "fallback_for": ["Snowdrop 2.0", "Snowdrop 3.0"],
 
   "detection_signatures": {
-    "file_names": [
-      "GFXSettings.*.exe.xml"
-    ],
-    "root_xml_element": [
-      "GSA_SDK"
-    ],
-    "path_fragments": [
-      "Documents\\My Games\\"
-    ],
+    "file_names": ["GFXSettings.*.exe.xml"],
+    "root_xml_element": ["GSA_SDK"],
+    "path_fragments": ["Documents\\My Games\\"],
     "notes": "Snowdrop config files use a Ubisoft GSA_SDK XML wrapper. The root element is <GSA_SDK Version=\"1.0.x.x\"> and settings are stored as <OPTION Name=\"...\" Value=\"...\"> nodes inside <GAMESETTINGS>. File names follow the pattern GFXSettings.<GameExeName>.exe.xml."
   },
 

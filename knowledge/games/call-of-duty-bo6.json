@@ -3,11 +3,7 @@
   "engine": "IW Engine 9",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": [
-    "CoD BO6",
-    "Black Ops 6",
-    "BO6"
-  ],
+  "aliases": ["CoD BO6", "Black Ops 6", "BO6"],
   "platforms": [
     {
       "name": "Steam",

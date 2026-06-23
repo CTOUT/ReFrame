@@ -68,7 +68,9 @@
       "type": "REQUIRED — one of: file | config | launch_arg",
       "label": "REQUIRED — human-readable description shown to the user, e.g. 'Rename splash video file'",
       "reversible": "REQUIRED — boolean. true if the original state can be fully restored (e.g. rename); false if it cannot (e.g. delete).",
-      "platforms": ["OPTIONAL — omit this field entirely if the method works on all platforms. Otherwise list applicable store names, e.g. ['Steam', 'Epic Games Store']."],
+      "platforms": [
+        "OPTIONAL — omit this field entirely if the method works on all platforms. Otherwise list applicable store names, e.g. ['Steam', 'Epic Games Store']."
+      ],
 
       "_comment_file": "The following fields apply when type is 'file'. Remove this comment.",
       "files": [

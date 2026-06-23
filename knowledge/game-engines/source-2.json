@@ -4,10 +4,7 @@
   "profile_version": "1.0.0",
   "updated": "2026-04-28",
   "detection_signatures": {
-    "file_names": [
-      "video.txt",
-      "autoexec.cfg"
-    ],
+    "file_names": ["video.txt", "autoexec.cfg"],
     "path_fragments": [
       "Counter-Strike Global Offensive\\cfg",
       "cs2\\cfg",

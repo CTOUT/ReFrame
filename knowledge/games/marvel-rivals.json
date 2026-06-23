@@ -3,9 +3,7 @@
   "engine": "Unreal Engine 5",
   "profile_version": "1.0.0",
   "updated": "2026-04-29",
-  "aliases": [
-    "MarvelRivals"
-  ],
+  "aliases": ["MarvelRivals"],
   "platforms": [
     {
       "name": "Steam",
