@@ -141,6 +141,15 @@
       "updated": "2026-04-29"
     },
     {
+      "name": "Middle-earth: Shadow of Mordor",
+      "file": "games/middle-earth-shadow-of-mordor.json",
+      "engine": "unknown",
+      "platforms": ["Steam", "GOG"],
+      "key_count": 13,
+      "profile_version": "1.0.0",
+      "updated": "2026-07-15"
+    },
+    {
       "name": "Minecraft",
       "file": "games/minecraft.json",
       "engine": "Minecraft Java Engine",

@@ -1,0 +1,179 @@
+{
+  "game": "Star Trek Online",
+  "engine": "Cryptic Engine",
+  "profile_version": "1.0.0",
+  "updated": "2026-07-09",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "9900",
+      "config_files": [
+        {
+          "file": "gameprefs.pref",
+          "path": "%GAME_DIR%\\Star Trek Online\\Live\\localdata\\gameprefs.pref",
+          "format": "cfg",
+          "notes": "Primary configuration file containing graphics, monitor, and API settings. Edit only when the game is completely closed."
+        },
+        {
+          "file": "gameprefs.pref (alternate)",
+          "path": "%GAME_DIR%\\Live\\localdata\\gameprefs.pref",
+          "format": "cfg",
+          "notes": "Alternate path for newer Steam installs where Star Trek Online is the root directory. Edit only when the game is completely closed."
+        }
+      ]
+    },
+    {
+      "name": "Arc Games",
+      "config_files": [
+        {
+          "file": "gameprefs.pref",
+          "path": "%GAME_DIR%\\Live\\localdata\\gameprefs.pref",
+          "format": "cfg",
+          "notes": "Standalone launcher config location. Contains local settings overrides. Edit only when the game is completely closed."
+        }
+      ]
+    },
+    {
+      "name": "Epic Games Store",
+      "config_files": [
+        {
+          "file": "gameprefs.pref",
+          "path": "%GAME_DIR%\\Live\\localdata\\gameprefs.pref",
+          "format": "cfg",
+          "notes": "Epic Games launcher config location. Contains local settings overrides. Edit only when the game is completely closed."
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "GfxSettings.Fullscreen",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "category": "GRAPHICS",
+      "effect": "Toggle display mode: 0=windowed, 1=fullscreen.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Fullscreen (1) allows the Cryptic Engine to acquire direct display focus, reducing input lag and potential DWM frame drop overhead."
+    },
+    {
+      "key": "GfxSettings.MonitorIndex",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "category": "GRAPHICS",
+      "effect": "Target monitor index (0=primary, 1=secondary, etc.).",
+      "notes": "Set manually to resolve issues where the game repeatedly opens on the wrong display."
+    },
+    {
+      "key": "GfxSettings.DeviceType",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "category": "GRAPHICS",
+      "effect": "Forced graphics API device type.",
+      "recommendations": {
+        "performance": "Direct3D11",
+        "balanced": "Direct3D11",
+        "quality": "Direct3D11"
+      },
+      "notes": "Forces the game to render using DirectX 11. Legacy options like Direct3D9 are deprecated and can cause crashes or missing UI fonts on modern hardware."
+    },
+    {
+      "key": "GfxSettings.MaxFPS",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "category": "PERFORMANCE",
+      "effect": "Hard ceiling on rendering frame rate.",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "0"
+      },
+      "notes": "A value of 0 removes the ceiling (uncapped). On performance/balanced goals, capping the frame rate to match the monitor's native refresh rate prevents runaway GPU power utilization and thermal throttling, particularly in space combat and crowded social hubs."
+    },
+    {
+      "key": "GfxSettings.DefaultFov",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "category": "GRAPHICS",
+      "effect": "Baseline Field of View (FOV) angle.",
+      "recommendations": {
+        "performance": "55",
+        "balanced": "65",
+        "quality": "75"
+      },
+      "notes": "Determines the default camera field of view. Higher values increase GPU rendering stress by bringing more scene objects into the camera frustum."
+    },
+    {
+      "key": "FOV.Ground",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "category": "GRAPHICS",
+      "effect": "Field of view setting for ground missions.",
+      "recommendations": {
+        "performance": "55",
+        "balanced": "60",
+        "quality": "70"
+      },
+      "notes": "Applies ground FOV separately. Recommended for motion-comfort modifiers to mitigate camera sickness during ground combat."
+    },
+    {
+      "key": "FOV.Space",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "category": "GRAPHICS",
+      "effect": "Field of view setting for space missions.",
+      "recommendations": {
+        "performance": "60",
+        "balanced": "65",
+        "quality": "75"
+      },
+      "notes": "Applies space FOV separately. Higher space FOV improves spatial awareness during orbital dogfights."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Shadow Quality",
+      "location": "Options > Graphics > Shadows",
+      "recommendation": "Off or Low for performance; Medium for balanced; High or Max for quality.",
+      "reason": "Shadow maps are heavily processed by the CPU and GPU in Star Trek Online, especially in dense fleet battles and social hubs (like ESD/Qo'noS). Disabling or lowering shadows provides the single largest framerate increase in the game."
+    },
+    {
+      "setting": "Lighting Quality",
+      "location": "Options > Graphics > Lighting Quality",
+      "recommendation": "Low/Medium for performance; High for balanced; Max for quality.",
+      "reason": "Cryptic Engine lighting scales from basic vertex lighting up to advanced dynamic lighting. High/Max features deferred shading and bloom, which increase GPU render times."
+    },
+    {
+      "setting": "Anti-Aliasing",
+      "location": "Options > Graphics > Anti-Aliasing",
+      "recommendation": "Off for performance; MSAA 2x or FXAA for balanced; MSAA 4x for quality.",
+      "reason": "MSAA reduces aliasing at the cost of VRAM bandwidth. FXAA is a post-processing filter that runs faster but slightly softens the entire image."
+    },
+    {
+      "setting": "Visual Effects Quality",
+      "location": "Options > Graphics > Visual Effects Quality",
+      "recommendation": "Low/Medium for performance; Medium/High for balanced; Max/Very High for quality.",
+      "reason": "Space combat in STO features high densities of particle effects from abilities (e.g. Gravity Well, FAW). Lowering this setting prevents major frame drops when multiple abilities trigger simultaneously."
+    }
+  ],
+  "notes": [
+    "Star Trek Online runs on the proprietary Cryptic Engine. Granular sub-settings like shadow mapping, lighting nodes, and anti-aliasing are not exposed directly as registry or easily-modified pref keys — they must be set via the in-game Options menu.",
+    "If your graphics settings fail to persist, ensure that gameprefs.pref is not set to Read-Only in its Windows file properties. If settings are corrupted, delete the file and relaunch the game to regenerate it.",
+    "The game is heavily CPU-bound in social zones (ESD, DS9, Qo'noS) due to rendering numerous other players. GPU-side settings will have lesser impacts in these hubs."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Star_Trek_Online",
+      "type": "wiki",
+      "label": "PCGamingWiki — Star Trek Online"
+    },
+    {
+      "url": "https://reddit.com/r/sto",
+      "type": "community",
+      "label": "Star Trek Online Subreddit (r/sto)"
+    }
+  ]
+}

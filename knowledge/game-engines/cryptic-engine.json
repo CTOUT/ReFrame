@@ -1,0 +1,91 @@
+{
+  "engine": "Cryptic Engine",
+  "version_range": "all",
+  "profile_version": "1.0.0",
+  "updated": "2026-07-09",
+  "detection_signatures": {
+    "file_names": ["gameprefs.pref", "controller.cfg"],
+    "path_fragments": ["localdata"]
+  },
+  "config_file_locations": {
+    "windows_gameprefs": "%GAME_DIR%\\Live\\localdata\\gameprefs.pref",
+    "windows_note": "Cryptic Engine stores local preferences in gameprefs.pref, which is a flat text file. Each line starts with PrefEntry followed by the setting name and its value (space-separated)."
+  },
+  "keys": [
+    {
+      "key": "GfxSettings.Fullscreen",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "effect": "Toggle display mode: 0=windowed, 1=fullscreen.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Fullscreen (1) generally yields better performance and frame consistency on single-monitor setups. Set to 0 if the user prefers windowed or borderless configurations."
+    },
+    {
+      "key": "GfxSettings.MonitorIndex",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "effect": "Target monitor index (0=primary monitor, 1=secondary, etc.).",
+      "notes": "Useful for multi-monitor setups. Change this value if the game constantly launches on the incorrect monitor."
+    },
+    {
+      "key": "GfxSettings.FullScreenWidth",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "effect": "Horizontal resolution in pixels when running in fullscreen mode."
+    },
+    {
+      "key": "GfxSettings.FullScreenHeight",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "effect": "Vertical resolution in pixels when running in fullscreen mode."
+    },
+    {
+      "key": "GfxSettings.WindowedWidth",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "effect": "Horizontal resolution in pixels when running in windowed mode."
+    },
+    {
+      "key": "GfxSettings.WindowedHeight",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "effect": "Vertical resolution in pixels when running in windowed mode."
+    },
+    {
+      "key": "GfxSettings.RefreshRate",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "effect": "Target display refresh rate in Hz.",
+      "notes": "Should match the desktop monitor refresh rate. Misalignment can cause screen tearing or stuttering."
+    },
+    {
+      "key": "GfxSettings.DeviceType",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "effect": "Graphics rendering API device type (e.g. Direct3D11).",
+      "notes": "Forcing Direct3D11 is standard for modern GPUs. Direct3D9 is a legacy option that may cause instability or launch issues on newer hardware."
+    },
+    {
+      "key": "GfxSettings.DefaultFov",
+      "file": "gameprefs.pref",
+      "format": "cfg",
+      "effect": "Field of View (FOV) angle for the camera.",
+      "notes": "Adjusting the FOV can improve situational awareness and comfort. Higher values increase the rendering area but may lower FPS."
+    }
+  ],
+  "notes": [
+    "Cryptic Engine preferences are stored in gameprefs.pref. The file can be manually edited using any standard text editor.",
+    "If the gameprefs.pref file becomes corrupted, deleting it will force the game launcher or client to regenerate a fresh, default copy upon launch."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Star_Trek_Online",
+      "type": "wiki",
+      "label": "PCGamingWiki — Star Trek Online"
+    }
+  ]
+}

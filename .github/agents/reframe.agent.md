@@ -158,7 +158,7 @@ $searchPaths = @(
 foreach ($base in $searchPaths) {
     Get-ChildItem -Path $base -Recurse -ErrorAction SilentlyContinue |
         Where-Object { $_.Name -like "*$gameSafe*" -or $_.DirectoryName -like "*$gameSafe*" } |
-        Where-Object { $_.Extension -in @(".ini", ".cfg", ".xml", ".json", ".config", ".settings", ".txt") } |
+        Where-Object { $_.Extension -in @(".ini", ".cfg", ".xml", ".json", ".config", ".settings", ".txt", ".pref") } |
         Select-Object FullName, LastWriteTime, Length
 }
 ```

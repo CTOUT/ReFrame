@@ -797,6 +797,82 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 
 ---
 
+## Star Trek Online
+
+**Engine:** Cryptic Engine (proprietary)
+
+| Platform   | Config Path                                                 | Format |
+| ---------- | ----------------------------------------------------------- | ------ |
+| Steam      | `%GAME_DIR%\Star Trek Online\Live\localdata\gameprefs.pref` | CFG    |
+| Arc / Epic | `%GAME_DIR%\Live\localdata\gameprefs.pref`                  | CFG    |
+
+**Key settings:**
+
+| Key                        | Effect                                 | Recommended (performance) | Recommended (quality)     |
+| -------------------------- | -------------------------------------- | ------------------------- | ------------------------- |
+| `GfxSettings.Fullscreen`   | Display mode: 0=windowed, 1=fullscreen | `1`                       | `1`                       |
+| `GfxSettings.MonitorIndex` | Target monitor index                   | `0` (or `1`, etc.)        | `0` (or `1`, etc.)        |
+| `GfxSettings.DeviceType`   | Forced rendering API device type       | `Direct3D11`              | `Direct3D11`              |
+| `GfxSettings.MaxFPS`       | Frame rate cap (0=uncapped)            | Match monitor Hz          | `0` (or match monitor Hz) |
+| `GfxSettings.DefaultFov`   | Baseline Field of View                 | `55`                      | `75`                      |
+| `FOV.Ground`               | Ground mission Field of View           | `55`                      | `70`                      |
+| `FOV.Space`                | Space mission Field of View            | `60`                      | `75`                      |
+
+**Manual-only settings:**
+
+| Setting                | Location                                    | Recommendation | Reason                                                          |
+| ---------------------- | ------------------------------------------- | -------------- | --------------------------------------------------------------- |
+| Shadow Quality         | Options > Graphics > Shadows                | Off or Low     | Heavy CPU/GPU rendering cost in dense hubs and fleet battles.   |
+| Lighting Quality       | Options > Graphics > Lighting Quality       | Low or Medium  | Deferred shading and bloom increase rendering load.             |
+| Anti-Aliasing          | Options > Graphics > Anti-Aliasing          | Off or FXAA    | MSAA has high VRAM bandwidth requirements.                      |
+| Visual Effects Quality | Options > Graphics > Visual Effects Quality | Low or Medium  | High particle density in space combat causes major frame drops. |
+
+**Notes:**
+
+- Star Trek Online utilizes the Cryptic Engine. Granular sub-settings like shadow details and particle quality are not exposed in the configuration file directly and must be configured via the in-game Options menu.
+- If settings fail to save or the file is corrupted, deleting `gameprefs.pref` will force the game launcher or client to regenerate a fresh default copy.
+- Always check that `gameprefs.pref` is not marked as Read-Only in its Windows file properties if your settings are resetting on launch.
+
+## Middle-earth: Shadow of Mordor
+
+**Engine:** LithTech Jupiter EX (Modified)
+
+| Platform | Config Path                                                      | Format |
+| -------- | ---------------------------------------------------------------- | ------ |
+| Steam    | `%USERPROFILE%\Documents\WB Games\Shadow of Mordor\render.cfg`   | CFG    |
+|          | `%USERPROFILE%\Documents\WB Games\Shadow of Mordor\settings.cfg` | CFG    |
+| GOG      | `%USERPROFILE%\Documents\WB Games\Shadow of Mordor\render.cfg`   | CFG    |
+|          | `%USERPROFILE%\Documents\WB Games\Shadow of Mordor\settings.cfg` | CFG    |
+
+**Key settings:**
+
+| Key                                      | File         | Effect                                                    | Recommended (performance) | Recommended (quality)   |
+| ---------------------------------------- | ------------ | --------------------------------------------------------- | ------------------------- | ----------------------- |
+| `Render.Setting.AmbientOcclusionQuality` | render.cfg   | Ambient Occlusion quality: 0=Off, 1=Low, 2=Medium, 3=High | `0.000000` (Off)          | `3.000000` (High)       |
+| `Render.Setting.DepthofFieldToggle`      | render.cfg   | Depth of Field blur toggle: 0=Off, 1=On                   | `0.000000` (Off)          | `1.000000` (On)         |
+| `Render.Setting.FrameRateLimit`          | render.cfg   | FPS Cap: 0=30 FPS, 1=60 FPS, 2=100 FPS, 3=Uncapped        | `3.000000` (Uncapped)     | `3.000000` (Uncapped)   |
+| `Render.Setting.LightingQuality`         | render.cfg   | Lighting quality: 0=Low, 1=Medium, 2=High, 3=Ultra        | `1.000000` (Medium)       | `3.000000` (Ultra)      |
+| `Render.Setting.MeshQuality`             | render.cfg   | Geometric details: 0=Low, 1=Medium, 2=High, 3=Ultra       | `1.000000` (Medium)       | `3.000000` (Ultra)      |
+| `Render.Setting.MotionBlurQuality`       | render.cfg   | Motion blur quality: 0=Off, 1=Low, 2=Medium, 3=High       | `0.000000` (Off)          | `0.000000` (Off)        |
+| `Render.Setting.OITToggle`               | render.cfg   | Order Independent Transparency: 0=Off, 1=On               | `0.000000` (Off)          | `1.000000` (On)         |
+| `Render.Setting.ShadowQuality`           | render.cfg   | Shadow detail level: 0=Low, 1=Medium, 2=High, 3=Ultra     | `1.000000` (Medium)       | `3.000000` (Ultra)      |
+| `Render.Setting.TessellationToggle`      | render.cfg   | Ground terrain tessellation: 0=Off, 1=On                  | `0.000000` (Off)          | `1.000000` (On)         |
+| `Render.Setting.TextureFiltering`        | render.cfg   | Texture anisotropic filtering: 0=Low ... 3=Ultra          | `1.000000` (Medium)       | `3.000000` (Ultra)      |
+| `Render.Setting.TextureQuality`          | render.cfg   | Texture resolution quality: 0=Low ... 3=Ultra             | `2.000000` (High)         | `3.000000` (Ultra)      |
+| `Render.Setting.VegetationQuality`       | render.cfg   | Vegetation detail level: 0=Low ... 4=Ultra                | `1.000000` (Medium)       | `4.000000` (Ultra)      |
+| `Windowed`                               | settings.cfg | Window mode: 0=Fullscreen, 1=Windowed, 2=Borderless       | `0.000000` (Fullscreen)   | `2.000000` (Borderless) |
+
+**Notes:**
+
+- **HD Content Pack DLC:** Ultra textures (`Render.Setting.TextureQuality` `"3.000000"`) require downloading the free HD Content pack DLC on Steam/GOG. Furthermore, running Ultra textures requires at least 6GB of VRAM (8GB+ recommended) to avoid paging stutter.
+- **Progression Bug (Big Game):** Uncapped frame rates (`Render.Setting.FrameRateLimit` `"3.000000"`) can block progression in the "Big Game" hunt mission. If this occurs, set it back to `2.000000` (100 FPS) or `1.000000` (60 FPS) until the mission is passed.
+- **Ultrawide & Custom Resolutions:** If the game displays at stretched or incorrect aspect ratios, change `"Render.Setting.AspectRatioLock"` in `render.cfg` from `"1.000000"` to `"0.000000"`.
+- **Read-Only Config:** If settings revert on launch, check that the `WB Games\Shadow of Mordor` folder and configuration files are not flagged as "Read-only" in Windows.
+
+**Sources:** [PCGamingWiki — Middle-earth: Shadow of Mordor](https://www.pcgamingwiki.com/wiki/Middle-earth:_Shadow_of_Mordor)
+
+---
+
 ## Adding More Games
 
 Create a pull request adding a new section to this file following the template above. Include:

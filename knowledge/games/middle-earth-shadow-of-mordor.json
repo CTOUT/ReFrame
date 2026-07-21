@@ -1,0 +1,180 @@
+{
+  "game": "Middle-earth: Shadow of Mordor",
+  "engine": "unknown",
+  "profile_version": "1.0.0",
+  "updated": "2026-07-15",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\Documents\\WB Games\\Shadow of Mordor\\render.cfg",
+          "format": "cfg"
+        },
+        {
+          "path": "%USERPROFILE%\\Documents\\WB Games\\Shadow of Mordor\\settings.cfg",
+          "format": "cfg"
+        }
+      ]
+    },
+    {
+      "store": "GOG",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\Documents\\WB Games\\Shadow of Mordor\\render.cfg",
+          "format": "cfg"
+        },
+        {
+          "path": "%USERPROFILE%\\Documents\\WB Games\\Shadow of Mordor\\settings.cfg",
+          "format": "cfg"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "Render.Setting.AmbientOcclusionQuality",
+      "file": "render.cfg",
+      "effect": "Ambient Occlusion Quality: 0.000000=Off, 1.000000=Low, 2.000000=Medium, 3.000000=High",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "2.000000",
+        "quality": "3.000000"
+      }
+    },
+    {
+      "key": "Render.Setting.DepthofFieldToggle",
+      "file": "render.cfg",
+      "effect": "Depth of Field: 0.000000=Off, 1.000000=On",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "1.000000",
+        "quality": "1.000000"
+      }
+    },
+    {
+      "key": "Render.Setting.FrameRateLimit",
+      "file": "render.cfg",
+      "effect": "Frame rate limit: 0.000000=30 FPS, 1.000000=60 FPS, 2.000000=100 FPS, 3.000000=Uncapped",
+      "recommendations": {
+        "performance": "3.000000",
+        "balanced": "2.000000",
+        "quality": "3.000000"
+      },
+      "notes": "Uncapped (3.000000) is known to cause a progression blocker in the 'Big Game' mission. Revert to 2.000000 (100 FPS) or 1.000000 (60 FPS) to pass the mission."
+    },
+    {
+      "key": "Render.Setting.LightingQuality",
+      "file": "render.cfg",
+      "effect": "Lighting quality level: 0.000000=Low, 1.000000=Medium, 2.000000=High, 3.000000=Ultra",
+      "recommendations": {
+        "performance": "1.000000",
+        "balanced": "2.000000",
+        "quality": "3.000000"
+      }
+    },
+    {
+      "key": "Render.Setting.MeshQuality",
+      "file": "render.cfg",
+      "effect": "Geometric detail level: 0.000000=Low, 1.000000=Medium, 2.000000=High, 3.000000=Ultra",
+      "recommendations": {
+        "performance": "1.000000",
+        "balanced": "2.000000",
+        "quality": "3.000000"
+      }
+    },
+    {
+      "key": "Render.Setting.MotionBlurQuality",
+      "file": "render.cfg",
+      "effect": "Motion blur level: 0.000000=Off, 1.000000=Low, 2.000000=Medium, 3.000000=High",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "0.000000",
+        "quality": "0.000000"
+      },
+      "notes": "Recommended off in all goals. Primary motion comfort trigger with no meaningful visual benefit."
+    },
+    {
+      "key": "Render.Setting.OITToggle",
+      "file": "render.cfg",
+      "effect": "Order Independent Transparency (transparency sorting): 0.000000=Off, 1.000000=On",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "1.000000",
+        "quality": "1.000000"
+      }
+    },
+    {
+      "key": "Render.Setting.ShadowQuality",
+      "file": "render.cfg",
+      "effect": "Shadow quality level: 0.000000=Low, 1.000000=Medium, 2.000000=High, 3.000000=Ultra",
+      "recommendations": {
+        "performance": "1.000000",
+        "balanced": "2.000000",
+        "quality": "3.000000"
+      }
+    },
+    {
+      "key": "Render.Setting.TessellationToggle",
+      "file": "render.cfg",
+      "effect": "Tessellation for ground terrain: 0.000000=Off, 1.000000=On",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "1.000000",
+        "quality": "1.000000"
+      }
+    },
+    {
+      "key": "Render.Setting.TextureFiltering",
+      "file": "render.cfg",
+      "effect": "Texture filtering quality: 0.000000=Low, 1.000000=Medium, 2.000000=High, 3.000000=Ultra",
+      "recommendations": {
+        "performance": "1.000000",
+        "balanced": "2.000000",
+        "quality": "3.000000"
+      }
+    },
+    {
+      "key": "Render.Setting.TextureQuality",
+      "file": "render.cfg",
+      "effect": "Texture resolution quality: 0.000000=Low, 1.000000=Medium, 2.000000=High, 3.000000=Ultra",
+      "recommendations": {
+        "performance": "2.000000",
+        "balanced": "2.000000",
+        "quality": "3.000000"
+      },
+      "notes": "Ultra texture resolution requires the free 'HD Content' DLC and at least 6GB of VRAM (8GB+ recommended)."
+    },
+    {
+      "key": "Render.Setting.VegetationQuality",
+      "file": "render.cfg",
+      "effect": "Vegetation detail level: 0.000000=Low, 1.000000=Medium, 2.000000=High, 3.000000=Ultra (or 4.000000)",
+      "recommendations": {
+        "performance": "1.000000",
+        "balanced": "3.000000",
+        "quality": "4.000000"
+      }
+    },
+    {
+      "key": "Windowed",
+      "file": "settings.cfg",
+      "effect": "Windowed mode: 0.000000=Fullscreen, 1.000000=Windowed, 2.000000=Borderless Windowed",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "2.000000",
+        "quality": "2.000000"
+      }
+    }
+  ],
+  "notes": [
+    "Middle-earth: Shadow of Mordor uses a custom engine configuration stored under 'render.cfg' and 'settings.cfg'.",
+    "If your changes revert, make sure that neither file is set to Read-only in Windows file properties."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Middle-earth:_Shadow_of_Mordor",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    }
+  ]
+}
