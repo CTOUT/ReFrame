@@ -869,7 +869,54 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 - **Ultrawide & Custom Resolutions:** If the game displays at stretched or incorrect aspect ratios, change `"Render.Setting.AspectRatioLock"` in `render.cfg` from `"1.000000"` to `"0.000000"`.
 - **Read-Only Config:** If settings revert on launch, check that the `WB Games\Shadow of Mordor` folder and configuration files are not flagged as "Read-only" in Windows.
 
-**Sources:** [PCGamingWiki — Middle-earth: Shadow of Mordor](https://www.pcgamingwiki.com/wiki/Middle-earth:_Shadow_of_Mordor)
+## Beast of Reincarnation
+
+**Engine:** Unreal Engine 5
+
+| Platform | Config Path | Format |
+| -------- | ----------- | ------ |
+| PC       | `%LOCALAPPDATA%\BeastOfReincarnation\Saved\Config\Windows\GameUserSettings.ini` | INI |
+
+**Key settings:**
+
+| Key | Effect | Recommended (performance) | Recommended (quality) |
+| --- | --- | --- | --- |
+| `sg.ResolutionQuality` | Internal render resolution scale % | `67` | `100` |
+| `sg.ShadowQuality` | Virtual Shadow Maps resolution & cascades | `1` | `4` |
+| `sg.GlobalIlluminationQuality` | Lumen Global Illumination detail | `0` | `4` |
+| `sg.ReflectionQuality` | Lumen Reflection detail | `1` | `4` |
+| `sg.PostProcessQuality` | Bloom, depth of field, & lens flare quality | `1` | `4` |
+| `sg.TextureQuality` | Texture streaming pool allocation | `2` | `4` |
+
+**Notes:**
+
+- Config file follows Unreal Engine 5 structure under `%LOCALAPPDATA%\BeastOfReincarnation\Saved\Config\Windows\GameUserSettings.ini`.
+- Custom game options module is specified under `[/Script/BeastOfReincarnation.AibouGameUserSettings]`.
+
+---
+
+## Crimson Desert
+
+**Engine:** BlackSpace Engine (Pearl Abyss)
+
+| Platform | Config Path | Format |
+| -------- | ----------- | ------ |
+| PC       | `%LOCALAPPDATA%\Pearl Abyss\CD\save\user_engine_option_save.xml` | XML |
+
+**Key settings:**
+
+| Key | Effect | Recommended (performance) | Recommended (quality) |
+| --- | --- | --- | --- |
+| `_upscaleResolution` | DLSS/FSR render scale percentage (50%, 59%, 67%, AA) | `50%` | `67%` |
+| `_shadowQualityLevelSelect` | Shadow map cascade and resolution quality | `Medium` | `Ultra` |
+| `_postProcessingQualityLevelSelect` | Post-process bloom & lens flare quality | `Medium` | `Ultra` |
+| `_effectQualityLevelSelect` | VFX particle density and lighting flashes | `Medium` | `Ultra` |
+| `_enableHDR` | High Dynamic Range display output | `False` | `True` |
+
+**Notes:**
+
+- Config settings are saved in XML format at `%LOCALAPPDATA%\Pearl Abyss\CD\save\user_engine_option_save.xml`.
+- Supports NVIDIA DLSS 4.5, DLSS Frame Generation, and Reflex.
 
 ---
 

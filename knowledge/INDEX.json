@@ -41,6 +41,16 @@
       "updated": "2026-04-29"
     },
     {
+      "name": "Beast of Reincarnation",
+      "file": "games/beast-of-reincarnation.json",
+      "engine": "Unreal Engine 5",
+      "engine_version": "5.x",
+      "platforms": ["PC (Other/Steam)"],
+      "key_count": 14,
+      "profile_version": "1.0.0",
+      "updated": "2026-08-08"
+    },
+    {
       "name": "Call of Duty: Black Ops 6",
       "file": "games/call-of-duty-bo6.json",
       "engine": "IW Engine 9",
@@ -57,6 +67,16 @@
       "key_count": 10,
       "profile_version": "1.0.0",
       "updated": "2026-04-28"
+    },
+    {
+      "name": "Crimson Desert",
+      "file": "games/crimson-desert.json",
+      "engine": "BlackSpace Engine",
+      "engine_version": "1.0",
+      "platforms": ["PC (Other/Steam)"],
+      "key_count": 8,
+      "profile_version": "1.0.0",
+      "updated": "2026-08-08"
     },
     {
       "name": "Cyberpunk 2077",

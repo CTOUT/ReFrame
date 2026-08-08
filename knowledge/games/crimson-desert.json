@@ -1,0 +1,130 @@
+{
+  "game": "Crimson Desert",
+  "engine": "BlackSpace Engine",
+  "engine_version": "1.0",
+  "profile_version": "1.0.0",
+  "updated": "2026-08-08",
+  "platforms": [
+    {
+      "store": "PC (Other/Steam)",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\Pearl Abyss\\CD\\save\\user_engine_option_save.xml",
+          "format": "xml"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "_upscaleResolution",
+      "file": "user_engine_option_save.xml",
+      "section": "<EngineOptionResolution>",
+      "effect": "Internal render resolution scaling percentage for DLSS/FSR/XeSS upscaling (50%=Performance, 59%=Balanced, 67%=Quality, AA=DLAA Native).",
+      "recommendations": {
+        "performance": "50%",
+        "balanced": "59%",
+        "quality": "67%"
+      },
+      "notes": "At 5120x1440, 67% (Quality) renders internally at 3430x965 before upscaling, maintaining high framerates above 60 FPS+."
+    },
+    {
+      "key": "_shadowQualityLevelSelect",
+      "file": "user_engine_option_save.xml",
+      "section": "<EngineOptionGraphics>",
+      "effect": "Shadow map resolution and cascade quality.",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "Ultra"
+      },
+      "notes": "Cinematic shadow quality introduces significant GPU frame timing overhead. Ultra/High balances visual crispness and stable 60 FPS+."
+    },
+    {
+      "key": "_postProcessingQualityLevelSelect",
+      "file": "user_engine_option_save.xml",
+      "section": "<EngineOptionGraphics>",
+      "effect": "Bloom, lens flare, depth of field, and post-process lighting flashes.",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "Ultra"
+      },
+      "notes": "With photosensitivity modifier active, set to Medium or Low to disable intense lens flares and high-contrast bloom bursts."
+    },
+    {
+      "key": "_effectQualityLevelSelect",
+      "file": "user_engine_option_save.xml",
+      "section": "<EngineOptionGraphics>",
+      "effect": "VFX particle density, spell effect brightness, and combat flash intensity.",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "Ultra"
+      },
+      "notes": "With photosensitivity modifier active, set to Medium to reduce rapid particle strobe flashes."
+    },
+    {
+      "key": "_enableHDR",
+      "file": "user_engine_option_save.xml",
+      "section": "<EngineOptionVideo>",
+      "effect": "High Dynamic Range display luminance output.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "True"
+      },
+      "notes": "With photosensitivity modifier active, set to False to eliminate peak luminance flashes on HDR screens."
+    },
+    {
+      "key": "_textureQualityLevelSelect",
+      "file": "user_engine_option_save.xml",
+      "section": "<EngineOptionGraphics>",
+      "effect": "Texture memory streaming pool and resolution.",
+      "recommendations": {
+        "performance": "High",
+        "balanced": "Ultra",
+        "quality": "Ultra"
+      }
+    },
+    {
+      "key": "_modelQualityLevelSelect",
+      "file": "user_engine_option_save.xml",
+      "section": "<EngineOptionGraphics>",
+      "effect": "Character and environment mesh geometry LOD precision.",
+      "recommendations": {
+        "performance": "High",
+        "balanced": "Ultra",
+        "quality": "Ultra"
+      }
+    },
+    {
+      "key": "_enableFrameGeneration",
+      "file": "user_engine_option_save.xml",
+      "section": "<EngineOptionVideo>",
+      "effect": "NVIDIA DLSS / AMD FSR Frame Generation.",
+      "recommendations": {
+        "performance": "True",
+        "balanced": "True",
+        "quality": "True"
+      },
+      "notes": "Provides smooth motion multipliers on RTX 40-series GPUs."
+    }
+  ],
+  "notes": [
+    "Pearl Abyss proprietary BlackSpace Engine title.",
+    "Installed path analyzed: D:\\Games\\Other\\Crimson Desert."
+  ],
+  "sources": [
+    {
+      "url": "file:///D:/Games/Other/Crimson%20Desert",
+      "type": "official",
+      "label": "Crimson Desert Installation Directory Scan"
+    },
+    {
+      "url": "file:///C:/Users/Chris/AppData/Local/Pearl%20Abyss/CD/save/user_engine_option_save.xml",
+      "type": "official",
+      "label": "Local Engine Option Save XML Analysis"
+    }
+  ]
+}
