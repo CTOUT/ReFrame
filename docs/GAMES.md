@@ -892,7 +892,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 
 - Config files follow Unreal Engine 5 structure under `%LOCALAPPDATA%\BeastOfReincarnation\Saved\Config\Windows\GameUserSettings.ini` and `Engine.ini`.
 - Custom game options module is specified under `[/Script/BeastOfReincarnation.AibouGameUserSettings]`.
-- **FSR Reset & Upscaling Fix:** The game caches settings in `borSaveDataLocalConfig.sav` at runtime and may revert to FSR or default resolutions. Use `Engine.ini` with `[SystemSettings]` `r.NGX.DLSS.Enable=1` and `r.FidelityFX.FSR2.Enabled=0` to force NVIDIA DLSS active across game launches.
+- **FSR Reset & Read-Only Lock:** The game's `AibouSaveDataContainer` binary save module caches settings in `borSaveDataLocalConfig.sav` and overwrites `GameUserSettings.ini` while deleting unmanaged `Engine.ini` files on launch. To permanently enforce **NVIDIA DLSS** and 5120x1440 resolution, write `Engine.ini` with `[SystemSettings]` `r.NGX.DLSS.Enable=1` & `r.FidelityFX.FSR2.Enabled=0`, and lock both `Engine.ini` and `GameUserSettings.ini` with the Windows **Read-Only** attribute (`Set-ItemProperty -Name Attributes -Value "ReadOnly"`).
 
 ---
 
