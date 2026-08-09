@@ -2,203 +2,74 @@
   "game": "Beast of Reincarnation",
   "engine": "Unreal Engine 5",
   "engine_version": "5.x",
-  "profile_version": "1.2.0",
+  "profile_version": "2.0.0",
   "updated": "2026-08-09",
   "platforms": [
     {
       "store": "PC (Other/Steam)",
       "config_files": [
         {
-          "path": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\Config\\Windows\\GameUserSettings.ini",
-          "format": "ini"
-        },
-        {
-          "path": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\Config\\Windows\\Engine.ini",
-          "format": "ini"
+          "path": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\SaveGames\\borSaveDataConfig.sav",
+          "format": "binary (AibouSaveDataContainer)"
         }
       ]
     }
   ],
   "keys": [
     {
-      "key": "sg.ResolutionQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Internal render resolution percentage relative to target resolution.",
+      "key": "Upscaling",
+      "file": "borSaveDataConfig.sav",
+      "section": "In-Game Menu -> Graphics",
+      "effect": "Selects upscaler algorithm: Off, AMD FSR 1, AMD FSR 3, NVIDIA DLSS, Intel XeSS, TSR.",
       "recommendations": {
-        "performance": "67",
-        "balanced": "80",
-        "quality": "100"
-      },
-      "notes": "At 0, resolution scaling may use system fallback or dynamic defaults. Setting to 100 ensures full native pixel rendering."
-    },
-    {
-      "key": "sg.ViewDistanceQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Draw distance and LOD transition distance for world objects and geometry.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "3",
-        "quality": "4"
+        "performance": "NVIDIA DLSS",
+        "balanced": "NVIDIA DLSS",
+        "quality": "NVIDIA DLSS"
       }
     },
     {
-      "key": "sg.AntiAliasingQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Anti-aliasing quality and temporal reconstruction (TSR / TAA).",
+      "key": "Upscaling Quality",
+      "file": "borSaveDataConfig.sav",
+      "section": "In-Game Menu -> Graphics",
+      "effect": "DLSS/FSR upscaling preset: Ultra Performance, Performance, Balanced, Quality, Native AA.",
       "recommendations": {
-        "performance": "1",
-        "balanced": "3",
-        "quality": "4"
+        "performance": "Performance",
+        "balanced": "Balanced",
+        "quality": "Quality"
       }
     },
     {
-      "key": "sg.ShadowQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Virtual Shadow Maps (VSM) resolution, shadow cascades, and contact shadows.",
+      "key": "HDR",
+      "file": "borSaveDataConfig.sav",
+      "section": "In-Game Menu -> Graphics",
+      "effect": "High Dynamic Range display luminance toggle.",
       "recommendations": {
-        "performance": "1",
-        "balanced": "2",
-        "quality": "4"
-      },
-      "notes": "Quality 4 enables highest precision VSM. Quality 2/3 gives optimal frame stability on high-end hardware."
-    },
-    {
-      "key": "sg.GlobalIlluminationQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Lumen Global Illumination quality, probe density, and update frequency.",
-      "recommendations": {
-        "performance": "0",
-        "balanced": "2",
-        "quality": "4"
-      },
-      "notes": "Controls UE5 Lumen GI. Quality 4 enables epic lighting detail."
-    },
-    {
-      "key": "sg.ReflectionQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Lumen Reflection quality and screen-space reflection resolution.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "2",
-        "quality": "4"
+        "performance": "Off",
+        "balanced": "Off",
+        "quality": "Off (photosensitivity) / On (HDR displays)"
       }
     },
     {
-      "key": "sg.PostProcessQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Depth of field, bloom, motion blur intensity, and tonemapping fidelity.",
+      "key": "Frame Rate",
+      "file": "borSaveDataConfig.sav",
+      "section": "In-Game Menu -> Graphics",
+      "effect": "Framerate cap: 30, 60, 120, Uncapped.",
       "recommendations": {
-        "performance": "1",
-        "balanced": "3",
-        "quality": "4"
-      }
-    },
-    {
-      "key": "sg.TextureQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Texture streaming pool allocation and mipmap resolution.",
-      "recommendations": {
-        "performance": "2",
-        "balanced": "3",
-        "quality": "4"
-      },
-      "notes": "Bandwidth-bound. On 12GB+ GPUs (like RTX 4070 SUPER), set to 4 for maximum detail."
-    },
-    {
-      "key": "sg.EffectsQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "VFX particle density, simulation fidelity, and volumetric fog quality.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "3",
-        "quality": "4"
-      }
-    },
-    {
-      "key": "sg.FoliageQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Foliage density, culling distance, and grass mesh LODs.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "3",
-        "quality": "4"
-      }
-    },
-    {
-      "key": "sg.ShadingQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Subsurface scattering, hair rendering, and material shader complexity.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "2",
-        "quality": "4"
-      }
-    },
-    {
-      "key": "sg.LandscapeQuality",
-      "file": "GameUserSettings.ini",
-      "section": "[ScalabilityGroups]",
-      "effect": "Terrain tessellation and landscape heightmap LOD resolution.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "3",
-        "quality": "4"
-      }
-    },
-    {
-      "key": "r.AntiAliasingMethod",
-      "file": "Engine.ini",
-      "section": "[SystemSettings]",
-      "effect": "Anti-aliasing / upscaling method selector: 4=TSR, 5=NVIDIA DLSS.",
-      "recommendations": {
-        "performance": "5",
-        "balanced": "5",
-        "quality": "5"
-      }
-    },
-    {
-      "key": "r.NGX.DLSS.Enable",
-      "file": "Engine.ini",
-      "section": "[SystemSettings]",
-      "effect": "Forces NVIDIA DLSS upscaling plugin active at engine boot.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "1",
-        "quality": "1"
-      }
-    },
-    {
-      "key": "r.FidelityFX.FSR.Enabled",
-      "file": "Engine.ini",
-      "section": "[SystemSettings]",
-      "effect": "Disables AMD FSR override to prevent resetting from DLSS.",
-      "recommendations": {
-        "performance": "0",
-        "balanced": "0",
-        "quality": "0"
+        "performance": "120",
+        "balanced": "120",
+        "quality": "120"
       }
     }
   ],
   "engine_overrides": [
     {
-      "key": "UpscalingFallback",
-      "behaviour": "The game caches FSR graphics options in borSaveDataLocalConfig.sav and resets to FSR1 if Engine.ini lacks r.AntiAliasingMethod=5 and FSR disables.",
-      "action": "Use Engine.ini with r.AntiAliasingMethod=5, r.NGX.DLSS.Enable=1, r.FidelityFX.FSR.Enabled=0, clear borSaveDataLocalConfig.sav, and lock Engine.ini and GameUserSettings.ini with ReadOnly attribute."
+      "key": "AibouSaveDataContainer",
+      "behaviour": "The game uses a compressed binary container (/Script/BeastOfReincarnation.AibouSaveDataContainer) inside borSaveDataConfig.sav to serialize all in-game Graphics, Display, and Upscaling options.",
+      "action": "Select options in the in-game Graphics menu and press E Confirm to serialize settings into borSaveDataConfig.sav."
     }
   ],
   "notes": [
-    "Unreal Engine 5 title with custom module /Script/BeastOfReincarnation.AibouGameUserSettings.",
+    "Unreal Engine 5 title with compressed binary configuration serialization.",
     "Installed path analyzed: D:\\Games\\Other\\Beast of Reincarnation."
   ],
   "sources": [
@@ -208,9 +79,9 @@
       "label": "Beast of Reincarnation Installation Directory Scan"
     },
     {
-      "url": "file:///C:/Users/Chris/AppData/Local/BeastOfReincarnation/Saved/Config/Windows/GameUserSettings.ini",
+      "url": "file:///C:/Users/Chris/AppData/Local/BeastOfReincarnation/Saved/SaveGames/borSaveDataConfig.sav",
       "type": "official",
-      "label": "Local Config Analysis"
+      "label": "AibouSaveDataContainer Binary Analysis"
     }
   ]
 }
