@@ -2,7 +2,7 @@
   "game": "Beast of Reincarnation",
   "engine": "Unreal Engine 5",
   "engine_version": "5.x",
-  "profile_version": "2.3.0",
+  "profile_version": "2.4.0",
   "updated": "2026-08-09",
   "platforms": [
     {
@@ -11,6 +11,10 @@
         {
           "path": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\SaveGames\\borSaveDataConfig.sav",
           "format": "binary (AibouSaveDataContainer)"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\Config\\Windows\\Engine.ini",
+          "format": "ini"
         },
         {
           "path": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\ue4ss\\Mods\\StableCameraCpp\\config.ini",
@@ -32,25 +36,36 @@
       }
     },
     {
-      "key": "Upscaling Quality",
-      "file": "borSaveDataConfig.sav",
-      "section": "In-Game Menu -> Graphics",
-      "effect": "DLSS/FSR upscaling preset: Ultra Performance, Performance, Balanced, Quality, Native AA.",
+      "key": "r.AsyncPipelineCompile",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Asynchronous shader pipeline compilation to eliminate shader compilation stutter.",
       "recommendations": {
-        "performance": "Performance",
-        "balanced": "Balanced",
-        "quality": "Quality"
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
       }
     },
     {
-      "key": "FOV",
-      "file": "config.ini (StableCameraCpp)",
-      "section": "[Camera]",
-      "effect": "Camera Field of View for Ultrawide 21:9 & 32:9 displays.",
+      "key": "gc.AllowParallelGC",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Parallel garbage collection threads to prevent traversal micro-stutter.",
       "recommendations": {
-        "performance": "90.0",
-        "balanced": "90.0",
-        "quality": "90.0"
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "r.SceneColorFringeQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Chromatic aberration / color fringing quality: 0=Off.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
       }
     }
   ],
@@ -61,59 +76,49 @@
       "url": "https://www.nexusmods.com/beastofreincarnation/mods/12",
       "status": "installed",
       "proxy": "amd_fidelityfx_dx12.dll",
-      "target_dir": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\NativeDLSSG_Streamline\\",
-      "notes": "Proxies FidelityFX to enable native NVIDIA DLSS Frame Generation (nvngx_dlssg.dll & sl.dlss_g.dll) on RTX 40-series GPUs."
+      "target_dir": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\NativeDLSSG_Streamline\\"
     },
     {
       "id": "nexus_49",
       "name": "DLSS 4.5 Binaries Update",
       "url": "https://www.nexusmods.com/beastofreincarnation/mods/49",
       "status": "installed",
-      "target_file": "nvngx_dlss.dll",
-      "notes": "Upgrades standard DLSS DLL to DLSS 4.5 / 3.7+ version for superior temporal reconstruction and detail stability."
+      "target_file": "nvngx_dlss.dll"
     },
     {
       "id": "nexus_17",
       "name": "Beast of Reincarnation Ultrawide Fix",
       "url": "https://www.nexusmods.com/beastofreincarnation/mods/17",
       "status": "installed",
-      "target_dir": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\",
-      "notes": "UE4SS + StableCameraCpp plugin; removes pillarbox bars and sets Hor+ 32:9 Super Ultrawide FOV (90.0)."
-    }
-  ],
-  "ultrawide_fix": {
-    "supported_natively": false,
-    "recommended_fix": "NexusMods #17 (Beast of Reincarnation Ultrawide Fix / UE4SS StableCameraCpp)",
-    "target_directory": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\",
-    "files": ["dwmapi.dll", "BeastOfReincarnationFix.asi", "BeastOfReincarnationFix.ini", "ue4ss\\Mods\\StableCameraCpp\\config.ini"],
-    "notes": "Removes pillarbox black side bars and unlocks native 21:9 and 32:9 (5120x1440) Hor+ rendering. Ensure StableCameraCpp : 1 is set in mods.txt and FOV=90.0 in StableCameraCpp config.ini."
-  },
-  "engine_overrides": [
+      "target_dir": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\"
+    },
     {
-      "key": "AibouSaveDataContainer",
-      "behaviour": "The game uses a compressed binary container (/Script/BeastOfReincarnation.AibouSaveDataContainer) inside borSaveDataConfig.sav to serialize all in-game Graphics, Display, and Upscaling options.",
-      "action": "Select options in the in-game Graphics menu and press E Confirm to serialize settings into borSaveDataConfig.sav."
+      "id": "nexus_7",
+      "name": "Lossless Engine Tweaks & Clean Visuals",
+      "url": "https://www.nexusmods.com/beastofreincarnation/mods/7",
+      "status": "applied_to_engine_ini",
+      "target_file": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\Config\\Windows\\Engine.ini",
+      "notes": "Adds async PSO compilation, background texture streaming threads, parallel GC, and removes motion blur/depth of field/lens flares."
+    },
+    {
+      "id": "nexus_46",
+      "name": "Post-processing effects Remover",
+      "url": "https://www.nexusmods.com/beastofreincarnation/mods/46",
+      "status": "applied_to_engine_ini",
+      "target_file": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\Config\\Windows\\Engine.ini",
+      "notes": "Removes film grain, vignette, and grain quantization for photosensitivity."
     }
-  ],
-  "notes": [
-    "Unreal Engine 5 title with compressed binary configuration serialization.",
-    "Installed path analyzed: D:\\Games\\Other\\Beast of Reincarnation."
   ],
   "sources": [
     {
-      "url": "https://www.nexusmods.com/beastofreincarnation/mods/12",
+      "url": "https://www.nexusmods.com/beastofreincarnation/mods/7",
       "type": "community",
-      "label": "NexusMods #12 Native NVIDIA DLSS Frame Generation Bridge"
+      "label": "NexusMods #7 Lossless Engine Tweaks"
     },
     {
-      "url": "https://www.nexusmods.com/beastofreincarnation/mods/49",
+      "url": "https://www.nexusmods.com/beastofreincarnation/mods/46",
       "type": "community",
-      "label": "NexusMods #49 DLSS 4.5 Binaries Update"
-    },
-    {
-      "url": "https://www.nexusmods.com/beastofreincarnation/mods/17",
-      "type": "community",
-      "label": "NexusMods #17 Beast of Reincarnation Ultrawide Fix"
+      "label": "NexusMods #46 Post-processing effects Remover"
     }
   ]
 }
