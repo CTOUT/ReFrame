@@ -2,14 +2,18 @@
   "game": "Beast of Reincarnation",
   "engine": "Unreal Engine 5",
   "engine_version": "5.x",
-  "profile_version": "1.0.0",
-  "updated": "2026-08-08",
+  "profile_version": "1.1.0",
+  "updated": "2026-08-09",
   "platforms": [
     {
       "store": "PC (Other/Steam)",
       "config_files": [
         {
           "path": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\Config\\Windows\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\Config\\Windows\\Engine.ini",
           "format": "ini"
         }
       ]
@@ -153,28 +157,33 @@
       }
     },
     {
-      "key": "bUseVSync",
-      "file": "GameUserSettings.ini",
-      "section": "[/Script/BeastOfReincarnation.AibouGameUserSettings]",
-      "effect": "Vertical Synchronization to prevent screen tearing at monitor refresh rate.",
+      "key": "r.NGX.DLSS.Enable",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Forces NVIDIA DLSS upscaling plugin active at engine boot.",
       "recommendations": {
-        "performance": "False",
-        "balanced": "False",
-        "quality": "False"
-      },
-      "notes": "Disable in-game VSync when using VRR / G-Sync."
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      }
     },
     {
-      "key": "FrameRateLimit",
-      "file": "GameUserSettings.ini",
-      "section": "[/Script/BeastOfReincarnation.AibouGameUserSettings]",
-      "effect": "Framerate cap ceiling.",
+      "key": "r.FidelityFX.FSR2.Enabled",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Disables AMD FSR override to prevent resetting from DLSS.",
       "recommendations": {
-        "performance": "120.000000",
-        "balanced": "72.000000",
-        "quality": "0.000000"
-      },
-      "notes": "-1 or 0 is uncapped. Set a target cap matching monitor Hz or 120 FPS to prevent unnecessary thermal load."
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      }
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "UpscalingFallback",
+      "behaviour": "The game caches graphics options in borSaveDataLocalConfig.sav and resets to FSR / 1080p if Engine.ini lacks explicit system settings overrides.",
+      "action": "Use Engine.ini with [SystemSettings] r.NGX.DLSS.Enable=1 and r.FidelityFX.FSR2.Enabled=0 to lock NVIDIA DLSS."
     }
   ],
   "notes": [
