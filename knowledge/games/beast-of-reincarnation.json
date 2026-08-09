@@ -2,7 +2,7 @@
   "game": "Beast of Reincarnation",
   "engine": "Unreal Engine 5",
   "engine_version": "5.x",
-  "profile_version": "2.2.0",
+  "profile_version": "2.3.0",
   "updated": "2026-08-09",
   "platforms": [
     {
@@ -54,6 +54,33 @@
       }
     }
   ],
+  "mods": [
+    {
+      "id": "nexus_12",
+      "name": "Native NVIDIA DLSS Frame Generation Bridge",
+      "url": "https://www.nexusmods.com/beastofreincarnation/mods/12",
+      "status": "installed",
+      "proxy": "amd_fidelityfx_dx12.dll",
+      "target_dir": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\NativeDLSSG_Streamline\\",
+      "notes": "Proxies FidelityFX to enable native NVIDIA DLSS Frame Generation (nvngx_dlssg.dll & sl.dlss_g.dll) on RTX 40-series GPUs."
+    },
+    {
+      "id": "nexus_49",
+      "name": "DLSS 4.5 Binaries Update",
+      "url": "https://www.nexusmods.com/beastofreincarnation/mods/49",
+      "status": "installed",
+      "target_file": "nvngx_dlss.dll",
+      "notes": "Upgrades standard DLSS DLL to DLSS 4.5 / 3.7+ version for superior temporal reconstruction and detail stability."
+    },
+    {
+      "id": "nexus_17",
+      "name": "Beast of Reincarnation Ultrawide Fix",
+      "url": "https://www.nexusmods.com/beastofreincarnation/mods/17",
+      "status": "installed",
+      "target_dir": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\",
+      "notes": "UE4SS + StableCameraCpp plugin; removes pillarbox bars and sets Hor+ 32:9 Super Ultrawide FOV (90.0)."
+    }
+  ],
   "ultrawide_fix": {
     "supported_natively": false,
     "recommended_fix": "NexusMods #17 (Beast of Reincarnation Ultrawide Fix / UE4SS StableCameraCpp)",
@@ -74,9 +101,14 @@
   ],
   "sources": [
     {
-      "url": "file:///D:/Games/Other/Beast%20of%20Reincarnation",
-      "type": "official",
-      "label": "Beast of Reincarnation Installation Directory Scan"
+      "url": "https://www.nexusmods.com/beastofreincarnation/mods/12",
+      "type": "community",
+      "label": "NexusMods #12 Native NVIDIA DLSS Frame Generation Bridge"
+    },
+    {
+      "url": "https://www.nexusmods.com/beastofreincarnation/mods/49",
+      "type": "community",
+      "label": "NexusMods #49 DLSS 4.5 Binaries Update"
     },
     {
       "url": "https://www.nexusmods.com/beastofreincarnation/mods/17",

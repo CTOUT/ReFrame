@@ -891,8 +891,9 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 **Notes:**
 
 - Config options are serialized inside a compressed binary container (`/Script/BeastOfReincarnation.AibouSaveDataContainer`) at `%LOCALAPPDATA%\BeastOfReincarnation\Saved\SaveGames\borSaveDataConfig.sav`.
-- **Ultrawide 21:9 / 32:9 Fix (NexusMods #17)**: The base game natively pillarboxes 21:9 and 32:9 displays to 16:9 (1920x1080). Install NexusMods #17 (`Beast of Reincarnation Ultrawide Fix` / Lyall's ASI plugin) by extracting `dinput8.dll` and `BeastOfReincarnationFix.ini` into `%GAME_DIR%\BeastOfReincarnation\Binaries\Win64\`.
-- **Note on Menu Resolution**: After installing the plugin, the in-game menu will continue to display 1920x1080, but the rendering pipeline will fill 5120x1440 without black bars.
+- **Ultrawide 21:9 / 32:9 Fix (NexusMods #17)**: UE4SS + `StableCameraCpp` C++ camera plugin; removes pillarbox side bars and unlocks native 32:9 Super Ultrawide (5120x1440) rendering with `FOV=90.0`.
+- **Native NVIDIA DLSS Frame Generation Bridge (NexusMods #12)**: Installed under `%GAME_DIR%\BeastOfReincarnation\Binaries\Win64\NativeDLSSG_Streamline\` via `amd_fidelityfx_dx12.dll` proxy, enabling native DLSS 3 Frame Generation on RTX 40-series GPUs.
+- **DLSS 4.5 Binaries Update (NexusMods #49)**: Upgrades standard `nvngx_dlss.dll` to version 3.7+ / 4.5 for enhanced temporal reconstruction stability.
 
 ---
 
