@@ -2,7 +2,7 @@
   "game": "Beast of Reincarnation",
   "engine": "Unreal Engine 5",
   "engine_version": "5.x",
-  "profile_version": "1.1.0",
+  "profile_version": "1.2.0",
   "updated": "2026-08-09",
   "platforms": [
     {
@@ -157,6 +157,17 @@
       }
     },
     {
+      "key": "r.AntiAliasingMethod",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Anti-aliasing / upscaling method selector: 4=TSR, 5=NVIDIA DLSS.",
+      "recommendations": {
+        "performance": "5",
+        "balanced": "5",
+        "quality": "5"
+      }
+    },
+    {
       "key": "r.NGX.DLSS.Enable",
       "file": "Engine.ini",
       "section": "[SystemSettings]",
@@ -168,7 +179,7 @@
       }
     },
     {
-      "key": "r.FidelityFX.FSR2.Enabled",
+      "key": "r.FidelityFX.FSR.Enabled",
       "file": "Engine.ini",
       "section": "[SystemSettings]",
       "effect": "Disables AMD FSR override to prevent resetting from DLSS.",
@@ -182,8 +193,8 @@
   "engine_overrides": [
     {
       "key": "UpscalingFallback",
-      "behaviour": "The game caches graphics options in borSaveDataLocalConfig.sav and resets to FSR / 1080p if Engine.ini lacks explicit system settings overrides.",
-      "action": "Use Engine.ini with [SystemSettings] r.NGX.DLSS.Enable=1 and r.FidelityFX.FSR2.Enabled=0 to lock NVIDIA DLSS."
+      "behaviour": "The game caches FSR graphics options in borSaveDataLocalConfig.sav and resets to FSR1 if Engine.ini lacks r.AntiAliasingMethod=5 and FSR disables.",
+      "action": "Use Engine.ini with r.AntiAliasingMethod=5, r.NGX.DLSS.Enable=1, r.FidelityFX.FSR.Enabled=0, clear borSaveDataLocalConfig.sav, and lock Engine.ini and GameUserSettings.ini with ReadOnly attribute."
     }
   ],
   "notes": [
