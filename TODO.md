@@ -36,6 +36,7 @@ Completed items are struck through. Each item requires an engine profile (if new
 
 ## Planned
 
+- [ ] **Unreal Engine GVAS binary save parser** — add native support for parsing, extracting, and modifying Unreal Engine 4/5 `.sav` files (e.g. `GVAS` header format / `uesave` integration) for games that serialize graphics and upscaling settings into binary save containers rather than plain text `.ini` files
 - [ ] **Non-Windows platform support** — Linux, macOS, and Steam Deck; requires shell-based hardware detection (replacing DxDiag / `Get-CimInstance`), platform-appropriate config path discovery, and removal of Windows-registry-specific workflows. Steam Deck (SteamOS / Proton) is the highest-priority target given its gaming focus. Tracked separately from `install.sh` (installer is a small part of this; the agent itself needs significant changes).
 - [ ] **AMD Adrenalin integration** — read and write AMD Software settings via the Adrenalin API or registry keys exposed by the driver
 - [ ] **NVIDIA Control Panel integration** — read/write NVCP settings (Low Latency Mode, Max Frame Rate, Texture Filtering) via NVAPI or registry
