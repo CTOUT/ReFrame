@@ -2,7 +2,7 @@
   "game": "Beast of Reincarnation",
   "engine": "Unreal Engine 5",
   "engine_version": "5.x",
-  "profile_version": "2.0.0",
+  "profile_version": "2.1.0",
   "updated": "2026-08-09",
   "platforms": [
     {
@@ -61,6 +61,13 @@
       }
     }
   ],
+  "ultrawide_fix": {
+    "supported_natively": false,
+    "recommended_fix": "NexusMods #17 (Beast of Reincarnation Ultrawide Fix / Lyall's ASI plugin)",
+    "target_directory": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\",
+    "files": ["dinput8.dll", "BeastOfReincarnationFix.ini"],
+    "notes": "Removes pillarbox black side bars and unlocks native 21:9 and 32:9 (5120x1440) Hor+ rendering. The in-game menu will continue to display 1920x1080 while the plugin overrides viewport bounds."
+  },
   "engine_overrides": [
     {
       "key": "AibouSaveDataContainer",
@@ -79,9 +86,9 @@
       "label": "Beast of Reincarnation Installation Directory Scan"
     },
     {
-      "url": "file:///C:/Users/Chris/AppData/Local/BeastOfReincarnation/Saved/SaveGames/borSaveDataConfig.sav",
-      "type": "official",
-      "label": "AibouSaveDataContainer Binary Analysis"
+      "url": "https://www.nexusmods.com/beastofreincarnation/mods/17",
+      "type": "community",
+      "label": "NexusMods #17 Beast of Reincarnation Ultrawide Fix"
     }
   ]
 }

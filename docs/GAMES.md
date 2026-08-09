@@ -891,8 +891,8 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 **Notes:**
 
 - Config options are serialized inside a compressed binary container (`/Script/BeastOfReincarnation.AibouSaveDataContainer`) at `%LOCALAPPDATA%\BeastOfReincarnation\Saved\SaveGames\borSaveDataConfig.sav`.
-- When `borSaveDataConfig.sav` is absent or deleted, the game initializes with a default fallback preset (`AMD FSR 1`, `Performance Quality`, `60 FPS`, `HDR On`).
-- **To lock settings permanently**: Select `NVIDIA DLSS`, `Quality`, `120 FPS`, and `HDR Off` in the in-game `Graphics` menu, then press `E Confirm` to serialize the profile into `borSaveDataConfig.sav`.
+- **Ultrawide 21:9 / 32:9 Fix (NexusMods #17)**: The base game natively pillarboxes 21:9 and 32:9 displays to 16:9 (1920x1080). Install NexusMods #17 (`Beast of Reincarnation Ultrawide Fix` / Lyall's ASI plugin) by extracting `dinput8.dll` and `BeastOfReincarnationFix.ini` into `%GAME_DIR%\BeastOfReincarnation\Binaries\Win64\`.
+- **Note on Menu Resolution**: After installing the plugin, the in-game menu will continue to display 1920x1080, but the rendering pipeline will fill 5120x1440 without black bars.
 
 ---
 
