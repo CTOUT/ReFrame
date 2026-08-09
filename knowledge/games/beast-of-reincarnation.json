@@ -2,7 +2,7 @@
   "game": "Beast of Reincarnation",
   "engine": "Unreal Engine 5",
   "engine_version": "5.x",
-  "profile_version": "2.4.0",
+  "profile_version": "2.5.0",
   "updated": "2026-08-09",
   "platforms": [
     {
@@ -45,80 +45,52 @@
         "balanced": "1",
         "quality": "1"
       }
-    },
-    {
-      "key": "gc.AllowParallelGC",
-      "file": "Engine.ini",
-      "section": "[SystemSettings]",
-      "effect": "Parallel garbage collection threads to prevent traversal micro-stutter.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "1",
-        "quality": "1"
-      }
-    },
-    {
-      "key": "r.SceneColorFringeQuality",
-      "file": "Engine.ini",
-      "section": "[SystemSettings]",
-      "effect": "Chromatic aberration / color fringing quality: 0=Off.",
-      "recommendations": {
-        "performance": "0",
-        "balanced": "0",
-        "quality": "0"
-      }
     }
   ],
+  "troubleshooting": {
+    "save_exit_crash": "Do not set ReadOnly attribute on Engine.ini or GameUserSettings.ini. UE5 attempts to open write handles on exit/save; ReadOnly attributes cause ACCESS_DENIED crashes on exit."
+  },
   "mods": [
     {
       "id": "nexus_12",
       "name": "Native NVIDIA DLSS Frame Generation Bridge",
       "url": "https://www.nexusmods.com/beastofreincarnation/mods/12",
-      "status": "installed",
-      "proxy": "amd_fidelityfx_dx12.dll",
-      "target_dir": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\NativeDLSSG_Streamline\\"
+      "status": "installed"
     },
     {
       "id": "nexus_49",
       "name": "DLSS 4.5 Binaries Update",
       "url": "https://www.nexusmods.com/beastofreincarnation/mods/49",
-      "status": "installed",
-      "target_file": "nvngx_dlss.dll"
+      "status": "installed"
     },
     {
       "id": "nexus_17",
       "name": "Beast of Reincarnation Ultrawide Fix",
       "url": "https://www.nexusmods.com/beastofreincarnation/mods/17",
-      "status": "installed",
-      "target_dir": "%GAME_DIR%\\BeastOfReincarnation\\Binaries\\Win64\\"
+      "status": "installed"
     },
     {
       "id": "nexus_7",
       "name": "Lossless Engine Tweaks & Clean Visuals",
       "url": "https://www.nexusmods.com/beastofreincarnation/mods/7",
-      "status": "applied_to_engine_ini",
-      "target_file": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\Config\\Windows\\Engine.ini",
-      "notes": "Adds async PSO compilation, background texture streaming threads, parallel GC, and removes motion blur/depth of field/lens flares."
+      "status": "applied_to_engine_ini"
     },
     {
       "id": "nexus_46",
       "name": "Post-processing effects Remover",
       "url": "https://www.nexusmods.com/beastofreincarnation/mods/46",
-      "status": "applied_to_engine_ini",
-      "target_file": "%LOCALAPPDATA%\\BeastOfReincarnation\\Saved\\Config\\Windows\\Engine.ini",
-      "notes": "Removes film grain, vignette, and grain quantization for photosensitivity."
+      "status": "applied_to_engine_ini"
     }
+  ],
+  "notes": [
+    "Unreal Engine 5 title with compressed binary configuration serialization.",
+    "Installed path analyzed: D:\\Games\\Other\\Beast of Reincarnation."
   ],
   "sources": [
     {
       "url": "https://www.nexusmods.com/beastofreincarnation/mods/7",
       "type": "community",
       "label": "NexusMods #7 Lossless Engine Tweaks"
-    },
-    {
-      "url": "https://www.nexusmods.com/beastofreincarnation/mods/46",
-      "type": "community",
-      "label": "NexusMods #46 Post-processing effects Remover"
     }
   ]
 }

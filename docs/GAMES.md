@@ -894,6 +894,7 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 - **Ultrawide 21:9 / 32:9 Fix (NexusMods #17)**: UE4SS + `StableCameraCpp` C++ camera plugin; removes pillarbox side bars and unlocks native 32:9 Super Ultrawide (5120x1440) rendering with `FOV=90.0`.
 - **Native NVIDIA DLSS Frame Generation Bridge (NexusMods #12)**: Installed under `%GAME_DIR%\BeastOfReincarnation\Binaries\Win64\NativeDLSSG_Streamline\` via `amd_fidelityfx_dx12.dll` proxy, enabling native DLSS 3 Frame Generation on RTX 40-series GPUs.
 - **DLSS 4.5 Binaries Update (NexusMods #49)**: Upgrades standard `nvngx_dlss.dll` to version 3.7+ / 4.5 for enhanced temporal reconstruction stability.
+- **File Attributes / Exit Crash Fix**: Do not apply the Windows `ReadOnly` attribute to `Engine.ini` or `GameUserSettings.ini`. When the engine attempts to execute its shutdown `SaveConfig()` routine on exit, read-only file handles trigger an `ACCESS_DENIED` fatal crash.
 
 ---
 
