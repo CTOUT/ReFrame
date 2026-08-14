@@ -1,9 +1,16 @@
 {
   "game": "World of Warcraft",
   "engine": "Blizzard WoW Engine",
-  "profile_version": "1.0.0",
-  "updated": "2026-04-28",
-  "aliases": ["WoW", "World of Warcraft: The War Within", "WoW Retail"],
+  "profile_version": "1.1.0",
+  "updated": "2026-08-11",
+  "aliases": [
+    "WoW",
+    "World of Warcraft: The War Within",
+    "WoW Retail",
+    "Project Ascension",
+    "Ascension WoW",
+    "WoW 3.3.5a"
+  ],
   "platforms": [
     {
       "name": "Battle.net",
@@ -16,9 +23,26 @@
           "notes": "Uses 'SET key \"value\"' syntax. The game rewrites this file on exit. Edit only while WoW is fully closed and Battle.net launcher is not actively patching."
         }
       ]
+    },
+    {
+      "name": "Project Ascension / Custom Launchers",
+      "config_files": [
+        {
+          "file": "Config.wtf",
+          "path": "D:\\Games\\Other\\Ascension\\Launcher\\resources\\ascension-live\\WTF\\Config.wtf",
+          "path_note": "Project Ascension launcher resource folder path. Contains custom Wrath of the Lich King 3.3.5a client executable (Ascension.exe).",
+          "format": "wtf",
+          "notes": "Uses 'SET key \"value\"' syntax. Controls custom client engine settings, latency tuning, and graphics parameters."
+        }
+      ]
     }
   ],
   "variants": [
+    {
+      "name": "Project Ascension (Custom WotLK 3.3.5a Client)",
+      "config_path": "D:\\Games\\Other\\Ascension\\Launcher\\resources\\ascension-live\\WTF\\Config.wtf",
+      "note": "Project Ascension runs on a heavily modified 3.3.5a Wrath of the Lich King client executable with custom memory engine hooks, HD patches, custom UI scales, camera FOV controls (camerafov), custom nameplate stacking, and modified graphics CVars."
+    },
     {
       "name": "WoW Classic / Season of Discovery / Hardcore",
       "config_path": "%PROGRAMFILES(X86)%\\World of Warcraft\\_classic_\\WTF\\Config.wtf",
@@ -134,6 +158,119 @@
         "quality": "30"
       },
       "notes": "Default is uncapped. WoW is commonly left running during breaks, queues, and AFK. Capping background FPS to 30 significantly reduces idle GPU and CPU power draw."
+    },
+    {
+      "key": "SpellQueueWindow",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Cast queue buffer window in milliseconds.",
+      "recommendations": {
+        "performance": "100",
+        "balanced": "150",
+        "quality": "200"
+      },
+      "notes": "Default 401ms is excessively high for modern connections. Lowering to 100-150ms improves combat latency and prevents miscasts on fast APM classless abilities."
+    },
+    {
+      "key": "farclip",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Terrain and world render draw distance in 3.3.5a engine (range 177 to 1277).",
+      "recommendations": {
+        "performance": "777",
+        "balanced": "1277",
+        "quality": "1277"
+      }
+    },
+    {
+      "key": "groundEffectDensity",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Ground clutter foliage density in 3.3.5a engine (range 16 to 256).",
+      "recommendations": {
+        "performance": "32",
+        "balanced": "64",
+        "quality": "256"
+      }
+    },
+    {
+      "key": "groundEffectDist",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Ground clutter render distance in 3.3.5a engine (range 70 to 140).",
+      "recommendations": {
+        "performance": "70",
+        "balanced": "140",
+        "quality": "140"
+      }
+    },
+    {
+      "key": "extShadowQuality",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Dynamic shadow map quality and filtering (0=off to 5=ultra+).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "5"
+      }
+    },
+    {
+      "key": "componentTextureLevel",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Character component texture resolution (0=lowest, 9=highest).",
+      "recommendations": {
+        "performance": "5",
+        "balanced": "9",
+        "quality": "9"
+      }
+    },
+    {
+      "key": "Sound_NumChannels",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Maximum audio channel mixing concurrency (12 to 128).",
+      "recommendations": {
+        "performance": "64",
+        "balanced": "64",
+        "quality": "128"
+      },
+      "notes": "Prevents sound dropouts in dense 25-man raids or crowded capital hubs."
+    },
+    {
+      "key": "Sound_EnableHardware",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Legacy hardware audio acceleration flag.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Hardware audio acceleration causes audio crackling or crashes on Windows 10/11. Must be set to 0 for stable software WASAPI mixing."
+    },
+    {
+      "key": "camerafov",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Project Ascension custom field-of-view multiplier.",
+      "recommendations": {
+        "performance": "2.1",
+        "balanced": "2.1",
+        "quality": "2.1"
+      }
+    },
+    {
+      "key": "nameplateSmoothStacking",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Project Ascension custom smooth nameplate movement.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      }
     }
   ],
   "manual_only_settings": [
@@ -151,13 +288,17 @@
     }
   ],
   "notes": [
-    "WoW Retail and WoW Classic maintain completely separate Config.wtf files. Changes to one do not affect the other.",
-    "The Raid Graphics Preset feature (Dragonflight patch 10.0+) automatically applies a lower graphics profile in raid instances. This is the recommended approach for players who want high quality in solo content and maximum performance in raids.",
+    "Project Ascension operates on a customized Wrath of the Lich King (3.3.5a) engine build supporting HD texture packs, widescreen FOV modifications, and custom server CVars.",
+    "WoW Retail, WoW Classic, and custom private client builds (like Ascension) maintain separate Config.wtf files.",
     "Config.wtf is recreated from defaults if deleted — this can be used to reset all graphics settings to factory state.",
-    "The WTF\\ directory also contains per-character and per-account addon settings. Config.wtf is the global client configuration only.",
-    "Several graphicsSpellDensity reductions occurred silently in patches — if a user is on a pre-Dragonflight guide, values may reference different numeric scales."
+    "The WTF\\ directory also contains per-character and per-account addon settings. Config.wtf is the global client configuration only."
   ],
   "sources": [
+    {
+      "url": "https://ascension.gg/",
+      "type": "official",
+      "label": "Project Ascension Official Website"
+    },
     {
       "url": "https://www.pcgamingwiki.com/wiki/World_of_Warcraft",
       "type": "wiki",
@@ -167,11 +308,6 @@
       "url": "https://wowpedia.fandom.com/wiki/Console_variables",
       "type": "wiki",
       "label": "wowpedia Wiki (Fandom)"
-    },
-    {
-      "url": "https://us.battle.net/support/en/article/76459",
-      "type": "official",
-      "label": "Blizzard Support"
     }
   ]
 }

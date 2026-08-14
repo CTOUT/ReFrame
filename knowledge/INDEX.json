@@ -319,10 +319,10 @@
       "name": "World of Warcraft",
       "file": "games/world-of-warcraft.json",
       "engine": "Blizzard WoW Engine",
-      "platforms": ["Battle.net"],
-      "key_count": 9,
-      "profile_version": "1.0.0",
-      "updated": "2026-04-28"
+      "platforms": ["Battle.net", "Project Ascension"],
+      "key_count": 19,
+      "profile_version": "1.1.0",
+      "updated": "2026-08-11"
     }
   ],
   "engines": [
@@ -331,9 +331,9 @@
       "file": "game-engines/blizzard-wow-engine.json",
       "version_range": "all",
       "fallback_for": [],
-      "key_count": 9,
-      "profile_version": "1.0.0",
-      "updated": "2026-04-28"
+      "key_count": 11,
+      "profile_version": "1.1.0",
+      "updated": "2026-08-11"
     },
     {
       "name": "Divinity Engine 4.0",

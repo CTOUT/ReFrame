@@ -120,6 +120,30 @@
         "quality": "30"
       },
       "notes": "Default is uncapped. Capping background FPS to 30 dramatically reduces GPU/CPU usage when the game is minimised during loading screens or AFK situations."
+    },
+    {
+      "key": "SpellQueueWindow",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Cast queue window buffer in milliseconds.",
+      "recommendations": {
+        "performance": "100",
+        "balanced": "150",
+        "quality": "200"
+      },
+      "notes": "Controls spell queuing tolerance window. Lowering from default 400ms to 100-150ms improves latency and responsiveness."
+    },
+    {
+      "key": "Sound_EnableHardware",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Legacy DirectSound hardware audio acceleration toggle.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Hardware audio acceleration is deprecated on modern Windows 10/11 drivers and causes distortion or crashes. Set to 0."
     }
   ],
   "sources": [

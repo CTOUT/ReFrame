@@ -873,20 +873,20 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 
 **Engine:** Unreal Engine 5
 
-| Platform | Config Path | Format |
-| -------- | ----------- | ------ |
-| PC       | `%LOCALAPPDATA%\BeastOfReincarnation\Saved\Config\Windows\GameUserSettings.ini` | INI |
+| Platform | Config Path                                                                     | Format |
+| -------- | ------------------------------------------------------------------------------- | ------ |
+| PC       | `%LOCALAPPDATA%\BeastOfReincarnation\Saved\Config\Windows\GameUserSettings.ini` | INI    |
 
 **Key settings:**
 
-| Key | Effect | Recommended (performance) | Recommended (quality) |
-| --- | --- | --- | --- |
-| `sg.ResolutionQuality` | Internal render resolution scale % | `67` | `100` |
-| `sg.ShadowQuality` | Virtual Shadow Maps resolution & cascades | `1` | `4` |
-| `sg.GlobalIlluminationQuality` | Lumen Global Illumination detail | `0` | `4` |
-| `sg.ReflectionQuality` | Lumen Reflection detail | `1` | `4` |
-| `sg.PostProcessQuality` | Bloom, depth of field, & lens flare quality | `1` | `4` |
-| `sg.TextureQuality` | Texture streaming pool allocation | `2` | `4` |
+| Key                            | Effect                                      | Recommended (performance) | Recommended (quality) |
+| ------------------------------ | ------------------------------------------- | ------------------------- | --------------------- |
+| `sg.ResolutionQuality`         | Internal render resolution scale %          | `67`                      | `100`                 |
+| `sg.ShadowQuality`             | Virtual Shadow Maps resolution & cascades   | `1`                       | `4`                   |
+| `sg.GlobalIlluminationQuality` | Lumen Global Illumination detail            | `0`                       | `4`                   |
+| `sg.ReflectionQuality`         | Lumen Reflection detail                     | `1`                       | `4`                   |
+| `sg.PostProcessQuality`        | Bloom, depth of field, & lens flare quality | `1`                       | `4`                   |
+| `sg.TextureQuality`            | Texture streaming pool allocation           | `2`                       | `4`                   |
 
 **Notes:**
 
@@ -902,24 +902,55 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 
 **Engine:** BlackSpace Engine (Pearl Abyss)
 
-| Platform | Config Path | Format |
-| -------- | ----------- | ------ |
-| PC       | `%LOCALAPPDATA%\Pearl Abyss\CD\save\user_engine_option_save.xml` | XML |
+| Platform | Config Path                                                      | Format |
+| -------- | ---------------------------------------------------------------- | ------ |
+| PC       | `%LOCALAPPDATA%\Pearl Abyss\CD\save\user_engine_option_save.xml` | XML    |
 
 **Key settings:**
 
-| Key | Effect | Recommended (performance) | Recommended (quality) |
-| --- | --- | --- | --- |
-| `_upscaleResolution` | DLSS/FSR render scale percentage (50%, 59%, 67%, AA) | `50%` | `67%` |
-| `_shadowQualityLevelSelect` | Shadow map cascade and resolution quality | `Medium` | `Ultra` |
-| `_postProcessingQualityLevelSelect` | Post-process bloom & lens flare quality | `Medium` | `Ultra` |
-| `_effectQualityLevelSelect` | VFX particle density and lighting flashes | `Medium` | `Ultra` |
-| `_enableHDR` | High Dynamic Range display output | `False` | `True` |
+| Key                                 | Effect                                               | Recommended (performance) | Recommended (quality) |
+| ----------------------------------- | ---------------------------------------------------- | ------------------------- | --------------------- |
+| `_upscaleResolution`                | DLSS/FSR render scale percentage (50%, 59%, 67%, AA) | `50%`                     | `67%`                 |
+| `_shadowQualityLevelSelect`         | Shadow map cascade and resolution quality            | `Medium`                  | `Ultra`               |
+| `_postProcessingQualityLevelSelect` | Post-process bloom & lens flare quality              | `Medium`                  | `Ultra`               |
+| `_effectQualityLevelSelect`         | VFX particle density and lighting flashes            | `Medium`                  | `Ultra`               |
+| `_enableHDR`                        | High Dynamic Range display output                    | `False`                   | `True`                |
 
 **Notes:**
 
 - Config settings are saved in XML format at `%LOCALAPPDATA%\Pearl Abyss\CD\save\user_engine_option_save.xml`.
 - Supports NVIDIA DLSS 4.5, DLSS Frame Generation, and Reflex.
+
+---
+
+## World of Warcraft / Project Ascension
+
+**Engine:** Blizzard WoW Engine (Modified WotLK 3.3.5a Client for Project Ascension)
+
+| Platform             | Config Path                                                                 | Format |
+| -------------------- | --------------------------------------------------------------------------- | ------ |
+| Battle.net (Retail)  | `%PROGRAMFILES(X86)%\World of Warcraft\_retail_\WTF\Config.wtf`             | WTF    |
+| Battle.net (Classic) | `%PROGRAMFILES(X86)%\World of Warcraft\_classic_\WTF\Config.wtf`            | WTF    |
+| Project Ascension    | `D:\Games\Other\Ascension\Launcher\resources\ascension-live\WTF\Config.wtf` | WTF    |
+
+**Key settings:**
+
+| Key                     | Effect                                   | Recommended (performance) | Recommended (quality) |
+| ----------------------- | ---------------------------------------- | ------------------------- | --------------------- |
+| `SpellQueueWindow`      | Cast queue buffer latency tolerance (ms) | `100`                     | `150`                 |
+| `farclip`               | Terrain and world render draw distance   | `777`                     | `1277`                |
+| `groundEffectDensity`   | Ground clutter foliage density           | `32`                      | `256`                 |
+| `groundEffectDist`      | Ground clutter draw distance             | `70`                      | `140`                 |
+| `extShadowQuality`      | Dynamic shadow map quality               | `1`                       | `5`                   |
+| `componentTextureLevel` | Character gear/model texture resolution  | `5`                       | `9`                   |
+| `Sound_EnableHardware`  | Legacy hardware audio acceleration flag  | `0`                       | `0`                   |
+| `Sound_NumChannels`     | Active audio mixing channels             | `64`                      | `128`                 |
+
+**Notes:**
+
+- **Project Ascension Client**: Runs on a customized Wrath of the Lich King (3.3.5a) engine binary supporting HD texture packs, wide FOV adjustments (`camerafov`), custom smooth nameplates, and memory-patched engine limits.
+- **Spell Queue Latency Tuning**: The 3.3.5a engine defaults `SpellQueueWindow` to `401`ms. On modern low-latency connections, reducing this to `100–150`ms eliminates input lag and prevents miscasts during fast APM rotations.
+- **Audio Acceleration Caveat**: `Sound_EnableHardware "1"` uses legacy DirectSound hardware acceleration, which causes audio crackling or crashes on Windows 10/11. Always force `Sound_EnableHardware "0"`.
 
 ---
 
