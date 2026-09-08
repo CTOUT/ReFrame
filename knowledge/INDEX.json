@@ -143,6 +143,21 @@
       "updated": "2026-04-28"
     },
     {
+      "name": "Immortals Fenyx Rising",
+      "file": "games/immortals-fenyx-rising.json",
+      "engine": "Ubisoft Anvil",
+      "engine_version": "AnvilNext 2.0",
+      "platforms": [
+        "Ubisoft Store",
+        "Steam",
+        "Epic Games Store",
+        "Microsoft Store"
+      ],
+      "key_count": 27,
+      "profile_version": "1.0.0",
+      "updated": "2026-09-05"
+    },
+    {
       "name": "League of Legends",
       "file": "games/league-of-legends.json",
       "engine": "Riot Engine",

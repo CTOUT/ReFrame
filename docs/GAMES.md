@@ -466,6 +466,153 @@ Ark ships a heavily customised UE4 scalability and rendering pipeline. Several s
 
 ---
 
+## Immortals Fenyx Rising
+
+**Engine:** Ubisoft Anvil (AnvilNext 2.0)
+
+| Platform          | Config Path                                                               | Format |
+| ----------------- | ------------------------------------------------------------------------- | ------ |
+| Ubisoft Connect   | `%USERPROFILE%\Documents\Immortals Fenyx Rising\ImmortalsFenyxRising.ini` | INI    |
+| Steam             | `%USERPROFILE%\Documents\Immortals Fenyx Rising\ImmortalsFenyxRising.ini` | INI    |
+| Epic Games Store  | `%USERPROFILE%\Documents\Immortals Fenyx Rising\ImmortalsFenyxRising.ini` | INI    |
+| Xbox Game Pass PC | `%USERPROFILE%\Documents\Immortals Fenyx Rising\ImmortalsFenyxRising.ini` | INI    |
+
+**Key settings:**
+
+| Key                  | Effect                                                | Performance | Balanced  | Quality   |
+| -------------------- | ----------------------------------------------------- | ----------- | --------- | --------- |
+| `WindowMode`         | Display mode (1=Fullscreen, 2=Borderless, 3=Windowed) | `1`         | `1`       | `1`       |
+| `MotionBlur`         | Motion blur (0=off, 1=on)                             | `0`         | `0`       | `0`       |
+| `DOF`                | Depth of field camera blur (0=off, 1=on)              | `0`         | `0`       | `0`       |
+| `KeepStandardAspect` | Force 16:9 pillarbox (0=off/ultrawide, 1=on)          | `0`         | `0`       | `0`       |
+| `AutoFOV`            | Automatic Hor+ aspect FOV scaling (0=off, 1=on)       | `1`         | `1`       | `1`       |
+| `FOVScale`           | FOV multiplier (1.0 = 100%)                           | `1.00000`   | `1.00000` | `1.00000` |
+| `IsFpsLimitEnabled`  | Internal frame limiter switch (0=off, 1=on)           | `0`         | `0`       | `0`       |
+| `MaxFPS`             | Target frame cap (engine ceiling is 90)               | `90`        | `90`      | `90`      |
+| `VSyncMode`          | In-game VSync (0=off, 1=on)                           | `0`         | `0`       | `0`       |
+| `HDREnabled`         | HDR rendering (0=off, 1=on)                           | `0`         | `1`       | `1`       |
+| `AdaptiveQuality`    | Dynamic resolution scaling (0=off, 1=on)              | `1`         | `0`       | `0`       |
+| `Cloud`              | Volumetric clouds (0=low, 1=very high, 2=ultra)       | `0`         | `1`       | `1`       |
+| `Shadow`             | Shadow resolution and cascades (0–5)                  | `2`         | `3`       | `4`       |
+| `Antialiasing`       | Temporal Anti-Aliasing (0–3)                          | `2`         | `3`       | `3`       |
+| `Texture`            | Environment texture resolution (0–4)                  | `2`         | `3`       | `4`       |
+| `CharacterTexture`   | Character texture detail (0–2)                        | `1`         | `2`       | `2`       |
+| `TextureFiltering`   | Anisotropic filtering (0=low, 1=med, 2=16x)           | `1`         | `2`       | `2`       |
+| `Environment`        | Geometry and draw distance (0–5)                      | `2`         | `4`       | `5`       |
+| `Character`          | Character geometry detail (0–3)                       | `1`         | `2`       | `3`       |
+| `Effects`            | Particle effects and powers (0–5)                     | `2`         | `4`       | `5`       |
+| `Water`              | Water detail and physics (0–2)                        | `1`         | `2`       | `2`       |
+| `Rain`               | Rain and weather effects (0–3)                        | `1`         | `2`       | `3`       |
+| `SSAO`               | Ambient occlusion (0=off, 1=on)                       | `0`         | `1`       | `1`       |
+| `PixelDensity`       | Internal render scale factor (1.0 = native)           | `0.85000`   | `1.00000` | `1.00000` |
+
+### Immortals Fenyx Rising: Engine Overrides
+
+| Key                  | Default Behaviour                                          | Issue                                                                                                      | What to do                                                                                                                          |
+| -------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `MaxFPS`             | In-game slider max and engine ceiling is 90 FPS            | If `IsFpsLimitEnabled=1`, engine clamps `MaxFPS` to 90 and resets higher values on launch or menu exit     | Set `IsFpsLimitEnabled=0` in INI; cap FPS via NVIDIA Control Panel (237 for 240Hz G-Sync panels) to prevent runaway GPU oscillation |
+| `KeepStandardAspect` | Default may lock to 16:9                                   | Forces black bars / pillarboxing on 21:9 and 32:9 displays                                                 | Set `KeepStandardAspect=0` in INI                                                                                                   |
+| `WindowMode`         | Game-specific enum: 1=Fullscreen, 2=Borderless, 3=Windowed | Differs from many other Anvil titles. 3 is **Windowed**, not Fullscreen. Confirmed via in-game screenshot. | Use `WindowMode=1`. Combine with DXVK `dxvk.allowFse=True` to promote to Vulkan exclusive fullscreen transparently                  |
+
+### Immortals Fenyx Rising: DXVK 3.1 (Vulkan Translation Layer)
+
+> **Requires DXVK 3.1+.** DXVK 2.3.1 does not expose `VK_EXT_swapchain_colorspace` on NVIDIA drivers — HDR is silently inert (swapchain runs SDR `R8G8B8A8_UNORM`). DXVK 3.1 fixes this when combined with `dxvk.allowFse=True`.
+
+Place `d3d11.dll`, `dxgi.dll`, and `dxvk.conf` in `%GAME_DIR%`.
+
+**Confirmed `dxvk.conf`:**
+
+```ini
+# --- Swapchain & Presentation ---
+dxgi.syncInterval = 0
+dxgi.numBackBuffers = 3
+dxgi.maxFrameLatency = 0
+dxvk.allowFse = True
+
+# --- Latency (NVIDIA Reflex via VK_NV_low_latency2) ---
+dxvk.latencySleep = Auto
+
+# --- DX11 Behaviour ---
+d3d11.enableRt = True
+d3d11.relaxedBarriers = True
+d3d11.allowMapFlagNoWait = True
+
+# --- HDR Path ---
+# Confirmed active: VK_FORMAT_R16G16B16A16_SFLOAT / VK_COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT
+dxgi.enableHDR = True
+dxvk.hdr = 1
+dxvk.hdrMetaData = 1
+
+# --- DXVK 3.1 Pipeline & Descriptor Engine ---
+dxvk.enableGraphicsPipelineLibrary = True
+dxvk.useRawSsbo = True
+
+# --- Queue Scheduling ---
+dxvk.gpuQueuePriority = 2
+
+# --- Async (Ubisoft/Anvil requires this OFF) ---
+dxvk.enableAsync = False
+
+# --- Debug HUD (disable for normal play) ---
+# dxvk.hud = full
+# dxvk.debug = 1
+```
+
+**Confirmed swapchain (from `ImmortalsFenyxRising_d3d11.log`):**
+
+| Property     | Value                                     |
+| ------------ | ----------------------------------------- |
+| Format       | `VK_FORMAT_R16G16B16A16_SFLOAT` (HDR)     |
+| Color space  | `VK_COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT` |
+| Present mode | `VK_PRESENT_MODE_IMMEDIATE_KHR` (FSE)     |
+| Buffer size  | `5120x1440`                               |
+| Image count  | `3`                                       |
+
+**DXVK config notes:**
+
+- `dxvk.allowFse=True` is **mandatory for HDR**. Without it, `VK_EXT_swapchain_colorspace` is not negotiated and the swapchain runs SDR regardless of `dxgi.enableHDR`.
+- `dxvk.latencySleep=Auto` engages `VK_NV_low_latency2` (NVIDIA Reflex). Confirmed active on RTX 4070 SUPER / NVIDIA 616.64.
+- `dxgi.maxFrameLatency=0` (no override) is correct when Reflex is active. Setting `=1` creates redundant latency management that conflicts with Reflex frame timing.
+- `d3d11.enableRt` and `dxvk.gpuQueuePriority` are valid parsed keys in DXVK 3.1 — confirmed in `Effective configuration` log. Not present in 2.3.1.
+- `dxvk.enableAsync=False` is required. Anvil's synchronous shader usage causes mid-frame stalls with async compilation enabled.
+- The pipeline shader cache (`%LOCALAPPDATA%\dxvk\*.dxvk.bin`) builds progressively. Expect hitches in early sessions. Cache reaches ~7,000+ shaders and ~40 MB after 2–3 hours of varied gameplay.
+- The game benchmark results panel reports `Borderless` even with `WindowMode=1` + `allowFse=True`. This is a D3D11-layer reporting artefact — VRR, HDR, and direct flip are confirmed active at the Vulkan level.
+
+### Immortals Fenyx Rising: NVIDIA App Settings
+
+| Setting               | Value               | Notes                                                                                                          |
+| --------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Low Latency Mode      | **On** (not Ultra)  | Use On when `dxvk.latencySleep=Auto` is active. Reflex supersedes Ultra; running both conflicts.               |
+| Max Frame Rate        | **237** (for 240Hz) | 3 FPS below panel max keeps GPU within VRR window; prevents oscillation above 240Hz.                           |
+| Monitor Technology    | G-SYNC Compatible   | Engage VRR. Combine with in-game VSync=0 and NVCP VSync=On.                                                    |
+| Vertical Sync         | **On**              | Driver-level VSync acts as ceiling above VRR range. In-game VSync must be Off simultaneously.                  |
+| Power Management Mode | Prefer Max Perf     | Prevents GPU clock step-down in light scenes, reducing frame time oscillation.                                 |
+| RTX HDR               | **Off**             | RTX HDR synthesises HDR from SDR. Native HDR via DXVK is already active — enabling both corrupts tone mapping. |
+| Smooth Motion         | Off                 | Frame interpolation adds latency; incompatible with G-Sync and Reflex goals.                                   |
+
+### Immortals Fenyx Rising: Ultrawide (21:9 / 32:9) & Eye Comfort Setup
+
+1. **Ultrawide Rendering:** Set `KeepStandardAspect=0`. Gameplay renders across full 21:9 and 32:9. Cutscenes remain 16:9 pillarboxed by design.
+2. **Peripheral Eye Comfort:** Set `MotionBlur=0` and `DOF=0`. On ultrawide, motion blur creates heavy peripheral smearing; depth-of-field forces artificial eye refocusing — both cause visual fatigue and nausea.
+3. **FOV Calibration:** Keep `AutoFOV=1` and `FOVScale=1.00000`. Values above 1.0 on 32:9 create peripheral fish-eye distortion.
+4. **Frame Pacing:** Set `IsFpsLimitEnabled=0` (bypasses the 90 FPS engine ceiling). Cap via NVIDIA Control Panel at 237 FPS for 240Hz G-Sync setups.
+5. **HDR on DXVK:** Requires DXVK 3.1 + `dxvk.allowFse=True` + `WindowMode=1`. DXVK 2.x does not activate the HDR swapchain path on NVIDIA.
+
+**Performance reference (RTX 4070 SUPER / Ryzen 7 5800X3D / 5120×1440):**
+
+| Session             | MIN    | AVG    | MAX     | Notes                                   |
+| ------------------- | ------ | ------ | ------- | --------------------------------------- |
+| Cold (first launch) | 3 FPS  | 87 FPS | 245 FPS | Shader cache empty, compilation hitches |
+| Warm (2–3 sessions) | 27 FPS | 87 FPS | 221 FPS | Cache at ~7,600 shaders / 40.5 MB       |
+
+**Notes:**
+
+- Intro splash videos (`UbisoftLogo.webm`, `ANVIL_Logo.webm`, `videos\en\Epilepsy.webm`, `videos\en\WarningSaving.webm`) can be renamed to `.bak` to skip startup logos.
+- `WindowMode` enum is **game-specific**: 1=Fullscreen, 2=Borderless, 3=Windowed. This is the **opposite** of many Anvil titles and confirmed via in-game Settings screenshot.
+- **Sources:** [PCGamingWiki — Immortals Fenyx Rising](https://www.pcgamingwiki.com/wiki/Immortals_Fenyx_Rising), [DXVK GitHub](https://github.com/doitsujin/dxvk), ReFrame live session data (2026-09-08).
+
+---
+
 ## League of Legends
 
 **Engine:** Riot Engine (custom)

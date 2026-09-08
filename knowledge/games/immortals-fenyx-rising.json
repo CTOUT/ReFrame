@@ -1,0 +1,572 @@
+{
+  "game": "Immortals Fenyx Rising",
+  "engine": "Ubisoft Anvil",
+  "engine_version": "AnvilNext 2.0",
+  "profile_version": "2.0.0",
+  "updated": "2026-09-08",
+
+  "platforms": [
+    {
+      "store": "Ubisoft Store",
+      "config_files": [
+        {
+          "file": "ImmortalsFenyxRising.ini",
+          "path": "%USERPROFILE%\\Documents\\Immortals Fenyx Rising\\ImmortalsFenyxRising.ini",
+          "format": "ini",
+          "notes": "Primary configuration file containing [Graphics], [Options], [Input], and [Language] sections."
+        }
+      ]
+    },
+    {
+      "store": "Steam",
+      "app_id": "2221920",
+      "config_files": [
+        {
+          "file": "ImmortalsFenyxRising.ini",
+          "path": "%USERPROFILE%\\Documents\\Immortals Fenyx Rising\\ImmortalsFenyxRising.ini",
+          "format": "ini",
+          "notes": "Steam releases use the same document directory as Ubisoft Connect."
+        }
+      ]
+    },
+    {
+      "store": "Epic Games Store",
+      "config_files": [
+        {
+          "file": "ImmortalsFenyxRising.ini",
+          "path": "%USERPROFILE%\\Documents\\Immortals Fenyx Rising\\ImmortalsFenyxRising.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Microsoft Store",
+      "config_files": [
+        {
+          "file": "ImmortalsFenyxRising.ini",
+          "path": "%USERPROFILE%\\Documents\\Immortals Fenyx Rising\\ImmortalsFenyxRising.ini",
+          "format": "ini",
+          "notes": "Xbox Game Pass for PC edition stores settings in the standard user document directory."
+        }
+      ]
+    }
+  ],
+
+  "keys": [
+    {
+      "key": "MotionBlur",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Camera and per-object motion blur. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended 0 (Off) across all goals and hardware tiers. On ultrawide and high refresh rate displays (such as 32:9 240Hz), motion blur creates severe peripheral smearing and is the leading cause of eye fatigue and motion sickness."
+    },
+    {
+      "key": "DOF",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Depth of field camera effect during gameplay and interactions. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling DoF prevents unnatural peripheral blurring and reduces eye strain when scanning wide panoramic views on ultrawide monitors."
+    },
+    {
+      "key": "KeepStandardAspect",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Aspect ratio constraint. 0=Disabled (allow native ultrawide 21:9 and 32:9 rendering in gameplay), 1=Enabled (force 16:9 pillarboxing).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Essential for ultrawide users. When set to 0, gameplay fills the entire ultrawide aspect ratio (e.g. 5120x1440). Setting to 1 forces black bars."
+    },
+    {
+      "key": "AutoFOV",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Options]",
+      "effect": "Automatic field of view adjustment based on display aspect ratio. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Maintains correct horizontal-plus (Hor+) FOV scaling on 21:9 and 32:9 displays without cutting off vertical visibility."
+    },
+    {
+      "key": "FOVScale",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Options]",
+      "effect": "Field of view scaling multiplier. Default is 1.00000 (100%). In-game slider maps between 0.85 and 1.15.",
+      "recommendations": {
+        "performance": "1.00000",
+        "balanced": "1.00000",
+        "quality": "1.00000"
+      },
+      "notes": "On super ultrawide (32:9) setups, values higher than 1.00 can cause noticeable fish-eye edge distortion. Keeping 1.00000 with AutoFOV=1 provides an optimal, undistorted panoramic field of view."
+    },
+    {
+      "key": "IsFpsLimitEnabled",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Enables (1) or disables (0) the internal frame rate limiter.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "The in-game limiter enforces a hard 90 FPS ceiling in the Anvil engine. Setting IsFpsLimitEnabled=1 restricts gameplay to 90 FPS regardless of the MaxFPS value. Recommended 0 (disabled in-game); use GPU driver (NVIDIA Control Panel Max Frame Rate) to lock 120 or 144 FPS."
+    },
+    {
+      "key": "MaxFPS",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "In-game frame rate limiter ceiling. The in-game slider and engine enforce a hard cap of 90 FPS.",
+      "recommendations": {
+        "performance": "90",
+        "balanced": "90",
+        "quality": "90"
+      },
+      "notes": "Values set above 90 in the INI are clamped back to 90 by the engine on launch or whenever display settings are saved in-game. To play above 90 FPS on a 240Hz monitor, set IsFpsLimitEnabled=0 and cap framerate via GPU driver."
+    },
+    {
+      "key": "VSyncMode",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "In-game vertical synchronization. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disable in-game VSync and rely on G-Sync / FreeSync VRR in the GPU control panel for tear-free gameplay without input lag."
+    },
+    {
+      "key": "Cloud",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Volumetric clouds quality. 0=Low, 1=Very High, 2=Ultra.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Ubisoft Anvil volumetric clouds at Ultra (2) are extremely computationally heavy on GPU compute shaders. Dropping from 2 to 1 improves framerate stability by 12–15% at 1440p/ultrawide with negligible visual difference."
+    },
+    {
+      "key": "Shadow",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Shadow map resolution and cascade filter quality. 0=Low, 1=Medium, 2=High, 3=Very High, 4=Ultra, 5=Ultra High.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "Setting 5 (Ultra High) imposes a steep performance cost during outdoor daylight roaming. Setting 4 delivers crisp shadow edges while recovering vital frame pacing overhead at ultrawide resolutions."
+    },
+    {
+      "key": "Antialiasing",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Temporal Anti-Aliasing (TAA) quality. 0=Low, 1=Medium, 2=High, 3=Very High.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "3"
+      },
+      "notes": "High/Very High TAA is crucial at 5120x1440 to eliminate specular pixel crawl and sub-pixel foliage shimmer, significantly reducing visual fatigue."
+    },
+    {
+      "key": "Texture",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Environment texture resolution. 0=Low, 1=Medium, 2=High, 3=Very High, 4=Ultra.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "Ultra (4) textures require ~6–8 GB VRAM. Safe and recommended on 12 GB+ GPUs (like RTX 4070 SUPER)."
+    },
+    {
+      "key": "CharacterTexture",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Character model texture detail. 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "Keeps Fenyx and NPC textures sharp. No measurable framerate difference on GPUs with adequate VRAM."
+    },
+    {
+      "key": "TextureFiltering",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Anisotropic texture filtering. 0=Low, 1=Medium, 2=High (16x AF).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "Value 2 provides full 16x anisotropic filtering, keeping ground and cliff textures sharp when viewed at oblique angles on wide panoramas."
+    },
+    {
+      "key": "Environment",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Environmental geometry detail and view distance. 0=Low, 1=Medium, 2=High, 3=Very High, 4=Ultra, 5=Ultra High.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "4",
+        "quality": "5"
+      },
+      "notes": "Determines distant landmark rendering across the Golden Isle. High-end hardware can sustain setting 5."
+    },
+    {
+      "key": "Character",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Character geometry level of detail (LOD). 0=Low, 1=Medium, 2=High, 3=Ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Maintains high polygon detail on Fenyx, creatures, and mythical bosses."
+    },
+    {
+      "key": "Effects",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Particle effects, divine power magic, and fire rendering quality. 0=Low to 5=Ultra.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "4",
+        "quality": "5"
+      },
+      "notes": "Controls density and resolution of Godly powers and combat visual fx."
+    },
+    {
+      "key": "Water",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Water surface physics and rendering detail. 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "Governs coastal water and lake wave displacement."
+    },
+    {
+      "key": "Rain",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Weather rain particle density and wet surface reflections. 0=Low to 3=High.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Full rain effects add immersion without significant GPU overhead on high-end cards."
+    },
+    {
+      "key": "SSAO",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Screen-Space Ambient Occlusion. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Provides natural shading under foliage, rocks, and buildings to avoid a flat look."
+    },
+    {
+      "key": "AdaptiveQuality",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Dynamic resolution scaling. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Keep 0 (Off) for a quality goal to guarantee constant native pixel sharpness on 5120x1440 panels."
+    },
+    {
+      "key": "PixelDensity",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Internal render resolution scaling factor. 1.00000 = 100% native resolution.",
+      "recommendations": {
+        "performance": "0.85000",
+        "balanced": "1.00000",
+        "quality": "1.00000"
+      },
+      "notes": "Maintain 1.00000 for pixel-perfect display clarity."
+    },
+    {
+      "key": "WindowMode",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Display window mode. 1=Fullscreen, 2=Borderless, 3=Windowed.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Confirmed via in-game menu screenshot: Fullscreen=1, Borderless=2, Windowed=3. Use WindowMode=1 (Fullscreen). When combined with DXVK dxvk.allowFse=True, DXVK promotes the swapchain to Vulkan exclusive fullscreen (VK_PRESENT_MODE_IMMEDIATE_KHR) at the driver layer. The game engine still reports 'Borderless' in the benchmark results panel — this is expected and correct; FSE is active at the Vulkan level."
+    },
+    {
+      "key": "HDREnabled",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "High Dynamic Range rendering. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Enable if using an HDR-capable monitor. Calibrate peak luminance and paper white in-game for comfortable contrast."
+    },
+    {
+      "key": "Clutter",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Ground clutter and grass density. 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "Setting 2 populates dense grass and flowers across the landscape."
+    },
+    {
+      "key": "Terrain",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Terrain geometry rendering quality. 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "High setting maintains smooth terrain surfaces at long distances."
+    },
+    {
+      "key": "Bloom",
+      "file": "ImmortalsFenyxRising.ini",
+      "section": "[Graphics]",
+      "effect": "Bloom lighting glare. 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Can be toggled to 0 if sensitive to bright glare and high-contrast light bleeds in HDR mode."
+    }
+  ],
+
+  "engine_overrides": [
+    {
+      "key": "MaxFPS",
+      "behaviour": "The in-game options menu frame limiter slider caps at 90 FPS maximum, and the engine enforces this as an internal hard ceiling. If IsFpsLimitEnabled=1 is set, the engine clamps MaxFPS back to 90 on launch or whenever in-game display settings are saved.",
+      "action": "Set IsFpsLimitEnabled=0 in ImmortalsFenyxRising.ini to disable the in-game limiter. Apply a driver-level FPS cap via NVIDIA Control Panel (Max Frame Rate). For 240Hz G-Sync setups, cap at 237 FPS to stay within the VRR window while preventing runaway GPU oscillation."
+    },
+    {
+      "key": "KeepStandardAspect",
+      "behaviour": "If KeepStandardAspect is enabled (1), the engine forces a 16:9 pillarbox window, disabling ultrawide gameplay rendering.",
+      "action": "Ensure KeepStandardAspect=0 is set in the INI to enable full panoramic 21:9 or 32:9 rendering in gameplay."
+    },
+    {
+      "key": "WindowMode",
+      "behaviour": "Enum mapping is game-specific and differs from many other Ubisoft Anvil titles. Confirmed via in-game menu: 1=Fullscreen, 2=Borderless, 3=Windowed.",
+      "action": "Set WindowMode=1 (Fullscreen). When paired with DXVK allowFse=True, the Vulkan swapchain is promoted to exclusive fullscreen regardless of the D3D11 surface type the game engine creates."
+    }
+  ],
+
+  "manual_only_settings": [
+    {
+      "setting": "Field of View (FOV) Slider",
+      "location": "Options → Display → Field of View (85% to 115%)",
+      "recommendation": "100% (Default)",
+      "reason": "On 32:9 super ultrawide, pushing FOV above 100% introduces heavy peripheral distortion ('fish-eye'), which strains peripheral vision. 100% provides natural perspective."
+    },
+    {
+      "setting": "HUD Positioning / Centering",
+      "location": "Options → Interface → HUD",
+      "recommendation": "Center HUD or adjust margins to 16:9 bounds",
+      "reason": "Reduces extreme neck and eye scanning toward the far corners of a 49-inch 32:9 monitor during intense combat."
+    },
+    {
+      "setting": "HDR Calibration",
+      "location": "Options → Display → HDR Calibration",
+      "recommendation": "Set Paper White to 200–300 nits; Peak Luminance to match monitor spec (e.g. 1000 nits)",
+      "reason": "Prevents blown-out UI highlights and visual fatigue during night-to-day transitions."
+    },
+    {
+      "setting": "Camera Assistance",
+      "location": "Options → Controls / Gameplay → Camera Assistance",
+      "recommendation": "Off or Reduced",
+      "reason": "Automatic camera recentring can cause visual disorientation and vestibular friction during platforming and puzzles."
+    }
+  ],
+
+  "intro_skip": [
+    {
+      "type": "file",
+      "label": "Rename startup splash videos",
+      "reversible": true,
+      "files": [
+        {
+          "path": "%GAME_DIR%\\videos\\UbisoftLogo.webm",
+          "action": "rename",
+          "rename_to": "UbisoftLogo.webm.bak"
+        },
+        {
+          "path": "%GAME_DIR%\\videos\\ANVIL_Logo.webm",
+          "action": "rename",
+          "rename_to": "ANVIL_Logo.webm.bak"
+        },
+        {
+          "path": "%GAME_DIR%\\videos\\en\\Epilepsy.webm",
+          "action": "rename",
+          "rename_to": "Epilepsy.webm.bak"
+        },
+        {
+          "path": "%GAME_DIR%\\videos\\en\\WarningSaving.webm",
+          "action": "rename",
+          "rename_to": "WarningSaving.webm.bak"
+        }
+      ],
+      "notes": "Directly skips the Ubisoft opening logos and legal warning videos to boot faster to the main menu. Verified safe on Ubisoft Connect and Steam versions."
+    }
+  ],
+
+  "dxvk": {
+    "recommended_version": "3.1",
+    "version_notes": "DXVK 3.1 (released 2026-08-29) is the minimum recommended version. DXVK 2.3.1 does not support VK_EXT_swapchain_colorspace on NVIDIA drivers — HDR is silently inert (swapchain runs in R8G8B8A8_UNORM / SDR). DXVK 3.1 adds the allowFse flag which, when combined with WindowMode=1 (Fullscreen), activates the VK_EXT_full_screen_exclusive path, unlocking HDR (R16G16B16A16_SFLOAT / EXTENDED_SRGB_LINEAR_EXT) and VRR direct flip.",
+    "config_file": "dxvk.conf",
+    "config_path": "%GAME_DIR%\\dxvk.conf",
+    "confirmed_config": {
+      "dxgi.syncInterval": "0",
+      "dxgi.numBackBuffers": "3",
+      "dxgi.maxFrameLatency": "0",
+      "dxvk.allowFse": "True",
+      "dxvk.latencySleep": "Auto",
+      "d3d11.enableRt": "True",
+      "d3d11.relaxedBarriers": "True",
+      "d3d11.allowMapFlagNoWait": "True",
+      "dxgi.enableHDR": "True",
+      "dxvk.hdr": "1",
+      "dxvk.hdrMetaData": "1",
+      "dxvk.enableGraphicsPipelineLibrary": "True",
+      "dxvk.useRawSsbo": "True",
+      "dxvk.gpuQueuePriority": "2",
+      "dxvk.enableAsync": "False"
+    },
+    "config_notes": [
+      "dxvk.allowFse=True is mandatory for HDR on NVIDIA. Without it, VK_EXT_swapchain_colorspace is not negotiated and the swapchain runs in SDR regardless of dxgi.enableHDR.",
+      "dxvk.latencySleep=Auto engages VK_NV_low_latency2 (NVIDIA Reflex) when supported. Confirmed active on RTX 4070 SUPER / NVIDIA 616.64.",
+      "dxgi.maxFrameLatency=0 (no override) is correct when NVIDIA Reflex (latencySleep=Auto) is active. Setting to 1 creates redundant latency management that conflicts with Reflex frame timing.",
+      "d3d11.enableRt and dxvk.gpuQueuePriority are valid parsed keys in DXVK 3.1 — confirmed in Effective configuration log output. These were not present in DXVK 2.3.1 upstream dxvk.conf.",
+      "dxvk.enableAsync=False is required for Ubisoft/Anvil engines. Async pipeline compilation causes mid-frame stalls on Anvil due to its synchronous shader usage pattern.",
+      "dxvk.hud and dxvk.debug should be commented out for normal play — debug logging writes to disk every frame.",
+      "The DXVK pipeline shader cache (AppData\\Local\\dxvk\\*.dxvk.bin) builds progressively. Expect worst-frame-time hitches in early sessions. Cache matures to ~7000+ shaders after 2-3 hours of varied gameplay."
+    ],
+    "swapchain_confirmed": {
+      "format": "VK_FORMAT_R16G16B16A16_SFLOAT",
+      "color_space": "VK_COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT",
+      "present_mode": "VK_PRESENT_MODE_IMMEDIATE_KHR",
+      "buffer_size": "5120x1440",
+      "image_count": "3"
+    }
+  },
+
+  "nvidia_app_settings": {
+    "notes": "Per-game profile recommended in NVIDIA App for Immortals Fenyx Rising.",
+    "settings": [
+      {
+        "key": "Low Latency Mode",
+        "value": "On",
+        "reason": "Set to On (not Ultra) when dxvk.latencySleep=Auto is active. Reflex (VK_NV_low_latency2) supersedes Ultra mode. Running both simultaneously creates conflicting latency management."
+      },
+      {
+        "key": "Max Frame Rate",
+        "value": "237",
+        "reason": "For 240Hz G-Sync panels: 3 FPS below max refresh rate keeps GPU within the VRR window and prevents runaway oscillation above 240Hz."
+      },
+      {
+        "key": "Monitor Technology",
+        "value": "G-SYNC Compatible",
+        "reason": "Engages VRR adaptive sync. Combined with in-game VSyncMode=0 and NVCP VSync=On, provides tear-free adaptive frame delivery."
+      },
+      {
+        "key": "Vertical Sync",
+        "value": "On",
+        "reason": "Driver-level VSync ON is required for G-Sync to function as a ceiling above the VRR range. In-game VSync must be OFF simultaneously."
+      },
+      {
+        "key": "Power Management Mode",
+        "value": "Prefer Maximum Performance",
+        "reason": "Prevents GPU clock step-down during lighter scenes, reducing the clock oscillation that causes frame time spikes."
+      },
+      {
+        "key": "RTX HDR",
+        "value": "Off",
+        "reason": "RTX HDR synthesises HDR from SDR. With DXVK delivering native R16G16B16A16_SFLOAT HDR, enabling RTX HDR would double-process the signal and corrupt tone mapping."
+      },
+      {
+        "key": "Smooth Motion",
+        "value": "Off",
+        "reason": "Frame interpolation adds display latency. Incompatible with G-Sync and Reflex latency goals."
+      }
+    ]
+  },
+
+  "notes": [
+    "Built on Ubisoft Anvil (AnvilNext 2.0) engine.",
+    "Native 21:9 and 32:9 ultrawide gameplay support is available when KeepStandardAspect=0.",
+    "Cutscenes and certain pre-rendered story cinematics remain 16:9 pillarboxed by design.",
+    "Volumetric clouds (Cloud=2) and Ultra High Shadows (Shadow=5) are the primary GPU bottlenecks in the Anvil engine. Dropping Cloud to 1 and Shadow to 4 yields substantial frame pacing stability on high-resolution setups without perceived quality loss.",
+    "Eye comfort on 32:9 monitors requires disabling MotionBlur (MotionBlur=0) and Depth of Field (DOF=0) to eliminate smearing and artificial focal struggle in the user's peripheral vision.",
+    "WindowMode enum for this title: 1=Fullscreen, 2=Borderless, 3=Windowed. Confirmed via in-game Settings screenshot. Differs from many other Anvil/Ubisoft titles where 0=Fullscreen.",
+    "The benchmark results panel reports 'Borderless' even when running WindowMode=1 with DXVK allowFse. This is a game-engine reporting artefact — DXVK presents a borderless D3D11 surface to the game while the Vulkan layer uses VK_PRESENT_MODE_IMMEDIATE_KHR (exclusive fullscreen). VRR, HDR, and direct flip are all active.",
+    "Benchmarked on RTX 4070 SUPER / Ryzen 7 5800X3D at 5120x1440: AVG ~87 FPS, MIN improves from ~3 FPS (cold shader cache) to ~27 FPS (warm cache) after 2-3 sessions."
+  ],
+
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Immortals_Fenyx_Rising",
+      "type": "wiki",
+      "label": "PCGamingWiki — Immortals Fenyx Rising"
+    },
+    {
+      "url": "https://www.ubisoft.com/en-gb/help/immortals-fenyx-rising/gameplay/article/system-requirements-for-immortals-fenyx-rising/000079361",
+      "type": "official",
+      "label": "Ubisoft Support — Immortals Fenyx Rising System Requirements"
+    },
+    {
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.1",
+      "type": "tool",
+      "label": "DXVK 3.1 Release — GitHub"
+    },
+    {
+      "url": "https://github.com/doitsujin/dxvk",
+      "type": "tool",
+      "label": "DXVK — Vulkan-based D3D11 Implementation"
+    }
+  ]
+}
