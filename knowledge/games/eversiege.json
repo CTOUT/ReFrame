@@ -248,6 +248,54 @@
         "quality": "5120"
       },
       "notes": "Aligns the texture streamer with super ultrawide (32:9) viewport dimensions."
+    },
+    {
+      "key": "r.Tonemapper.Sharpen",
+      "section": "[SystemSettings]",
+      "file": "Engine.ini",
+      "effect": "Enables Contrast-Adaptive Sharpening in the post-process tonemapper.",
+      "recommendations": {
+        "performance": "1.0",
+        "balanced": "1.0",
+        "quality": "0.8"
+      },
+      "notes": "Counteracts TAA/TSR softness to restore crisp texture and edge definition without halos."
+    },
+    {
+      "key": "r.SceneColorFringeQuality",
+      "section": "[SystemSettings]",
+      "file": "Engine.ini",
+      "effect": "Controls chromatic aberration color-fringing filter.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Setting to 0 eliminates artificial color dispersion and edge blur across the frame."
+    },
+    {
+      "key": "r.DepthOfFieldQuality",
+      "section": "[SystemSettings]",
+      "file": "Engine.ini",
+      "effect": "Controls circle depth-of-field blur passes.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling keeps the entire isometric/siege field in sharp focus."
+    },
+    {
+      "key": "r.MotionBlurQuality",
+      "section": "[SystemSettings]",
+      "file": "Engine.ini",
+      "effect": "Controls camera and per-object motion blur.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Eliminates smearing during camera panning and high-speed action."
     }
   ],
   "intro_skip": [

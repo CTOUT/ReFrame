@@ -130,8 +130,8 @@
       "engine": "Unreal Engine 5",
       "engine_version": "5.x",
       "platforms": ["Steam"],
-      "key_count": 19,
-      "profile_version": "1.1.0",
+      "key_count": 23,
+      "profile_version": "1.2.0",
       "updated": "2026-09-13"
     },
     {
