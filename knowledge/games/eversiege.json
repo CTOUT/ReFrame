@@ -1,0 +1,295 @@
+{
+  "game": "EverSiege: Untold Ages",
+  "engine": "Unreal Engine 5",
+  "engine_version": "5.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-09-08",
+  "aliases": ["EverSiege", "KingdomLegacy"],
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "3363680",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\KingdomLegacy\\Saved\\Config\\Windows\\GameUserSettings.ini",
+          "format": "ini",
+          "notes": "EverSiege uses internal project name KingdomLegacy. Configuration files are in Saved\\Config\\Windows."
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\KingdomLegacy\\Saved\\Config\\Windows\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "sg.ResolutionQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Internal render resolution percentage (50-100).",
+      "recommendations": {
+        "performance": "67",
+        "balanced": "80",
+        "quality": "100"
+      },
+      "notes": "Native 100 recommended for high-end GPUs. Use in-game upscaling where available."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Shadow and Virtual Shadow Maps (VSM) quality: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Quality 2 (High) provides clean contact shadows and stable VSM resolution without Epic compute cost."
+    },
+    {
+      "key": "sg.GlobalIlluminationQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Lumen Global Illumination quality: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Quality 3 (Epic) roughly doubles ray budget and surface cache probes. Quality 2 (High) preserves full dynamic indirect bounce lighting while ensuring consistent 60+ FPS during combat."
+    },
+    {
+      "key": "sg.ReflectionQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Lumen Reflections quality: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Quality 2 provides sharp specular reflections on metallic and glossy surfaces with low overhead."
+    },
+    {
+      "key": "sg.TextureQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Texture streaming quality: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "3"
+      },
+      "notes": "Bandwidth-bound. High-end GPUs with 10GB+ VRAM should keep at Epic (3)."
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Visual effects and particle simulation quality: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Quality 2 balances particle density for siege weapons, magic, and projectile effects."
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Post-processing passes (bloom, ambient occlusion, depth of field): 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.ViewDistanceQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Draw distance and LOD transition distance: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.FoliageQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Foliage density, draw distance, and wind simulation: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.ShadingQuality",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Material and shader permutation complexity: 0=low, 1=medium, 2=high, 3=epic, 4=cinematic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "FrameRateLimit",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Maximum framerate limit in FPS (0 = uncapped).",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "match_monitor_hz"
+      },
+      "notes": "Set 2-3 FPS below monitor refresh rate for VRR/G-Sync panels to prevent VSync latency spikes and tearing."
+    },
+    {
+      "key": "bUseVSync",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "In-game vertical synchronization.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Always False; use G-Sync / FreeSync or driver-level sync."
+    },
+    {
+      "key": "r.Streaming.PoolSize",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Texture streaming memory budget in MB.",
+      "recommendations": {
+        "performance": "2000",
+        "balanced": "4000",
+        "quality": "4000"
+      },
+      "notes": "Higher pool size eliminates texture pop-in during camera rotation on cards with 12GB+ VRAM."
+    },
+    {
+      "key": "bUseHDRDisplayOutput",
+      "section": "[/Script/KingdomLegacy.KLGameUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Enables native Unreal Engine 10-bit HDR output.",
+      "recommendations": {
+        "performance": "True",
+        "balanced": "True",
+        "quality": "True"
+      },
+      "notes": "Set to True on HDR/OLED displays to bypass synthetic Windows Auto HDR and provide direct scRGB luminance."
+    },
+    {
+      "key": "r.Shadow.Virtual.Cache",
+      "section": "[SystemSettings]",
+      "file": "Engine.ini",
+      "effect": "Caches Virtual Shadow Map pages for static meshes across frames.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Greatly reduces frame time overhead in isometric/siege views by reusing static shadow pages."
+    },
+    {
+      "key": "r.Shadow.Virtual.ResolutionLodBiasDirectional",
+      "section": "[SystemSettings]",
+      "file": "Engine.ini",
+      "effect": "Resolution LOD bias for directional Virtual Shadow Maps.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "0"
+      },
+      "notes": "A value of 1 avoids over-allocation of shadow resolution on ultrawide viewports (5120x1440)."
+    },
+    {
+      "key": "r.CreateShadersOnLoad",
+      "section": "[SystemSettings]",
+      "file": "Engine.ini",
+      "effect": "Pre-compiles shaders upon level loading.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Reduces traversal and spell-spawn hitching during gameplay."
+    },
+    {
+      "key": "r.AsyncCompute",
+      "section": "[SystemSettings]",
+      "file": "Engine.ini",
+      "effect": "Enables asynchronous compute queues for shadows and post-processing.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Improves GPU hardware utilization on modern architectures (e.g. RTX 40-series)."
+    },
+    {
+      "key": "r.Streaming.MaxEffectiveScreenSize",
+      "section": "[SystemSettings]",
+      "file": "Engine.ini",
+      "effect": "Sets the maximum horizontal resolution baseline for texture streaming calculations.",
+      "recommendations": {
+        "performance": "5120",
+        "balanced": "5120",
+        "quality": "5120"
+      },
+      "notes": "Aligns the texture streamer with super ultrawide (32:9) viewport dimensions."
+    }
+  ],
+  "intro_skip": [
+    {
+      "type": "file",
+      "label": "Disable startup splash videos",
+      "reversible": true,
+      "platforms": ["Steam"],
+      "files": [
+        {
+          "path": "%GAME_DIR%\\KingdomLegacy\\Content\\Movies\\DearVillagers_Splash.mp4",
+          "action": "rename",
+          "rename_to": "DearVillagers_Splash.bak"
+        },
+        {
+          "path": "%GAME_DIR%\\KingdomLegacy\\Content\\Movies\\TINDALOS_LOGO_APPARITION_DEF.mp4",
+          "action": "rename",
+          "rename_to": "TINDALOS_LOGO_APPARITION_DEF.bak"
+        }
+      ],
+      "notes": "Renaming publisher and developer splash mp4 files skips directly to the game start."
+    }
+  ],
+  "notes": [
+    "EverSiege: Untold Ages is developed by Tindalos Interactive on Unreal Engine 5 with DirectX 12.",
+    "Internal project identifier is KingdomLegacy. Config files are stored under %LOCALAPPDATA%\\KingdomLegacy\\Saved\\Config\\Windows\\."
+  ],
+  "sources": [
+    {
+      "url": "https://store.steampowered.com/app/3363680/EverSiege_Untold_Ages/",
+      "type": "official",
+      "label": "Steam Store — EverSiege: Untold Ages"
+    },
+    {
+      "url": "https://docs.unrealengine.com/5.0/en-US/scalability-reference-for-unreal-engine/",
+      "type": "official",
+      "label": "Unreal Engine Docs — Scalability Reference"
+    },
+    {
+      "url": "https://docs.unrealengine.com/5.0/en-US/lumen-global-illumination-and-reflections-in-unreal-engine/",
+      "type": "official",
+      "label": "Unreal Engine Docs — Lumen Global Illumination"
+    }
+  ]
+}

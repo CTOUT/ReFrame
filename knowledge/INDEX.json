@@ -125,6 +125,16 @@
       "updated": "2026-04-29"
     },
     {
+      "name": "EverSiege: Untold Ages",
+      "file": "games/eversiege.json",
+      "engine": "Unreal Engine 5",
+      "engine_version": "5.x",
+      "platforms": ["Steam"],
+      "key_count": 19,
+      "profile_version": "1.1.0",
+      "updated": "2026-09-13"
+    },
+    {
       "name": "Fortnite",
       "file": "games/fortnite.json",
       "engine": "Unreal Engine 5",
