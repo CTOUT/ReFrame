@@ -1101,6 +1101,61 @@ dxvk.enableAsync = False
 
 ---
 
+## Aniimo
+
+**Engine:** Unity 2022.3 (IL2CPP) with XRender Scriptable Render Pipeline
+
+| Platform | Config Path                                     | Format                 |
+| -------- | ----------------------------------------------- | ---------------------- |
+| Steam    | `HKCU\Software\Aniimo\Aniimo`                   | Registry (PlayerPrefs) |
+| Steam    | `%GAME_DIR%\Aniimo_Data\boot.config`            | boot.config (txt)      |
+| Steam    | `%USERPROFILE%\AppData\LocalLow\Aniimo\Aniimo\` | Diagnostic logs (txt)  |
+
+> **Note:** Aniimo stores its primary graphical settings as Unity PlayerPrefs in the Windows registry under `HKCU\Software\Aniimo\Aniimo`. Keys use Unity hash suffixes and must be edited while the game is fully closed.
+
+**Key settings (Registry):**
+
+| Key                                          | Effect                         | Recommended (performance)     | Recommended (quality)         |
+| -------------------------------------------- | ------------------------------ | ----------------------------- | ----------------------------- |
+| `CBT2_aoQuality_h1207271230`                 | Ambient Occlusion quality      | `0` (Off)                     | `3` (High)                    |
+| `CBT2_ssrQuality_h2115069410`                | Screen-Space Reflection        | `0` (Off)                     | `2` (High)                    |
+| `CBT2_FrameGeneration_h1717330342`           | DLSS 3 Frame Generation        | `"On"`                        | `"On"`                        |
+| `CBT2_dlssModeInt_h286288869`                | DLSS Super Resolution mode     | `3` (Performance)             | `1` (Quality)                 |
+| `CBT2_Antialiasing_h1715425529`              | Anti-aliasing method           | `"DeepLearningSuperSampling"` | `"DeepLearningSuperSampling"` |
+| `CBT2_supportXGIProbe_h3576054414`           | Bake Global Illumination Probe | `0` (Off)                     | `1` (On)                      |
+| `CBT2_mainLightShadowQuality_h3843041155`    | Shadow quality                 | `1` (Low)                     | `3` (High)                    |
+| `CBT2_AnimationQuality_h1599077734`          | Animation update fidelity      | `1` (Low)                     | `3` (High)                    |
+| `CBT2_ClientPuppetCountLimit_h3086980518`    | Wild creature draw limit       | `30`                          | `50`                          |
+| `CBT2_ClientEnvObjectCountLimit_h1200965978` | Environment object draw limit  | `50`                          | `150`                         |
+
+**Key settings (boot.config):**
+
+| Key | Effect | Recommended |
+| --- | --- | --- |
+| `memorysetup-main-allocator-block-size` | Main thread allocator block size | `33554432` (32MB) |
+| `memorysetup-thread-allocator-block-size` | Worker thread allocator block size | `33554432` (32MB) |
+| `memorysetup-gfx-main-allocator-block-size` | Graphics command recording block size | `33554432` (32MB) |
+| `memorysetup-gfx-thread-allocator-block-size` | Graphics worker thread block size | `33554432` (32MB) |
+| `memorysetup-cache-allocator-block-size` | Temporary cache allocator block size | `8388608` (8MB) |
+| `memorysetup-bucket-allocator-granularity` | Sub-allocator cache alignment | `16` |
+| `gc-max-time-slice` | Max incremental GC frame time slice (ms) | `1` (eliminates 144Hz/240Hz frame spikes) |
+| `hdr-display-enabled` | Native HDR display output | `1` (if HDR panel active) |
+| `gfx-enable-gfx-jobs=1` | Multi-threaded rendering jobs | `1` (Default) |
+| `gfx-enable-native-gfx-jobs=1` | Native GPU job dispatch | `1` (Default) |
+
+> [!WARNING]
+> **Game Update Overwrite Caveat:**
+> Because `boot.config` resides inside `%GAME_DIR%\Aniimo_Data\boot.config`, any game update, patch, or Steam file integrity verification will reset `boot.config` to developer defaults. These settings should be backed up and re-applied following game updates.
+
+**Depth of Field and Motion Blur Notes:**
+
+- **XRender Pipeline:** Motion blur and depth of field are integrated into XRender passes without standalone registry switches in the current client build.
+- **Blur Mitigation:** Keep Anti-Aliasing set to `DeepLearningSuperSampling` (DLSS Quality) to eliminate temporal blur from standard TAA. Enable DLSS 3 Frame Generation (`"On"`) for ultra-smooth frame pacing on high refresh monitors.
+- **In-Game Camera:** Set Camera Shake / Screen Shake and Camera Follow Smoothing to 0 in game options to prevent velocity-induced camera blur and disorientation.
+- **Sources:** [Steam Store — Aniimo](https://store.steampowered.com/app/4126040/Aniimo/), [PCGamingWiki — Aniimo](https://www.pcgamingwiki.com/wiki/Aniimo)
+
+---
+
 ## Adding More Games
 
 Create a pull request adding a new section to this file following the template above. Include:
@@ -1108,3 +1163,4 @@ Create a pull request adding a new section to this file following the template a
 - Verified config file paths (tested on a real installation)
 - Key names confirmed against current game version
 - Source citation (official game docs, community wiki, benchmark article)
+

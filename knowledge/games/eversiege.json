@@ -2,8 +2,8 @@
   "game": "EverSiege: Untold Ages",
   "engine": "Unreal Engine 5",
   "engine_version": "5.x",
-  "profile_version": "1.0.0",
-  "updated": "2026-09-08",
+  "profile_version": "1.3.0",
+  "updated": "2026-09-19",
   "aliases": ["EverSiege", "KingdomLegacy"],
   "platforms": [
     {
@@ -296,6 +296,63 @@
         "quality": "0"
       },
       "notes": "Eliminates smearing during camera panning and high-speed action."
+    },
+    {
+      "key": "NetServerMaxTickRate",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Maximum server network tick rate for multiplayer sessions.",
+      "recommendations": {
+        "performance": "120",
+        "balanced": "120",
+        "quality": "120"
+      },
+      "notes": "Prevents Unreal Engine listen servers from clamping tick rate to 30 or 60 Hz when a client connects."
+    },
+    {
+      "key": "LanServerMaxTickRate",
+      "section": "[/Script/Engine.Engine]",
+      "file": "Engine.ini",
+      "effect": "Maximum server network tick rate for LAN / local sessions.",
+      "recommendations": {
+        "performance": "120",
+        "balanced": "120",
+        "quality": "120"
+      }
+    },
+    {
+      "key": "MaxClientRate",
+      "section": "[/Script/OnlineSubsystemUtils.IpNetDriver]",
+      "file": "Engine.ini",
+      "effect": "Maximum network transfer bandwidth per client in bytes per second.",
+      "recommendations": {
+        "performance": "100000",
+        "balanced": "100000",
+        "quality": "100000"
+      },
+      "notes": "Raises bandwidth limit from default 15 KB/s to 100 KB/s to prevent packet queuing during swarm waves."
+    },
+    {
+      "key": "MaxInternetClientRate",
+      "section": "[/Script/OnlineSubsystemUtils.IpNetDriver]",
+      "file": "Engine.ini",
+      "effect": "Maximum internet client bandwidth limit in bytes per second.",
+      "recommendations": {
+        "performance": "100000",
+        "balanced": "100000",
+        "quality": "100000"
+      }
+    },
+    {
+      "key": "ConfiguredInternetSpeed",
+      "section": "[/Script/Engine.Player]",
+      "file": "Engine.ini",
+      "effect": "Client network connection speed setting in bytes per second.",
+      "recommendations": {
+        "performance": "100000",
+        "balanced": "100000",
+        "quality": "100000"
+      }
     }
   ],
   "intro_skip": [

@@ -1,0 +1,371 @@
+{
+  "game": "Aniimo",
+  "engine": "Unity",
+  "engine_version": "2022.3 (IL2CPP)",
+  "profile_version": "1.0.0",
+  "updated": "2026-09-19",
+  "platforms": [
+    {
+      "store": "Steam",
+      "store_id": "4126040",
+      "config_files": [
+        {
+          "path": "HKCU\\Software\\Aniimo\\Aniimo",
+          "file": "registry (PlayerPrefs)",
+          "format": "registry",
+          "notes": "Primary graphics, resolution, and scalability options stored as Unity PlayerPrefs DWORD and binary values. Edit only while Aniimo is closed."
+        },
+        {
+          "path": "%GAME_DIR%\\Aniimo_Data\\boot.config",
+          "file": "boot.config",
+          "format": "txt",
+          "notes": "Low-level Unity engine boot configuration. Controls native graphics jobs, memory block allocators, and API flags."
+        },
+        {
+          "path": "%USERPROFILE%\\AppData\\LocalLow\\Aniimo\\Aniimo",
+          "file": "Player.log",
+          "format": "txt",
+          "notes": "Runtime diagnostic logs, shader warmup logs, and PSO cache blobs."
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "Screenmanager Fullscreen mode_h3630240806",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "Display presentation mode: 0=Exclusive Fullscreen, 1=Fullscreen Window (Borderless), 3=Windowed.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Exclusive fullscreen gives minimal latency, but borderless fullscreen (1) is recommended on modern Windows 11 with HAGS and VRR."
+    },
+    {
+      "key": "Screenmanager Resolution Width_h182942802",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "Horizontal render resolution in pixels.",
+      "recommendations": {
+        "performance": "1920",
+        "balanced": "Native display width",
+        "quality": "Native display width"
+      },
+      "notes": "Must match or scale to primary monitor aspect ratio."
+    },
+    {
+      "key": "Screenmanager Resolution Height_h2627697771",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "Vertical render resolution in pixels.",
+      "recommendations": {
+        "performance": "1080",
+        "balanced": "Native display height",
+        "quality": "Native display height"
+      },
+      "notes": "Must match or scale to primary monitor aspect ratio."
+    },
+    {
+      "key": "CBT2_VideoQuality_h3343041345",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "Master video quality preset index: 0=Low, 1=Medium, 2=High, 3=Ultra, 4=Custom.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "4"
+      },
+      "notes": "Set to 4 (Custom) when applying targeted granular overrides."
+    },
+    {
+      "key": "CBT2_Antialiasing_h1715425529",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "Active anti-aliasing / reconstruction algorithm: 'None', 'TemporalAntialiasing', 'TAAU', 'FidelityFXSuperResolution', 'DeepLearningSuperSampling'.",
+      "recommendations": {
+        "performance": "FidelityFXSuperResolution",
+        "balanced": "DeepLearningSuperSampling",
+        "quality": "DeepLearningSuperSampling"
+      },
+      "notes": "DeepLearningSuperSampling (DLSS) provides superior image clarity and temporal stability compared to standard TAA, mitigating camera blur."
+    },
+    {
+      "key": "CBT2_dlssModeInt_h286288869",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "NVIDIA DLSS Super Resolution mode: 1=Quality, 2=Balanced, 3=Performance, 4=Ultra Performance.",
+      "recommendations": {
+        "performance": "3",
+        "balanced": "2",
+        "quality": "1"
+      },
+      "notes": "Only active when Anti-Aliasing is set to DeepLearningSuperSampling. Quality mode (1) yields optimal visual fidelity on 1440p+ displays."
+    },
+    {
+      "key": "CBT2_FrameGeneration_h1717330342",
+      "file": "registry",
+      "category": "PERFORMANCE",
+      "effect": "NVIDIA DLSS 3 Frame Generation toggle: 'None' (Off) or 'On'.",
+      "recommendations": {
+        "performance": "On",
+        "balanced": "On",
+        "quality": "On"
+      },
+      "notes": "Requires GeForce RTX 40-series GPU and Windows Hardware-Accelerated GPU Scheduling (HAGS) enabled. Significantly increases framerate on high-refresh panels."
+    },
+    {
+      "key": "CBT2_xgiConfigRecipeInt_h2455573626",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "XRender Global Illumination recipe preset index: 1=Low, 2=Medium, 3=High, 4=Custom/High.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      },
+      "notes": "Controls XRender indirect lighting quality and ray evaluation passes."
+    },
+    {
+      "key": "CBT2_aoQuality_h1207271230",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "Ambient Occlusion quality: 0=Off, 1=Low, 2=Medium, 3=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Adds depth and contact shadows around geometry and character models."
+    },
+    {
+      "key": "CBT2_ssrQuality_h2115069410",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "Screen-Space Reflection quality: 0=Off/Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      },
+      "notes": "Enhances reflections on water bodies and glossy surface materials."
+    },
+    {
+      "key": "CBT2_supportXGIProbe_h3576054414",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "Bake Global Illumination reflection and irradiance probes: 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Improves interior and shaded ambient light realism."
+    },
+    {
+      "key": "CBT2_AnimationQuality_h1599077734",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "Character and creature animation update rate and bone LOD: 1=Low, 2=Medium, 3=High.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "High preserves full 60fps+ skeletal updates at distance without interpolation stutter."
+    },
+    {
+      "key": "CBT2_mainLightShadowQuality_h3843041155",
+      "file": "registry",
+      "category": "GRAPHICS",
+      "effect": "Sun/directional main shadow map resolution and filtering: 0=Off, 1=Low, 2=Medium, 3=High.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "High enables higher cascade resolution and soft shadow filtering."
+    },
+    {
+      "key": "CBT2_ClientPuppetCountLimit_h3086980518",
+      "file": "registry",
+      "category": "PERFORMANCE",
+      "effect": "Maximum number of simultaneous wild creatures rendered on client.",
+      "recommendations": {
+        "performance": "30",
+        "balanced": "40",
+        "quality": "50"
+      },
+      "notes": "Higher values eliminate creature pop-in in dense biomes. Recommended 50 on systems with 16GB+ RAM."
+    },
+    {
+      "key": "CBT2_ClientEnvObjectCountLimit_h1200965978",
+      "file": "registry",
+      "category": "PERFORMANCE",
+      "effect": "Maximum number of interactive and decorative environmental objects rendered.",
+      "recommendations": {
+        "performance": "50",
+        "balanced": "100",
+        "quality": "150"
+      },
+      "notes": "Controls foliage and scenery draw distance."
+    },
+    {
+      "key": "CBT2_ClientPlayerCountLimit_h592526721",
+      "file": "registry",
+      "category": "PERFORMANCE",
+      "effect": "Maximum number of other players rendered simultaneously in multiplayer hubs.",
+      "recommendations": {
+        "performance": "15",
+        "balanced": "20",
+        "quality": "25"
+      },
+      "notes": "Limits network entity avatar draw overhead."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Camera Shake / Screen Shake",
+      "location": "Settings → Game / Control → Screen Shake",
+      "recommendation": "Off (0)",
+      "reason": "Eliminates camera-induced disorientation and perceived motion blur during combat and exploration."
+    },
+    {
+      "setting": "Camera Follow Smoothing",
+      "location": "Settings → Game / Control → Camera Smoothing",
+      "recommendation": "Low or 0",
+      "reason": "Reduces camera lag and velocity blur when pivoting around player character."
+    },
+    {
+      "setting": "Depth of Field (Cinematics)",
+      "location": "In-game Video Settings",
+      "recommendation": "Off / Low",
+      "reason": "Aniimo compiles post-processing passes into its XRender graph. Lowering post-processing or cinematic blur mitigates artificial foreground/background blurring."
+    }
+  ],
+  "boot_config_keys": [
+    {
+      "key": "memorysetup-main-allocator-block-size",
+      "file": "boot.config",
+      "effect": "Main thread native memory allocator block size (default 8388608 = 8MB).",
+      "recommendations": {
+        "performance": "33554432",
+        "balanced": "33554432",
+        "quality": "33554432"
+      },
+      "notes": "Increasing to 32MB (33554432) amortizes OS virtual memory allocation syscalls, preventing heap lock contention and traversal stutters."
+    },
+    {
+      "key": "memorysetup-thread-allocator-block-size",
+      "file": "boot.config",
+      "effect": "Worker thread memory allocator block size for C# Job System workers (default 8388608 = 8MB).",
+      "recommendations": {
+        "performance": "33554432",
+        "balanced": "33554432",
+        "quality": "33554432"
+      },
+      "notes": "Reduces allocation contention across worker threads."
+    },
+    {
+      "key": "memorysetup-gfx-main-allocator-block-size",
+      "file": "boot.config",
+      "effect": "Main graphics command recording block size.",
+      "recommendations": {
+        "performance": "33554432",
+        "balanced": "33554432",
+        "quality": "33554432"
+      },
+      "notes": "Ensures allocation-free command list recording during dense scene rendering."
+    },
+    {
+      "key": "memorysetup-gfx-thread-allocator-block-size",
+      "file": "boot.config",
+      "effect": "Graphics worker thread block size.",
+      "recommendations": {
+        "performance": "33554432",
+        "balanced": "33554432",
+        "quality": "33554432"
+      },
+      "notes": "Minimizes draw dispatch pauses."
+    },
+    {
+      "key": "memorysetup-cache-allocator-block-size",
+      "file": "boot.config",
+      "effect": "Scratchpad cache allocator block size.",
+      "recommendations": {
+        "performance": "8388608",
+        "balanced": "8388608",
+        "quality": "8388608"
+      },
+      "notes": "Recommended 8MB (8388608)."
+    },
+    {
+      "key": "memorysetup-bucket-allocator-granularity",
+      "file": "boot.config",
+      "effect": "Bucket allocator alignment granularity.",
+      "recommendations": {
+        "performance": "16",
+        "balanced": "16",
+        "quality": "16"
+      },
+      "notes": "Aligns sub-allocations to cache-line boundaries."
+    },
+    {
+      "key": "gc-max-time-slice",
+      "file": "boot.config",
+      "effect": "Incremental garbage collection maximum time slice per frame in milliseconds (default 3ms).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "On 144Hz (6.94ms budget) or 240Hz (4.16ms budget) displays, a 3ms GC slice consumes up to 72% of the frame budget, causing dropped frames. Dropping to 1ms spreads collection work evenly across frames and eliminates frame spikes."
+    },
+    {
+      "key": "hdr-display-enabled",
+      "file": "boot.config",
+      "effect": "Enables HDR display output support.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Set to 1 when playing on an HDR-capable monitor with Windows HDR active."
+    }
+  ],
+  "notes": [
+    "Aniimo is developed on Unity 2022.3 with IL2CPP and a custom Scriptable Render Pipeline named XRender.",
+    "Motion Blur and Depth of Field do not have dedicated exposed registry keys in the current client build; they are handled inside XRender passes. Using DLSS Quality over TAA substantially sharpens motion clarity, and enabling DLSS 3 Frame Generation eliminates micro-stutter.",
+    "boot.config resides in %GAME_DIR%\\Aniimo_Data\\boot.config. Steam updates, game patches, and file integrity checks will overwrite this file with developer defaults, requiring re-application after updates.",
+    "Tuning memorysetup block sizes to 32MB (33554432) amortizes OS virtual memory allocation syscalls, drastically cutting traversal stutters in open-world areas.",
+    "Setting gc-max-time-slice=1 caps incremental garbage collection to 1ms per frame, preventing GC hitching on 144Hz-240Hz monitors."
+  ],
+  "sources": [
+    {
+      "url": "https://store.steampowered.com/app/4126040/Aniimo/",
+      "type": "official",
+      "label": "Steam Store — Aniimo (App ID 4126040)"
+    },
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Aniimo",
+      "type": "wiki",
+      "label": "PCGamingWiki — Aniimo"
+    },
+    {
+      "url": "https://www.nvidia.com/en-us/geforce/geforce-experience/",
+      "type": "official",
+      "label": "NVIDIA App Game Ready Profile — Aniimo"
+    },
+    {
+      "url": "https://docs.unity3d.com/Manual/profiler-memory.html",
+      "type": "official",
+      "label": "Unity Docs — Memory Management & Allocators"
+    },
+    {
+      "url": "https://docs.unity3d.com/Manual/performance-garbage-collector.html",
+      "type": "official",
+      "label": "Unity Docs — Incremental Garbage Collection"
+    }
+  ]
+}

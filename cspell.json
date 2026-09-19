@@ -13,6 +13,7 @@
     "Aikar",
     "Algar",
     "analysing",
+    "Aniimo",
     "ARAM",
     "Ashlands",
     "autoexec",
@@ -101,6 +102,7 @@
     "localdata",
     "maxfps",
     "mcflags",
+    "memorysetup",
     "Millis",
     "minecraftpe",
     "Mistlands",
@@ -186,6 +188,7 @@
     "Treyarch",
     "Tritanopia",
     "trypophobia",
+    "typetree",
     "Ubisoft",
     "UEFI",
     "uesave",
@@ -204,6 +207,7 @@
     "vars",
     "vcwc",
     "videoconfig",
+    "VirtualAlloc",
     "virtualised",
     "VKPLAY",
     "vsync",
@@ -215,6 +219,7 @@
     "Wowpedia",
     "WSGF",
     "WTUI",
-    "xsolla"
+    "xsolla",
+    "XRender"
   ]
 }

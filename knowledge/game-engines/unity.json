@@ -11,7 +11,8 @@
   "config_file_locations": {
     "windows_registry": "HKCU\\Software\\<CompanyName>\\<ProductName>\\",
     "windows_playerprefs": "%USERPROFILE%\\AppData\\LocalLow\\<CompanyName>\\<ProductName>\\",
-    "windows_note": "Unity stores PlayerPrefs in the Windows registry under HKCU\\Software\\<CompanyName>\\<ProductName>. Graphics settings may also be stored as flat files in %APPDATA%\\LocalLow\\<CompanyName>\\<ProductName>\\ depending on how the game implements its settings. Always check for a game-specific profile before applying generic Unity keys."
+    "windows_boot_config": "%GAME_DIR%\\<GameName>_Data\\boot.config",
+    "windows_note": "Unity stores PlayerPrefs in the Windows registry under HKCU\\Software\\<CompanyName>\\<ProductName>. Low-level engine parameters (allocators, GC, graphics jobs) are read from %GAME_DIR%\\<GameName>_Data\\boot.config on startup. Note that game updates or Steam file integrity verification will overwrite boot.config with developer defaults."
   },
   "keys": [
     {
@@ -34,6 +35,118 @@
         "quality": "0"
       },
       "notes": "Exclusive fullscreen (0) is lowest latency. Borderless (1) is convenient for multi-monitor but adds DWM composition overhead."
+    }
+  ],
+  "boot_config_keys": [
+    {
+      "key": "memorysetup-main-allocator-block-size",
+      "format": "boot_config",
+      "effect": "Block size in bytes for the main thread native memory allocator (default 8388608 = 8MB).",
+      "recommendations": {
+        "performance": "33554432",
+        "balanced": "33554432",
+        "quality": "33554432"
+      },
+      "notes": "Increasing to 32MB (33554432) on 16GB+ systems reduces OS kernel VirtualAlloc calls, reducing heap lock contention and traversal stutters during asset streaming."
+    },
+    {
+      "key": "memorysetup-thread-allocator-block-size",
+      "format": "boot_config",
+      "effect": "Block size in bytes for worker threads in the C# Job System (default 8388608 = 8MB).",
+      "recommendations": {
+        "performance": "33554432",
+        "balanced": "33554432",
+        "quality": "33554432"
+      },
+      "notes": "Prevents worker threads from contending for global allocator locks when spawning jobs or processing meshes and animations."
+    },
+    {
+      "key": "memorysetup-gfx-main-allocator-block-size",
+      "format": "boot_config",
+      "effect": "Block size in bytes for main graphics command generation and dynamic staging buffers.",
+      "recommendations": {
+        "performance": "33554432",
+        "balanced": "33554432",
+        "quality": "33554432"
+      },
+      "notes": "Ensures allocation-free command list recording during dense visual scenes."
+    },
+    {
+      "key": "memorysetup-gfx-thread-allocator-block-size",
+      "format": "boot_config",
+      "effect": "Block size in bytes for graphics thread render jobs.",
+      "recommendations": {
+        "performance": "33554432",
+        "balanced": "33554432",
+        "quality": "33554432"
+      },
+      "notes": "Minimizes allocation pauses on worker threads dispatching draw calls."
+    },
+    {
+      "key": "memorysetup-cache-allocator-block-size",
+      "format": "boot_config",
+      "effect": "Block size in bytes for internal temporary scratchpad cache allocations.",
+      "recommendations": {
+        "performance": "8388608",
+        "balanced": "8388608",
+        "quality": "8388608"
+      },
+      "notes": "Recommended 8MB (8388608)."
+    },
+    {
+      "key": "memorysetup-bucket-allocator-granularity",
+      "format": "boot_config",
+      "effect": "Alignment granularity for small sub-allocations.",
+      "recommendations": {
+        "performance": "16",
+        "balanced": "16",
+        "quality": "16"
+      },
+      "notes": "Aligns bucket slots to CPU cache line boundaries."
+    },
+    {
+      "key": "gc-max-time-slice",
+      "format": "boot_config",
+      "effect": "Maximum execution time in milliseconds allotted to the incremental garbage collector per frame (default 3ms).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "On 144Hz (6.94ms frame budget) or 240Hz (4.16ms frame budget) displays, a 3ms GC slice consumes over 40-70% of the entire frame time. Dropping to 1ms spreads collection work evenly across frames and eliminates frame pacing hitches."
+    },
+    {
+      "key": "gfx-enable-gfx-jobs=1",
+      "format": "boot_config",
+      "effect": "Enables Unity's multi-threaded rendering job system across CPU cores.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Significantly improves CPU draw dispatch performance on 6+ core CPUs."
+    },
+    {
+      "key": "gfx-enable-native-gfx-jobs=1",
+      "format": "boot_config",
+      "effect": "Enables native graphics job rendering alongside gfx-enable-gfx-jobs.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Dispatches graphics commands directly from worker threads."
+    },
+    {
+      "key": "hdr-display-enabled",
+      "format": "boot_config",
+      "effect": "Enables native HDR display output support.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Set to 1 if using an HDR-capable monitor with Windows HDR enabled."
     }
   ],
   "command_line_args": [
@@ -62,7 +175,9 @@
     "Unity does not have a universal config file. Each game implements its own settings persistence — some use PlayerPrefs (registry), some use JSON, some use custom formats. Always use a game-specific profile when available.",
     "The registry key name hash suffix (e.g. _h182942802) is deterministic per key name but varies between games if the company/product name differs.",
     "Unity games built with IL2CPP or Mono both share the same PlayerPrefs registry location pattern.",
-    "Unity 2019.3+ introduced the Input System package; games using the old Input Manager behave differently for controller detection. This does not affect graphics config."
+    "boot.config resides in %GAME_DIR%\\<GameName>_Data\\boot.config. Game updates and Steam file integrity checks will overwrite this file with developer defaults, requiring reapplication.",
+    "Tuning memorysetup block sizes to 32MB (33554432) amortizes OS virtual memory allocation syscalls, drastically cutting traversal stutters in open-world Unity games.",
+    "Dropping gc-max-time-slice from 3 to 1 prevents the incremental garbage collector from consuming excessive frame budget on high refresh (144Hz-240Hz) monitors."
   ],
   "sources": [
     {
@@ -74,6 +189,16 @@
       "url": "https://docs.unity3d.com/Manual/CommandLineArguments.html",
       "type": "official",
       "label": "Unity Docs — Command Line Arguments"
+    },
+    {
+      "url": "https://docs.unity3d.com/Manual/profiler-memory.html",
+      "type": "official",
+      "label": "Unity Docs — Memory Management & Allocators"
+    },
+    {
+      "url": "https://docs.unity3d.com/Manual/performance-garbage-collector.html",
+      "type": "official",
+      "label": "Unity Docs — Incremental Garbage Collection"
     }
   ]
 }
