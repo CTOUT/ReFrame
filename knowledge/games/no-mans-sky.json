@@ -1,0 +1,222 @@
+{
+  "game": "No Man's Sky",
+  "engine": "Vanguard (Vulkan)",
+  "engine_version": "5.0 Worlds",
+  "profile_version": "1.0.0",
+  "updated": "2026-09-19",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%GAME_DIR%\\Binaries\\SETTINGS\\TKGRAPHICSSETTINGS.MXML",
+          "format": "xml"
+        },
+        {
+          "path": "%GAME_DIR%\\Binaries\\SETTINGS\\GCUSERSETTINGSDATA.MXML",
+          "format": "xml"
+        },
+        {
+          "path": "%GAME_DIR%\\Binaries\\SETTINGS\\GCMODSETTINGS.MXML",
+          "format": "xml"
+        }
+      ]
+    },
+    {
+      "store": "Xbox Game Pass",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\Packages\\HelloGames.NoMansSky_v8b4...\\LocalCache\\Local\\Microsoft\\WritablePackageRoot\\Binaries\\SETTINGS\\TKGRAPHICSSETTINGS.MXML",
+          "format": "xml"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\Packages\\HelloGames.NoMansSky_v8b4...\\LocalCache\\Local\\Microsoft\\WritablePackageRoot\\Binaries\\SETTINGS\\GCUSERSETTINGSDATA.MXML",
+          "format": "xml"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "DLSSFrameGeneration",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "NVIDIA DLSS 3 Optical Flow Frame Generation toggle for RTX 40-series GPUs",
+      "recommendations": {
+        "performance": "On",
+        "balanced": "On",
+        "quality": "On"
+      },
+      "notes": "Delivers 50-70% higher framerate on RTX 40-series hardware, particularly at 5120x1440 or 4K resolutions. Requires Hardware-Accelerated GPU Scheduling (HAGS) enabled in Windows."
+    },
+    {
+      "key": "DLSSQuality",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "Deep Learning Super Sampling reconstruction preset: UltraPerformance, Performance, Balanced, Quality, UltraQuality",
+      "recommendations": {
+        "performance": "Performance",
+        "balanced": "Quality",
+        "quality": "Quality"
+      },
+      "notes": "Pair with DLAA or TAA. On 1440p and ultrawide panels, Quality provides sharp native-like reconstruction."
+    },
+    {
+      "key": "ShadowQuality.GraphicDetail",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "Terrain, planetary flora, and ship shadow resolution and cascade filtering: Low, Medium, High, Ultra",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "High"
+      },
+      "notes": "High eliminates the heavy frame-time stutter of Ultra shadow cascades on procedural flora while retaining sharp shadow silhouettes."
+    },
+    {
+      "key": "VolumetricsQuality.GraphicDetail",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "Planetary atmospheric fog, cloud density, and volumetric light shafts: Low, Medium, High, Ultra",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "High"
+      },
+      "notes": "Ultra volumetrics cause significant frame drops during atmospheric entry and planetary storms. High preserves cloud layers smoothly."
+    },
+    {
+      "key": "NumHighThreads",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "Worker thread pool allocation for high-priority procedural generation and physics tasks",
+      "recommendations": {
+        "performance": "8",
+        "balanced": "8",
+        "quality": "8"
+      },
+      "notes": "For 8-core CPUs (e.g. Ryzen 7 5800X3D), match to physical core count (8) to eliminate thread oversubscription and CPU traversal hitches."
+    },
+    {
+      "key": "NumLowThreads",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "Worker thread pool allocation for background asset streaming and decompression",
+      "recommendations": {
+        "performance": "8",
+        "balanced": "8",
+        "quality": "8"
+      },
+      "notes": "Prevents the engine default 12/12 (24 thread allocation) from stalling the Vulkan command queue on 16-thread processors."
+    },
+    {
+      "key": "AllowWhiteScreenTransitions",
+      "file": "GCUSERSETTINGSDATA.MXML",
+      "effect": "Screen transition style for hyperspace warps, teleporters, and portal transitions: true (white flash), false (dark fade)",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Critical photosensitivity setting. Setting to false prevents sudden 1000-nit luminance spikes on HDR panels during warp sequences."
+    },
+    {
+      "key": "CamerShakeStrength",
+      "file": "GCUSERSETTINGSDATA.MXML",
+      "effect": "Camera oscillation amplitude during boost, mining beam firing, atmospheric turbulence, and explosions: 0-10",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Note engine spelling 'CamerShakeStrength'. 0 completely eliminates jarring camera jolts."
+    },
+    {
+      "key": "HazardEffectsStrength",
+      "file": "GCUSERSETTINGSDATA.MXML",
+      "effect": "Full-screen pulsing color and edge strobe overlays during environmental hazard storms: 0.0-1.0",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "0.000000",
+        "quality": "0.000000"
+      },
+      "notes": "0.000000 removes violent red/toxic pulsing flashes during extreme storms while leaving HUD hazard meters fully functional."
+    },
+    {
+      "key": "UnderwaterDepthOfFieldStrength",
+      "file": "GCUSERSETTINGSDATA.MXML",
+      "effect": "Underwater peripheral blur and depth of field strength: 0.0-1.0",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "0.000000",
+        "quality": "0.000000"
+      },
+      "notes": "Disabling prevents disorienting focus hunting while swimming."
+    },
+    {
+      "key": "SpookHazardSkySpin",
+      "file": "GCUSERSETTINGSDATA.MXML",
+      "effect": "Vortex sky spinning animation during planetary distress events and spooky biomes",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Disabling prevents visual vertigo and vestibular discomfort."
+    },
+    {
+      "key": "MotionBlurAmount",
+      "file": "GCUSERSETTINGSDATA.MXML",
+      "effect": "Secondary gameplay motion blur factor: 0-180",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Keep at 0 alongside MotionBlurStrength in graphics settings."
+    },
+    {
+      "key": "IncreaseMissionTextContrast",
+      "file": "GCUSERSETTINGSDATA.MXML",
+      "effect": "High contrast backing for mission objectives and dialogue text prompts",
+      "recommendations": {
+        "performance": "true",
+        "balanced": "true",
+        "quality": "true"
+      },
+      "notes": "Improves readability on high-resolution and ultrawide screens."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "HUD Scaling / HUD Zoom",
+      "location": "Options → Accessibility / Display → HUD Zoom",
+      "recommendation": "75% - 100%",
+      "reason": "Prevents oversized HUD icons on 1440p displays."
+    },
+    {
+      "setting": "21:9 HUD on 32:9 Display",
+      "location": "Game Data PCBANKS/MODS",
+      "recommendation": "Install centred HUD community mod (or run centred 21:9 resolution)",
+      "reason": "No Man's Sky natively supports 32:9 world rendering but pushes HUD widgets to 5120px screen edges. Mods clamp HUD to 21:9 or 16:9 safe zone."
+    }
+  ],
+  "notes": [
+    "No Man's Sky runs on Hello Games' proprietary Vanguard engine using Vulkan 1.3.",
+    "Native 32:9 (5120x1440) and 21:9 (3440x1440) super ultrawide rendering is fully supported in borderless fullscreen mode.",
+    "For 8-core CPUs like AMD Ryzen 7 5800X3D, setting NumHighThreads=8 and NumLowThreads=8 in TKGRAPHICSSETTINGS.MXML avoids thread contention.",
+    "HDR1000 mode is supported. AllowWhiteScreenTransitions should be set to false to protect photosensitive users from sudden maximum-luminance flashes during warp travel.",
+    "Modding is natively enabled by default in recent game versions via GCMODSETTINGS.MXML with DisableAllMods=false."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/No_Man%27s_Sky",
+      "type": "wiki",
+      "label": "PCGamingWiki"
+    },
+    {
+      "url": "https://www.nomanssky.com/release-log/",
+      "type": "patch_notes",
+      "label": "Hello Games Release Notes"
+    },
+    {
+      "url": "https://www.wsgf.org/dr/no-mans-sky",
+      "type": "fix_db",
+      "label": "WSGF (Widescreen Gaming Forum)"
+    }
+  ]
+}

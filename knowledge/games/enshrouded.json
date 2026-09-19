@@ -1,112 +1,174 @@
 {
   "game": "Enshrouded",
   "engine": "Keen Engine",
-  "profile_version": "1.0.0",
-  "updated": "2026-04-29",
+  "engine_version": "1.0 Release",
+  "profile_version": "2.0.0",
+  "updated": "2026-09-19",
   "platforms": [
     {
       "name": "Steam",
       "store_id": "1203620",
       "config_files": [
         {
-          "file": "graphics.cfg",
-          "path": "%USERPROFILE%\\AppData\\Local\\Keen Games\\Enshrouded\\graphics.cfg",
-          "format": "cfg_equals",
-          "notes": "Key=value format without sections. Overwritten by the in-game settings menu. Edit only while Enshrouded is fully closed."
+          "file": "enshrouded_local.json",
+          "path": "%GAME_DIR%\\enshrouded_local.json",
+          "format": "json",
+          "notes": "Stores machine-local graphics, rendering pipeline, DLSS/FSR upscaling, window mode, and resolution settings. Overwritten by in-game Graphics menu. Edit only while Enshrouded is closed."
+        },
+        {
+          "file": "enshrouded_user.json",
+          "path": "%USERPROFILE%\\Saved Games\\Enshrouded\\enshrouded_user.json",
+          "format": "json",
+          "notes": "Stores user gameplay, accessibility, HUD aspect ratio constraints (hudAspectRatioWidth), camera shake, and input bindings."
         }
       ]
     }
   ],
   "keys": [
     {
-      "key": "ResolutionScale",
-      "file": "graphics.cfg",
-      "format": "cfg_equals",
-      "effect": "Render resolution scale as a percentage of screen resolution. Range 50-100.",
+      "key": "hudAspectRatioWidth",
+      "section": "gameplay",
+      "file": "enshrouded_user.json",
+      "effect": "Horizontal aspect ratio constraint for HUD/UI elements. Setting to 21 bounds the UI to a 21:9 horizontal window on super-ultrawide (32:9) screens.",
       "recommendations": {
-        "performance": "75",
-        "balanced": "90",
-        "quality": "100"
+        "performance": "21",
+        "balanced": "21",
+        "quality": "21"
       },
-      "notes": "Enshrouded is visually demanding with large procedural open-world areas. Resolution scaling is particularly effective here. DLSS and FSR are available in-game and supersede this key when active."
+      "notes": "Native ultrawide HUD centering feature in Keen Engine. Prevents health, stamina, and hotbar from stretching to the far edges of 32:9 (5120x1440) monitors."
     },
     {
-      "key": "ShadowQuality",
-      "file": "graphics.cfg",
-      "format": "cfg_equals",
-      "effect": "Shadow quality: 0=low, 1=medium, 2=high, 3=ultra.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "2",
-        "quality": "3"
-      },
-      "notes": "Shadows over the large open plains biomes are particularly expensive. Medium is a reliable quality/performance balance."
-    },
-    {
-      "key": "TextureQuality",
-      "file": "graphics.cfg",
-      "format": "cfg_equals",
-      "effect": "Texture resolution: 0=low, 1=medium, 2=high, 3=ultra.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "2",
-        "quality": "3"
-      }
-    },
-    {
-      "key": "FoliageDensity",
-      "file": "graphics.cfg",
-      "format": "cfg_equals",
-      "effect": "Foliage density and draw distance multiplier: 0=low, 1=medium, 2=high, 3=ultra.",
-      "recommendations": {
-        "performance": "1",
-        "balanced": "2",
-        "quality": "3"
-      },
-      "notes": "High CPU cost in forest biomes. Medium is the recommended starting point for CPU-limited systems."
-    },
-    {
-      "key": "VolumetricFog",
-      "file": "graphics.cfg",
-      "format": "cfg_equals",
-      "effect": "Volumetric fog quality: 0=off, 1=low, 2=high.",
+      "key": "screenShakeStrength",
+      "section": "gameplay",
+      "file": "enshrouded_user.json",
+      "effect": "Screen shake strength from explosions, boss attacks, and mining impacts.",
       "recommendations": {
         "performance": "0",
-        "balanced": "1",
-        "quality": "2"
+        "balanced": "0",
+        "quality": "0"
       },
-      "notes": "Volumetric fog in Enshrouded's Shroud areas (the game's central environmental mechanic) is GPU-expensive. Reducing improves performance in Shroud exploration without significantly reducing gameplay visibility."
+      "notes": "Setting to '0' completely disables violent camera jarring, significantly improving comfort for photosensitive and motion-sensitive players."
+    },
+    {
+      "key": "frostVignetteIntensity",
+      "section": "gameplay",
+      "file": "enshrouded_user.json",
+      "effect": "Peripheral frost effect when entering freezing mountainous areas.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling removes heavy visual noise, edge flicker, and tunnel vision."
+    },
+    {
+      "key": "dlss",
+      "section": "graphics.render",
+      "file": "enshrouded_local.json",
+      "effect": "NVIDIA DLSS upscaler preset: 'Performance', 'Balanced', 'Quality', or 'UltraPerformance'.",
+      "recommendations": {
+        "performance": "Performance",
+        "balanced": "Quality",
+        "quality": "Quality"
+      },
+      "notes": "Quality mode provides clean, native-comparable 1440p rendering with excellent temporal stability on RTX 40-series hardware."
+    },
+    {
+      "key": "dynamicGi",
+      "section": "graphics.render",
+      "file": "enshrouded_local.json",
+      "effect": "Dynamic Global Illumination quality: 'Off', 'Low', 'Medium', 'High', 'Ultra'.",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "High"
+      },
+      "notes": "Dynamic GI on 'Ultra' is a major GPU compute bottleneck at 5120x1440. Dropping to 'High' delivers visually identical lighting while recovering 15-25% GPU headroom to lock 60FPS+."
+    },
+    {
+      "key": "textures",
+      "section": "graphics.render",
+      "file": "enshrouded_local.json",
+      "effect": "Texture resolution: 'Low', 'Medium', 'High', 'Ultra'.",
+      "recommendations": {
+        "performance": "High",
+        "balanced": "High",
+        "quality": "High"
+      },
+      "notes": "GPUs with 12GB+ VRAM (e.g. RTX 4070 SUPER) run High textures without frame pacing stutter."
+    },
+    {
+      "key": "voxelMeshQuality",
+      "section": "graphics.render",
+      "file": "enshrouded_local.json",
+      "effect": "Voxel terrain geometry LOD distance and mesh density: 'Low', 'Medium', 'High'.",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "Medium",
+        "quality": "High"
+      },
+      "notes": "Setting to 'Medium' or 'High' eliminates distracting terrain pop-in during fast travel and gliding."
+    },
+    {
+      "key": "fog",
+      "section": "graphics.render",
+      "file": "enshrouded_local.json",
+      "effect": "Volumetric fog quality in Shroud biomes: 'Low', 'Medium', 'High'.",
+      "recommendations": {
+        "performance": "Low",
+        "balanced": "Low",
+        "quality": "Medium"
+      },
+      "notes": "The Shroud is the most GPU-intensive zone in Enshrouded. Low or Medium fog maintains stable framerates without compromising eerie atmosphere."
+    },
+    {
+      "key": "bloomStrength",
+      "section": "graphics.renderPreferences",
+      "file": "enshrouded_local.json",
+      "effect": "Post-process bloom intensity: '0' to '1'.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling bloom prevents intense light flares from Shroud roots, magical spells, and torches."
+    },
+    {
+      "key": "nvidiaReflex",
+      "section": "graphics",
+      "file": "enshrouded_local.json",
+      "effect": "NVIDIA Reflex Low Latency: 'Off', 'On', 'Boost'.",
+      "recommendations": {
+        "performance": "On",
+        "balanced": "On",
+        "quality": "On"
+      },
+      "notes": "Keeps render queue latency minimal for responsive combat on NVIDIA RTX hardware."
     }
   ],
   "manual_only_settings": [
     {
-      "setting": "DLSS / FSR / XeSS",
-      "location": "Settings > Graphics > Upscaling",
-      "recommendation": "DLSS Quality on RTX hardware. FSR Quality on AMD. XeSS on Intel Arc.",
-      "reason": "Upscaler selection in-game only."
-    },
-    {
-      "setting": "Multiplayer Server Size",
-      "location": "Host World > Server Settings",
-      "recommendation": "16-player cap on performance hardware. Performance degrades with each additional player in the same region due to shared simulation load.",
-      "reason": "Server settings are configured at world creation, not via graphics.cfg."
+      "setting": "Resolution & Window Mode",
+      "location": "Settings > Graphics > Display",
+      "recommendation": "Confirm 5120x1440 Fullscreen / Borderless.",
+      "reason": "Enshrouded supports 32:9 natively with correct horizontal field-of-view."
     }
   ],
   "notes": [
-    "Enshrouded is an Early Access title that reached 1.0 in 2025. Performance has improved significantly since the 2024 EA launch — older benchmark data may underrepresent current performance.",
-    "The Shroud (the game's signature environmental hazard) is a significant GPU cost area due to volumetric fog and particle effects. Performance in Shroud areas will be 10-30% lower than in clear-sky areas.",
-    "Enshrouded supports multiplayer co-op up to 24 players on a dedicated server. Player count directly affects server-side simulation performance."
+    "Enshrouded 1.0 uses modern JSON configuration files (enshrouded_local.json in the game root and enshrouded_user.json in Saved Games), completely replacing early-access graphics.cfg.",
+    "Keen Engine natively supports ultrawide HUD aspect ratio clamping (hudAspectRatioWidth: 21) out-of-the-box.",
+    "Dynamic GI 'Ultra' has an exponential cost curve; 'High' is recommended for smooth 60FPS+ at 5120x1440."
   ],
   "sources": [
     {
       "url": "https://www.pcgamingwiki.com/wiki/Enshrouded",
       "type": "wiki",
-      "label": "PCGamingWiki"
+      "label": "PCGamingWiki — Enshrouded"
     },
     {
       "url": "https://store.steampowered.com/app/1203620/Enshrouded/",
       "type": "official",
-      "label": "Steam Store Page"
+      "label": "Steam Store Page — Enshrouded"
     }
   ]
 }

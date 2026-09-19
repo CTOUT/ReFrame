@@ -1,8 +1,9 @@
 {
   "game": "Valheim",
   "engine": "Unity",
-  "profile_version": "1.0.0",
-  "updated": "2026-04-29",
+  "engine_version": "6000.0.x (Unity 6)",
+  "profile_version": "1.2.0",
+  "updated": "2026-09-19",
   "platforms": [
     {
       "name": "Steam",
@@ -12,18 +13,66 @@
           "file": "registry (PlayerPrefs)",
           "registry_path": "HKCU\\Software\\IronGate\\Valheim",
           "format": "registry",
-          "notes": "Valheim stores its graphics settings in the Windows registry under HKCU\\Software\\IronGate\\Valheim. Keys use Unity hash suffixes. Edit via regedit or PowerShell only while Valheim is fully closed."
+          "notes": "Valheim stores its graphics, audio, display resolution, and accessibility settings in the Windows registry under HKCU\\Software\\IronGate\\Valheim. Keys use Unity hash suffixes. Edit via regedit or PowerShell only while Valheim is fully closed."
         },
         {
           "file": "boot.config",
           "path": "%STEAM_LIBRARY%\\common\\Valheim\\valheim_Data\\boot.config",
           "format": "text",
-          "notes": "Low-level Unity renderer configuration. Controls API selection (DX11, DX12, Vulkan). Edited by adding key=value lines. Survives game updates as it is in the game install directory."
+          "notes": "Low-level Unity renderer configuration. Controls job systems, threading modes, and API selection. Edited by adding key=value lines."
         }
       ]
     }
   ],
   "keys": [
+    {
+      "key": "ReduceFlashingLights_h3763746072",
+      "registry_path": "HKCU\\Software\\IronGate\\Valheim",
+      "format": "registry_dword",
+      "effect": "Native photosensitivity accessibility feature: dampens thunderstorm lightning flashes, portal strobes, and high-luminance combat flashes.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Added in modern Valheim updates. Highly recommended for any user with photosensitivity concerns or seeking reduced visual glare."
+    },
+    {
+      "key": "Bloom_h211510662",
+      "registry_path": "HKCU\\Software\\IronGate\\Valheim",
+      "format": "registry_dword",
+      "effect": "Post-processing bloom glow effect.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling bloom prevents intense light flares from torches, fires, portals, and sunlight, improving visual clarity and photosensitivity safety."
+    },
+    {
+      "key": "SunShafts_h4174787446",
+      "registry_path": "HKCU\\Software\\IronGate\\Valheim",
+      "format": "registry_dword",
+      "effect": "Sun shafts (god rays) streaming through foliage and fog.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Can create rapid strobe flickering when travelling through dense forests. Disabling aids photosensitivity and motion comfort."
+    },
+    {
+      "key": "ShipCameraTilt_h2969004731",
+      "registry_path": "HKCU\\Software\\IronGate\\Valheim",
+      "format": "registry_dword",
+      "effect": "Dynamic camera roll/tilt aligned with ship motion on ocean waves.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling locks the horizon to a stable plane while sailing, eliminating the primary nausea and vestibular motion sickness trigger in Valheim."
+    },
     {
       "key": "Screenmanager Fullscreen mode_h3630240806",
       "registry_path": "HKCU\\Software\\IronGate\\Valheim",
@@ -32,20 +81,44 @@
       "recommendations": {
         "performance": "0",
         "balanced": "1",
-        "quality": "0"
+        "quality": "1"
       }
     },
     {
       "key": "Screenmanager Resolution Width_h182942802",
       "registry_path": "HKCU\\Software\\IronGate\\Valheim",
       "format": "registry_dword",
-      "effect": "Horizontal render resolution in pixels."
+      "effect": "Horizontal render resolution in pixels (e.g. 5120 for 32:9, 3440 for 21:9, 2560 for 16:9)."
     },
     {
       "key": "Screenmanager Resolution Height_h2627697771",
       "registry_path": "HKCU\\Software\\IronGate\\Valheim",
       "format": "registry_dword",
-      "effect": "Vertical render resolution in pixels."
+      "effect": "Vertical render resolution in pixels (e.g. 1440)."
+    },
+    {
+      "key": "UpscalingAlgorithm_h3025137458",
+      "registry_path": "HKCU\\Software\\IronGate\\Valheim",
+      "format": "registry_dword",
+      "effect": "Temporal upscaler selection: 0=Off, 1=FSR 2 Quality.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "FSR 2 upscaling is built into modern Valheim, providing clean edge anti-aliasing and a 20-30% framerate uplift on high-resolution displays."
+    },
+    {
+      "key": "FPSLimit_h2286199605",
+      "registry_path": "HKCU\\Software\\IronGate\\Valheim",
+      "format": "registry_dword",
+      "effect": "In-game frame rate cap in FPS.",
+      "recommendations": {
+        "performance": "Match monitor refresh rate",
+        "balanced": "120-165",
+        "quality": "Match monitor refresh rate or 240"
+      },
+      "notes": "Setting slightly below monitor refresh rate (e.g. 237 on 240Hz) ensures optimal G-Sync / VRR engagement without tear or frame buffering latency."
     }
   ],
   "boot_config_keys": [
@@ -58,56 +131,61 @@
         "balanced": "1",
         "quality": "1"
       },
-      "notes": "This is the single most impactful tweak for Valheim. Default is 0. Setting to 1 can add 20-40% FPS on systems with 6+ cores. Add as a new line to boot.config."
+      "notes": "Validated across Unity versions. Highly impactful for Valheim's CPU draw call bottlenecks in large bases and dense biomes."
     },
     {
       "key": "gfx-enable-native-gfx-jobs=1",
       "file": "boot.config",
-      "effect": "Enables native graphics job rendering alongside gfx-enable-gfx-jobs. Provides additional CPU thread utilisation.",
+      "effect": "Enables native graphics job rendering alongside gfx-enable-gfx-jobs.",
       "recommendations": {
         "performance": "1",
         "balanced": "1",
         "quality": "1"
       },
-      "notes": "Apply alongside gfx-enable-gfx-jobs=1. Some older Intel CPUs (pre-8th gen) may see instability — monitor for crashes after applying."
+      "notes": "Apply alongside gfx-enable-gfx-jobs=1."
+    },
+    {
+      "key": "gfx-threading-mode=6",
+      "file": "boot.config",
+      "effect": "Forces Unity 6 Jobified multithreaded rendering backend.",
+      "recommendations": {
+        "performance": "6",
+        "balanced": "6",
+        "quality": "6"
+      },
+      "notes": "Default in modern Unity 6 builds of Valheim. Ensures optimal worker thread scheduling across all CPU cores."
     }
   ],
   "manual_only_settings": [
     {
-      "setting": "Graphics Quality",
+      "setting": "UI / HUD Placement on Ultrawide",
+      "location": "Settings > Interface / Mods",
+      "recommendation": "Use BetterUI Reforged or MinimalUI mod via r2modman or Thunderstore to center HUD elements to a 21:9 or 16:9 bounding box.",
+      "reason": "Valheim renders ultrawide (21:9 and 32:9) natively without FOV crop, but Unity UI anchors to extreme outer edges. Centering HUD prevents neck strain on super-ultrawide monitors."
+    },
+    {
+      "setting": "Shadow Quality & Vegetation",
       "location": "Settings > Graphics",
-      "recommendation": "Reduce shadow distance and shadow quality first — these are the dominant GPU costs in Valheim's outdoor environments. Vegetation draw distance is the dominant CPU cost.",
-      "reason": "Valheim uses Unity's built-in settings UI. Granular controls are in-game only."
-    },
-    {
-      "setting": "Shadow Quality",
-      "location": "Settings > Graphics > Shadow Quality",
-      "recommendation": "Medium on performance hardware. Shadows over water and large open meadow biomes are particularly expensive.",
-      "reason": "In-game only."
-    },
-    {
-      "setting": "Vegetation",
-      "location": "Settings > Graphics > Vegetation",
-      "recommendation": "50-75% on CPU-limited hardware. Valheim's procedural forests are heavily CPU-bound for vegetation draw calls.",
-      "reason": "In-game only."
+      "recommendation": "Shadow Quality: High, Vegetation: High. Ashlands and Mistlands biomes are significantly heavier than Meadows.",
+      "reason": "Granular mesh and light cascades are adjusted via in-game settings."
     }
   ],
   "notes": [
-    "The boot.config gfx-enable-gfx-jobs=1 tweak is the community's most widely recommended Valheim optimisation and has been validated across many hardware configurations. It should be the first recommendation for any hardware tier.",
-    "Valheim uses Unity's built-in rendering pipeline (BIRP), not URP or HDRP. Some third-party Unity optimisation guides targeting URP/HDRP do not apply.",
-    "The Mistlands, Ashlands, and Deep North biomes are significantly more GPU and CPU intensive than the earlier Meadows and Black Forest biomes. Performance expectations should be communicated per-biome.",
-    "Valheim has a dedicated server component (valheim_server.exe). Server performance is a separate concern from client graphics optimisation."
+    "Valheim is out of Early Access (1.0 release), having migrated to Unity 6 (6000.x).",
+    "Modern builds include native FSR 2 temporal upscaling and dedicated accessibility options (ReduceFlashingLights).",
+    "The boot.config multithreaded rendering tweaks remain fully compatible and recommended for modern multi-core systems.",
+    "Ultrawide 32:9 and 21:9 are supported out-of-the-box for world rendering; HUD relocation requires UI mods."
   ],
   "sources": [
     {
       "url": "https://www.pcgamingwiki.com/wiki/Valheim",
       "type": "wiki",
-      "label": "PCGamingWiki"
+      "label": "PCGamingWiki — Valheim"
     },
     {
       "url": "https://store.steampowered.com/app/892970/Valheim/",
       "type": "official",
-      "label": "Steam Store Page"
+      "label": "Steam Store Page — Valheim"
     }
   ]
 }

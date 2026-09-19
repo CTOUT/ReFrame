@@ -1,0 +1,180 @@
+{
+  "game": "RuneScape: Dragonwilds",
+  "engine": "Unreal Engine 5",
+  "engine_version": "5.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-09-19",
+  "platforms": [
+    {
+      "name": "Steam",
+      "store_id": "1374490",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\RSDragonwilds\\Saved\\Config\\Windows\\GameUserSettings.ini",
+          "format": "ini",
+          "notes": "Primary configuration file storing graphics scalability, display resolution, frame rate limits, photosensitivity toggles, and DLSS/FSR settings under [/Script/Dominion.DominionUserSettings] and [ScalabilityGroups]."
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\RSDragonwilds\\Saved\\Config\\Windows\\Engine.ini",
+          "format": "ini",
+          "notes": "Engine-level Unreal Engine 5 configuration. Used for applying aspect ratio axis constraints (AspectRatio_MaintainYFOV) for ultrawide (21:9 and 32:9) display FOV correction."
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "ResolutionSizeX",
+      "section": "[/Script/Dominion.DominionUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Horizontal render resolution in pixels.",
+      "recommendations": {
+        "performance": "1920",
+        "balanced": "2560",
+        "quality": "Native (e.g. 5120 for 32:9, 3440 for 21:9)"
+      },
+      "notes": "Often defaults to lower or non-native resolutions on ultrawide monitors. Should match native display width."
+    },
+    {
+      "key": "ResolutionSizeY",
+      "section": "[/Script/Dominion.DominionUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Vertical render resolution in pixels.",
+      "recommendations": {
+        "performance": "1080",
+        "balanced": "1440",
+        "quality": "Native (e.g. 1440)"
+      },
+      "notes": "Must match native display height."
+    },
+    {
+      "key": "bScreenShakeEnabled",
+      "section": "[/Script/Dominion.DominionUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Camera shake triggered during combat impacts, dragon roar encounters, and environmental spells.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Recommended False for photosensitivity and motion comfort to avoid jarring camera jolts."
+    },
+    {
+      "key": "bDLSSLowLatencyEnabled",
+      "section": "[/Script/Dominion.DominionUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Enables NVIDIA Reflex Low Latency pipeline to reduce system latency.",
+      "recommendations": {
+        "performance": "True",
+        "balanced": "True",
+        "quality": "True"
+      },
+      "notes": "Only applies on NVIDIA RTX graphics cards. Reduces input lag without performance penalty."
+    },
+    {
+      "key": "UpscalingMode",
+      "section": "[/Script/Dominion.DominionUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Active upscaler engine: 0=None, 1=Linear, 2=FSR, 3=TSR, 4=XeSS, 5=DLSS.",
+      "recommendations": {
+        "performance": "5",
+        "balanced": "5",
+        "quality": "5"
+      },
+      "notes": "Setting 5 selects DLSS on NVIDIA GPUs. On AMD/Intel hardware, select FSR (2) or XeSS (4)."
+    },
+    {
+      "key": "UpscalingQuality[5]",
+      "section": "[/Script/Dominion.DominionUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "DLSS quality preset level (0=Ultra Performance, 1=Performance, 2=Balanced, 4=Quality).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "4"
+      },
+      "notes": "Quality (4) provides crisp native-level image reconstruction on 1440p and ultrawide displays."
+    },
+    {
+      "key": "Bloom",
+      "section": "[/Script/Dominion.DominionUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Post-process bloom intensity.",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "0.000000",
+        "quality": "0.000000"
+      },
+      "notes": "Recommended 0 for photosensitivity to suppress high-contrast light bursts from magic and dragon breath."
+    },
+    {
+      "key": "DepthOfField",
+      "section": "[/Script/Dominion.DominionUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Depth of field focal blur.",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "0.000000",
+        "quality": "0.000000"
+      },
+      "notes": "Disabling reduces perceptual eye strain and improves clarity across wide panoramic viewpoints."
+    },
+    {
+      "key": "bNaniteEnabled",
+      "section": "[/Script/Dominion.DominionUserSettings]",
+      "file": "GameUserSettings.ini",
+      "effect": "Unreal Engine 5 Nanite virtualised micro-polygon geometry.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "True"
+      },
+      "notes": "Significantly increases geometric fidelity on high-end GPUs. Disable on mid-range or VRAM-constrained systems."
+    },
+    {
+      "key": "AspectRatioAxisConstraint",
+      "section": "[/script/engine.localplayer]",
+      "file": "Engine.ini",
+      "effect": "Controls Unreal Engine FOV scaling behavior: AspectRatio_MaintainYFOV maintains vertical FOV, preventing 'Vert-' image cropping on ultrawide monitors.",
+      "recommendations": {
+        "performance": "AspectRatio_MaintainYFOV",
+        "balanced": "AspectRatio_MaintainYFOV",
+        "quality": "AspectRatio_MaintainYFOV"
+      },
+      "notes": "Essential tweak for 21:9 and 32:9 displays. Without this, UE5 crops the top and bottom of the camera view, creating a zoomed-in perspective."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Global Illumination & Reflections",
+      "location": "Settings > Graphics",
+      "recommendation": "High or Epic on RTX 4070 / RX 7800 XT and above. Medium on lower tiers.",
+      "reason": "Unreal Engine 5 Lumen lighting is compute intensive. Dropping from Epic to High preserves 60FPS+ in dense settlements."
+    },
+    {
+      "setting": "HUD Scaling / Placement",
+      "location": "Settings > Interface / Accessibility",
+      "recommendation": "Center HUD or adjust UI scale if available in current build.",
+      "reason": "UE5 UI widgets anchor to display edges; adjusting UI scale helps keep HUD elements within comfortable sightlines on ultrawide."
+    }
+  ],
+  "notes": [
+    "RuneScape: Dragonwilds is an open-world survival crafting spin-off released by Jagex in September 2026, built on Unreal Engine 5.",
+    "Dedicated server configuration is stored separately in DedicatedServer.ini (Steam AppID 4019830).",
+    "On ultrawide and super ultrawide monitors (21:9 and 32:9), adding AspectRatio_MaintainYFOV to Engine.ini prevents the default Vert- camera crop."
+  ],
+  "sources": [
+    {
+      "url": "https://store.steampowered.com/app/1374490/RuneScape_Dragonwilds/",
+      "type": "official",
+      "label": "Steam Store Page — RuneScape: Dragonwilds"
+    },
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/RuneScape:_Dragonwilds",
+      "type": "wiki",
+      "label": "PCGamingWiki — RuneScape: Dragonwilds"
+    }
+  ]
+}
