@@ -1130,18 +1130,18 @@ dxvk.enableAsync = False
 
 **Key settings (boot.config):**
 
-| Key | Effect | Recommended |
-| --- | --- | --- |
-| `memorysetup-main-allocator-block-size` | Main thread allocator block size | `33554432` (32MB) |
-| `memorysetup-thread-allocator-block-size` | Worker thread allocator block size | `33554432` (32MB) |
-| `memorysetup-gfx-main-allocator-block-size` | Graphics command recording block size | `33554432` (32MB) |
-| `memorysetup-gfx-thread-allocator-block-size` | Graphics worker thread block size | `33554432` (32MB) |
-| `memorysetup-cache-allocator-block-size` | Temporary cache allocator block size | `8388608` (8MB) |
-| `memorysetup-bucket-allocator-granularity` | Sub-allocator cache alignment | `16` |
-| `gc-max-time-slice` | Max incremental GC frame time slice (ms) | `1` (eliminates 144Hz/240Hz frame spikes) |
-| `hdr-display-enabled` | Native HDR display output | `1` (if HDR panel active) |
-| `gfx-enable-gfx-jobs=1` | Multi-threaded rendering jobs | `1` (Default) |
-| `gfx-enable-native-gfx-jobs=1` | Native GPU job dispatch | `1` (Default) |
+| Key                                           | Effect                                   | Recommended                               |
+| --------------------------------------------- | ---------------------------------------- | ----------------------------------------- |
+| `memorysetup-main-allocator-block-size`       | Main thread allocator block size         | `33554432` (32MB)                         |
+| `memorysetup-thread-allocator-block-size`     | Worker thread allocator block size       | `33554432` (32MB)                         |
+| `memorysetup-gfx-main-allocator-block-size`   | Graphics command recording block size    | `33554432` (32MB)                         |
+| `memorysetup-gfx-thread-allocator-block-size` | Graphics worker thread block size        | `33554432` (32MB)                         |
+| `memorysetup-cache-allocator-block-size`      | Temporary cache allocator block size     | `8388608` (8MB)                           |
+| `memorysetup-bucket-allocator-granularity`    | Sub-allocator cache alignment            | `16`                                      |
+| `gc-max-time-slice`                           | Max incremental GC frame time slice (ms) | `1` (eliminates 144Hz/240Hz frame spikes) |
+| `hdr-display-enabled`                         | Native HDR display output                | `1` (if HDR panel active)                 |
+| `gfx-enable-gfx-jobs=1`                       | Multi-threaded rendering jobs            | `1` (Default)                             |
+| `gfx-enable-native-gfx-jobs=1`                | Native GPU job dispatch                  | `1` (Default)                             |
 
 > [!WARNING]
 > **Game Update Overwrite Caveat:**
@@ -1156,6 +1156,58 @@ dxvk.enableAsync = False
 
 ---
 
+## Diablo IV
+
+**Engine:** Blizzard Fenris Engine (Prism DirectX 12 renderer)
+
+| Platform       | Config Path                                        | Format |
+| -------------- | -------------------------------------------------- | ------ |
+| Battle.net     | `%USERPROFILE%\Documents\Diablo IV\LocalPrefs.txt` | txt    |
+| Steam          | `%USERPROFILE%\Documents\Diablo IV\LocalPrefs.txt` | txt    |
+| Xbox Game Pass | `%USERPROFILE%\Documents\Diablo IV\LocalPrefs.txt` | txt    |
+
+> **Note:** Diablo IV stores all client graphics, audio, and device configurations in `LocalPrefs.txt` in `%USERPROFILE%\Documents\Diablo IV\`. Settings use a `Key "Value"` format. Edits must be made while the game is closed.
+
+**Key settings:**
+
+| Key                           | Effect                                                                | Recommended (performance) | Recommended (quality) |
+| ----------------------------- | --------------------------------------------------------------------- | ------------------------- | --------------------- |
+| `TextureQuality`              | Texture streaming mipmap level (0=Low, 1=Med, 2=High, 3=Ultra)        | `1`                       | `3`                   |
+| `TextureFilterQuality`        | Anisotropic filtering (0=Bilinear, 1=2x, 2=4x, 3=8x, 4=16x)           | `2`                       | `4`                   |
+| `ShadowQuality`               | Shadow map resolution (0=Low, 1=Med, 2=High, 3=Highest)               | `1`                       | `3`                   |
+| `FogQuality`                  | Volumetric fog resolution (0=Low, 1=Med, 2=High)                      | `0`                       | `2`                   |
+| `GTAOQuality`                 | Ground Truth Ambient Occlusion (0=Off, 1=Low, 2=Med, 3=High, 4=Ultra) | `1`                       | `4`                   |
+| `FullResReflections`          | Full-resolution screen space reflections (0=Half, 1=Full)             | `0`                       | `1`                   |
+| `Distortion`                  | Spell distortion, explosion warping, heat haze (0=Off, 1=On)          | `0`                       | `0`                   |
+| `ChromaticAberration`         | Edge color fringing filter (0=Off, 1=On)                              | `0`                       | `0`                   |
+| `DisableChromaEffects`        | Disable peripheral RGB SDK polling (0=On, 1=Off/Disabled)             | `1`                       | `1`                   |
+| `Raytracing`                  | Master DXR ray tracing toggle (0=Off, 1=On)                           | `0`                       | `1`                   |
+| `RaytracedReflectionsQuality` | Ray-traced reflections (0=Off, 1=Medium, 2=High)                      | `0`                       | `2`                   |
+| `RaytracedShadowsQuality`     | Ray-traced contact & sun shadows (0=Off, 1=Medium, 2=High)            | `0`                       | `1`                   |
+| `RaytracedFoliage`            | Ray-traced shadows for foliage and grass (0=Off, 1=On)                | `0`                       | `1`                   |
+| `RaytracedParticles`          | Ray-traced particle lighting (0=Off, 1=On)                            | `0`                       | `1`                   |
+| `ResolutionScaling`           | Upscaler mode (0=None, 1=FSR1, 2=FSR2, 3=DLSS, 4=XeSS, 5=FSR3)        | `3`                       | `3`                   |
+| `DLSS`                        | DLSS Super Resolution mode (0=DLAA, 1=Quality, 2=Balanced)            | `2`                       | `1` (or `0` DLAA)     |
+| `DLSSG`                       | NVIDIA DLSS 3 Frame Generation (0=Off, 1=On)                          | `1`                       | `1`                   |
+| `SharpenDLSS`                 | DLSS / DLAA reconstruction sharpening strength                        | `1.5`                     | `2.0`                 |
+| `SkipIntroMovie`              | Skip opening Blizzard logos and intro cinematics                      | `1`                       | `1`                   |
+
+### Diablo IV: Depth of Field & Blur Elimination
+
+- **Motion Blur & Depth of Field:** The Fenris engine does not feature an exposed `MotionBlur` or `DepthOfField` toggle in `LocalPrefs.txt`. Depth of field is strictly applied to cinematic cutscenes.
+- **Removing In-Game Blur:**
+  - Set `Distortion "0"` to completely remove optical screen warping, heat shimmer, and shockwave blur from combat spells.
+  - Set `FullResReflections "1"` to eliminate half-resolution SSR noise, temporal dither, and reflection grain.
+  - Ensure `ChromaticAberration "0"` is set to prevent color dispersion and edge blur.
+  - Use **DLSS Quality** or **DLAA** with `SharpenDLSS "2.0"` to eliminate temporal softness caused by standard TAA.
+- **In-Game Accessibility Option:** In **Options → Accessibility / Gameplay**, set **Screen Shake** to `Off`. This stabilizes the camera during critical attacks and explosions, preventing camera-induced motion blur.
+- **Ultrawide (32:9):** Diablo IV natively supports 21:9 and 32:9 (5120×1440). To keep HUD elements within comfortable peripheral view, navigate to **Options → Gameplay → HUD Centering** and select your preference.
+- **Stutter Fix:** Always set `DisableChromaEffects "1"`. Continuous polling of Razer Chroma or Corsair iCUE RGB devices is known to cause severe micro-stuttering and disconnects during zone transitions.
+
+**Sources:** [PCGamingWiki — Diablo IV](https://www.pcgamingwiki.com/wiki/Diablo_IV), [Blizzard Support](https://us.battle.net/support/en/article/334208), [NVIDIA GeForce — Diablo IV Ray Tracing Guide](https://www.nvidia.com/en-us/geforce/news/diablo-iv-ray-tracing-dlss-3-out-now/)
+
+---
+
 ## Adding More Games
 
 Create a pull request adding a new section to this file following the template above. Include:
@@ -1163,4 +1215,3 @@ Create a pull request adding a new section to this file following the template a
 - Verified config file paths (tested on a real installation)
 - Key names confirmed against current game version
 - Source citation (official game docs, community wiki, benchmark article)
-

@@ -1,0 +1,379 @@
+{
+  "game": "Diablo IV",
+  "engine": "Blizzard Fenris Engine",
+  "engine_version": "1.x (Prism DX12)",
+  "profile_version": "1.0.0",
+  "updated": "2026-09-19",
+  "platforms": [
+    {
+      "store": "Battle.net",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\Documents\\Diablo IV\\LocalPrefs.txt",
+          "format": "txt"
+        }
+      ]
+    },
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\Documents\\Diablo IV\\LocalPrefs.txt",
+          "format": "txt"
+        }
+      ]
+    },
+    {
+      "store": "Xbox Game Pass",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\Documents\\Diablo IV\\LocalPrefs.txt",
+          "format": "txt"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "TextureQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Texture resolution streaming mip level: 0=Low, 1=Medium, 2=High, 3=Ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Ultra textures require 16 GB+ VRAM at 1440p and 4K resolutions. High (2) is recommended for GPUs with 8 GB to 12 GB VRAM to prevent VRAM allocation hitches."
+    },
+    {
+      "key": "TextureFilterQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Anisotropic texture filtering: 0=Bilinear, 1=2x, 2=4x, 3=8x, 4=16x.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "4",
+        "quality": "4"
+      },
+      "notes": "16x anisotropic filtering provides crisp surface mipmaps at sharp viewing angles with negligible performance impact."
+    },
+    {
+      "key": "ShadowQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Rasterised shadow map resolution and filtering: 0=Low, 1=Medium, 2=High, 3=Highest.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "FogQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Volumetric fog grid resolution and atmospheric light sampling: 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "PhysicsQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Ragdoll simulation and destructible prop interaction fidelity: 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "ParticlesQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Particle effect count and rendering density: 0.5=Low, 0.75=Medium, 1.0=High.",
+      "recommendations": {
+        "performance": "0.500000",
+        "balanced": "0.750000",
+        "quality": "1.000000"
+      }
+    },
+    {
+      "key": "ClutterQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Ground clutter, small foliage, and debris density: 1=Low, 2=Medium, 3=High, 4=Ultra.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "FurQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Animal, mount, and monster fur rendering strand quality: 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "GTAOQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Ground Truth Ambient Occlusion sample quality: 0=Off, 1=Low, 2=Medium, 3=High, 4=Ultra.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "GTAO produces accurate ambient contact shadowing around characters, armour, and ground geometry."
+    },
+    {
+      "key": "AntialiasingQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Temporal Anti-Aliasing (TAA) sample quality: 0=Low, 1=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Standard TAA causes softness during camera motion. Replaced when using DLSS or DLAA."
+    },
+    {
+      "key": "WaterSimQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Water surface wave simulation and dynamic ripple fidelity: 0=Low, 1=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "ShaderQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Shader complexity and material lighting model: 0=Low, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "ReflectionQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Screen space reflections toggle: 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "FullResReflections",
+      "file": "LocalPrefs.txt",
+      "effect": "Full-resolution screen space reflections toggle: 0=Half resolution, 1=Full resolution.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      },
+      "notes": "Forces screen space reflections to render at native display resolution instead of half resolution, eliminating grain, dither noise, and reflection blur."
+    },
+    {
+      "key": "Distortion",
+      "file": "LocalPrefs.txt",
+      "effect": "Screen space distortion for explosions, shockwave effects, and heat haze: 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling removes warping and distortion artifacts during combat spells and explosions, greatly improving visual clarity."
+    },
+    {
+      "key": "ChromaticAberration",
+      "file": "LocalPrefs.txt",
+      "effect": "Lens color separation/fringing post-process filter: 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling ensures sharp edge delineation and prevents chromatic blur across the screen periphery."
+    },
+    {
+      "key": "DisableChromaEffects",
+      "file": "LocalPrefs.txt",
+      "effect": "Disables peripheral RGB SDK integrations (Razer Chroma, Corsair iCUE): 0=Enabled, 1=Disabled.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Setting to 1 resolves severe micro-stuttering and hitching caused by continuous background RGB device polling."
+    },
+    {
+      "key": "Raytracing",
+      "file": "LocalPrefs.txt",
+      "effect": "Master hardware ray tracing toggle: 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      },
+      "notes": "Enables DirectX Raytracing (DXR). Recommended to pair with DLSS 3 Frame Generation on GeForce RTX 40-series cards."
+    },
+    {
+      "key": "RaytracedReflectionsQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Ray-traced reflection quality: 0=Off, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "RaytracedShadowsQuality",
+      "file": "LocalPrefs.txt",
+      "effect": "Ray-traced contact and sun shadow quality: 0=Off, 1=Medium, 2=High.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "RaytracedFoliage",
+      "file": "LocalPrefs.txt",
+      "effect": "Ray-traced shadow casting for foliage and grass: 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "RaytracedParticles",
+      "file": "LocalPrefs.txt",
+      "effect": "Ray-traced illumination and self-shadowing on particle effects: 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "ResolutionScaling",
+      "file": "LocalPrefs.txt",
+      "effect": "Active upscaler algorithm: 0=None (Native), 1=AMD FSR 1, 2=AMD FSR 2, 3=NVIDIA DLSS, 4=Intel XeSS, 5=AMD FSR 3.",
+      "recommendations": {
+        "performance": "3",
+        "balanced": "3",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "DLSS",
+      "file": "LocalPrefs.txt",
+      "effect": "NVIDIA DLSS Super Resolution mode: 0=DLAA (Native AI Anti-Aliasing), 1=Quality, 2=Balanced, 3=Performance, 4=Ultra Performance.",
+      "recommendations": {
+        "performance": "3",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Quality mode (1) or DLAA (0) delivers clear edge reconstruction and temporal stability without camera motion blur."
+    },
+    {
+      "key": "DLSSG",
+      "file": "LocalPrefs.txt",
+      "effect": "NVIDIA DLSS 3 Frame Generation toggle: 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Requires GeForce RTX 40-series GPU and Windows Hardware-Accelerated GPU Scheduling (HAGS). Generates intermediate frames using optical flow."
+    },
+    {
+      "key": "Reflex",
+      "file": "LocalPrefs.txt",
+      "effect": "NVIDIA Reflex Low Latency mode: 0=Off, 1=On, 2=On + Boost.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "SharpenDLSS",
+      "file": "LocalPrefs.txt",
+      "effect": "DLSS and DLAA sharpening strength: 0.0 to 5.0.",
+      "recommendations": {
+        "performance": "1.500000",
+        "balanced": "2.000000",
+        "quality": "2.000000"
+      },
+      "notes": "Values between 1.5 and 2.0 provide sharp texture detail without white haloing artifacts."
+    },
+    {
+      "key": "SkipIntroMovie",
+      "file": "LocalPrefs.txt",
+      "effect": "Skips startup Blizzard logos and intro cinematics: 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      }
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Screen Shake",
+      "location": "Options → Accessibility / Gameplay → Screen Shake",
+      "recommendation": "Off",
+      "reason": "Disabling Screen Shake prevents jarring camera jolts during critical hits and explosions that induce perceived motion blur and disorientation."
+    },
+    {
+      "setting": "Peripheral Lighting",
+      "location": "Options → Graphics → Peripheral Lighting",
+      "recommendation": "Off",
+      "reason": "Prevents third-party RGB polling drivers from causing frame stuttering during zone transitions."
+    }
+  ],
+  "intro_skip": [
+    {
+      "type": "config",
+      "label": "Skip startup logos and cinematics via LocalPrefs",
+      "reversible": true,
+      "file": "LocalPrefs.txt",
+      "key": "SkipIntroMovie",
+      "value": "1",
+      "notes": "Allows direct boot to character select."
+    }
+  ],
+  "notes": [
+    "Diablo IV does not expose discrete Motion Blur or Depth of Field toggles in LocalPrefs.txt. Depth of field is strictly restricted to cinematic dialogue cameras, and gameplay camera blur is primarily caused by screen distortion and TAA softness.",
+    "Setting Distortion to 0 eliminates spell-based radial and shockwave blur across the viewport.",
+    "Setting FullResReflections to 1 renders screen space reflections at full screen resolution rather than half resolution, eliminating grain, dither noise, and reflection blur.",
+    "Using NVIDIA DLSS in Quality mode or DLAA completely overrides standard TAA motion softness, ensuring crisp high-frequency geometry during rapid camera traversal.",
+    "Diablo IV natively supports Ultrawide 21:9 and Super Ultrawide 32:9 (e.g. 5120x1440). In-game HUD elements can be centred or left-aligned under Options → Gameplay → HUD Centering."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Diablo_IV",
+      "type": "wiki",
+      "label": "PCGamingWiki — Diablo IV"
+    },
+    {
+      "url": "https://us.battle.net/support/en/article/334208",
+      "type": "official",
+      "label": "Blizzard Support — Diablo IV System Requirements"
+    },
+    {
+      "url": "https://www.nvidia.com/en-us/geforce/news/diablo-iv-ray-tracing-dlss-3-out-now/",
+      "type": "editorial",
+      "label": "NVIDIA GeForce — Diablo IV Ray Tracing & DLSS 3 Guide"
+    }
+  ]
+}

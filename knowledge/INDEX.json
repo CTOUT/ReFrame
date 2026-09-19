@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated": "2026-06-15",
+  "updated": "2026-09-19",
   "games": [
     {
       "name": "Aniimo",
@@ -106,6 +106,16 @@
       "key_count": 26,
       "profile_version": "1.0.0",
       "updated": "2026-04-27"
+    },
+    {
+      "name": "Diablo IV",
+      "file": "games/diablo-iv.json",
+      "engine": "Blizzard Fenris Engine",
+      "engine_version": "1.x (Prism DX12)",
+      "platforms": ["Battle.net", "Steam", "Xbox Game Pass"],
+      "key_count": 28,
+      "profile_version": "1.0.0",
+      "updated": "2026-09-19"
     },
     {
       "name": "Dota 2",
@@ -361,6 +371,15 @@
     }
   ],
   "engines": [
+    {
+      "name": "Blizzard Fenris Engine",
+      "file": "game-engines/blizzard-fenris-engine.json",
+      "version_range": "all",
+      "fallback_for": [],
+      "key_count": 28,
+      "profile_version": "1.0.0",
+      "updated": "2026-09-19"
+    },
     {
       "name": "Blizzard WoW Engine",
       "file": "game-engines/blizzard-wow-engine.json",

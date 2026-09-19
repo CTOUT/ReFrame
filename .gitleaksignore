@@ -1,0 +1,4 @@
+# Gitleaks ignore list for false positives in historical commits
+f45292eb594471d99b0d792c854fe0f7b684fd6b:knowledge/game-engines/unity.json:generic-api-key:119
+f45292eb594471d99b0d792c854fe0f7b684fd6b:knowledge/games/aniimo.json:generic-api-key:83
+f45292eb594471d99b0d792c854fe0f7b684fd6b:knowledge/games/aniimo.json:generic-api-key:107

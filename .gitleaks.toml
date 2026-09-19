@@ -1,0 +1,8 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Ignore game configuration keys and engine variables in knowledge profiles"
+paths = [
+  '''^knowledge/''',
+]
