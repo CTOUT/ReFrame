@@ -353,6 +353,7 @@
     }
   ],
   "notes": [
+    "CRITICAL ENCODING RULE: LocalPrefs.txt MUST be saved strictly as ASCII or UTF-8 without BOM. The Fenris engine sscanf parser does not strip UTF-8 Byte Order Marks (0xEF 0xBB 0xBF). Writing with a BOM causes the initial LocalPreferencesVersion key to fail parsing, which flags the file as corrupted ('Removing potentially corrupted prefs file') and resets all graphics, display resolution, and audio settings back to 1024x768 defaults.",
     "Diablo IV does not expose discrete Motion Blur or Depth of Field toggles in LocalPrefs.txt. Depth of field is strictly restricted to cinematic dialogue cameras, and gameplay camera blur is primarily caused by screen distortion and TAA softness.",
     "Setting Distortion to 0 eliminates spell-based radial and shockwave blur across the viewport.",
     "Setting FullResReflections to 1 renders screen space reflections at full screen resolution rather than half resolution, eliminating grain, dither noise, and reflection blur.",

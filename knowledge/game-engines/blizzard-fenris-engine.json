@@ -8,7 +8,8 @@
     "path_fragments": ["Diablo IV", "Blizzard\\Diablo IV"]
   },
   "config_file_locations": {
-    "windows": "%USERPROFILE%\\Documents\\Diablo IV\\LocalPrefs.txt"
+    "windows": "%USERPROFILE%\\Documents\\Diablo IV\\LocalPrefs.txt",
+    "windows_note": "CRITICAL ENCODING RULE: LocalPrefs.txt MUST be saved strictly as ASCII or UTF-8 without BOM. The Fenris engine configuration parser (ParseFileDataToKeyValues) uses a raw C sscanf tokeniser (%127s \"%127[^\"]\"). If the file starts with a UTF-8 Byte Order Mark (0xEF 0xBB 0xBF), the first key is misread as \\xEF\\xBB\\xBFLocalPreferencesVersion, causing the engine to log 'Removing potentially corrupted prefs file' and silently wipe all graphics, display, and audio preferences back to 1024x768 defaults."
   },
   "keys": [
     {
