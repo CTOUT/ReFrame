@@ -2,8 +2,8 @@
   "game": "Diablo IV",
   "engine": "Blizzard Fenris Engine",
   "engine_version": "1.x (Prism DX12)",
-  "profile_version": "1.0.0",
-  "updated": "2026-09-19",
+  "profile_version": "1.1.0",
+  "updated": "2026-09-21",
   "platforms": [
     {
       "store": "Battle.net",
@@ -325,14 +325,54 @@
         "balanced": "1",
         "quality": "1"
       }
+    },
+    {
+      "key": "flSafeZoneLeft",
+      "file": "LocalPrefs.txt",
+      "effect": "Horizontal HUD safe zone margin inset: 0.000000 (edge-anchored) to 0.160000+.",
+      "recommendations": {
+        "performance": "0.000000",
+        "balanced": "0.000000",
+        "quality": "0.000000"
+      },
+      "notes": "On 32:9 super ultrawide monitors (5120x1440), setting flSafeZoneLeft to 0.160000 insets the HUD elements by ~820px on each side, perfectly framing the interface within a comfortable 21:9 visual field without requiring severe neck turning."
+    },
+    {
+      "key": "EnableContrastCursor",
+      "file": "LocalPrefs.txt",
+      "effect": "Adds high-contrast outline border to mouse pointer: 0=Off, 1=On.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Critical for eye comfort and accessibility on wide high-resolution displays to prevent losing track of the cursor in high mob density combat."
     }
   ],
   "manual_only_settings": [
     {
+      "setting": "HUD Configuration",
+      "location": "Options → Gameplay → HUD Configuration",
+      "recommendation": "Centered",
+      "reason": "Centers the health globe, resource orb, potions, and action bar directly in the primary viewing zone instead of the far left screen edge on ultrawide monitors."
+    },
+    {
       "setting": "Screen Shake",
       "location": "Options → Accessibility / Gameplay → Screen Shake",
       "recommendation": "Off",
-      "reason": "Disabling Screen Shake prevents jarring camera jolts during critical hits and explosions that induce perceived motion blur and disorientation."
+      "reason": "Disabling Screen Shake prevents jarring camera jolts during critical hits and explosions that induce perceived motion blur, disorientation, and eye fatigue."
+    },
+    {
+      "setting": "Combat Hit Flash",
+      "location": "Options → Accessibility → Combat Hit Flash",
+      "recommendation": "Off",
+      "reason": "Eliminates high-intensity full-screen white/red flashes when dealing or taking damage, greatly improving eye comfort on HDR OLED displays."
+    },
+    {
+      "setting": "Reduce Strobing",
+      "location": "Options → Accessibility → Reduce Strobing",
+      "recommendation": "On",
+      "reason": "Reduces rapid flickering and high-frequency strobe visual effects from lightning spells and death bursts."
     },
     {
       "setting": "Peripheral Lighting",

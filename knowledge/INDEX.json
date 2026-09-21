@@ -113,9 +113,9 @@
       "engine": "Blizzard Fenris Engine",
       "engine_version": "1.x (Prism DX12)",
       "platforms": ["Battle.net", "Steam", "Xbox Game Pass"],
-      "key_count": 28,
-      "profile_version": "1.0.0",
-      "updated": "2026-09-19"
+      "key_count": 30,
+      "profile_version": "1.1.0",
+      "updated": "2026-09-21"
     },
     {
       "name": "Dota 2",
@@ -265,8 +265,8 @@
       "file": "games/runescape-dragonwilds.json",
       "engine": "Unreal Engine 5",
       "platforms": ["Steam"],
-      "key_count": 10,
-      "profile_version": "1.0.0",
+      "key_count": 12,
+      "profile_version": "1.1.0",
       "updated": "2026-09-19"
     },
     {
