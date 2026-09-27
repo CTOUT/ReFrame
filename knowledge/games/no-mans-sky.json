@@ -2,8 +2,8 @@
   "game": "No Man's Sky",
   "engine": "Vanguard (Vulkan)",
   "engine_version": "5.0 Worlds",
-  "profile_version": "1.0.0",
-  "updated": "2026-09-19",
+  "profile_version": "1.1.0",
+  "updated": "2026-09-27",
   "platforms": [
     {
       "store": "Steam",
@@ -38,15 +38,15 @@
   ],
   "keys": [
     {
-      "key": "DLSSFrameGeneration",
+      "key": "AntiAliasing",
       "file": "TKGRAPHICSSETTINGS.MXML",
-      "effect": "NVIDIA DLSS 3 Optical Flow Frame Generation toggle for RTX 40-series GPUs",
+      "effect": "Anti-aliasing and upscaling mode: None, FXAA, TAA, DLAA, DLSS, FFXSR2, XESS",
       "recommendations": {
-        "performance": "On",
-        "balanced": "On",
-        "quality": "On"
+        "performance": "DLSS",
+        "balanced": "DLSS",
+        "quality": "DLSS"
       },
-      "notes": "Delivers 50-70% higher framerate on RTX 40-series hardware, particularly at 5120x1440 or 4K resolutions. Requires Hardware-Accelerated GPU Scheduling (HAGS) enabled in Windows."
+      "notes": "DLAA runs 100% native resolution and bypasses DLSS upscaling, cratering framerates at 5120x1440. DLSS must be set to enable temporal upscaling."
     },
     {
       "key": "DLSSQuality",
@@ -57,7 +57,51 @@
         "balanced": "Quality",
         "quality": "Quality"
       },
-      "notes": "Pair with DLAA or TAA. On 1440p and ultrawide panels, Quality provides sharp native-like reconstruction."
+      "notes": "Requires AntiAliasing set to DLSS. On 1440p and ultrawide panels, Quality provides sharp native-like reconstruction with high framerate headroom."
+    },
+    {
+      "key": "DLSSFrameGeneration",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "NVIDIA DLSS 3 Optical Flow Frame Generation toggle for RTX 40-series GPUs",
+      "recommendations": {
+        "performance": "On",
+        "balanced": "On",
+        "quality": "On"
+      },
+      "notes": "Requires Hardware-Accelerated GPU Scheduling (HAGS) in Windows. Note that in-game settings changes may revert this key in some builds."
+    },
+    {
+      "key": "FoVOnFootFP",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "First-person on-foot horizontal field of view angle in degrees (60.0 - 100.0)",
+      "recommendations": {
+        "performance": "90.000000",
+        "balanced": "90.000000",
+        "quality": "90.000000"
+      },
+      "notes": "Default 75° creates severe tunnel-vision and peripheral warping on 32:9 and 21:9 ultrawide screens, triggering nausea and headaches."
+    },
+    {
+      "key": "FoVInShipFP",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "First-person cockpit horizontal field of view angle in degrees (60.0 - 100.0)",
+      "recommendations": {
+        "performance": "90.000000",
+        "balanced": "90.000000",
+        "quality": "90.000000"
+      },
+      "notes": "Aligns first-person flight camera with 90° third-person perspective to eliminate vestibular mismatch."
+    },
+    {
+      "key": "HDRMode",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "High Dynamic Range tone mapping profile: Off, HDR400, HDR600, HDR1000",
+      "recommendations": {
+        "performance": "HDR600",
+        "balanced": "HDR600",
+        "quality": "HDR600"
+      },
+      "notes": "Capping at HDR600 prevents blinding 1000-nit localized highlight spikes on OLED panels, significantly reducing ocular fatigue and headaches."
     },
     {
       "key": "ShadowQuality.GraphicDetail",
@@ -80,6 +124,39 @@
         "quality": "High"
       },
       "notes": "Ultra volumetrics cause significant frame drops during atmospheric entry and planetary storms. High preserves cloud layers smoothly."
+    },
+    {
+      "key": "ReflectionsQuality.GraphicDetail",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "Screen-space reflection fidelity and ray density: Low, Medium, High, Ultra",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "High"
+      },
+      "notes": "Ultra causes aggressive specular shimmering on wet surfaces and space stations, creating ocular fatigue. High eliminates shimmering."
+    },
+    {
+      "key": "PlanetQuality.GraphicDetail",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "Planetary terrain distance LOD and procedural vegetation density: Low, Medium, High, Ultra",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "High"
+      },
+      "notes": "High eliminates draw-call spikes during low-altitude flights and surface sprints with negligible visual loss."
+    },
+    {
+      "key": "TerrainTessellation.GraphicDetail",
+      "file": "TKGRAPHICSSETTINGS.MXML",
+      "effect": "Voxel displacement detail and tessellation factor: Low, Medium, High, Ultra",
+      "recommendations": {
+        "performance": "Medium",
+        "balanced": "High",
+        "quality": "High"
+      },
+      "notes": "High removes heavy vertex shader compute hitches during terrain manipulation and traversal."
     },
     {
       "key": "NumHighThreads",
@@ -112,7 +189,7 @@
         "balanced": "false",
         "quality": "false"
       },
-      "notes": "Critical photosensitivity setting. Setting to false prevents sudden 1000-nit luminance spikes on HDR panels during warp sequences."
+      "notes": "Critical photosensitivity setting. Setting to false prevents sudden luminance spikes on HDR panels during warp sequences."
     },
     {
       "key": "CamerShakeStrength",
@@ -130,11 +207,22 @@
       "file": "GCUSERSETTINGSDATA.MXML",
       "effect": "Full-screen pulsing color and edge strobe overlays during environmental hazard storms: 0.0-1.0",
       "recommendations": {
-        "performance": "0.000000",
-        "balanced": "0.000000",
-        "quality": "0.000000"
+        "performance": "0.100000",
+        "balanced": "0.100000",
+        "quality": "0.100000"
       },
-      "notes": "0.000000 removes violent red/toxic pulsing flashes during extreme storms while leaving HUD hazard meters fully functional."
+      "notes": "0.100000 provides subtle storm indication without violent red/toxic pulsing flashes that trigger eye strain."
+    },
+    {
+      "key": "UseShipAutoControlVignette",
+      "file": "GCUSERSETTINGSDATA.MXML",
+      "effect": "Dynamic edge darkening vignette applied during ship steering and boost: true, false",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Disabling prevents pulsing edge darkening on ultrawide monitors that triggers vestibular discomfort."
     },
     {
       "key": "UnderwaterDepthOfFieldStrength",
@@ -198,9 +286,11 @@
   "notes": [
     "No Man's Sky runs on Hello Games' proprietary Vanguard engine using Vulkan 1.3.",
     "Native 32:9 (5120x1440) and 21:9 (3440x1440) super ultrawide rendering is fully supported in borderless fullscreen mode.",
+    "On high-resolution displays, always use AntiAliasing=DLSS (not DLAA) with DLSSQuality=Quality to secure consistent 60+ FPS.",
+    "First-person FOV (FoVOnFootFP, FoVInShipFP) should be raised to 90° on ultrawide monitors to prevent claustrophobic tunnel vision.",
+    "HDR600 mode is recommended over HDR1000 on OLED monitors to prevent ocular fatigue from intense localized flashes.",
     "For 8-core CPUs like AMD Ryzen 7 5800X3D, setting NumHighThreads=8 and NumLowThreads=8 in TKGRAPHICSSETTINGS.MXML avoids thread contention.",
-    "HDR1000 mode is supported. AllowWhiteScreenTransitions should be set to false to protect photosensitive users from sudden maximum-luminance flashes during warp travel.",
-    "Modding is natively enabled by default in recent game versions via GCMODSETTINGS.MXML with DisableAllMods=false."
+    "AllowWhiteScreenTransitions should be set to false to protect photosensitive users from sudden maximum-luminance flashes during warp travel."
   ],
   "sources": [
     {

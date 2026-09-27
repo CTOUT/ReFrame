@@ -229,9 +229,9 @@
       "engine": "Vanguard (Vulkan)",
       "engine_version": "5.0 Worlds",
       "platforms": ["Steam", "Xbox Game Pass"],
-      "key_count": 13,
-      "profile_version": "1.0.0",
-      "updated": "2026-09-19"
+      "key_count": 21,
+      "profile_version": "1.1.0",
+      "updated": "2026-09-27"
     },
     {
       "name": "Noita",
