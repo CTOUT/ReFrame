@@ -155,6 +155,16 @@
       "updated": "2026-09-19"
     },
     {
+      "name": "Fable Anniversary",
+      "file": "games/fable-anniversary.json",
+      "engine": "Unreal Engine 3",
+      "engine_version": "3.0 (Wellington Build)",
+      "platforms": ["Steam"],
+      "key_count": 16,
+      "profile_version": "1.0.0",
+      "updated": "2026-10-02"
+    },
+    {
       "name": "Fortnite",
       "file": "games/fortnite.json",
       "engine": "Unreal Engine 5",
@@ -222,6 +232,20 @@
       "key_count": 9,
       "profile_version": "1.0.0",
       "updated": "2026-04-29"
+    },
+    {
+      "name": "Minecraft Dungeons",
+      "file": "games/minecraft-dungeons.json",
+      "engine": "Unreal Engine 4",
+      "engine_version": "4.25",
+      "platforms": [
+        "Steam",
+        "Microsoft Store / Xbox Game Pass",
+        "Minecraft Launcher (Mojang Standalone)"
+      ],
+      "key_count": 22,
+      "profile_version": "1.0.0",
+      "updated": "2026-10-02"
     },
     {
       "name": "No Man's Sky",

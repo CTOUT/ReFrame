@@ -1208,6 +1208,119 @@ dxvk.enableAsync = False
 
 ---
 
+## Fable Anniversary
+
+**Engine:** Unreal Engine 3 (Lionhead modified Wellington build)
+
+| Platform | Config Path                                                                                         | Format |
+| -------- | --------------------------------------------------------------------------------------------------- | ------ |
+| Steam    | `%USERPROFILE%\Documents\My Games\UnrealEngine3\WellingtonGame\Config\WellingtonSystemSettings.ini` | INI    |
+| Steam    | `%USERPROFILE%\Documents\My Games\UnrealEngine3\WellingtonGame\Config\WellingtonEngine.ini`         | INI    |
+| Steam    | `%USERPROFILE%\Documents\My Games\UnrealEngine3\WellingtonGame\Config\WellingtonInput.ini`          | INI    |
+| Steam    | `%GAME_DIR%\Engine\Config\BaseInput.ini`                                                            | INI    |
+
+> **Note:** Fable Anniversary user settings are stored in `%USERPROFILE%\Documents\My Games\UnrealEngine3\WellingtonGame\Config\` (or OneDrive-redirected paths like `O:\OneDrive\Documents\My Games\UnrealEngine3\WellingtonGame\Config\`). Files in the game installation directory contain default templates and should not be edited directly. If settings reset on launch, set `WellingtonSystemSettings.ini` to read-only.
+
+**Key settings:**
+
+| Key                        | Effect                                  | Recommended (performance) | Recommended (quality) |
+| -------------------------- | --------------------------------------- | ------------------------- | --------------------- |
+| `ResX`                     | Horizontal resolution                   | `2560`                    | `5120`                |
+| `ResY`                     | Vertical resolution                     | `1440`                    | `1440`                |
+| `DepthOfField`             | Camera focal depth of field             | `False`                   | `False`               |
+| `AllowRadialBlur`          | Radial screen blur on sprint and impact | `False`                   | `False`               |
+| `MotionBlur`               | Camera motion blur                      | `False`                   | `False`               |
+| `MotionBlurPause`          | Blur retention during pauses            | `False`                   | `False`               |
+| `Bloom`                    | Lionhead HDR specular bloom             | `False`                   | `False`               |
+| `bUseSpecularBloom`        | Specular highlight bloom                | `False`                   | `False`               |
+| `UseVsync`                 | In-engine vertical sync                 | `False`                   | `False`               |
+| `MaxAnisotropy`            | Anisotropic texture filtering           | `8`                       | `16`                  |
+| `MaxShadowResolution`      | Dynamic shadow resolution               | `1024`                    | `2048`                |
+| `MaxMultisamples`          | Multi-sample anti-aliasing (MSAA)       | `1`                       | `4`                   |
+| `DynamicLights`            | Real-time dynamic lights                | `True`                    | `True`                |
+| `DynamicShadows`           | Dynamic entity shadows                  | `True`                    | `True`                |
+| `bEnableMouseSmoothing`    | Mouse input smoothing                   | `False`                   | `False`               |
+| `bViewAccelerationEnabled` | Mouse view acceleration                 | `False`                   | `False`               |
+
+### Fable Anniversary: Ultrawide (32:9) & 21:9 HUD Setup
+
+Fable Anniversary uses Unreal Engine 3 which natively implements Vert- cropping at aspect ratios wider than 16:9, cutting off vertical field of view and pinning HUD elements to the far outer edges of 5120×1440 displays.
+
+1. **Flawless Widescreen Installation:** Download and install [Flawless Widescreen](https://www.flawlesswidescreen.org/).
+2. **Plugin Activation:** In the Plugins list, search for and activate the **Fable Anniversary** plugin.
+3. **Aspect Ratio & FOV:** Ensure **FOV Fix** and **Fix Letterbox** are enabled to restore Hor+ rendering across 5120×1440.
+4. **21:9 HUD Constraint:** Under the plugin options, enable **HUD Constrained** (selecting 21:9 or 16:9). This pulls the health bar, Guild seal, and spell hotkeys from the outer perimeter into the central 21:9 viewing area, eliminating continuous neck rotation while preserving full 32:9 panoramic immersion.
+5. **Frame Pacing & Stutter Fix:** Always set `UseVsync=False` in `WellingtonSystemSettings.ini` as in-game VSync causes heavy micro-stutter. Cap frame rates (60 FPS or monitor refresh rate) externally via NVIDIA Control Panel, AMD Software, or RTSS.
+6. **Eye Comfort Tuning:** Setting `DepthOfField=False`, `AllowRadialBlur=False`, and `Bloom=False` removes severe visual haze and blinding light bloom, dramatically reducing ocular fatigue during extended gameplay sessions.
+
+**Sources:** [PCGamingWiki — Fable Anniversary](https://www.pcgamingwiki.com/wiki/Fable_Anniversary), [Flawless Widescreen](https://www.flawlesswidescreen.org/), [Steam Community — Fable Anniversary Tweaks](https://steamcommunity.com/sharedfiles/filedetails/?id=227181048)
+
+---
+
+## Minecraft Dungeons
+
+**Engine:** Unreal Engine 4 (UE 4.25)
+
+| Platform                        | Config Path                                                                                                                          | Format |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| Steam                           | `%LOCALAPPDATA%\Dungeons\Saved\Config\WindowsNoEditor\GameUserSettings.ini`                                                          | INI    |
+| Steam                           | `%LOCALAPPDATA%\Dungeons\Saved\Config\WindowsNoEditor\Engine.ini`                                                                    | INI    |
+| Microsoft Store / Game Pass     | `%LOCALAPPDATA%\Packages\Microsoft.Lovika_8wekyb3d8bbwe\LocalCache\Local\Dungeons\Saved\Config\WindowsNoEditor\GameUserSettings.ini` | INI    |
+| Microsoft Store / Game Pass     | `%LOCALAPPDATA%\Packages\Microsoft.Lovika_8wekyb3d8bbwe\LocalCache\Local\Dungeons\Saved\Config\WindowsNoEditor\Engine.ini`           | INI    |
+| Minecraft Launcher (Standalone) | `%LOCALAPPDATA%\Dungeons\Saved\Config\WindowsNoEditor\GameUserSettings.ini`                                                          | INI    |
+
+> **Note:** Minecraft Dungeons configuration files are stored in `%LOCALAPPDATA%\Dungeons\` (Steam / Standalone) or under the `Microsoft.Lovika_8wekyb3d8bbwe` package folder (Windows Store / Game Pass).
+
+**Key settings:**
+
+| Key                              | Effect                               | Recommended (performance)  | Recommended (quality)      |
+| -------------------------------- | ------------------------------------ | -------------------------- | -------------------------- |
+| `ResolutionSizeX`                | Horizontal resolution                | `2560`                     | `5120`                     |
+| `ResolutionSizeY`                | Vertical resolution                  | `1440`                     | `1440`                     |
+| `AspectRatioAxisConstraint`      | FOV aspect ratio axis constraint     | `AspectRatio_MaintainYFOV` | `AspectRatio_MaintainYFOV` |
+| `r.MotionBlurQuality`            | Motion blur sampling quality         | `0`                        | `0`                        |
+| `r.MotionBlur.Max`               | Maximum motion blur distortion       | `0`                        | `0`                        |
+| `r.DepthOfFieldQuality`          | Depth of field camera blur           | `0`                        | `0`                        |
+| `r.SceneColorFringeQuality`      | Chromatic aberration color fringing  | `0`                        | `0`                        |
+| `r.Tonemapper.GrainQuantization` | Film grain filter                    | `0`                        | `0`                        |
+| `r.BloomQuality`                 | Glow and specular bloom intensity    | `0`                        | `1`                        |
+| `r.Streaming.PoolSize`           | Texture streaming allocation (MB)    | `2000`                     | `4000`                     |
+| `FrameRateLimit`                 | Maximum frame rate cap               | `60.000000`                | `144.000000`               |
+| `bUseVSync`                      | In-engine VSync                      | `False`                    | `False`                    |
+| `sg.ResolutionQuality`           | Internal rendering scale percentage  | `85.000000`                | `100.000000`               |
+| `sg.ViewDistanceQuality`         | View distance and LOD scale          | `2`                        | `3`                        |
+| `sg.AntiAliasingQuality`         | Temporal anti-aliasing (TAA) quality | `2`                        | `3`                        |
+| `sg.ShadowQuality`               | Dynamic shadow resolution            | `1`                        | `3`                        |
+| `sg.PostProcessQuality`          | Post-processing pipeline quality     | `1`                        | `2`                        |
+| `sg.TextureQuality`              | Texture filtering and mipmaps        | `2`                        | `3`                        |
+| `sg.EffectsQuality`              | Visual and particle effect density   | `1`                        | `3`                        |
+| `sg.FoliageQuality`              | Grass and foliage density            | `1`                        | `3`                        |
+
+### Minecraft Dungeons: Ultrawide (32:9) & Eye Comfort Setup
+
+1. **Hor+ FOV Fix (Engine.ini):** Open `Engine.ini` and append the following block:
+   ```ini
+   [/script/engine.localplayer]
+   AspectRatioAxisConstraint=AspectRatio_MaintainYFOV
+   ```
+   By default, Unreal Engine 4 cuts off the vertical viewport (Vert-) on ultrawide monitors. Adding `AspectRatio_MaintainYFOV` ensures the camera preserves vertical height and expands horizontally, granting a true 32:9 isometric view across 5120×1440.
+2. **Eliminating Motion Blur & Edge Distortion:** Minecraft Dungeons does not include an in-game motion blur or chromatic aberration switch. Add these lines to `Engine.ini` under `[SystemSettings]`:
+   ```ini
+   [SystemSettings]
+   r.MotionBlurQuality=0
+   r.MotionBlur.Max=0
+   r.DepthOfFieldQuality=0
+   r.SceneColorFringeQuality=0
+   r.Tonemapper.GrainQuantization=0
+   r.BloomQuality=1
+   ```
+3. **In-Game Accessibility & Screen Shake:** In **Settings → Accessibility**, set **Screen Shake** to `Off`. This stabilizes the isometric camera during TNT explosions and boss attacks, preventing nausea and visual fatigue.
+4. **21:9 HUD Positioning & Scale:** Minecraft Dungeons centers the primary health and artifact hotbar horizontally at the bottom of the screen. In **Settings → Display / Accessibility**, set **HUD Scale** to `85%–90%` to keep interface elements sharp and well-proportioned within the central 21:9 viewing zone. Enable **High Contrast Outlines** to keep heroes and allies distinct across wide panoramic screens.
+
+**Sources:** [PCGamingWiki — Minecraft Dungeons](https://www.pcgamingwiki.com/wiki/Minecraft_Dungeons), [Minecraft Dungeons Feedback](https://feedback.minecraft.net/hc/en-us/articles/360044158652), [PCGamingWiki Community — Minecraft Dungeons Ultrawide Fix](https://community.pcgamingwiki.com/files/file/1905-minecraft-dungeons-fov-changer/)
+
+---
+
 ## Adding More Games
 
 Create a pull request adding a new section to this file following the template above. Include:

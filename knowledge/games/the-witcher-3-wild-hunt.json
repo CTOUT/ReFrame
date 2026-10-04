@@ -1,0 +1,218 @@
+{
+  "game": "The Witcher 3: Wild Hunt",
+  "engine": "REDengine 3",
+  "engine_version": "Next-Gen v4.0+",
+  "profile_version": "1.0.0",
+  "updated": "2026-09-30",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\Documents\\The Witcher 3\\dx12user.settings",
+          "format": "ini"
+        },
+        {
+          "path": "%USERPROFILE%\\Documents\\The Witcher 3\\user.settings",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "GOG",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\Documents\\The Witcher 3\\dx12user.settings",
+          "format": "ini"
+        },
+        {
+          "path": "%USERPROFILE%\\Documents\\The Witcher 3\\user.settings",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Epic Games Store",
+      "config_files": [
+        {
+          "path": "%USERPROFILE%\\Documents\\The Witcher 3\\dx12user.settings",
+          "format": "ini"
+        },
+        {
+          "path": "%USERPROFILE%\\Documents\\The Witcher 3\\user.settings",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "uiHorizontalFrameScale",
+      "file": "dx12user.settings",
+      "section": "[Hidden]",
+      "effect": "Scales the horizontal anchor offset of HUD elements relative to screen center. Values below 1.0 pull HUD elements inward: 0.67 creates a 21:9 safe zone and 0.50 creates a 16:9 safe zone on 32:9 displays.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "0.67",
+        "quality": "0.67"
+      },
+      "notes": "Crucial for 32:9 and super ultrawide panels to prevent neck strain and peripheral eye fatigue. In-game Rescale HUD slider resets this value."
+    },
+    {
+      "key": "MotionSicknessFocusMode",
+      "file": "dx12user.settings",
+      "section": "[Accessibility]",
+      "effect": "Disables the fish-eye perspective warping and radial edge blur when activating Witcher Senses.",
+      "recommendations": {
+        "performance": "true",
+        "balanced": "true",
+        "quality": "true"
+      },
+      "notes": "Added in Next-Gen v4.0. Highly recommended for all users sensitive to motion sickness or playing on ultrawide monitors."
+    },
+    {
+      "key": "AllowLensEffects",
+      "file": "dx12user.settings",
+      "section": "[PostProcess]",
+      "effect": "Enables or disables camera dirt and sun lens flare bursts.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Disabling prevents sudden high-luminance flashes and eye fatigue, especially on HDR OLED panels."
+    },
+    {
+      "key": "HairWorksAALevel",
+      "file": "dx12user.settings",
+      "section": "[Rendering]",
+      "effect": "Multisample Anti-Aliasing (MSAA) level applied to NVIDIA HairWorks geometry.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "The default value of 8 heavily taxes GPU rasterization at 1440p and 4K with negligible perceptual benefit. 2 provides smooth strands at significantly higher FPS."
+    },
+    {
+      "key": "Enable",
+      "file": "dx12user.settings",
+      "section": "[Rendering/DRS]",
+      "effect": "Dynamic Resolution Scaling (DRS) master switch.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "When running fixed upscaling (DLSS Quality or DLAA), DRS should be disabled to prevent subtle resolution fluctuating and micro-stutter."
+    },
+    {
+      "key": "AllowMotionBlur",
+      "file": "dx12user.settings",
+      "section": "[PostProcess]",
+      "effect": "Camera and object motion blur.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Recommended Off across all goals to eliminate motion sickness and peripheral smearing."
+    },
+    {
+      "key": "AllowDOF",
+      "file": "dx12user.settings",
+      "section": "[PostProcess]",
+      "effect": "Depth of field background and focal blurring.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Recommended Off for eye comfort to prevent constant unnatural focal adaptation."
+    },
+    {
+      "key": "AllowChromaticAberration",
+      "file": "dx12user.settings",
+      "section": "[PostProcess]",
+      "effect": "Lens color separation causing peripheral color fringing.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      }
+    },
+    {
+      "key": "AllowVignette",
+      "file": "dx12user.settings",
+      "section": "[PostProcess]",
+      "effect": "Darkens screen corners and edges.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Produces tunnel-vision sensations on wide aspect ratios; recommended Off."
+    },
+    {
+      "key": "DLSSQuality",
+      "file": "dx12user.settings",
+      "section": "[PostProcess]",
+      "effect": "NVIDIA DLSS quality preset (0=Auto, 1=Quality, 2=Balanced, 3=Performance, 4=Ultra Performance).",
+      "recommendations": {
+        "performance": "3",
+        "balanced": "2",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "DLSSGMode",
+      "file": "dx12user.settings",
+      "section": "[PostProcess]",
+      "effect": "NVIDIA DLSS Frame Generation (RTX 40-series). 1=On, 0=Off.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Provides high framerate headroom on high-resolution displays when paired with NVIDIA Reflex."
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "uiHorizontalFrameScale",
+      "behaviour": "In-game Video -> HUD Configuration 'Rescale HUD' slider resets this value to default 1.0 (outer screen edges).",
+      "action": "Set via dx12user.settings and avoid touching the in-game Rescale HUD button."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Camera Presets (Exploration, Combat, Horse)",
+      "location": "Options → Gameplay → Camera",
+      "recommendation": "Default / Original (0)",
+      "reason": "The Close camera introduces high angular velocity and rapid rotational swings on 32:9 ultrawide screens, causing motion fatigue."
+    },
+    {
+      "setting": "Rescale HUD",
+      "location": "Options → Video → HUD Configuration",
+      "recommendation": "Do not adjust in menu",
+      "reason": "Resets manual uiHorizontalFrameScale edits back to 1.0."
+    }
+  ],
+  "notes": [
+    "The Witcher 3 Next-Gen (v4.0+) introduces DirectX 12 support, DLSS 3, FSR 2, Ray Tracing, and new accessibility features.",
+    "DX12 settings are stored in dx12user.settings; legacy DX11 settings are in user.settings.",
+    "At 5120x1440, uiHorizontalFrameScale=0.67 centers the HUD to 21:9 (~3413px wide), while uiHorizontalFrameScale=0.50 centers it to 16:9 (2560px wide)."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/The_Witcher_3:_Wild_Hunt",
+      "type": "wiki",
+      "label": "PCGamingWiki — The Witcher 3: Wild Hunt"
+    },
+    {
+      "url": "https://steamcommunity.com/app/292030/discussions/0/1744480967006886738/",
+      "type": "community",
+      "label": "Steam Community — Ultrawide HUD Centering Guide"
+    }
+  ]
+}

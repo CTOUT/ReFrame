@@ -1,0 +1,377 @@
+{
+  "game": "Minecraft Dungeons",
+  "engine": "Unreal Engine 4",
+  "engine_version": "4.25",
+  "profile_version": "1.0.0",
+  "updated": "2026-10-02",
+  "platforms": [
+    {
+      "store": "Steam",
+      "app_id": "1672970",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\Dungeons\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini",
+          "notes": "Main graphics settings, resolution, frame rate cap, and scalability levels."
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\Dungeons\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini",
+          "notes": "Low-level UE4 rendering overrides, FOV aspect ratio constraint, texture streaming pool size, and post-processing quality CVars."
+        }
+      ]
+    },
+    {
+      "store": "Microsoft Store / Xbox Game Pass",
+      "store_id": "Microsoft.Lovika_8wekyb3d8bbwe",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\Packages\\Microsoft.Lovika_8wekyb3d8bbwe\\LocalCache\\Local\\Dungeons\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\Packages\\Microsoft.Lovika_8wekyb3d8bbwe\\LocalCache\\Local\\Dungeons\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Minecraft Launcher (Mojang Standalone)",
+      "config_files": [
+        {
+          "file": "GameUserSettings.ini",
+          "path": "%LOCALAPPDATA%\\Dungeons\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "file": "Engine.ini",
+          "path": "%LOCALAPPDATA%\\Dungeons\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "ResolutionSizeX",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Horizontal rendering and display resolution in pixels.",
+      "recommendations": {
+        "performance": "2560",
+        "balanced": "3440",
+        "quality": "5120"
+      },
+      "notes": "Set to 5120 for native 32:9 rendering on 5120x1440 panels."
+    },
+    {
+      "key": "ResolutionSizeY",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Vertical rendering and display resolution in pixels.",
+      "recommendations": {
+        "performance": "1440",
+        "balanced": "1440",
+        "quality": "1440"
+      }
+    },
+    {
+      "key": "LastUserConfirmedResolutionSizeX",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Last confirmed horizontal resolution fallback.",
+      "recommendations": {
+        "performance": "2560",
+        "balanced": "3440",
+        "quality": "5120"
+      }
+    },
+    {
+      "key": "LastUserConfirmedResolutionSizeY",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Last confirmed vertical resolution fallback.",
+      "recommendations": {
+        "performance": "1440",
+        "balanced": "1440",
+        "quality": "1440"
+      }
+    },
+    {
+      "key": "AspectRatioAxisConstraint",
+      "file": "Engine.ini",
+      "section": "[/script/engine.localplayer]",
+      "effect": "Controls Unreal Engine 4 FOV axis scaling. Setting AspectRatio_MaintainYFOV forces Hor+ scaling rather than default Vert- cropping.",
+      "recommendations": {
+        "performance": "AspectRatio_MaintainYFOV",
+        "balanced": "AspectRatio_MaintainYFOV",
+        "quality": "AspectRatio_MaintainYFOV"
+      },
+      "notes": "Critical fix for 32:9 (5120x1440) and 21:9 monitors: unlocks full horizontal FOV panoramic view across the screen instead of zooming in and cutting off top/bottom visibility."
+    },
+    {
+      "key": "r.MotionBlurQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "UE4 motion blur quality. 0=Off.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Eye Comfort priority: Minecraft Dungeons lacks a dedicated in-game motion blur toggle. Setting this to 0 in Engine.ini completely eliminates motion blur and tracking smearing."
+    },
+    {
+      "key": "r.MotionBlur.Max",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Maximum motion blur distortion percentage. 0=Disabled.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      }
+    },
+    {
+      "key": "r.DepthOfFieldQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Depth of field focal blur quality. 0=Off.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Eye Comfort priority: Keeps the entire isometric dungeon landscape sharp edge-to-edge across 5120x1440 without focal plane blurring."
+    },
+    {
+      "key": "r.SceneColorFringeQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Chromatic aberration colour-fringing filter.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Eye Comfort priority: Eliminates peripheral colour dispersion and optical distortion at the screen edges."
+    },
+    {
+      "key": "r.Tonemapper.GrainQuantization",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Film grain noise pass.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Eye Comfort priority: Disables static noise overlay."
+    },
+    {
+      "key": "r.BloomQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Post-process bloom intensity (0=Off, 1=Subtle, 5=Full).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Eye Comfort priority: Softens blinding glow from lava, enchantments, and fiery projectiles while preserving visual fidelity."
+    },
+    {
+      "key": "r.Streaming.PoolSize",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.Engine]",
+      "effect": "Texture streaming pool size in MB.",
+      "recommendations": {
+        "performance": "2000",
+        "balanced": "3000",
+        "quality": "4000"
+      },
+      "notes": "Scale with GPU VRAM: 2000 for 6GB, 3000 for 8GB, 4000+ for 12GB+."
+    },
+    {
+      "key": "FrameRateLimit",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Maximum frame rate limiter.",
+      "recommendations": {
+        "performance": "60.000000",
+        "balanced": "120.000000",
+        "quality": "144.000000"
+      },
+      "notes": "Match monitor refresh rate or set a target FPS floor (e.g. 60 or 120/144) to ensure rock-solid frame pacing."
+    },
+    {
+      "key": "bUseVSync",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "In-engine VSync.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Disable in-engine VSync and use G-Sync / FreeSync / driver VRR for minimal input latency."
+    },
+    {
+      "key": "sg.ResolutionQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Internal 3D rendering resolution percentage.",
+      "recommendations": {
+        "performance": "85.000000",
+        "balanced": "100.000000",
+        "quality": "100.000000"
+      },
+      "notes": "100.000000 ensures native pixel rendering at 5120x1440 without internal downsampling blur."
+    },
+    {
+      "key": "sg.ViewDistanceQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "LOD and view distance quality: 0=Low, 1=Med, 2=High, 3=Epic.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.AntiAliasingQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Temporal Anti-Aliasing (TAA) quality: 0=Low, 1=Med, 2=High, 3=Epic.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Dynamic shadow resolution and filtering: 0=Low, 1=Med, 2=High, 3=Epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.PostProcessQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Post-processing pipeline quality: 0=Low, 1=Med, 2=High, 3=Epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "Kept at 2 (High) in Quality mode to prevent aggressive default post-process bloom and blur from overriding eye comfort calibrations."
+    },
+    {
+      "key": "sg.TextureQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Texture resolution: 0=Low, 1=Med, 2=High, 3=Epic.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.EffectsQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Particle and spell effect density: 0=Low, 1=Med, 2=High, 3=Epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "sg.FoliageQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Dungeons.DungeonsGameUserSettings]",
+      "effect": "Grass and foliage density: 0=Low, 1=Med, 2=High, 3=Epic.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      }
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "AspectRatioAxisConstraint",
+      "behaviour": "By default, UE4 uses Vert- cropping on aspect ratios wider than 16:9, cutting off top and bottom dungeon view at 32:9 (5120x1440).",
+      "action": "Set AspectRatioAxisConstraint=AspectRatio_MaintainYFOV under [/script/engine.localplayer] in Engine.ini to force Hor+ scaling."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Screen Shake",
+      "location": "Settings → Accessibility",
+      "recommendation": "Off",
+      "reason": "Crucial Eye Comfort setting. Disables violent camera shaking during TNT explosions, boss stomps, and heavy impacts."
+    },
+    {
+      "setting": "HUD Scale",
+      "location": "Settings → Display / Accessibility",
+      "recommendation": "85%–90%",
+      "reason": "Prevents UI and health bars from appearing excessively large at 1440p and keeps the central hotbar compact within the primary 21:9 vision cone."
+    },
+    {
+      "setting": "High Contrast Outlines",
+      "location": "Settings → Accessibility",
+      "recommendation": "On",
+      "reason": "Improves entity distinction during chaotic fights across wide panoramic displays."
+    }
+  ],
+  "intro_skip": [
+    {
+      "type": "file",
+      "label": "Rename startup cinematic files",
+      "reversible": true,
+      "files": [
+        {
+          "path": "%GAME_DIR%\\Dungeons\\Content\\Movies\\LoadingScreen.mp4",
+          "action": "rename",
+          "rename_to": "LoadingScreen.mp4.bak"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Minecraft Dungeons runs on Unreal Engine 4 (UE4.22/4.25).",
+    "On 5120x1440 (32:9), the main combat hotbar is centered horizontally at bottom, while the AspectRatioAxisConstraint fix restores full panoramic Hor+ view.",
+    "Screen Shake in in-game Accessibility settings MUST be turned Off for Eye Comfort."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Minecraft_Dungeons",
+      "type": "wiki",
+      "label": "PCGamingWiki — Minecraft Dungeons"
+    },
+    {
+      "url": "https://feedback.minecraft.net/hc/en-us/articles/360044158652",
+      "type": "official",
+      "label": "Minecraft Dungeons Patch Notes — Accessibility Update"
+    },
+    {
+      "url": "https://community.pcgamingwiki.com/files/file/1905-minecraft-dungeons-fov-changer/",
+      "type": "community",
+      "label": "PCGamingWiki Community — Minecraft Dungeons Ultrawide FOV Fix"
+    }
+  ]
+}
