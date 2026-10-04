@@ -1229,11 +1229,15 @@ dxvk.enableAsync = False
 | `ResY`                     | Vertical resolution                     | `1440`                    | `1440`                |
 | `DepthOfField`             | Camera focal depth of field             | `False`                   | `False`               |
 | `AllowRadialBlur`          | Radial screen blur on sprint and impact | `False`                   | `False`               |
-| `MotionBlur`               | Camera motion blur                      | `False`                   | `False`               |
-| `MotionBlurPause`          | Blur retention during pauses            | `False`                   | `False`               |
 | `Bloom`                    | Lionhead HDR specular bloom             | `False`                   | `False`               |
 | `bUseSpecularBloom`        | Specular highlight bloom                | `False`                   | `False`               |
 | `UseVsync`                 | In-engine vertical sync                 | `False`                   | `False`               |
+| `MaxSmoothedFrameRate`     | Engine frame rate limiter (FPS cap)     | `144`                     | `144`                 |
+| `MinSmoothedFrameRate`     | Minimum frame smoothing clamp floor     | `60`                      | `60`                  |
+| `Acceleration`             | Mouse stick-emulation look acceleration | `1.0`                     | `1.0`                 |
+| `Smoothing`                | Mouse look smoothing interpolation      | `0.0`                     | `0.0`                 |
+| `EscapeVelocityStrength`   | Mouse look stopping drift inertia       | `0.0`                     | `0.0`                 |
+| `CameraSensitivity`        | System camera rotation sensitivity      | `0.35`                    | `0.35`                |
 | `MaxAnisotropy`            | Anisotropic texture filtering           | `8`                       | `16`                  |
 | `MaxShadowResolution`      | Dynamic shadow resolution               | `1024`                    | `2048`                |
 | `MaxMultisamples`          | Multi-sample anti-aliasing (MSAA)       | `1`                       | `4`                   |
@@ -1242,18 +1246,23 @@ dxvk.enableAsync = False
 | `bEnableMouseSmoothing`    | Mouse input smoothing                   | `False`                   | `False`               |
 | `bViewAccelerationEnabled` | Mouse view acceleration                 | `False`                   | `False`               |
 
-### Fable Anniversary: Ultrawide (32:9) & 21:9 HUD Setup
+### Fable Anniversary: Ultrawide (32:9), Camera & Eye Comfort Setup
 
-Fable Anniversary uses Unreal Engine 3 which natively implements Vert- cropping at aspect ratios wider than 16:9, cutting off vertical field of view and pinning HUD elements to the far outer edges of 5120×1440 displays.
+Fable Anniversary uses Unreal Engine 3 which natively implements Vert- cropping at aspect ratios wider than 16:9, cutting off vertical field of view. Furthermore, mouse input emulates an analog controller thumbstick, and default camera settings cause severe motion sickness and nausea.
 
-1. **Flawless Widescreen Installation:** Download and install [Flawless Widescreen](https://www.flawlesswidescreen.org/).
+1. **Flawless Widescreen Installation:** Download and install [Flawless Widescreen](https://www.flawlesswidescreen.org/) (tested on v1.0.15).
 2. **Plugin Activation:** In the Plugins list, search for and activate the **Fable Anniversary** plugin.
-3. **Aspect Ratio & FOV:** Ensure **FOV Fix** and **Fix Letterbox** are enabled to restore Hor+ rendering across 5120×1440.
-4. **21:9 HUD Constraint:** Under the plugin options, enable **HUD Constrained** (selecting 21:9 or 16:9). This pulls the health bar, Guild seal, and spell hotkeys from the outer perimeter into the central 21:9 viewing area, eliminating continuous neck rotation while preserving full 32:9 panoramic immersion.
-5. **Frame Pacing & Stutter Fix:** Always set `UseVsync=False` in `WellingtonSystemSettings.ini` as in-game VSync causes heavy micro-stutter. Cap frame rates (60 FPS or monitor refresh rate) externally via NVIDIA Control Panel, AMD Software, or RTSS.
-6. **Eye Comfort Tuning:** Setting `DepthOfField=False`, `AllowRadialBlur=False`, and `Bloom=False` removes severe visual haze and blinding light bloom, dramatically reducing ocular fatigue during extended gameplay sessions.
+3. **Aspect Ratio & FOV:** Ensure **FOV Fix** and **Remove Letterbox** are enabled to restore Hor+ rendering across 5120×1440. Set **FOV Fine adjustment** to **`+0.50`** (note: the slider steps by 0.5 initially, then in 0.25 increments; `+0.50` is the optimal baseline) to widen the camera view and prevent peripheral optical stretching.
+4. **Critical 32:9 WSGF Bug Warning (HUD Fix):** On 32:9 resolutions (5120×1440), **do NOT enable "HUD Fix" or "HUD Constrained to 16x9"** in Flawless Widescreen. As verified by WSGF, enabling HUD Fix on 32:9 causes all in-game menus (inventory, levelling, pause) to produce a black screen and strips the entire HUD upon returning to the game. Leave both HUD options unchecked on 32:9.
+5. **Frame Pacing & Framerate Cap Unlock:** By default, `WellingtonEngine.ini` clamps maximum frame rate to 62 FPS. Setting `MaxSmoothedFrameRate=144` and `MinSmoothedFrameRate=60` unlocks smooth 60FPS+ / 144Hz performance. Keep in-engine `UseVsync=False` to prevent frame pacing stutter.
+6. **Camera Smoothing & Nausea Elimination:**
+   - Setting `Acceleration=1.0`, `Smoothing=0.0`, and `EscapeVelocityStrength=0.0` in `WellingtonGame.ini` removes the artificial thumbstick lag and stopping drift.
+   - In `WellingtonInput.ini` and `BaseInput.ini`, ensure `bEnableMouseSmoothing=false` and `bViewAccelerationEnabled=false` are set.
+   - **In-Game Setting:** Navigate to **Options → Game / Camera Settings** and turn **Camera Follow to `OFF`**. This prevents the camera from auto-centering and constantly fighting player mouse movement.
+   - **Control Scheme:** In **Options → Controls**, switch layout to **Traditional (TLC)** to decouple character direction from mouse aim.
+7. **Visual Comfort:** Setting `DepthOfField=False`, `UseDOF=False`, `AllowRadialBlur=False`, and `Bloom=False` removes severe visual haze, radial sprint smearing, and blinding specular glare across the 5120-wide canvas.
 
-**Sources:** [PCGamingWiki — Fable Anniversary](https://www.pcgamingwiki.com/wiki/Fable_Anniversary), [Flawless Widescreen](https://www.flawlesswidescreen.org/), [Steam Community — Fable Anniversary Tweaks](https://steamcommunity.com/sharedfiles/filedetails/?id=227181048)
+**Sources:** [PCGamingWiki — Fable Anniversary](https://www.pcgamingwiki.com/wiki/Fable_Anniversary), [WSGF — Fable Anniversary](https://www.wsgf.org/dr/fable-anniversary/en), [Flawless Widescreen](https://www.flawlesswidescreen.org/), [Steam Community — Fable Anniversary Tweaks](https://steamcommunity.com/sharedfiles/filedetails/?id=227181048)
 
 ---
 

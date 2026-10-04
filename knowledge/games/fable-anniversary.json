@@ -224,38 +224,116 @@
         "quality": "False"
       },
       "notes": "Disables non-linear camera acceleration for consistent aim and tracking."
+    },
+    {
+      "key": "MaxSmoothedFrameRate",
+      "file": "WellingtonEngine.ini",
+      "section": "[Engine.Engine]",
+      "effect": "Maximum engine frame rate smoothing clamp (FPS cap).",
+      "recommendations": {
+        "performance": "144",
+        "balanced": "144",
+        "quality": "144"
+      },
+      "notes": "By default, UE3 clamps this to 62 FPS. Setting to 144 unlocks high-refresh-rate gameplay."
+    },
+    {
+      "key": "MinSmoothedFrameRate",
+      "file": "WellingtonEngine.ini",
+      "section": "[Engine.Engine]",
+      "effect": "Minimum engine frame rate smoothing clamp floor.",
+      "recommendations": {
+        "performance": "60",
+        "balanced": "60",
+        "quality": "60"
+      },
+      "notes": "Raises the frame rate smoothing floor from 22 to 60 FPS to prevent aggressive frame throttling."
+    },
+    {
+      "key": "Acceleration",
+      "file": "WellingtonGame.ini",
+      "section": "[MobileInputZone]",
+      "effect": "Mouse stick-emulation look acceleration curve multiplier.",
+      "recommendations": {
+        "performance": "1.0",
+        "balanced": "1.0",
+        "quality": "1.0"
+      },
+      "notes": "Default of 12.0 causes extreme joystick acceleration on mouse movement. Setting to 1.0 removes the sticky acceleration curve."
+    },
+    {
+      "key": "Smoothing",
+      "file": "WellingtonGame.ini",
+      "section": "[MobileInputZone]",
+      "effect": "Mouse look smoothing interpolation delay.",
+      "recommendations": {
+        "performance": "0.0",
+        "balanced": "0.0",
+        "quality": "0.0"
+      },
+      "notes": "Setting to 0.0 removes input lag and camera float."
+    },
+    {
+      "key": "EscapeVelocityStrength",
+      "file": "WellingtonGame.ini",
+      "section": "[MobileInputZone]",
+      "effect": "Mouse look stopping drift inertia.",
+      "recommendations": {
+        "performance": "0.0",
+        "balanced": "0.0",
+        "quality": "0.0"
+      },
+      "notes": "Setting to 0.0 eliminates camera drift after stopping mouse movement."
+    },
+    {
+      "key": "CameraSensitivity",
+      "file": "WellingtonSystemSettings.ini",
+      "section": "[SystemSettings]",
+      "effect": "System camera rotation sensitivity.",
+      "recommendations": {
+        "performance": "0.35",
+        "balanced": "0.35",
+        "quality": "0.35"
+      },
+      "notes": "Reduces high mouse twitchiness to prevent nausea during camera rotation."
     }
   ],
   "engine_overrides": [
     {
       "key": "FOV / AspectRatio",
-      "behaviour": "UE3 natively implements Vert- cropping on aspect ratios wider than 16:9, severely truncating vertical visibility at 32:9 (5120x1440) and stretching HUD elements to the extreme physical edges.",
-      "action": "Use Flawless Widescreen with the Fable Anniversary plugin. Enable FOV Fix and set 'HUD Constrained' to 21:9 (or 16:9) to center the interface within natural eye gaze."
+      "behaviour": "UE3 natively implements Vert- cropping on aspect ratios wider than 16:9, severely truncating vertical visibility at 32:9 (5120x1440).",
+      "action": "Use Flawless Widescreen with the Fable Anniversary plugin. Enable FOV Fix and Remove Letterbox. On 32:9 resolutions (5120x1440), UNCHECK 'HUD Fix' and 'HUD Constrained to 16x9' to avoid menu black-screen bugs."
     },
     {
       "key": "UseVsync",
       "behaviour": "In-engine VSync introduces severe frame pacing judder and stutter.",
-      "action": "Set UseVsync=False in INI and lock frame rate via GPU driver or RTSS."
+      "action": "Set UseVsync=False in INI, unlock MaxSmoothedFrameRate in WellingtonEngine.ini, and lock frame rate via GPU driver or RTSS."
     }
   ],
   "manual_only_settings": [
     {
-      "setting": "Flawless Widescreen Fable Anniversary Plugin",
+      "setting": "Flawless Widescreen 32:9 Configuration",
       "location": "Flawless Widescreen Utility → Fable Anniversary",
-      "recommendation": "Enable 'FOV Fix', enable 'Fix Letterbox', and configure 'HUD Constrained' to 21:9 (or 16:9)",
-      "reason": "Restores Hor+ field of view at 5120x1440 and clamps HUD elements within comfortable central vision, eliminating neck strain and edge distortion."
+      "recommendation": "Enable 'FOV Fix', enable 'Remove Letterbox', set FOV Fine adjustment to '+0.50' (first step on slider), and UNCHECK both 'HUD Fix' and 'HUD Constrained to 16x9'",
+      "reason": "Restores Hor+ field of view without menu black-screen corruption on 32:9 displays as verified by WSGF."
+    },
+    {
+      "setting": "Camera Follow (Auto-Center)",
+      "location": "Options → Game / Camera Settings",
+      "recommendation": "OFF",
+      "reason": "Critical Nausea Fix: Prevents the camera from auto-centering and fighting the mouse during WASD movement."
+    },
+    {
+      "setting": "Control Scheme",
+      "location": "Options → Controls",
+      "recommendation": "Traditional (TLC)",
+      "reason": "Decouples movement direction from camera angle."
     },
     {
       "setting": "Frame Rate Cap & VRR",
       "location": "NVIDIA Control Panel / AMD Software / RTSS",
-      "recommendation": "Cap frame rate to monitor refresh rate (or 60/120 FPS)",
+      "recommendation": "Cap frame rate to monitor refresh rate (or 141/120 FPS)",
       "reason": "Ensures smooth 60FPS+ frame pacing without in-engine VSync micro-stutter."
-    },
-    {
-      "setting": "Flash Scaleform 60 FPS Menu Fix",
-      "location": "Nexus Mods (Fable Anniversary 60 FPS Menu Mod)",
-      "recommendation": "Optional community mod",
-      "reason": "Fable Anniversary menus natively run in Flash capped at 30 FPS. The community mod unlocks menus to 60 FPS."
     }
   ],
   "intro_skip": [
@@ -279,14 +357,19 @@
   ],
   "notes": [
     "Fable Anniversary runs on a modified Unreal Engine 3 build (codename WellingtonGame).",
-    "On 32:9 displays (5120x1440), Flawless Widescreen is required for Hor+ FOV and 21:9 HUD constraining.",
-    "Eye comfort profile disables DoF, Radial Blur, Motion Blur, and Specular Bloom, while setting 1:1 mouse input."
+    "On 32:9 displays (5120x1440), Flawless Widescreen is required for Hor+ FOV. Do NOT enable HUD Fix on 32:9 to prevent black screen menus.",
+    "Eye comfort profile disables DoF, Radial Blur, Motion Blur, and Specular Bloom, while setting 1:1 mouse input and turning off Camera Follow."
   ],
   "sources": [
     {
       "url": "https://www.pcgamingwiki.com/wiki/Fable_Anniversary",
       "type": "wiki",
       "label": "PCGamingWiki — Fable Anniversary"
+    },
+    {
+      "url": "https://www.wsgf.org/dr/fable-anniversary/en",
+      "type": "wiki",
+      "label": "WSGF — Fable Anniversary"
     },
     {
       "url": "https://www.flawlesswidescreen.org/",
