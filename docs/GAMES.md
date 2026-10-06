@@ -1336,6 +1336,44 @@ Fable Anniversary uses Unreal Engine 3 which natively implements Vert- cropping 
 
 ---
 
+## Star Wars: Outlaws
+
+**Engine:** Snowdrop (DirectX 12)
+
+| Platform                                   | Config Path                                                     | Format    |
+| ------------------------------------------ | --------------------------------------------------------------- | --------- |
+| Ubisoft Connect / Steam / Epic Games Store | `%USERPROFILE%\Documents\My Games\Outlaws\graphic settings.cfg` | CFG (Lua) |
+| Ubisoft Connect / Steam / Epic Games Store | `%USERPROFILE%\Documents\My Games\Outlaws\state.cfg`            | CFG (Lua) |
+
+> **Note:** Configuration files are stored as Lua-style key-value tables in `%USERPROFILE%\Documents\My Games\Outlaws\`. Files are encoded strictly as UTF-8 without BOM with LF line endings.
+
+**Key settings:**
+
+| Key                     | Effect                               | Recommended (performance) | Recommended (quality)                 |
+| ----------------------- | ------------------------------------ | ------------------------- | ------------------------------------- |
+| `dof2`                  | Depth of field blur                  | `"Off"`                   | `"High"` (or `"Off"` for eye comfort) |
+| `chromatic aberration`  | Lens chromatic aberration            | `false`                   | `false`                               |
+| `vignette`              | Peripheral edge darkening            | `false`                   | `false`                               |
+| `motion blur`           | Camera and object motion blur        | `false`                   | `false`                               |
+| `lens cinematic effect` | Anamorphic streaks and lens flares   | `"Off"`                   | `"Low"` (or `"Off"` for eye comfort)  |
+| `frameGeneration2`      | DLSS 3 Frame Generation              | `"2x"`                    | `"2x"` (`"Off"` for Steam Link)       |
+| `scaleType`             | Upscaler backend                     | `"DLSS"`                  | `"DLSS"`                              |
+| `scaleQuality`          | Temporal upscaling preset            | `"Balanced"`              | `"Quality"`                           |
+| `customFPSLimit`        | In-engine frame-rate limiter         | `144`                     | `144` (`60` for Steam Link)           |
+| `rtdiffuse`             | Ray-traced diffuse indirect lighting | `"Low"`                   | `"Medium"` / `"High"`                 |
+| `rtspec`                | Ray-traced specular reflections      | `"Low"`                   | `"Medium"` / `"High"`                 |
+| `rtxdi`                 | RTX Direct Illumination path tracing | `"Off"`                   | `"Off"`                               |
+
+### Star Wars: Outlaws: Ultrawide (32:9) & Steam Link Streaming Setup
+
+1. **Ultrawide (5120×1440) Eye Comfort:** On super-ultrawide 32:9 monitors, optical refocusing strain and peripheral smearing are major causes of visual fatigue. Setting `dof2 = "Off"`, `["chromatic aberration"] = false`, `vignette = false`, and `["lens cinematic effect"] = "Off"` removes artificial blurring and edge distortions across peripheral panels.
+2. **DLSS Frame Generation (90+ FPS):** On RTX 40-series cards, enabling `frameGeneration2 = "2x"` combined with `scaleQuality = "Quality"` and `nvReflex = "On"` achieves 90+ FPS in dense open-world environments across 5120×1440.
+3. **Steam Link 1080p Streaming (Flat 60 FPS):** When streaming over Steam Link, set `windowMode = "Borderless"` in `state.cfg` to prevent capture black screens and display mode reset crashes. Disable Frame Generation (`frameGeneration2 = "Off"`) to avoid stream latency, set a flat `customFPSLimit = 60`, disable in-game VSync (`presentInterval = "Off"`), and reallocate the 73% pixel reduction headroom into High-quality ray-traced lighting, particles, and vegetation.
+
+**Sources:** [PCGamingWiki — Star Wars Outlaws](https://www.pcgamingwiki.com/wiki/Star_Wars_Outlaws)
+
+---
+
 ## Adding More Games
 
 Create a pull request adding a new section to this file following the template above. Include:

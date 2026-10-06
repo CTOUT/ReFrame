@@ -1,0 +1,205 @@
+{
+  "_template_version": "1",
+  "game": "Star Wars: Outlaws",
+  "engine": "Snowdrop",
+  "profile_version": "1.0.0",
+  "updated": "2026-10-06",
+  "platforms": [
+    {
+      "store": "Ubisoft Connect",
+      "config_files": [
+        {
+          "file": "graphic settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Outlaws\\graphic settings.cfg",
+          "format": "cfg",
+          "notes": "UTF-8 without BOM, LF line endings. Lua-style flat key-value table. Primary graphics, ray tracing, and upscaler settings."
+        },
+        {
+          "file": "state.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Outlaws\\state.cfg",
+          "format": "cfg",
+          "notes": "UTF-8 without BOM, LF line endings. Contains display resolution, refresh rate, window mode, audio, and input settings."
+        }
+      ]
+    },
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "file": "graphic settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Outlaws\\graphic settings.cfg",
+          "format": "cfg"
+        },
+        {
+          "file": "state.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Outlaws\\state.cfg",
+          "format": "cfg"
+        }
+      ]
+    },
+    {
+      "store": "Epic Games Store",
+      "config_files": [
+        {
+          "file": "graphic settings.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Outlaws\\graphic settings.cfg",
+          "format": "cfg"
+        },
+        {
+          "file": "state.cfg",
+          "path": "%USERPROFILE%\\Documents\\My Games\\Outlaws\\state.cfg",
+          "format": "cfg"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "dof2",
+      "file": "graphic settings.cfg",
+      "effect": "Depth of field camera blur in gameplay and cinematics.",
+      "recommendations": {
+        "performance": "\"Off\"",
+        "balanced": "\"Low\"",
+        "quality": "\"High\""
+      },
+      "notes": "Set to \"Off\" when eye_comfort / motion_comfort is active to eliminate optical refocusing strain across ultrawide displays. Set to \"High\" for couch TV viewing."
+    },
+    {
+      "key": "chromatic aberration",
+      "file": "graphic settings.cfg",
+      "effect": "Peripheral lens colour-fringing simulation.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Keep false for all profiles. Eliminates eye strain and prevents high-frequency video encoding degradation on game streams."
+    },
+    {
+      "key": "vignette",
+      "file": "graphic settings.cfg",
+      "effect": "Screen edge darkening lens effect.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Keep false for eye comfort to prevent tunnel vision on wide viewing angles."
+    },
+    {
+      "key": "motion blur",
+      "file": "graphic settings.cfg",
+      "effect": "Camera and per-object motion smearing.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "false",
+        "quality": "false"
+      },
+      "notes": "Keep false for all goals. Primary nausea and visual fatigue trigger."
+    },
+    {
+      "key": "lens cinematic effect",
+      "file": "graphic settings.cfg",
+      "effect": "Anamorphic streaks and cinematic lens flares.",
+      "recommendations": {
+        "performance": "\"Off\"",
+        "balanced": "\"Off\"",
+        "quality": "\"Low\""
+      },
+      "notes": "Set to \"Off\" for eye comfort and streaming clarity."
+    },
+    {
+      "key": "frameGeneration2",
+      "file": "graphic settings.cfg",
+      "effect": "DLSS 3 / FSR frame generation switch (\"2x\" or \"Off\").",
+      "recommendations": {
+        "performance": "\"2x\"",
+        "balanced": "\"Off\"",
+        "quality": "\"2x\""
+      },
+      "notes": "Enables 90+ FPS on RTX 40-series cards at 5120x1440. Recommend \"Off\" for 60Hz Steam Link streaming to avoid input latency and stream packet jitter."
+    },
+    {
+      "key": "scaleType",
+      "file": "graphic settings.cfg",
+      "effect": "Active temporal upscaler type (\"DLSS\", \"FSR\", \"XeSS\").",
+      "recommendations": {
+        "performance": "\"DLSS\"",
+        "balanced": "\"DLSS\"",
+        "quality": "\"DLSS\""
+      },
+      "notes": "Use DLSS on NVIDIA GeForce RTX GPUs."
+    },
+    {
+      "key": "scaleQuality",
+      "file": "graphic settings.cfg",
+      "effect": "Upscaler resolution preset (\"Quality\", \"Balanced\", \"Performance\").",
+      "recommendations": {
+        "performance": "\"Balanced\"",
+        "balanced": "\"Quality\"",
+        "quality": "\"Quality\""
+      },
+      "notes": "Quality renders internally at ~67% per dimension with sharp temporal reconstruction."
+    },
+    {
+      "key": "customFPSLimit",
+      "file": "graphic settings.cfg",
+      "effect": "In-engine frame rate cap in FPS.",
+      "recommendations": {
+        "performance": "144",
+        "balanced": "60",
+        "quality": "144"
+      },
+      "notes": "Set to 60 for flat 60Hz Steam Link streaming. Set to 144 for 90FPS+ G-Sync ultrawide play."
+    },
+    {
+      "key": "rtdiffuse",
+      "file": "graphic settings.cfg",
+      "effect": "Ray-traced diffuse indirect lighting quality.",
+      "recommendations": {
+        "performance": "\"Low\"",
+        "balanced": "\"Medium\"",
+        "quality": "\"High\""
+      },
+      "notes": "Snowdrop engine uses hardware RT for global illumination. Low is optimal for high-res ultrawide 90FPS+; Medium/High can be enabled at 1080p."
+    },
+    {
+      "key": "rtspec",
+      "file": "graphic settings.cfg",
+      "effect": "Ray-traced specular reflections quality.",
+      "recommendations": {
+        "performance": "\"Low\"",
+        "balanced": "\"Medium\"",
+        "quality": "\"High\""
+      },
+      "notes": "Specular RT reflection resolution. Low at 5120x1440; Medium/High at 1080p."
+    },
+    {
+      "key": "rtxdi",
+      "file": "graphic settings.cfg",
+      "effect": "NVIDIA RTX Direct Illumination path tracing.",
+      "recommendations": {
+        "performance": "\"Off\"",
+        "balanced": "\"Off\"",
+        "quality": "\"Off\""
+      },
+      "notes": "Extreme compute cost. Keep Off for 90FPS+ targets."
+    }
+  ],
+  "notes": [
+    "Star Wars: Outlaws runs on Ubisoft Massive's Snowdrop engine using DirectX 12.",
+    "Configurations are stored as Lua-style tables in %USERPROFILE%\\Documents\\My Games\\Outlaws\\.",
+    "Saved strictly as UTF-8 without BOM with LF line endings.",
+    "Ray tracing is baked into the Snowdrop rendering pipeline; RTXDI should remain Off for high frame-rate stability.",
+    "For Steam Link or remote play, set windowMode = \"Borderless\" in state.cfg and cap customFPSLimit = 60 to prevent encoder stutter.",
+    "Eye comfort profile disables Motion Blur, Chromatic Aberration, Vignette, Depth of Field, and Lens Cinematic Effects."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Star_Wars_Outlaws",
+      "type": "wiki",
+      "label": "PCGamingWiki — Star Wars Outlaws"
+    }
+  ]
+}
