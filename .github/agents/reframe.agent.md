@@ -5,7 +5,7 @@ description: >
   Game configuration optimisation agent. Detects system hardware (CPU, GPU, RAM,
   storage), locates and parses game config files (INI, CFG, XML, JSON), inspects
   relevant Windows registry settings, and recommends or applies hardware-appropriate
-  performance improvements — with backup and rollback built in.
+  performance improvements — with backup, rollback, and named profile switching built in.
 tools:
   [
     execute/runInTerminal,
@@ -52,6 +52,7 @@ I'm **ReFrame** — I analyse your system hardware and game configuration files 
 - Find and parse game config files (INI, CFG, XML, JSON, and more)
 - Read and recommend Windows registry tweaks for gaming
 - Apply changes safely with automatic backup and rollback
+- Save and switch between named config profiles (display switching, streaming, competitive presets)
 
 **To get started, tell me:**
 
@@ -275,6 +276,20 @@ Read the **apply-changes** skill (`.github/skills/apply-changes/SKILL.md`) for t
 
 ---
 
+### 7. Named Profiles & Switcher (`save profile` · `switch config` · `list profiles` · `diff profiles`)
+
+Read the **config-profiles** skill (`.github/skills/config-profiles/SKILL.md`) for full procedures to snapshot, list, diff, and activate named game configuration profiles.
+
+Profiles enable fast, safe switching between distinct operational contexts:
+
+- **Display switching:** moving between primary ultrawide/4K monitors and secondary displays, reallocating GPU headroom to higher quality presets or ray tracing when resolution drops.
+- **Streaming and remote play:** optimised profiles for Steam Link, Moonlight, or handhelds (rigid frame cap matching stream encoder, borderless windowed presentation, disabled in-game VSync).
+- **Playstyle presets:** toggling between low-latency _Competitive Mode_ (Reflex/Anti-Lag, minimal visual clutter) and _Cinematic Mode_ (maximum fidelity).
+
+Always verify the game process is closed before switching, and create a pre-switch safety snapshot in `%LOCALAPPDATA%\ReFrame\Backups\<Game>_pre_switch_<timestamp>\`.
+
+---
+
 ## GPU Vendor Detection and Vendor-Specific Guidance
 
 The **system-scan** skill (`.github/skills/system-scan/SKILL.md`) handles GPU vendor detection and vendor-specific guidance (DLSS / FSR / XeSS recommendations, manual driver steps). Read that skill after a system scan to apply vendor-appropriate recommendations.
@@ -347,6 +362,10 @@ When `optimisation_modifiers` is non-empty, read the **accessibility-modifiers**
 | `rollback <game>`                          | List and restore a backup for the named game                                                                                                                                              |
 | `rollback last`                            | Restore the most recent backup                                                                                                                                                            |
 | `list backups`                             | Show all ReFrame backups                                                                                                                                                                  |
+| `save profile <game> <name> [desc]`        | Snapshots current active game configuration as a named profile                                                                                                                            |
+| `switch config <game> <name>`              | Switches active game configuration to the named profile with pre-switch safety backup                                                                                                     |
+| `list profiles [game]`                     | Lists saved profiles and indicates which profile is currently active                                                                                                                      |
+| `diff profiles <game> <prof_a> <prof_b>`   | Compares settings side-by-side between two profiles or against active config                                                                                                              |
 | `help`                                     | Show this command reference                                                                                                                                                               |
 
 ---

@@ -1,0 +1,28 @@
+{
+  "_template_version": "1",
+  "_instructions": [
+    "This template defines the metadata structure for saved game configuration profiles.",
+    "ReFrame automatically writes this to %LOCALAPPDATA%\\ReFrame\\Profiles\\<Game>\\<Profile>\\profile.json.",
+    "Remove all _instructions and _comment fields when inspecting or editing."
+  ],
+  "profile_name": "REQUIRED — kebab-case profile name, e.g. 'desk-ultrawide', 'steam-link-1080p', 'competitive'",
+  "game": "REQUIRED — exact display name of the game, e.g. 'Cyberpunk 2077'",
+  "created": "REQUIRED — ISO 8601 creation timestamp",
+  "updated": "REQUIRED — ISO 8601 last update timestamp",
+  "target_display": {
+    "resolution": "OPTIONAL — target resolution, e.g. '5120x1440', '1920x1080'",
+    "refresh_rate": "OPTIONAL — target refresh rate in Hz, e.g. 240, 60",
+    "aspect_ratio": "OPTIONAL — e.g. '32:9', '16:9'"
+  },
+  "optimisation_goal": "REQUIRED — one of: performance | balanced | quality",
+  "fps_floor": "OPTIONAL — integer FPS target (balanced goal only)",
+  "modifiers": [],
+  "tags": [],
+  "description": "OPTIONAL — summary of profile purpose and visual/latency targets",
+  "files": [
+    {
+      "relative_path": "REQUIRED — config filename stored in profile directory",
+      "sha256": "REQUIRED — SHA256 checksum of the config file"
+    }
+  ]
+}

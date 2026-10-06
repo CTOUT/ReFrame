@@ -13,6 +13,7 @@ A **GitHub Copilot agent** for game configuration optimisation. ReFrame detects 
 - **GPU vendor guidance** — recommends DLSS (NVIDIA), FSR (AMD), or XeSS (Intel) where applicable
 - **Safe application** — every change is previewed, confirmed, and backed up before writing
 - **Rollback** — restore any previous config or registry state from the backup archive
+- **Named profile switching** — save, list, diff, and switch between configurations for multi-monitor setups, remote play (Steam Link), or competitive presets
 
 > **Future:** Direct integration with AMD Adrenalin, NVIDIA Control Panel, and Intel Arc Control settings is planned but not yet available.
 
@@ -87,17 +88,21 @@ Assesses Windows gaming registry settings (multimedia scheduler, GPU scheduling,
 
 ### All commands
 
-| Command                 | Description                                           |
-| ----------------------- | ----------------------------------------------------- |
-| `scan system`           | Detect hardware profile                               |
-| `optimise <game>`       | Full optimisation workflow for the named game         |
-| `analyse config <path>` | Analyse a specific config file                        |
-| `check registry`        | Assess Windows gaming registry settings               |
-| `apply`                 | Apply the pending change preview (after confirmation) |
-| `rollback <game>`       | Restore a backup for the named game                   |
-| `rollback last`         | Restore the most recent backup                        |
-| `list backups`          | Show all ReFrame backups                              |
-| `help`                  | Show command reference                                |
+| Command                       | Description                                           |
+| ----------------------------- | ----------------------------------------------------- |
+| `scan system`                 | Detect hardware profile                               |
+| `optimise <game>`             | Full optimisation workflow for the named game         |
+| `analyse config <path>`       | Analyse a specific config file                        |
+| `check registry`              | Assess Windows gaming registry settings               |
+| `apply`                       | Apply the pending change preview (after confirmation) |
+| `rollback <game>`             | Restore a backup for the named game                   |
+| `rollback last`               | Restore the most recent backup                        |
+| `list backups`                | Show all ReFrame backups                              |
+| `save profile <game> <name>`  | Save active config as a named profile                 |
+| `switch config <game> <name>` | Switch active config to a named profile               |
+| `list profiles [game]`        | Show saved profiles and active state                  |
+| `diff profiles <game> <a <b`  | Compare settings between two profiles                 |
+| `help`                        | Show command reference                                |
 
 ---
 
@@ -138,6 +143,7 @@ ReFrame/
 │   ├── skills/
 │   │   ├── accessibility-modifiers/← on-demand modifier guidance
 │   │   ├── apply-changes/          ← backup/apply/rollback workflow
+│   │   ├── config-profiles/        ← named profile & switcher workflow
 │   │   ├── knowledge-capture/      ← unknown-game profile capture
 │   │   ├── registry-analysis/      ← on-demand registry review
 │   │   └── system-scan/            ← hardware detection skill

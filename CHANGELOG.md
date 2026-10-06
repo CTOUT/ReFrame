@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Config Profiles & Switcher** (`.github/skills/config-profiles/SKILL.md`):
+  - Support for creating, listing, diffing, and switching named game configuration profiles stored in `%LOCALAPPDATA%\ReFrame\Profiles\<Game>\<Profile>\`.
+  - Process state guardrail preventing profile swaps while the target game is actively executing.
+  - Automatic pre-switch safety snapshots written to `%LOCALAPPDATA%\ReFrame\Backups\<Game>_pre_switch_<timestamp>\`.
+  - Contextual strategies for display switching with GPU headroom reallocation, streaming and remote play (Steam Link, Moonlight), and competitive low-latency presets.
+- New agent commands in `reframe.agent.md`: `save profile <game> <name>`, `switch config <game> <name>`, `list profiles [game]`, and `diff profiles <game> <prof_a> <prof_b>`.
+- Profile troubleshooting guide in `docs/TROUBLESHOOTING.md`.
+- `knowledge/templates/profile.template.json` metadata template for profile definitions.
+
 ---
 
 ## [v1.2.0] — 2026-06-23

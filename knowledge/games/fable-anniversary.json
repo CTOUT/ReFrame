@@ -2,8 +2,8 @@
   "game": "Fable Anniversary",
   "engine": "Unreal Engine 3",
   "engine_version": "3.0 (Wellington Build)",
-  "profile_version": "1.0.0",
-  "updated": "2026-10-02",
+  "profile_version": "1.2.0",
+  "updated": "2026-10-06",
   "platforms": [
     {
       "store": "Steam",
@@ -11,27 +11,33 @@
       "config_files": [
         {
           "file": "WellingtonSystemSettings.ini",
-          "path": "%USERPROFILE%\\Documents\\My Games\\UnrealEngine3\\WellingtonGame\\Config\\WellingtonSystemSettings.ini",
+          "path": "%GAME_DIR%\\WellingtonGame\\Config\\WellingtonSystemSettings.ini",
           "format": "ini",
-          "notes": "Primary graphics, resolution, and post-processing configuration. Edits made directly in the Steam install folder will be ignored or overwritten — always edit in the My Games user documents directory (including OneDrive-redirected paths such as O:\\OneDrive\\Documents\\). If settings reset after starting the game, set the file to Read-Only."
+          "notes": "Primary graphics, resolution, and post-processing configuration. The Steam install folder (%GAME_DIR%\\WellingtonGame\\Config\\) is the authoritative active runtime path. Legacy user documents paths are not used. Must be set to Read-Only to prevent resolution resets."
         },
         {
           "file": "WellingtonEngine.ini",
-          "path": "%USERPROFILE%\\Documents\\My Games\\UnrealEngine3\\WellingtonGame\\Config\\WellingtonEngine.ini",
+          "path": "%GAME_DIR%\\WellingtonGame\\Config\\WellingtonEngine.ini",
           "format": "ini",
-          "notes": "Engine scalability and subsystem settings."
+          "notes": "Engine scalability and subsystem settings. Must retain root [URL] section defining the entry map (Map=Region_GameMainEntry.umap) and standard UTF-8 without BOM (ANSI/ASCII). If a UTF-8 BOM (0xEF, 0xBB, 0xBF) is present, the parser corrupts the first section header to ï»¿[URL], failing map loading and stripping the section. Must remain writable (IsReadOnly = $false)."
         },
         {
           "file": "WellingtonInput.ini",
-          "path": "%USERPROFILE%\\Documents\\My Games\\UnrealEngine3\\WellingtonGame\\Config\\WellingtonInput.ini",
+          "path": "%GAME_DIR%\\WellingtonGame\\Config\\WellingtonInput.ini",
           "format": "ini",
-          "notes": "User-level input bindings and mouse control settings."
+          "notes": "User-level input bindings and right-stick/look controller sensitivity. In UE3, writing Bindings= entries without leading dot notation overrides the array, wiping inherited bindings. All 174 baseline bindings must be explicitly preserved. Saved as pure UTF-8 without BOM."
+        },
+        {
+          "file": "WellingtonGame.ini",
+          "path": "%GAME_DIR%\\WellingtonGame\\Config\\WellingtonGame.ini",
+          "format": "ini",
+          "notes": "Game logic and mobile/touch zone emulation settings. Controls mouse-to-stick acceleration curves and smoothing under [MobileInputZone]. Must be saved as pure UTF-8 without BOM."
         },
         {
           "file": "BaseInput.ini",
           "path": "%GAME_DIR%\\Engine\\Config\\BaseInput.ini",
           "format": "ini",
-          "notes": "Global engine input defaults for disabling mouse smoothing and mouse acceleration."
+          "notes": "Global engine baseline input definitions. Must remain pure UTF-8 without BOM (ANSI/ASCII). If a UTF-8 BOM is present, the parser corrupts ï»¿[Engine.PlayerInput], causing the engine to discard all baseline key and gamepad bindings."
         }
       ]
     }
@@ -71,7 +77,7 @@
         "balanced": "False",
         "quality": "False"
       },
-      "notes": "Eye Comfort priority: Disabling DoF eliminates constant optical refocusing strain across a wide 5120x1440 screen and restores sharp character and environmental clarity."
+      "notes": "Desktop (<1m on 32:9): Disabling DoF eliminates constant optical refocusing strain across a wide screen and restores sharp environmental clarity. Couch TV / Streaming (3m+ on 16:9): Set DepthOfField=True to restore cinematic depth of field without optical strain."
     },
     {
       "key": "AllowRadialBlur",
@@ -83,7 +89,7 @@
         "balanced": "False",
         "quality": "False"
       },
-      "notes": "Eye Comfort / Motion Comfort priority: Primary trigger for visual vertigo and nausea, especially on 32:9 where radial distortion stretches severely across peripheral vision."
+      "notes": "Desktop (<1m on 32:9): Primary trigger for visual vertigo and nausea, especially on 32:9 where radial distortion stretches severely across peripheral vision. Couch TV / Streaming (3m+ on 16:9): Set AllowRadialBlur=True to restore intended sprint and combat feedback."
     },
     {
       "key": "MotionBlur",
@@ -112,13 +118,13 @@
       "key": "Bloom",
       "file": "WellingtonSystemSettings.ini",
       "section": "[SystemSettings]",
-      "effect": "Lionhead HDR bloom and intense atmospheric light scattering.",
+      "effect": "Lionhead HDR bloom and exposure tone mapping pass.",
       "recommendations": {
-        "performance": "False",
-        "balanced": "False",
-        "quality": "False"
+        "performance": "True",
+        "balanced": "True",
+        "quality": "True"
       },
-      "notes": "Eye Comfort priority: Fable Anniversary features notoriously harsh and blinding bloom lighting. Disabling or muting bloom relieves prolonged retinal fatigue."
+      "notes": "Must remain True. Lionhead's UE3 rendering pipeline couples scene tone mapping and light exposure to the bloom filter. Setting Bloom=False causes the 3D scene to render pitch black with only a pinprick of light in the center. Use DepthOfField=False instead for eye comfort."
     },
     {
       "key": "bUseSpecularBloom",
@@ -174,10 +180,10 @@
       "effect": "Hardware Multi-Sample Anti-Aliasing (MSAA) level: 1 (Off), 2, 4.",
       "recommendations": {
         "performance": "1",
-        "balanced": "2",
-        "quality": "4"
+        "balanced": "1",
+        "quality": "1"
       },
-      "notes": "High quality anti-aliasing without temporal blur or motion smear."
+      "notes": "Keep at 1 (Off). Forcing hardware MSAA in UE3 with DirectX 9 and HDR floating-point render targets causes lighting auras and render target resolve failures."
     },
     {
       "key": "DynamicLights",
@@ -295,7 +301,31 @@
         "balanced": "0.35",
         "quality": "0.35"
       },
-      "notes": "Reduces high mouse twitchiness to prevent nausea during camera rotation."
+      "notes": "For mouse/keyboard, 0.35 reduces high mouse twitchiness to prevent nausea during camera rotation. For gamepad play, keep CameraSensitivity=1.0 to avoid dampening analog stick turn rate."
+    },
+    {
+      "key": "XboxTypeS_RightX",
+      "file": "WellingtonInput.ini",
+      "section": "[Engine.PlayerInput]",
+      "effect": "Gamepad right analog stick horizontal camera pan binding, deadzone, and speed multiplier.",
+      "recommendations": {
+        "performance": "Bindings=(Name=\"XboxTypeS_RightX\",Command=\"Count bXAxis | Axis aTurn Speed=1.4 DeadZone=0.08\")",
+        "balanced": "Bindings=(Name=\"XboxTypeS_RightX\",Command=\"Count bXAxis | Axis aTurn Speed=1.4 DeadZone=0.08\")",
+        "quality": "Bindings=(Name=\"XboxTypeS_RightX\",Command=\"Count bXAxis | Axis aTurn Speed=1.4 DeadZone=0.08\")"
+      },
+      "notes": "Default DeadZone=0.2 (20%) and Speed=1.0 cause severe camera lag and sluggish horizontal panning on Xbox and Luna controllers. Tuning to DeadZone=0.08 (8%) and Speed=1.4 provides responsive, smooth camera rotation."
+    },
+    {
+      "key": "XboxTypeS_RightY",
+      "file": "WellingtonInput.ini",
+      "section": "[Engine.PlayerInput]",
+      "effect": "Gamepad right analog stick vertical camera tilt binding, deadzone, and speed multiplier.",
+      "recommendations": {
+        "performance": "Bindings=(Name=\"XboxTypeS_RightY\",Command=\"Count bYAxis | Axis aLookup Speed=1.1 DeadZone=0.08\")",
+        "balanced": "Bindings=(Name=\"XboxTypeS_RightY\",Command=\"Count bYAxis | Axis aLookup Speed=1.1 DeadZone=0.08\")",
+        "quality": "Bindings=(Name=\"XboxTypeS_RightY\",Command=\"Count bYAxis | Axis aLookup Speed=1.1 DeadZone=0.08\")"
+      },
+      "notes": "Default DeadZone=0.2 (20%) and Speed=0.8 create heavy vertical input resistance. Tuning to DeadZone=0.08 (8%) and Speed=1.1 eliminates vertical stick delay while maintaining precise vertical aim."
     }
   ],
   "engine_overrides": [
@@ -308,6 +338,26 @@
       "key": "UseVsync",
       "behaviour": "In-engine VSync introduces severe frame pacing judder and stutter.",
       "action": "Set UseVsync=False in INI, unlock MaxSmoothedFrameRate in WellingtonEngine.ini, and lock frame rate via GPU driver or RTSS."
+    },
+    {
+      "key": "ResX / ResY Reset & Read-Only Requirement",
+      "behaviour": "Fable Anniversary resets ResX and ResY to 0 (defaulting to primary desktop resolution) and reverts graphics presets on launch if WellingtonSystemSettings.ini is writable. However, WellingtonEngine.ini must remain writable; locking WellingtonEngine.ini as read-only causes an unhandled exception (0x00000001 in KERNELBASE.dll) during early engine initialization.",
+      "action": "Set WellingtonSystemSettings.ini to Read-Only (IsReadOnly = $true) after configuring resolutions. Keep WellingtonEngine.ini writable (IsReadOnly = $false), ensure its root [URL] section (Map=Region_GameMainEntry.umap) is present, and save files strictly as UTF-8 WITHOUT BOM."
+    },
+    {
+      "key": "UTF-8 BOM Parser Rejection",
+      "behaviour": "Lionhead's custom UE3 parser is strictly ANSI/ASCII. Any config file saved with a UTF-8 BOM (0xEF, 0xBB, 0xBF) prepends 'ï»¿' to the root section header, causing the engine to discard the entire first section: in WellingtonEngine.ini, ï»¿[URL] fails map loading and crashes on launch; in BaseInput.ini, ï»¿[Engine.PlayerInput] discards all baseline keyboard and controller bindings; in WellingtonGame.ini, ï»¿[Engine.GameInfo] discards game type pointers.",
+      "action": "Always write and save all Fable Anniversary INI files as pure UTF-8 Without BOM (ANSI/ASCII)."
+    },
+    {
+      "key": "Bloom Mandatory for Scene Exposure",
+      "behaviour": "In Lionhead's modified UE3 rendering pipeline, scene luminance and tone mapping exposure pass through the bloom post-processing filter. Disabling Bloom (Bloom=False) causes the entire 3D world and character models to render pitch black with only a central pinprick of light.",
+      "action": "Keep Bloom=True in all profiles. Use DepthOfField=False and AllowRadialBlur=False to achieve eye comfort without breaking scene exposure."
+    },
+    {
+      "key": "PlayerInput Binding Table Array Overwrite",
+      "behaviour": "In WellingtonInput.ini, writing Bindings= entries without the leading dot (.Bindings=) completely flushes and replaces the inherited [Engine.PlayerInput] binding array from BaseInput.ini. Truncating this section drops all character movement, camera, and combat input.",
+      "action": "Ensure WellingtonInput.ini contains the full 174-entry binding list if defining custom bindings, or rely on clean UTF-8 No-BOM BaseInput.ini inheritance."
     }
   ],
   "manual_only_settings": [
@@ -318,10 +368,10 @@
       "reason": "Restores Hor+ field of view without menu black-screen corruption on 32:9 displays as verified by WSGF."
     },
     {
-      "setting": "Camera Follow (Auto-Center)",
-      "location": "Options → Game / Camera Settings",
-      "recommendation": "OFF",
-      "reason": "Critical Nausea Fix: Prevents the camera from auto-centering and fighting the mouse during WASD movement."
+      "setting": "Camera Centering (LT Tap)",
+      "location": "In-Game Gameplay Mechanic (Left Trigger)",
+      "recommendation": "Tap LT to re-center camera behind Hero",
+      "reason": "An in-game menu toggle for 'Camera Follow' does not exist in the 2014 Anniversary remaster (exclusive to 2005 TLC). The remaster uses hardcoded spring-damper camera tethering (CAMERA_MODE_STRING_AND_CAGE). Tapping Left Trigger (LT) instantly snaps the camera behind the Hero without fighting analog stick or mouse control."
     },
     {
       "setting": "Control Scheme",
@@ -357,8 +407,13 @@
   ],
   "notes": [
     "Fable Anniversary runs on a modified Unreal Engine 3 build (codename WellingtonGame).",
+    "All INI files must be saved strictly as UTF-8 Without BOM (ANSI/ASCII); any UTF-8 BOM (0xEF, 0xBB, 0xBF) corrupts section headers (e.g. ï»¿[URL], ï»¿[Engine.PlayerInput]) and discards sections.",
+    "Bloom=True is mandatory; setting Bloom=False breaks scene tone mapping and exposure, causing the 3D world to render pitch black.",
+    "Desktop Ultrawide Profile (<1m on 32:9): Disables DepthOfField and AllowRadialBlur to eliminate optical refocusing strain and peripheral motion smearing across 5120x1440.",
+    "Steam Link / Couch TV Profile (3m+ on 16:9): Retains DepthOfField=True and AllowRadialBlur=True for full cinematic depth at couch viewing distances.",
+    "Gamepad Tuning: Right analog stick deadzone reduced from 0.20 (20%) to 0.08 (8%) with horizontal speed 1.4 and vertical speed 1.1 for responsive camera panning.",
     "On 32:9 displays (5120x1440), Flawless Widescreen is required for Hor+ FOV. Do NOT enable HUD Fix on 32:9 to prevent black screen menus.",
-    "Eye comfort profile disables DoF, Radial Blur, Motion Blur, and Specular Bloom, while setting 1:1 mouse input and turning off Camera Follow."
+    "WellingtonSystemSettings.ini must be set to Read-Only to prevent resolution resets, while WellingtonEngine.ini must remain writable."
   ],
   "sources": [
     {

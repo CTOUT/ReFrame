@@ -1212,55 +1212,61 @@ dxvk.enableAsync = False
 
 **Engine:** Unreal Engine 3 (Lionhead modified Wellington build)
 
-| Platform | Config Path                                                                                         | Format |
-| -------- | --------------------------------------------------------------------------------------------------- | ------ |
-| Steam    | `%USERPROFILE%\Documents\My Games\UnrealEngine3\WellingtonGame\Config\WellingtonSystemSettings.ini` | INI    |
-| Steam    | `%USERPROFILE%\Documents\My Games\UnrealEngine3\WellingtonGame\Config\WellingtonEngine.ini`         | INI    |
-| Steam    | `%USERPROFILE%\Documents\My Games\UnrealEngine3\WellingtonGame\Config\WellingtonInput.ini`          | INI    |
-| Steam    | `%GAME_DIR%\Engine\Config\BaseInput.ini`                                                            | INI    |
+| Platform | Config Path                                                     | Format |
+| -------- | --------------------------------------------------------------- | ------ |
+| Steam    | `%GAME_DIR%\WellingtonGame\Config\WellingtonSystemSettings.ini` | INI    |
+| Steam    | `%GAME_DIR%\WellingtonGame\Config\WellingtonEngine.ini`         | INI    |
+| Steam    | `%GAME_DIR%\WellingtonGame\Config\WellingtonInput.ini`          | INI    |
+| Steam    | `%GAME_DIR%\WellingtonGame\Config\WellingtonGame.ini`           | INI    |
+| Steam    | `%GAME_DIR%\Engine\Config\BaseInput.ini`                        | INI    |
 
-> **Note:** Fable Anniversary user settings are stored in `%USERPROFILE%\Documents\My Games\UnrealEngine3\WellingtonGame\Config\` (or OneDrive-redirected paths like `O:\OneDrive\Documents\My Games\UnrealEngine3\WellingtonGame\Config\`). Files in the game installation directory contain default templates and should not be edited directly. If settings reset on launch, set `WellingtonSystemSettings.ini` to read-only.
+> **Note:** On Steam, Fable Anniversary stores and reads active runtime settings directly in its installation directory (`%GAME_DIR%\WellingtonGame\Config\`). Legacy UE3 paths under `Documents\My Games\UnrealEngine3` are not used by the game. If settings reset on launch, set `WellingtonSystemSettings.ini` to read-only. Keep `WellingtonEngine.ini` writable. All config files must be encoded as UTF-8 without BOM (ANSI/ASCII); saving with a UTF-8 BOM corrupts section headers (e.g. `ï»¿[URL]` or `ï»¿[Engine.PlayerInput]`) and breaks game initialization or input bindings.
 
 **Key settings:**
 
-| Key                        | Effect                                  | Recommended (performance) | Recommended (quality) |
-| -------------------------- | --------------------------------------- | ------------------------- | --------------------- |
-| `ResX`                     | Horizontal resolution                   | `2560`                    | `5120`                |
-| `ResY`                     | Vertical resolution                     | `1440`                    | `1440`                |
-| `DepthOfField`             | Camera focal depth of field             | `False`                   | `False`               |
-| `AllowRadialBlur`          | Radial screen blur on sprint and impact | `False`                   | `False`               |
-| `Bloom`                    | Lionhead HDR specular bloom             | `False`                   | `False`               |
-| `bUseSpecularBloom`        | Specular highlight bloom                | `False`                   | `False`               |
-| `UseVsync`                 | In-engine vertical sync                 | `False`                   | `False`               |
-| `MaxSmoothedFrameRate`     | Engine frame rate limiter (FPS cap)     | `144`                     | `144`                 |
-| `MinSmoothedFrameRate`     | Minimum frame smoothing clamp floor     | `60`                      | `60`                  |
-| `Acceleration`             | Mouse stick-emulation look acceleration | `1.0`                     | `1.0`                 |
-| `Smoothing`                | Mouse look smoothing interpolation      | `0.0`                     | `0.0`                 |
-| `EscapeVelocityStrength`   | Mouse look stopping drift inertia       | `0.0`                     | `0.0`                 |
-| `CameraSensitivity`        | System camera rotation sensitivity      | `0.35`                    | `0.35`                |
-| `MaxAnisotropy`            | Anisotropic texture filtering           | `8`                       | `16`                  |
-| `MaxShadowResolution`      | Dynamic shadow resolution               | `1024`                    | `2048`                |
-| `MaxMultisamples`          | Multi-sample anti-aliasing (MSAA)       | `1`                       | `4`                   |
-| `DynamicLights`            | Real-time dynamic lights                | `True`                    | `True`                |
-| `DynamicShadows`           | Dynamic entity shadows                  | `True`                    | `True`                |
-| `bEnableMouseSmoothing`    | Mouse input smoothing                   | `False`                   | `False`               |
-| `bViewAccelerationEnabled` | Mouse view acceleration                 | `False`                   | `False`               |
+| Key                        | Effect                                  | Recommended (performance)       | Recommended (quality)           |
+| -------------------------- | --------------------------------------- | ------------------------------- | ------------------------------- |
+| `ResX`                     | Horizontal resolution                   | `2560`                          | `5120`                          |
+| `ResY`                     | Vertical resolution                     | `1440`                          | `1440`                          |
+| `DepthOfField`             | Camera focal depth of field             | `False` (Desktop) / `True` (TV) | `False` (Desktop) / `True` (TV) |
+| `AllowRadialBlur`          | Radial screen blur on sprint and impact | `False` (Desktop) / `True` (TV) | `False` (Desktop) / `True` (TV) |
+| `Bloom`                    | Lionhead HDR bloom and scene exposure   | `True`                          | `True`                          |
+| `bUseSpecularBloom`        | Specular highlight bloom                | `False`                         | `False`                         |
+| `UseVsync`                 | In-engine vertical sync                 | `False`                         | `False`                         |
+| `MaxSmoothedFrameRate`     | Engine frame rate limiter (FPS cap)     | `144`                           | `144`                           |
+| `MinSmoothedFrameRate`     | Minimum frame smoothing clamp floor     | `60`                            | `60`                            |
+| `Acceleration`             | Mouse stick-emulation look acceleration | `1.0`                           | `1.0`                           |
+| `Smoothing`                | Mouse look smoothing interpolation      | `0.0`                           | `0.0`                           |
+| `EscapeVelocityStrength`   | Mouse look stopping drift inertia       | `0.0`                           | `0.0`                           |
+| `CameraSensitivity`        | System camera rotation sensitivity      | `0.35` (Mouse) / `1.0` (Pad)    | `0.35` (Mouse) / `1.0` (Pad)    |
+| `XboxTypeS_RightX`         | Gamepad right stick horizontal look pan | `Speed=1.4 DeadZone=0.08`       | `Speed=1.4 DeadZone=0.08`       |
+| `XboxTypeS_RightY`         | Gamepad right stick vertical look tilt  | `Speed=1.1 DeadZone=0.08`       | `Speed=1.1 DeadZone=0.08`       |
+| `MaxAnisotropy`            | Anisotropic texture filtering           | `8`                             | `16`                            |
+| `MaxShadowResolution`      | Dynamic shadow resolution               | `1024`                          | `2048`                          |
+| `MaxMultisamples`          | Multi-sample anti-aliasing (MSAA)       | `1`                             | `1`                             |
+| `DynamicLights`            | Real-time dynamic lights                | `True`                          | `True`                          |
+| `DynamicShadows`           | Dynamic entity shadows                  | `True`                          | `True`                          |
+| `bEnableMouseSmoothing`    | Mouse input smoothing                   | `False`                         | `False`                         |
+| `bViewAccelerationEnabled` | Mouse view acceleration                 | `False`                         | `False`                         |
 
-### Fable Anniversary: Ultrawide (32:9), Camera & Eye Comfort Setup
+### Fable Anniversary: Ultrawide (32:9), Controller Responsiveness & Eye Comfort Setup
 
-Fable Anniversary uses Unreal Engine 3 which natively implements Vert- cropping at aspect ratios wider than 16:9, cutting off vertical field of view. Furthermore, mouse input emulates an analog controller thumbstick, and default camera settings cause severe motion sickness and nausea.
+Fable Anniversary uses Unreal Engine 3 which natively implements Vert- cropping at aspect ratios wider than 16:9, cutting off vertical field of view. Furthermore, default right analog stick deadzones and mouse stick emulation introduce noticeable camera lag and motion fatigue.
 
 1. **Flawless Widescreen Installation:** Download and install [Flawless Widescreen](https://www.flawlesswidescreen.org/) (tested on v1.0.15).
 2. **Plugin Activation:** In the Plugins list, search for and activate the **Fable Anniversary** plugin.
 3. **Aspect Ratio & FOV:** Ensure **FOV Fix** and **Remove Letterbox** are enabled to restore Hor+ rendering across 5120×1440. Set **FOV Fine adjustment** to **`+0.50`** (note: the slider steps by 0.5 initially, then in 0.25 increments; `+0.50` is the optimal baseline) to widen the camera view and prevent peripheral optical stretching.
 4. **Critical 32:9 WSGF Bug Warning (HUD Fix):** On 32:9 resolutions (5120×1440), **do NOT enable "HUD Fix" or "HUD Constrained to 16x9"** in Flawless Widescreen. As verified by WSGF, enabling HUD Fix on 32:9 causes all in-game menus (inventory, levelling, pause) to produce a black screen and strips the entire HUD upon returning to the game. Leave both HUD options unchecked on 32:9.
 5. **Frame Pacing & Framerate Cap Unlock:** By default, `WellingtonEngine.ini` clamps maximum frame rate to 62 FPS. Setting `MaxSmoothedFrameRate=144` and `MinSmoothedFrameRate=60` unlocks smooth 60FPS+ / 144Hz performance. Keep in-engine `UseVsync=False` to prevent frame pacing stutter.
-6. **Camera Smoothing & Nausea Elimination:**
-   - Setting `Acceleration=1.0`, `Smoothing=0.0`, and `EscapeVelocityStrength=0.0` in `WellingtonGame.ini` removes the artificial thumbstick lag and stopping drift.
-   - In `WellingtonInput.ini` and `BaseInput.ini`, ensure `bEnableMouseSmoothing=false` and `bViewAccelerationEnabled=false` are set.
-   - **In-Game Setting:** Navigate to **Options → Game / Camera Settings** and turn **Camera Follow to `OFF`**. This prevents the camera from auto-centering and constantly fighting player mouse movement.
+6. **Camera Smoothing, Gamepad Stick Tuning & Nausea Elimination:**
+   - **Gamepad Right Stick Tuning:** In `WellingtonInput.ini`, update `XboxTypeS_RightX` to `Speed=1.4 DeadZone=0.08` and `XboxTypeS_RightY` to `Speed=1.1 DeadZone=0.08`. The stock 20% deadzone (`0.2`) and slow turning rate (`1.0`/`0.8`) make camera panning feel sluggish and heavy. Reducing deadzone to 8% and raising speed creates responsive, fluid camera control on Xbox and Luna controllers. Keep `CameraSensitivity=1.0` in `WellingtonSystemSettings.ini` when using gamepads.
+   - **Mouse Emulation Tuning:** Setting `Acceleration=1.0`, `Smoothing=0.0`, and `EscapeVelocityStrength=0.0` under `[MobileInputZone]` in `WellingtonGame.ini` removes artificial joystick emulation lag and stopping drift. In `BaseInput.ini`, set `bEnableMouseSmoothing=False` and `bViewAccelerationEnabled=False`.
+   - **Camera Centering Mechanic:** Note that the 2014 Anniversary remaster does _not_ offer an in-game "Camera Follow: Off" menu toggle (which was exclusive to the 2005 TLC release). The remaster uses hardcoded spring-damper camera tethering (`CAMERA_MODE_STRING_AND_CAGE`). Tapping **LT (Left Trigger)** instantly re-centers the camera directly behind the Hero.
    - **Control Scheme:** In **Options → Controls**, switch layout to **Traditional (TLC)** to decouple character direction from mouse aim.
-7. **Visual Comfort:** Setting `DepthOfField=False`, `UseDOF=False`, `AllowRadialBlur=False`, and `Bloom=False` removes severe visual haze, radial sprint smearing, and blinding specular glare across the 5120-wide canvas.
+7. **Visual Comfort & Viewing Distance Differentiation:**
+   - **Mandatory Bloom (`Bloom=True`):** Lionhead's UE3 rendering pipeline couples scene tone mapping and exposure to the bloom filter. Setting `Bloom=False` breaks luminance calculations, turning the 3D game world and menus pitch black with only a central pinprick of light.
+   - **Desktop Ultrawide Profile (<1m viewing distance on 32:9):** Disable Depth of Field (`DepthOfField=False`) and Radial Blur (`AllowRadialBlur=False`). On an ultra-wide panoramic monitor, focal blur creates continuous eye-refocusing fatigue and peripheral nausea.
+   - **Steam Link / Couch TV Profile (3m+ viewing distance on 16:9):** Enable Depth of Field (`DepthOfField=True`) and Radial Blur (`AllowRadialBlur=True`). At living-room viewing distances, focal blur provides cinematic atmospheric depth without causing optical strain.
 
 **Sources:** [PCGamingWiki — Fable Anniversary](https://www.pcgamingwiki.com/wiki/Fable_Anniversary), [WSGF — Fable Anniversary](https://www.wsgf.org/dr/fable-anniversary/en), [Flawless Widescreen](https://www.flawlesswidescreen.org/), [Steam Community — Fable Anniversary Tweaks](https://steamcommunity.com/sharedfiles/filedetails/?id=227181048)
 

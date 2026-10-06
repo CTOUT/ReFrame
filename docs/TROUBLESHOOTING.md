@@ -151,6 +151,47 @@ Copy-Item "$env:LOCALAPPDATA\ReFrame\Backups\<GameName>_<timestamp>\GameUserSett
 
 ---
 
+## Profile switching fails or has no effect
+
+**Symptom:** You ran `switch config <game> <profile>`, but the game still opens with old settings, or ReFrame warns that the game is running.
+
+**Causes and fixes:**
+
+1. **Game was running during switch.** Most modern games keep their active settings in memory and overwrite the configuration file on disk when closing. Always exit the game completely before running `switch config`.
+
+2. **Read-only configuration file.** Some players manually set config files to "Read-Only" to prevent games from resetting custom options. If a file is marked read-only, ReFrame cannot overwrite it during a switch. Check with:
+
+```powershell
+Get-ItemProperty -Path "<path_to_config>" | Select-Object IsReadOnly
+```
+
+Clear the flag if needed:
+
+```powershell
+Set-ItemProperty -Path "<path_to_config>" -Name IsReadOnly -Value $false
+```
+
+3. **Cloud sync overwrite.** Steam Cloud or Epic Games Launcher may overwrite local configuration files on launch if cloud sync conflicts occur. If your switched profile is overwritten upon launching the game, check whether the game stores video settings in cloud saves and disable config cloud synchronisation if applicable.
+
+---
+
+## Game crashes immediately or closes after switching profile
+
+**Symptom:** You switched profiles, but when launching the game, the taskbar icon appears briefly and then the game terminates without opening a window or showing an error dialogue.
+
+**Causes and fixes:**
+
+1. **UTF-8 Byte Order Mark (BOM) sensitivity.** Many game engines (notably standard Unreal Engine 3 builds, older DirectX 9/11 titles, and Bethesda engines) expect INI configuration files to include a UTF-8 BOM (`0xEF, 0xBB, 0xBF`). Conversely, certain custom engine builds (such as Lionhead's _Fable Anniversary_) use legacy ANSI/ASCII parsers that treat a UTF-8 BOM as literal characters, corrupting the first section header (e.g., parsing `\xEF\xBB\xBF[URL]` as `ï»¿[URL]` and discarding it).
+   - **Fix:** Check the stock INI byte headers before editing (`Get-Content -AsByteStream` or `[System.IO.File]::ReadAllBytes`). Match the original file encoding precisely (BOM vs. UTF-8 No-BOM).
+
+2. **Exclusive Fullscreen Mode Switch failure on ultrawide or high-resolution displays.** Forcing exclusive fullscreen (`Fullscreen=True`) at a lower resolution (e.g. 1920×1080) on an ultrawide desktop (e.g. 5120×1440) can fail Direct3D 9/11 device initialization (`D3DERR_NOTAVAILABLE`) if GPU scaling is disabled or the display rejects the mode switch.
+   - **Fix:** Switch the target profile to Windowed or Borderless Windowed mode (`Fullscreen=False` in UE3), which launches immediately and is optimal for Steam Link/Moonlight capture.
+
+3. **Over-broad multiline regex mutations in config files.** Modifying a key using multiline regex without qualifying the INI section header can inadvertently mutate multiple sections (e.g., mutating both `[Engine.Engine]` and `[UnrealEd.EditorEngine]`).
+   - **Fix:** Scope mutations strictly to the intended section header or inspect diffs against the clean snapshot before applying.
+
+---
+
 ## Steam Deck, Linux, and macOS
 
 **ReFrame is currently Windows-only.** The following features are unavailable on other platforms:
