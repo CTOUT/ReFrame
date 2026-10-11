@@ -345,6 +345,16 @@
       "updated": "2026-10-07"
     },
     {
+      "name": "The Ascent",
+      "file": "games/the-ascent.json",
+      "engine": "Unreal Engine 4",
+      "engine_version": "4.x",
+      "platforms": ["Steam", "Xbox Game Pass"],
+      "key_count": 22,
+      "profile_version": "1.0.0",
+      "updated": "2026-10-11"
+    },
+    {
       "name": "The Elder Scrolls V: Skyrim Special Edition",
       "file": "games/skyrim-special-edition.json",
       "engine": "Creation Engine",

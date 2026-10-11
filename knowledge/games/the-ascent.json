@@ -1,0 +1,331 @@
+{
+  "game": "The Ascent",
+  "engine": "Unreal Engine 4",
+  "engine_version": "4.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-10-11",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\TheAscent\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\TheAscent\\Saved\\Config\\WindowsNoEditor\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    },
+    {
+      "store": "Xbox Game Pass",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\TheAscent\\Saved\\Config\\WinGDK\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\TheAscent\\Saved\\Config\\WinGDK\\Engine.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "ResolutionSizeX",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "Horizontal rendering and display resolution in pixels.",
+      "recommendations": {
+        "performance": "match_display_width",
+        "balanced": "match_display_width",
+        "quality": "match_display_width"
+      },
+      "notes": "May default to DPI-scaled resolution (e.g. 4096 on 5120x1440 with 125% Windows scaling). Always match native display resolution."
+    },
+    {
+      "key": "ResolutionSizeY",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "Vertical rendering and display resolution in pixels.",
+      "recommendations": {
+        "performance": "match_display_height",
+        "balanced": "match_display_height",
+        "quality": "match_display_height"
+      }
+    },
+    {
+      "key": "LowEndPC",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "Enables aggressive low-spec engine optimizations and lower fidelity asset fallbacks.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Often incorrectly flagged as True on initial game boot on modern hardware."
+    },
+    {
+      "key": "CameraShakeAlpha",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "Intensity multiplier for camera shake during impacts and explosions.",
+      "recommendations": {
+        "performance": "1.000000",
+        "balanced": "1.000000",
+        "quality": "0.000000"
+      },
+      "notes": "Set to 0.000000 under motion_comfort modifier to reduce eye strain."
+    },
+    {
+      "key": "FrameRateLimit",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "Maximum frame rate limit in FPS (0 = uncapped).",
+      "recommendations": {
+        "performance": "match_monitor_hz",
+        "balanced": "match_monitor_hz",
+        "quality": "match_monitor_hz_minus_3"
+      },
+      "notes": "On VRR displays, cap 3 FPS below max refresh rate to keep G-Sync/FreeSync active without engaging VSync lag."
+    },
+    {
+      "key": "FPSCapped",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "Internal game engine frame rate cap toggle (locks to 60 FPS when True).",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Must be set to False to unlock high refresh rates above 60 FPS and allow FrameRateLimit to take effect."
+    },
+    {
+      "key": "FirstTimeBootup",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "First launch flag triggering initial setup wizard and automatic hardware benchmarking.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Setting to False prevents the game from rerunning auto-detection and overwriting custom resolution and quality settings on launch."
+    },
+    {
+      "key": "bUseHDRDisplayOutput",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "Enables native High Dynamic Range (HDR) display output.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "True",
+        "quality": "True"
+      },
+      "notes": "Enable if using an HDR-capable monitor (pair with HDRDisplayOutputNits matching display peak luminance)."
+    },
+    {
+      "key": "RaytracingShadows2",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "Ray-traced directional and local light shadows.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Severe performance penalty at ultrawide resolutions (30%+ FPS loss) with subtle visual impact over rasterized shadows."
+    },
+    {
+      "key": "RaytracingAo2",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "Ray-traced ambient occlusion.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Very heavy compute overhead. SSAO Quality 3 provides clean contact shadowing with far better frametime stability."
+    },
+    {
+      "key": "RaytracingReflections2",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "Ray-traced reflections on wet streets, puddle surfaces, and metallic surfaces.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "True",
+        "quality": "True"
+      },
+      "notes": "Core aesthetic feature for cyberpunk visual style. Viable at 60+ FPS when paired with DLSS on high-end hardware."
+    },
+    {
+      "key": "DLSS",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "NVIDIA Deep Learning Super Sampling upscaling.",
+      "recommendations": {
+        "performance": "True",
+        "balanced": "True",
+        "quality": "True"
+      }
+    },
+    {
+      "key": "DLSSQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/TheAscent.TAGameUserSettings]",
+      "effect": "DLSS profile preset (3 = Quality, 4 = Balanced, 5 = Performance).",
+      "recommendations": {
+        "performance": "5",
+        "balanced": "4",
+        "quality": "3"
+      }
+    },
+    {
+      "key": "r.SceneColorFringeQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Chromatic aberration / color fringing post-processing effect.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling removes peripheral color blurring, improving image clarity and reducing eye strain."
+    },
+    {
+      "key": "r.DepthOfFieldQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Depth of field background blur quality.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling keeps all background planes in focus, preventing focal fatigue in an isometric camera."
+    },
+    {
+      "key": "r.Tonemapper.GrainQuantization",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Film grain quantization overlay.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      }
+    },
+    {
+      "key": "r.MotionBlurQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Engine-level motion blur quality (0 = off).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      }
+    },
+    {
+      "key": "r.Tonemapper.Vignette",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Screen edge vignette shading.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      }
+    },
+    {
+      "key": "r.Streaming.PoolSize",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Texture streaming pool size in MB.",
+      "recommendations": {
+        "performance": "2000",
+        "balanced": "3000",
+        "quality": "4000"
+      },
+      "notes": "Set to 4000 for 12GB+ GPUs to eliminate texture popping."
+    },
+    {
+      "key": "r.Streaming.FullyLoadUsedTextures",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Forces all in-use textures to stream to full resolution and lock in VRAM.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Eliminates texture pop-in and streaming hitches during combat. Safe on 12GB+ GPUs (adds ~1.5-2GB VRAM usage)."
+    },
+    {
+      "key": "r.Streaming.HLODStrategy",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Hierarchical Level of Detail streaming strategy (2 = disable streaming, load all HLODs).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "Keeps distant city geometry and skyline meshes fully loaded in VRAM, eliminating traversal hitches across arcology vistas."
+    },
+    {
+      "key": "AspectRatioAxisConstraint",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.LocalPlayer]",
+      "effect": "Field of view axis lock (AspectRatio_MaintainYFOV forces Hor+ scaling).",
+      "recommendations": {
+        "performance": "AspectRatio_MaintainYFOV",
+        "balanced": "AspectRatio_MaintainYFOV",
+        "quality": "AspectRatio_MaintainYFOV"
+      },
+      "notes": "Prevents vertical cropping (Vert-) on ultrawide (21:9) and super-ultrawide (32:9) monitors."
+    }
+  ],
+  "engine_overrides": [
+    {
+      "key": "AspectRatioAxisConstraint",
+      "behaviour": "Default camera boom applies Vert- cropping at 21:9 and 32:9 aspect ratios.",
+      "action": "Set AspectRatioAxisConstraint=AspectRatio_MaintainYFOV under [/Script/Engine.LocalPlayer] in Engine.ini. For additional camera zoom out, use Rose's Ultrawide and Superwide Fix & FOV Changer."
+    },
+    {
+      "key": "r.DebugSafeZone.TitleRatio",
+      "behaviour": "In-game HUD widgets are anchored directly to viewport canvas corners without UMG SafeZone wrappers, ignoring r.DebugSafeZone margins.",
+      "action": "Do not set r.DebugSafeZone.TitleRatio in Engine.ini; it has no effect on in-game gameplay HUD elements and only undesirably displaces the loading screen progress bar."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "FOV & Camera Distance Override",
+      "location": "External Mod: The Ascent Ultrawide and Superwide Fix & FOV Changer (PCGamingWiki File #2250)",
+      "recommendation": "Use F3 / F4 to zoom out the camera distance beyond default limits.",
+      "reason": "The game's blueprint camera boom clamps camera distance and does not expose a vanilla zoom-out slider."
+    }
+  ],
+  "notes": [
+    "On high-DPI displays with Windows scaling active (125%+), The Ascent can default to non-native resolution (e.g. 4096x1152 instead of 5120x1440). Verify ResolutionSizeX and ResolutionSizeY match native display bounds.",
+    "Ray Tracing Shadows and Ray Tracing Ambient Occlusion introduce heavy frametime penalties at 5120x1440. Disabling them while keeping Ray Tracing Reflections maintains visual punch and solid 60+ FPS stability on RTX 4070 SUPER."
+  ],
+  "sources": [
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/The_Ascent",
+      "type": "wiki",
+      "label": "PCGamingWiki — The Ascent"
+    },
+    {
+      "url": "https://community.pcgamingwiki.com/files/file/2250-the-ascent-ultrawide-superwide-fix-fov-changer/",
+      "type": "community",
+      "label": "PCGamingWiki Community — The Ascent Ultrawide/Superwide Fix & FOV Changer"
+    }
+  ]
+}
