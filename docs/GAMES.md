@@ -1349,28 +1349,74 @@ Fable Anniversary uses Unreal Engine 3 which natively implements Vert- cropping 
 
 **Key settings:**
 
-| Key                     | Effect                               | Recommended (performance) | Recommended (quality)                 |
-| ----------------------- | ------------------------------------ | ------------------------- | ------------------------------------- |
-| `dof2`                  | Depth of field blur                  | `"Off"`                   | `"High"` (or `"Off"` for eye comfort) |
-| `chromatic aberration`  | Lens chromatic aberration            | `false`                   | `false`                               |
-| `vignette`              | Peripheral edge darkening            | `false`                   | `false`                               |
-| `motion blur`           | Camera and object motion blur        | `false`                   | `false`                               |
-| `lens cinematic effect` | Anamorphic streaks and lens flares   | `"Off"`                   | `"Low"` (or `"Off"` for eye comfort)  |
-| `frameGeneration2`      | DLSS 3 Frame Generation              | `"2x"`                    | `"2x"` (`"Off"` for Steam Link)       |
-| `scaleType`             | Upscaler backend                     | `"DLSS"`                  | `"DLSS"`                              |
-| `scaleQuality`          | Temporal upscaling preset            | `"Balanced"`              | `"Quality"`                           |
-| `customFPSLimit`        | In-engine frame-rate limiter         | `144`                     | `144` (`60` for Steam Link)           |
-| `rtdiffuse`             | Ray-traced diffuse indirect lighting | `"Low"`                   | `"Medium"` / `"High"`                 |
-| `rtspec`                | Ray-traced specular reflections      | `"Low"`                   | `"Medium"` / `"High"`                 |
-| `rtxdi`                 | RTX Direct Illumination path tracing | `"Off"`                   | `"Off"`                               |
+| Key                     | Effect                                  | Recommended (performance) | Recommended (quality)                 |
+| ----------------------- | --------------------------------------- | ------------------------- | ------------------------------------- |
+| `dof2`                  | Depth of field blur                     | `"Off"`                   | `"High"` (or `"Off"` for eye comfort) |
+| `chromatic aberration`  | Lens chromatic aberration               | `false`                   | `false`                               |
+| `vignette`              | Peripheral edge darkening               | `false`                   | `false`                               |
+| `motion blur`           | Camera and object motion blur           | `false`                   | `false`                               |
+| `lens cinematic effect` | Anamorphic streaks and lens flares      | `"Off"`                   | `"Low"` (or `"Off"` for eye comfort)  |
+| `frameGeneration2`      | DLSS 3 Frame Generation                 | `"2x"`                    | `"2x"` (`"Off"` for Steam Link)       |
+| `scaleType`             | Upscaler backend                        | `"DLSS"`                  | `"DLSS"`                              |
+| `scaleQuality`          | Temporal upscaling preset               | `"Balanced"`              | `"Quality"`                           |
+| `customFPSLimit`        | In-engine frame-rate limiter            | `144`                     | `144` (`60` for Steam Link)           |
+| `rtdiffuse`             | Ray-traced diffuse indirect lighting    | `"Low"`                   | `"Medium"` / `"High"`                 |
+| `rtspec`                | Ray-traced specular reflections         | `"Low"`                   | `"Medium"` / `"High"`                 |
+| `rtxdi`                 | RTX Direct Illumination path tracing    | `"Off"`                   | `"Off"`                               |
+| `nvReflex`              | NVIDIA Reflex low-latency mode          | `"On"`                    | `"On"` (`"Off"` for Steam Link)       |
+| `rayReconstruction`     | DLSS Ray Reconstruction neural denoiser | `false`                   | `true` (`"Off"` with Reflex)          |
 
 ### Star Wars: Outlaws: Ultrawide (32:9) & Steam Link Streaming Setup
 
 1. **Ultrawide (5120×1440) Eye Comfort:** On super-ultrawide 32:9 monitors, optical refocusing strain and peripheral smearing are major causes of visual fatigue. Setting `dof2 = "Off"`, `["chromatic aberration"] = false`, `vignette = false`, and `["lens cinematic effect"] = "Off"` removes artificial blurring and edge distortions across peripheral panels.
 2. **DLSS Frame Generation (90+ FPS):** On RTX 40-series cards, enabling `frameGeneration2 = "2x"` combined with `scaleQuality = "Quality"` and `nvReflex = "On"` achieves 90+ FPS in dense open-world environments across 5120×1440.
 3. **Steam Link 1080p Streaming (Flat 60 FPS):** When streaming over Steam Link, set `windowMode = "Borderless"` in `state.cfg` to prevent capture black screens and display mode reset crashes. Disable Frame Generation (`frameGeneration2 = "Off"`) to avoid stream latency, set a flat `customFPSLimit = 60`, disable in-game VSync (`presentInterval = "Off"`), and reallocate the 73% pixel reduction headroom into High-quality ray-traced lighting, particles, and vegetation.
+4. **NVIDIA Reflex & Steam Link Clothing Glitch:** When streaming under Steam Link's DX12 backbuffer capture hook (especially with DLSS Ray Reconstruction active), NVIDIA Reflex (`nvReflex = "On"`) can cause frame queue race conditions where character clothing textures invert in colour (e.g. Kay's black pants turning white with inverted trim). Set `nvReflex = "Off"` to resolve this buffer desynchronisation.
 
 **Sources:** [PCGamingWiki — Star Wars Outlaws](https://www.pcgamingwiki.com/wiki/Star_Wars_Outlaws)
+
+---
+
+## Aion 2
+
+**Engine:** Unreal Engine 5 (DirectX 12)
+
+| Platform | Config Path                                                          | Format |
+| -------- | -------------------------------------------------------------------- | ------ |
+| Steam    | `%LOCALAPPDATA%\AION2\Saved_Steam\Config\Windows\GameUserSettings.ini` | INI    |
+| Steam    | `%LOCALAPPDATA%\AION2\Saved_Steam\Config\Windows\Engine.ini`           | INI    |
+
+> **Note:** Configuration files are located in `%LOCALAPPDATA%\AION2\Saved_Steam\Config\Windows\`. Files are encoded as UTF-8 without BOM with CRLF line endings.
+
+**Key settings:**
+
+| Key                             | Effect                                              | Recommended (performance) | Recommended (quality)                |
+| ------------------------------- | --------------------------------------------------- | ------------------------- | ------------------------------------ |
+| `bUseVSync`                     | In-game vertical synchronisation                    | `False`                   | `False`                              |
+| `FrameRateLimit`                | In-engine frame rate cap (0 = uncapped)             | `144.000000`              | `144.000000`                         |
+| `sg.MassiveGameQuality`         | Mass player battle & siege scalability              | `1`                       | `3`                                  |
+| `sg.TextureQuality`             | Texture streaming quality (0–4)                     | `3`                       | `4`                                  |
+| `sg.GlobalIlluminationQuality`  | Lumen Global Illumination quality (0–4)             | `1`                       | `3`                                  |
+| `sg.ReflectionQuality`          | Lumen reflection quality (0–4)                      | `1`                       | `3`                                  |
+| `sg.ShadowQuality`              | Virtual Shadow Maps (VSM) quality (0–4)             | `1`                       | `3`                                  |
+| `r.ngx.dlss.enable`             | NVIDIA DLSS Super Resolution plugin                 | `1`                       | `1`                                  |
+| `r.NGX.DLSS.Quality`            | DLSS preset (1 = Performance, 2 = Balanced, 3 = Quality) | `1`                  | `3`                                  |
+| `r.Streamline.DLSSG.Enable`     | NVIDIA Streamline DLSS 3 Frame Generation           | `1`                       | `1`                                  |
+| `r.Reflex.Enable`               | NVIDIA Reflex Low Latency system                    | `1`                       | `1`                                  |
+| `r.Streaming.PoolSize`          | Texture streaming pool budget in MB                 | `2000`                    | `4000`                               |
+| `r.MotionBlurQuality`           | Camera and object motion blur (0 = off)             | `0`                       | `0`                                  |
+| `r.DepthOfFieldQuality`         | Depth of field focal blurring (0 = off)             | `0`                       | `0`                                  |
+| `r.SceneColorFringeQuality`     | Chromatic aberration lens fringing (0 = off)        | `0`                       | `0`                                  |
+| `r.Tonemapper.GrainQuantization`| Film grain noise overlay (0 = off)                  | `0`                       | `0`                                  |
+| `r.LensFlareQuality`            | Lens flare and streak artifacts (0 = off)           | `0`                       | `0`                                  |
+
+### Aion 2: Ultrawide (32:9), DLSS Quality & Frame Generation Setup
+
+1. **Ultrawide (5120×1440) Eye Comfort:** On 32:9 super-ultrawide panels, wide peripheral blurring and chromatic fringing cause vestibular disorientation and severe eye fatigue. Disabling `r.MotionBlurQuality=0`, `r.DepthOfFieldQuality=0`, `r.SceneColorFringeQuality=0`, and `r.Tonemapper.GrainQuantization=0` ensures crystal-clear edge fidelity across the entire horizontal field of view.
+2. **DLSS Quality & Streamline Frame Generation (60+ FPS):** On RTX 40-series cards (e.g. RTX 4070 SUPER), setting `r.ngx.dlss.enable=1`, `r.NGX.DLSS.Quality=3`, and `r.Streamline.DLSSG.Enable=1` reconstructs 5120×1440 from an internal 3413×960 render buffer and interpolates generated frames, delivering 90–144 FPS with minimal GPU load. If the game UI defaults to Performance mode upon first detection, set the in-game dropdown (**Settings → Graphics → Super Resolution**) to **Quality** and toggle **Frame Generation** to **On**. Frame Generation requires Hardware-Accelerated GPU Scheduling (HAGS) enabled in Windows 11.
+3. **Massive Encounter Scalability:** NCSoft's custom `sg.MassiveGameQuality` regulates player model LODs, animation tick decimation, and particle budgets during world boss and siege events. Setting to `3` maintains high fidelity while preventing draw call saturation on 8-core CPUs like the Ryzen 7 5800X3D.
+
+**Sources:** [Unreal Engine Docs — Scalability Reference](https://docs.unrealengine.com/5.0/en-US/scalability-reference-for-unreal-engine/), [PCGamingWiki — Unreal Engine 5](https://www.pcgamingwiki.com/wiki/Engine:Unreal_Engine_5)
 
 ---
 

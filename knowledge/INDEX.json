@@ -1,7 +1,17 @@
 {
   "schema_version": "1.0",
-  "updated": "2026-09-19",
+  "updated": "2026-10-09",
   "games": [
+    {
+      "name": "Aion 2",
+      "file": "games/aion-2.json",
+      "engine": "Unreal Engine 5",
+      "engine_version": "5.x",
+      "platforms": ["Steam"],
+      "key_count": 17,
+      "profile_version": "1.0.0",
+      "updated": "2026-10-09"
+    },
     {
       "name": "Aniimo",
       "file": "games/aniimo.json",
@@ -330,9 +340,9 @@
       "file": "games/star-wars-outlaws.json",
       "engine": "Snowdrop",
       "platforms": ["Ubisoft Connect", "Steam", "Epic Games Store"],
-      "key_count": 12,
+      "key_count": 14,
       "profile_version": "1.0.0",
-      "updated": "2026-10-06"
+      "updated": "2026-10-07"
     },
     {
       "name": "The Elder Scrolls V: Skyrim Special Edition",

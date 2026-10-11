@@ -192,6 +192,17 @@ Set-ItemProperty -Path "<path_to_config>" -Name IsReadOnly -Value $false
 
 ---
 
+## Graphical glitches or texture colour inversion over Steam Link / Remote Play
+
+**Symptom:** When streaming DirectX 12 games (such as _Star Wars: Outlaws_) via Steam Link, character clothing or materials intermittently invert in colour or flicker (e.g. Kay's black pants with gold trim render white with black trim).
+
+**Causes and fixes:**
+
+1. **NVIDIA Reflex & frame capture hook race condition.** Steam Link hooks the DirectX 12 swapchain and backbuffer to capture video frames for hardware encoding. When NVIDIA Reflex (`nvReflex = "On"`) is active alongside multi-pass neural reconstruction (such as DLSS Ray Reconstruction) or cloth shaders, Reflex throttles presentation timing to present just-in-time before VSync. This timing compression causes race conditions with Steam Link's capture hook, resulting in desynchronised G-buffer passes or inverted cloth albedo/specular textures.
+   - **Fix:** Disable NVIDIA Reflex in the streaming profile (`nvReflex = "Off"` in `graphic settings.cfg`). Over network streaming, the 1–3 ms latency benefit of Reflex is masked by network encode/decode time, while turning it off completely eliminates the texture inversion glitch.
+
+---
+
 ## Steam Deck, Linux, and macOS
 
 **ReFrame is currently Windows-only.** The following features are unavailable on other platforms:

@@ -1,0 +1,263 @@
+{
+  "game": "Aion 2",
+  "engine": "Unreal Engine 5",
+  "engine_version": "5.x",
+  "profile_version": "1.0.0",
+  "updated": "2026-10-09",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%LOCALAPPDATA%\\AION2\\Saved_Steam\\Config\\Windows\\GameUserSettings.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\AION2\\Saved_Steam\\Config\\Windows\\Engine.ini",
+          "format": "ini"
+        },
+        {
+          "path": "%LOCALAPPDATA%\\AION2\\Saved_Steam\\Config\\Windows\\StreamlineDLSSG.ini",
+          "format": "ini"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "bUseVSync",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Enables or disables vertical sync.",
+      "recommendations": {
+        "performance": "False",
+        "balanced": "False",
+        "quality": "False"
+      },
+      "notes": "Disable in-game; rely on G-Sync / FreeSync VRR display synchronisation to prevent input latency."
+    },
+    {
+      "key": "FrameRateLimit",
+      "file": "GameUserSettings.ini",
+      "section": "[/Script/Engine.GameUserSettings]",
+      "effect": "Maximum frame rate limit in Hz. 0 = uncapped.",
+      "recommendations": {
+        "performance": "144.000000",
+        "balanced": "144.000000",
+        "quality": "144.000000"
+      },
+      "notes": "Uncapped framerate causes GPU thermal spikes and frame pacing jitter. Set to 144 (or 2-3 FPS below VRR maximum)."
+    },
+    {
+      "key": "sg.MassiveGameQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "NCSoft-specific MMORPG crowd and large-scale siege encounter scalability.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Controls simulation budget, mesh LODs, and animation tick frequency during mass player battles. Level 3 maintains high fidelity without CPU bottlenecking."
+    },
+    {
+      "key": "sg.TextureQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Texture resolution and streaming budget quality level (0-4).",
+      "recommendations": {
+        "performance": "3",
+        "balanced": "4",
+        "quality": "4"
+      },
+      "notes": "VRAM-bound. Level 4 (Cinematic) easily fits 12GB+ GPUs with zero compute performance penalty."
+    },
+    {
+      "key": "sg.GlobalIlluminationQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Lumen Global Illumination quality level (0-4).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Level 4 (Cinematic) incurs high ray tracing overhead. Level 3 provides rich indirect lighting at stable 60+ FPS."
+    },
+    {
+      "key": "sg.ReflectionQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Lumen reflection quality level (0-4).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Level 3 provides crisp glossy and specular reflections with optimal frame time pacing."
+    },
+    {
+      "key": "sg.ShadowQuality",
+      "file": "GameUserSettings.ini",
+      "section": "[ScalabilityGroups]",
+      "effect": "Virtual Shadow Maps (VSM) and contact shadow quality (0-4).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Level 3 delivers crisp contact shadows while preventing VSM page table thrashing at 5120x1440."
+    },
+    {
+      "key": "r.ngx.dlss.enable",
+      "file": "Engine.ini",
+      "section": "[/Script/Engine.RendererSettings]",
+      "effect": "Enables NVIDIA DLSS Super Resolution plugin.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Essential for 5120x1440 resolution. Reconstructs image from high-resolution temporal jitter samples with superior edge anti-aliasing."
+    },
+    {
+      "key": "r.NGX.DLSS.Quality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "DLSS Super Resolution preset mode (1=Performance, 2=Balanced, 3=Quality).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "In Unreal Engine's UDLSSMode enum, 3 maps to Quality (~66.7% render scale), whereas 1 maps to Performance (50% render scale). Setting 3 ensures native-like 3413x960 internal reconstruction to 5120x1440."
+    },
+    {
+      "key": "r.Streamline.DLSSG.Enable",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "NVIDIA Streamline DLSS 3 Optical Flow Frame Generation toggle.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Enables DLSS 3 Frame Generation pipeline for GeForce RTX 40-series cards. Requires Hardware-Accelerated GPU Scheduling (HAGS) enabled in Windows 11."
+    },
+    {
+      "key": "r.Reflex.Enable",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "NVIDIA Reflex Low Latency system.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Synchronises frame queue submission between CPU and GPU, eliminating input latency in fast-paced combat."
+    },
+    {
+      "key": "r.Streaming.PoolSize",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Texture streaming pool size in MB.",
+      "recommendations": {
+        "performance": "2000",
+        "balanced": "3000",
+        "quality": "4000"
+      },
+      "notes": "4000 MB budget recommended for 12GB GPUs to prevent texture pop-in during open-world flight and traversal."
+    },
+    {
+      "key": "r.MotionBlurQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Motion blur quality and sampling (0=disabled).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended 0 in all goals. On 32:9 ultrawide displays, motion blur severely magnifies peripheral blurring, causing nausea and vestibular eye strain."
+    },
+    {
+      "key": "r.DepthOfFieldQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Depth of field focal blur quality (0=disabled).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling DoF prevents persistent ocular fatigue caused by continuous eye refocusing across the ultra-wide FOV."
+    },
+    {
+      "key": "r.SceneColorFringeQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Chromatic aberration lens fringing (0=disabled).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling chromatic aberration removes colour dispersion artifacts at monitor edges."
+    },
+    {
+      "key": "r.Tonemapper.GrainQuantization",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Film grain noise shader quantization (0=disabled).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling film grain eliminates persistent high-frequency visual noise."
+    },
+    {
+      "key": "r.LensFlareQuality",
+      "file": "Engine.ini",
+      "section": "[SystemSettings]",
+      "effect": "Lens flare rendering quality (0=disabled).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling lens flare prevents high-contrast flash bursts from sun sources and explosive spell VFX."
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "NVIDIA DLSS Frame Generation",
+      "location": "Settings > Graphics > Frame Generation (or NVIDIA DLSS-G)",
+      "recommendation": "On",
+      "reason": "In Unreal Engine Streamline implementations, the in-game UI controller often initialises Frame Generation from internal profile state. Toggling On in the menu activates optical flow frame generation. Requires Windows Hardware-Accelerated GPU Scheduling (HAGS)."
+    },
+    {
+      "setting": "Super Resolution / Resolution Scaling",
+      "location": "Settings > Graphics > Super Resolution / DLSS Mode",
+      "recommendation": "Quality",
+      "reason": "If the game UI defaults to Performance mode upon first detection, set the dropdown explicitly to Quality (renders internally at ~3413x960 for 5120x1440 output)."
+    }
+  ],
+  "notes": [
+    "Aion 2 uses Unreal Engine 5 with custom NCSoft subsystems (sg.MassiveGameQuality, NCET, NCIK, StreamlineDLSSG).",
+    "Config files are stored in %LOCALAPPDATA%\\AION2\\Saved_Steam\\Config\\Windows\\ (with Saved_STEAMLST used as secondary/legacy).",
+    "For 32:9 ultrawide displays (5120x1440), enabling DLSS Quality and Reflex while disabling post-processing artifacts (Motion Blur, DoF, Chromatic Aberration, Grain) provides high-fps fluid combat with zero eye strain."
+  ],
+  "sources": [
+    {
+      "url": "https://docs.unrealengine.com/5.0/en-US/scalability-reference-for-unreal-engine/",
+      "type": "official",
+      "label": "Unreal Engine Docs — Scalability Reference"
+    },
+    {
+      "url": "https://www.pcgamingwiki.com/wiki/Engine:Unreal_Engine_5",
+      "type": "wiki",
+      "label": "PCGamingWiki — Unreal Engine 5"
+    }
+  ]
+}

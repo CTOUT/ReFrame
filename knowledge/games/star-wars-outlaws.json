@@ -185,6 +185,28 @@
         "quality": "\"Off\""
       },
       "notes": "Extreme compute cost. Keep Off for 90FPS+ targets."
+    },
+    {
+      "key": "nvReflex",
+      "file": "graphic settings.cfg",
+      "effect": "NVIDIA Reflex low-latency mode (\"On\", \"Boost\", or \"Off\").",
+      "recommendations": {
+        "performance": "\"On\"",
+        "balanced": "\"Off\"",
+        "quality": "\"On\""
+      },
+      "notes": "Keep \"Off\" when streaming via Steam Link. When combined with Steam Link backbuffer capture and Ray Reconstruction, Reflex alters frame queue presentation and can trigger character clothing texture/color inversion (e.g. Kay's pants inverting from black to white)."
+    },
+    {
+      "key": "rayReconstruction",
+      "file": "graphic settings.cfg",
+      "effect": "NVIDIA DLSS Ray Reconstruction neural denoiser.",
+      "recommendations": {
+        "performance": "false",
+        "balanced": "true",
+        "quality": "false"
+      },
+      "notes": "Replaces traditional denoisers (MSD/NRD) with DLSS neural denoising. Highly effective at 1080p, but requires nvReflex = \"Off\" when streaming over Steam Link to prevent denoiser pass buffer desynchronisation."
     }
   ],
   "notes": [
@@ -192,7 +214,7 @@
     "Configurations are stored as Lua-style tables in %USERPROFILE%\\Documents\\My Games\\Outlaws\\.",
     "Saved strictly as UTF-8 without BOM with LF line endings.",
     "Ray tracing is baked into the Snowdrop rendering pipeline; RTXDI should remain Off for high frame-rate stability.",
-    "For Steam Link or remote play, set windowMode = \"Borderless\" in state.cfg and cap customFPSLimit = 60 to prevent encoder stutter.",
+    "For Steam Link or remote play, set windowMode = \"Borderless\" in state.cfg, cap customFPSLimit = 60, and set nvReflex = \"Off\" to prevent encoder stutter and clothing texture inversion glitches.",
     "Eye comfort profile disables Motion Blur, Chromatic Aberration, Vignette, Depth of Field, and Lens Cinematic Effects."
   ],
   "sources": [
