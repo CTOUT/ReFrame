@@ -1381,8 +1381,8 @@ Fable Anniversary uses Unreal Engine 3 which natively implements Vert- cropping 
 
 **Engine:** Unreal Engine 5 (DirectX 12)
 
-| Platform | Config Path                                                          | Format |
-| -------- | -------------------------------------------------------------------- | ------ |
+| Platform | Config Path                                                            | Format |
+| -------- | ---------------------------------------------------------------------- | ------ |
 | Steam    | `%LOCALAPPDATA%\AION2\Saved_Steam\Config\Windows\GameUserSettings.ini` | INI    |
 | Steam    | `%LOCALAPPDATA%\AION2\Saved_Steam\Config\Windows\Engine.ini`           | INI    |
 
@@ -1390,25 +1390,25 @@ Fable Anniversary uses Unreal Engine 3 which natively implements Vert- cropping 
 
 **Key settings:**
 
-| Key                             | Effect                                              | Recommended (performance) | Recommended (quality)                |
-| ------------------------------- | --------------------------------------------------- | ------------------------- | ------------------------------------ |
-| `bUseVSync`                     | In-game vertical synchronisation                    | `False`                   | `False`                              |
-| `FrameRateLimit`                | In-engine frame rate cap (0 = uncapped)             | `144.000000`              | `144.000000`                         |
-| `sg.MassiveGameQuality`         | Mass player battle & siege scalability              | `1`                       | `3`                                  |
-| `sg.TextureQuality`             | Texture streaming quality (0–4)                     | `3`                       | `4`                                  |
-| `sg.GlobalIlluminationQuality`  | Lumen Global Illumination quality (0–4)             | `1`                       | `3`                                  |
-| `sg.ReflectionQuality`          | Lumen reflection quality (0–4)                      | `1`                       | `3`                                  |
-| `sg.ShadowQuality`              | Virtual Shadow Maps (VSM) quality (0–4)             | `1`                       | `3`                                  |
-| `r.ngx.dlss.enable`             | NVIDIA DLSS Super Resolution plugin                 | `1`                       | `1`                                  |
-| `r.NGX.DLSS.Quality`            | DLSS preset (1 = Performance, 2 = Balanced, 3 = Quality) | `1`                  | `3`                                  |
-| `r.Streamline.DLSSG.Enable`     | NVIDIA Streamline DLSS 3 Frame Generation           | `1`                       | `1`                                  |
-| `r.Reflex.Enable`               | NVIDIA Reflex Low Latency system                    | `1`                       | `1`                                  |
-| `r.Streaming.PoolSize`          | Texture streaming pool budget in MB                 | `2000`                    | `4000`                               |
-| `r.MotionBlurQuality`           | Camera and object motion blur (0 = off)             | `0`                       | `0`                                  |
-| `r.DepthOfFieldQuality`         | Depth of field focal blurring (0 = off)             | `0`                       | `0`                                  |
-| `r.SceneColorFringeQuality`     | Chromatic aberration lens fringing (0 = off)        | `0`                       | `0`                                  |
-| `r.Tonemapper.GrainQuantization`| Film grain noise overlay (0 = off)                  | `0`                       | `0`                                  |
-| `r.LensFlareQuality`            | Lens flare and streak artifacts (0 = off)           | `0`                       | `0`                                  |
+| Key                              | Effect                                                   | Recommended (performance) | Recommended (quality) |
+| -------------------------------- | -------------------------------------------------------- | ------------------------- | --------------------- |
+| `bUseVSync`                      | In-game vertical synchronisation                         | `False`                   | `False`               |
+| `FrameRateLimit`                 | In-engine frame rate cap (0 = uncapped)                  | `144.000000`              | `144.000000`          |
+| `sg.MassiveGameQuality`          | Mass player battle & siege scalability                   | `1`                       | `3`                   |
+| `sg.TextureQuality`              | Texture streaming quality (0–4)                          | `3`                       | `4`                   |
+| `sg.GlobalIlluminationQuality`   | Lumen Global Illumination quality (0–4)                  | `1`                       | `3`                   |
+| `sg.ReflectionQuality`           | Lumen reflection quality (0–4)                           | `1`                       | `3`                   |
+| `sg.ShadowQuality`               | Virtual Shadow Maps (VSM) quality (0–4)                  | `1`                       | `3`                   |
+| `r.ngx.dlss.enable`              | NVIDIA DLSS Super Resolution plugin                      | `1`                       | `1`                   |
+| `r.NGX.DLSS.Quality`             | DLSS preset (1 = Performance, 2 = Balanced, 3 = Quality) | `1`                       | `3`                   |
+| `r.Streamline.DLSSG.Enable`      | NVIDIA Streamline DLSS 3 Frame Generation                | `1`                       | `1`                   |
+| `r.Reflex.Enable`                | NVIDIA Reflex Low Latency system                         | `1`                       | `1`                   |
+| `r.Streaming.PoolSize`           | Texture streaming pool budget in MB                      | `2000`                    | `4000`                |
+| `r.MotionBlurQuality`            | Camera and object motion blur (0 = off)                  | `0`                       | `0`                   |
+| `r.DepthOfFieldQuality`          | Depth of field focal blurring (0 = off)                  | `0`                       | `0`                   |
+| `r.SceneColorFringeQuality`      | Chromatic aberration lens fringing (0 = off)             | `0`                       | `0`                   |
+| `r.Tonemapper.GrainQuantization` | Film grain noise overlay (0 = off)                       | `0`                       | `0`                   |
+| `r.LensFlareQuality`             | Lens flare and streak artifacts (0 = off)                | `0`                       | `0`                   |
 
 ### Aion 2: Ultrawide (32:9), DLSS Quality & Frame Generation Setup
 
