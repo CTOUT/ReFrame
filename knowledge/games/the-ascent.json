@@ -262,10 +262,10 @@
       "effect": "Forces all in-use textures to stream to full resolution and lock in VRAM.",
       "recommendations": {
         "performance": "0",
-        "balanced": "1",
-        "quality": "1"
+        "balanced": "0",
+        "quality": "0"
       },
-      "notes": "Eliminates texture pop-in and streaming hitches during combat. Safe on 12GB+ GPUs (adds ~1.5-2GB VRAM usage)."
+      "notes": "Keep at 0. Forcing 1 causes VRAM exhaustion at 4K and 32:9 resolutions, triggering multi-second D3D12 paging freezes across the PCIe bus."
     },
     {
       "key": "r.Streaming.HLODStrategy",
@@ -274,10 +274,10 @@
       "effect": "Hierarchical Level of Detail streaming strategy (2 = disable streaming, load all HLODs).",
       "recommendations": {
         "performance": "0",
-        "balanced": "2",
-        "quality": "2"
+        "balanced": "0",
+        "quality": "0"
       },
-      "notes": "Keeps distant city geometry and skyline meshes fully loaded in VRAM, eliminating traversal hitches across arcology vistas."
+      "notes": "Keep at 0. Forcing 2 disables HLOD culling and oversubscribes 12GB VRAM when paired with Ray Tracing at high resolutions."
     },
     {
       "key": "AspectRatioAxisConstraint",
@@ -290,6 +290,30 @@
         "quality": "AspectRatio_MaintainYFOV"
       },
       "notes": "Prevents vertical cropping (Vert-) on ultrawide (21:9) and super-ultrawide (32:9) monitors."
+    },
+    {
+      "key": "NetServerMaxTickRate",
+      "file": "Engine.ini",
+      "section": "[/Script/OnlineSubsystemUtils.IpNetDriver]",
+      "effect": "Server tick rate for co-op peer-to-peer listen servers.",
+      "recommendations": {
+        "performance": "60",
+        "balanced": "60",
+        "quality": "60"
+      },
+      "notes": "Doubles replication frequency from 30Hz to 60Hz, preventing dropped loot replication and actor desync on LAN and broadband."
+    },
+    {
+      "key": "MaxClientRate",
+      "file": "Engine.ini",
+      "section": "[/Script/OnlineSubsystemUtils.IpNetDriver]",
+      "effect": "Maximum bandwidth per client in bytes per second.",
+      "recommendations": {
+        "performance": "104857600",
+        "balanced": "104857600",
+        "quality": "104857600"
+      },
+      "notes": "Removes legacy 15 KB/s packet throttle, allowing full LAN/broadband throughput for simultaneous physics and loot drops."
     }
   ],
   "engine_overrides": [
