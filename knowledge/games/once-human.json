@@ -1,0 +1,298 @@
+{
+  "game": "Once Human",
+  "engine": "NetEase NeoX",
+  "engine_version": "PC (DX12)",
+  "profile_version": "1.0.0",
+  "updated": "2026-10-25",
+  "platforms": [
+    {
+      "store": "Steam",
+      "config_files": [
+        {
+          "path": "%PROGRAMFILES(X86)%\\Steam\\steamapps\\common\\Once Human\\Documents\\GraphicConfig.xml",
+          "format": "xml"
+        }
+      ]
+    },
+    {
+      "store": "Loading Bay / Standalone",
+      "config_files": [
+        {
+          "path": "%PROGRAMFILES%\\Loading Bay Games\\ONCE HUMAN\\Documents\\GraphicConfig.xml",
+          "format": "xml"
+        }
+      ]
+    }
+  ],
+  "keys": [
+    {
+      "key": "setting_resolution",
+      "file": "GraphicConfig.xml",
+      "section": "<Base>",
+      "effect": "Internal render resolution formatted as (Width, Height).",
+      "recommendations": {
+        "performance": "(1920, 1080)",
+        "balanced": "(2560, 1440)",
+        "quality": "(5120, 1440)"
+      },
+      "notes": "Once Human natively scales horizontal field of view (Hor+) for 21:9 and 32:9 aspect ratios. Can be overridden to (3840, 1440) or (2560, 1440) for GPU-centered pillarboxed play."
+    },
+    {
+      "key": "picture_border_adjustment",
+      "file": "GraphicConfig.xml",
+      "section": "<Base>",
+      "effect": "Screen safe-zone and UI boundary margin padding from physical display bezels.",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "10",
+        "quality": "15"
+      },
+      "notes": "Crucial on 32:9 super ultrawide monitors (5120x1440) to pull minimap, status bars, and quest log inward from the physical edges into a comfortable 21:9/16:9 viewing field."
+    },
+    {
+      "key": "setting_motion_blur",
+      "file": "GraphicConfig.xml",
+      "section": "<Base> and <Advanced>",
+      "effect": "Toggles camera and object motion blur (0 = Off, 1 = On).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Always recommended 0 (Off). Motion blur on high refresh ultrawides creates rapid peripheral visual distortion and is the primary trigger for simulator sickness."
+    },
+    {
+      "key": "setting_display_mode",
+      "file": "GraphicConfig.xml",
+      "section": "<Base>",
+      "effect": "Window presentation mode: 0 = Windowed, 1 = Borderless Windowed, 2 = Fullscreen.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Borderless Windowed provides smooth alt-tabbing, avoids resolution reset glitches on multi-monitor setups, and supports window centering utilities."
+    },
+    {
+      "key": "setting_nvidia_super_resolution",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "NVIDIA DLSS upscaler mode: 0 = Off, 1 = Ultra Performance, 2 = Performance, 3 = Balanced, 4 = Quality.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "3",
+        "quality": "4"
+      },
+      "notes": "Requires setting_enable_d3d12=1. DLSS Quality provides exceptional anti-aliasing on dense vegetation and fine mesh wireframes at 1440p+ while delivering 30-40% higher frame rates."
+    },
+    {
+      "key": "setting_frame_insertion",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "NVIDIA DLSS 3 Frame Generation toggle (0 = Off, 1 = On).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Requires GeForce RTX 40-series GPU, DX12, and Windows Hardware-Accelerated GPU Scheduling (HAGS). Generates intermediate frames to push frame rates into 140-240 FPS territory."
+    },
+    {
+      "key": "setting_nvidia_reflex",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "NVIDIA Reflex Low Latency system toggle (0 = Off, 1 = On).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Mandatory when DLSS 3 Frame Generation is active. Keeps GPU render queue minimal to reduce input lag."
+    },
+    {
+      "key": "setting_nvidia_reflex_mode",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "NVIDIA Reflex operational mode: 0 = Off, 1 = On, 2 = On + Boost.",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Mode 1 optimizes latency with standard GPU clock scaling; Mode 2 pins GPU clocks higher during CPU-limited scenarios."
+    },
+    {
+      "key": "setting_low_latency",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "NeoX engine render queue low latency synchronization flag (0 = Off, 1 = On).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "setting_lean_look",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "Camera roll and tilt when leaning around obstacles or aiming (0 = Off, 1 = On).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Recommended 0 for motion_comfort; camera roll without physical vestibular cueing induces motion sickness in sensitive individuals."
+    },
+    {
+      "key": "setting_texture_quality",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "Surface texture resolution and mipmap quality level (0 = Low, 1 = Medium, 2 = High).",
+      "recommendations": {
+        "performance": "2",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "VRAM-bound. Level 2 (High) requires approximately 8-10 GB VRAM allocation at 5120x1440; comfortably supported by 12GB+ GPUs with zero compute overhead."
+    },
+    {
+      "key": "setting_shadow",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "Cascaded shadow map resolution and filtering quality (0 = Low, 1 = Medium, 2 = High).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "setting_screen_space_shadows",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "Screen-space directional contact shadows (0 = Off, 1 = On).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "setting_screen_space_reflection",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "Screen-space specular reflections on wet roads, puddles, and glass (0 = Off, 1 = On).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "setting_detail_level",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "World object Level-of-Detail (LOD) draw distance and mesh density.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      },
+      "notes": "High detail distance significantly pushes out geometry pop-in distance, critical for maintaining visual stability across wide 32:9 horizons."
+    },
+    {
+      "key": "setting_grass_density",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "Vegetation and ground foliage clutter density.",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "2",
+        "quality": "2"
+      }
+    },
+    {
+      "key": "setting_vertical_synchronization",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "In-engine double-buffer vertical synchronization toggle (0 = Off, 1 = On).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Always recommended 0 (Off). Rely on monitor G-Sync / FreeSync VRR to prevent judder and tearing without incurring frame presentation lag."
+    },
+    {
+      "key": "setting_fps_limit",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "Frame rate cap preset (1 = 30, 2 = 60, 3 = 120, 4 = Uncapped/240Hz).",
+      "recommendations": {
+        "performance": "4",
+        "balanced": "3",
+        "quality": "4"
+      }
+    },
+    {
+      "key": "setting_enable_d3d12",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "Enables DirectX 12 graphics backend (0 = DX11, 1 = DX12).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Mandatory to unlock DLSS, DLSS 3 Frame Generation, and multi-core CPU command recording."
+    },
+    {
+      "key": "chat_font_scale",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "Text chat window font size multiplier (0 = Default, 1 = Medium, 2 = Large).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Recommended 1 or 2 for high-resolution 1440p and ultrawide displays to improve legibility and reduce eye strain."
+    },
+    {
+      "key": "subtitle_font_scale",
+      "file": "GraphicConfig.xml",
+      "section": "<Advanced>",
+      "effect": "Spoken dialogue subtitle font scaling preset (0-4).",
+      "recommendations": {
+        "performance": "4",
+        "balanced": "4",
+        "quality": "4"
+      }
+    }
+  ],
+  "manual_only_settings": [
+    {
+      "setting": "Screen Shake Intensity",
+      "location": "Settings → Game → Camera",
+      "recommendation": "0% / Off",
+      "reason": "Eliminates violent camera jolting during weapon firing and detonations, essential for motion_comfort."
+    },
+    {
+      "setting": "Camera Distance",
+      "location": "Settings → Game → Camera",
+      "recommendation": "Maximum (100%)",
+      "reason": "Pulls third-person perspective back to prevent the character model from blocking the crosshair and broadens immediate field awareness."
+    },
+    {
+      "setting": "Picture Border Adjustment",
+      "location": "Settings → Display",
+      "recommendation": "Adjust to pull HUD into 21:9 / 16:9 bounds",
+      "reason": "Eliminates extreme head turning on 32:9 displays by bringing vital HUD elements toward the center gaze."
+    }
+  ],
+  "sources": [
+    "https://www.pcgamingwiki.com/wiki/Once_Human",
+    "https://store.steampowered.com/app/2139460/Once_Human/"
+  ]
+}

@@ -277,6 +277,16 @@
       "updated": "2026-05-30"
     },
     {
+      "name": "Once Human",
+      "file": "games/once-human.json",
+      "engine": "NetEase NeoX",
+      "engine_version": "PC (DX12)",
+      "platforms": ["Steam", "Loading Bay / Standalone"],
+      "key_count": 21,
+      "profile_version": "1.0.0",
+      "updated": "2026-10-25"
+    },
+    {
       "name": "Outriders",
       "file": "games/outriders.json",
       "engine": "Unreal Engine 4",
