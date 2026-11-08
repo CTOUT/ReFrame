@@ -152,14 +152,14 @@ foreach ($plat in $platformsToProcess) {
             else {
                 $installItems.Add([PSCustomObject]@{
                     Platform      = 'kiro'
-                    SourceRelPath = 'AGENTS.md'
-                    DestPath      = Join-Path $homeDir '.kiro\steering\reframe-agent.md'
+                    SourceRelPath = '.github/agents/reframe.agent.md'
+                    DestPath      = Join-Path $homeDir '.kiro\agents\reframe.md'
                     WrapAsSkill   = $false
                 })
                 $installItems.Add([PSCustomObject]@{
                     Platform      = 'kiro'
-                    SourceRelPath = '.kiro/steering/reframe.md'
-                    DestPath      = Join-Path $homeDir '.kiro\steering\reframe.md'
+                    SourceRelPath = '.kiro/agents/reframe.json'
+                    DestPath      = Join-Path $homeDir '.kiro\agents\reframe.json'
                     WrapAsSkill   = $false
                 })
             }
@@ -218,7 +218,9 @@ try {
             Invoke-WebRequest -Uri $sourceUrl -OutFile $tempFile -UseBasicParsing -TimeoutSec 30
         }
         catch {
-            if (Test-Path $localCandidate) {
+            # Only fall back to local working tree when installing repo-level from 'main'.
+            # Never fall back when a pinned -Ref tag/SHA was requested for supply-chain verification.
+            if ($Target -eq 'repo' -and $Ref -eq 'main' -and (Test-Path $localCandidate)) {
                 Copy-Item -Path $localCandidate -Destination $tempFile -Force
             }
             else {

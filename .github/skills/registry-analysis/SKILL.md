@@ -71,8 +71,8 @@ Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm"
 | Win32PrioritySeparation                 | `38` (hex 0x26)   | Maximum foreground boost (2 quanta, variable)                                                                                                                                            |
 | Power scheme                            | High Performance  | Prevents CPU/GPU throttling during gameplay                                                                                                                                              |
 | HwSchMode                               | `2`               | Enables hardware-accelerated GPU scheduling                                                                                                                                              |
-| AutoGameModeEnabled / AllowAutoGameMode | `1`               | Enables Windows Game Mode                                                                                                                                                                |
-| OverlayTestMode (DWM)                   | `5`               | Disables Multi-Plane Overlay (MPO) — eliminates stutter/frame-pacing issues on NVIDIA + Windows 11. **Rollback: value must be DELETED, not set to 0. Setting 0 does not re-enable MPO.** |
+| AutoGameModeEnabled / AllowAutoGameMode | `1`               | Enables Windows Game Mode                                                                                                                                                                                                                                                                         |
+| OverlayTestMode (DWM) _(opt-in)_        | Absent (default)  | Keep absent on Win 11 23H2/24H2+ (required for Windowed G-Sync/VRR and Auto HDR). Set to `5` only as an opt-in fix for legacy driver flicker. **Rollback: value must be DELETED via `.reg` backup import, not set to 0.**                                                                         |
 
 ---
 

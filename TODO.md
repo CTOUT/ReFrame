@@ -14,7 +14,6 @@ _No active work items currently in progress._
 
 ### Configuration & Profile Management
 
-- [ ] **Backup Review** — review backup strategy and naming conventions for ReFrame. Create registry import files (`.reg`) and structured restore notes for changes and rollback.
 - [ ] **Export report** — save optimisation report as a Markdown or HTML file.
 - [ ] **Benchmark integration** — optionally run a quick GPU benchmark to calibrate tier classification.
 
@@ -41,6 +40,8 @@ _No active work items currently in progress._
 
 ## Completed
 
+- [x] **Multi-Agent Support (`AGENTS.md`, Google Antigravity, Kiro)** — added zero-duplication support for Google Antigravity (`.agents/skills.json`) and Kiro (`.kiro/agents/reframe.json`, `.kiro/steering/reframe.md`) alongside GitHub Copilot, and updated `install.ps1` with `-Platform` (`copilot`, `antigravity`, `kiro`, `all`).
+- [x] **Backup Review** — implemented `.reg` hive exports (`PriorityControl.reg`, `MMCSS.reg`, `DWM.reg`) and `RESTORE-NOTES.txt` in `%LOCALAPPDATA%\ReFrame\Backups\registry_<timestamp>\` within `.github/skills/apply-changes/SKILL.md`.
 - [x] **Config Profiles & Switcher** — add named configuration profiles and profile-switching capabilities per game (`.github/skills/config-profiles/SKILL.md`). Supports rapid toggles between distinct operational contexts:
   - _Display Switching & Headroom Reallocation:_ switching between primary monitor (e.g. 5120×1440 or 4K) and secondary screens (1080p/1440p) where reduced resolution frees GPU headroom to unlock higher visual quality, ray tracing, or DLSS/FSR Quality/DLAA modes.
   - _Streaming & Remote Play:_ optimized targets for Steam Link, Moonlight/Sunshine, or Steam Deck streaming (target resolution, hard frame cap matching stream encoder cadence, borderless windowed presentation, disabled in-game VSync).

@@ -105,9 +105,9 @@ Use the game's known paths from `knowledge/games/<game>.json` or the config disc
 Determine the current display resolution and refresh rate (from DxDiag or system scan), optimisation goal, and active modifiers:
 
 ```powershell
-# Sanitise paths
+# Sanitise paths (strip reserved characters and '..' traversal sequences)
 $safeGame = $GameName -replace '[\\/:*?"<>|]', '_' -replace '\.\.', '_'
-$safeProfile = $ProfileName -replace '[\\/:*?"<>| ]', '-'
+$safeProfile = $ProfileName -replace '[\\/:*?"<>| ]', '-' -replace '\.\.', '_'
 $profileDir = "$env:LOCALAPPDATA\ReFrame\Profiles\$safeGame\$safeProfile"
 New-Item -ItemType Directory -Path $profileDir -Force | Out-Null
 ```
@@ -188,7 +188,8 @@ List all saved profiles and indicate which one matches the active game configura
 ```powershell
 $profileBase = "$env:LOCALAPPDATA\ReFrame\Profiles"
 if ($GameName) {
-    $searchDir = "$profileBase\$($GameName -replace '[\\/:*?"<>|]', '_')"
+    $safeGame = $GameName -replace '[\\/:*?"<>|]', '_' -replace '\.\.', '_'
+    $searchDir = "$profileBase\$safeGame"
 } else {
     $searchDir = $profileBase
 }
@@ -234,7 +235,7 @@ Compare the configuration keys between two saved profiles (or between a profile 
 | `WindowMode`  | Fullscreen       | Borderless             | Prevents capture freezes on stream                    |
 | `MaxFPS`      | 0 (Uncapped)     | 60                     | Synchronises with 60Hz stream encoder                 |
 | `RayTracing`  | On               | Off                    | Preserves 60 FPS frame time stability                 |
-| `DLSS Preset` | Quality          | Quality (Native 1080p) | Crisp text and reduced stream compression artifacts   |
+| `DLSS Preset` | Quality          | Quality (Native 1080p) | Crisp text and reduced stream compression artefacts   |
 | `VSync`       | Off (G-Sync)     | Off                    | In-game VSync disabled to avoid double-buffer latency |
 ```
 
@@ -257,7 +258,7 @@ When moving between displays of differing resolutions:
 2. **Frame Rate Capping:** Set a rigid frame cap matching client refresh rate (usually 60 FPS flat or 120 FPS). Uncapped frame rates cause encoder queue stutter and packet jitter.
 3. **In-Game VSync:** Recommend **Off** in-game. Presentation timing is handled by the streaming client. Double VSync adds perceptible input lag.
 4. **Window Mode:** Prefer **Borderless Windowed** mode to prevent host black screens, capture freezes, or alt-tab desktop focus drops.
-5. **Post-Processing Clarity:** Disable chromatic aberration, film grain, and heavy depth of field. These effects introduce high-frequency noise that confuses video compression algorithms (H.264/HEVC/AV1), causing severe blocky compression artifacts over network streams.
+5. **Post-Processing Clarity:** Disable chromatic aberration, film grain, and heavy depth of field. These effects introduce high-frequency noise that confuses video compression algorithms (H.264/HEVC/AV1), causing severe blocky compression artefacts over network streams.
 
 ### Competitive Mode Rules
 

@@ -135,10 +135,11 @@ Used only when DxDiag generation fails or times out.
 Get-CimInstance Win32_Processor |
     Select-Object Name, NumberOfCores, NumberOfLogicalProcessors, MaxClockSpeed
 
-# GPU
-$gpus = Get-CimInstance Win32_VideoController -ErrorAction SilentlyContinue
+# GPU (filter out virtual/remote display adapters; note Win32_VideoController.AdapterRAM is uint32 and caps at 4 GB)
+$gpus = Get-CimInstance Win32_VideoController -ErrorAction SilentlyContinue |
+    Where-Object { $_.Name -notmatch 'Microsoft Basic|Virtual|Parsec|Steam|Remote|Indirect' }
 $gpus | Sort-Object AdapterRAM -Descending | Select-Object -First 1 |
-    Select-Object Name, @{N='VRAM_GB';E={[math]::Round($_.AdapterRAM/1GB, 1)}}, DriverVersion, VideoProcessor
+    Select-Object Name, @{N='VRAM_GB_WMI_Max4GB';E={[math]::Round($_.AdapterRAM/1GB, 1)}}, DriverVersion, VideoProcessor
 
 # RAM
 $totalRAM = (Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB
@@ -240,7 +241,10 @@ After the System Profile is produced, identify the GPU vendor and store it in
 session context. Use the GPU name from the System Profile:
 
 ```powershell
-$gpu = (Get-CimInstance Win32_VideoController | Select-Object -First 1 -ExpandProperty Name)
+$gpu = (Get-CimInstance Win32_VideoController |
+    Where-Object { $_.Name -notmatch 'Microsoft Basic|Virtual|Parsec|Steam|Remote|Indirect' } |
+    Sort-Object AdapterRAM -Descending |
+    Select-Object -First 1 -ExpandProperty Name)
 if     ($gpu -match "NVIDIA|GeForce|RTX|GTX")    { "NVIDIA" }
 elseif ($gpu -match "AMD|Radeon|RX\s?\d")         { "AMD" }
 elseif ($gpu -match "Intel|Iris|Arc")              { "Intel" }

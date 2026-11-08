@@ -20,7 +20,7 @@ npm run spellcheck
 - [ ] Instructions are clear, unambiguous, and internally consistent
 - [ ] New tools added to the frontmatter only if actually used in the instructions
 - [ ] Safety rules section still enforces: backup-before-write, confirm-before-apply, no deletions
-- [ ] Accessibility modifier coverage is intact: `motion_comfort`, `photosensitivity`, `low_vision`, `colour_vision`, `arachnophobia`, `trypophobia`, `dyslexia`, `dyscalculia`
+- [ ] Accessibility modifier coverage is intact: `motion_comfort`, `photosensitivity`, `low_vision`, `colour_vision`, `hearing`, `arachnophobia`, `trypophobia`, `dyslexia`, `dyscalculia`
 - [ ] PowerShell snippets tested on Windows 10/11
 - [ ] No hardcoded user paths — use environment variables (`$env:USERPROFILE`, `$env:APPDATA`, etc.)
 - [ ] `CHANGELOG.md` updated under `[Unreleased] → Added / Changed / Fixed`

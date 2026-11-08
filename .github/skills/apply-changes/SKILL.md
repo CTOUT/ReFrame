@@ -88,12 +88,11 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl" 
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" `
     -Name "HwSchMode" -Value 2 -Type DWord -Force
 
-# MPO (Multi-Plane Overlay) — disable to fix stutter on NVIDIA + Windows 11
-# NOTE: rollback requires DELETING this value, not setting it to 0.
-# The reg export backup above captures the pre-change DWM hive (which lacks this key),
-# so importing that backup file correctly restores the default by removing the value.
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Dwm" `
-    -Name "OverlayTestMode" -Value 5 -Type DWord -Force
+# MPO (Multi-Plane Overlay) — OPTIONAL troubleshooting only (do NOT apply by default on Win 11 23H2/24H2+ where MPO is required for Windowed G-Sync/VRR and Auto HDR).
+# Only uncomment if diagnosing legacy driver flicker/stutter:
+# NOTE: rollback requires DELETING this value (via reg import of the pre-change DWM.reg backup), not setting it to 0.
+# Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Dwm" `
+#     -Name "OverlayTestMode" -Value 5 -Type DWord -Force
 ```
 
 After applying registry changes, inform the user that **a system restart is

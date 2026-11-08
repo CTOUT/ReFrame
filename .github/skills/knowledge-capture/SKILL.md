@@ -39,7 +39,7 @@ If the user declines, do not ask again in the same session.
    - `notes` — version caveats or anomalies observed
    - `sources` — every URL consulted via `web` during this session
    - Remove all `_instructions` and `_comment` fields
-2. Write the file to `knowledge/games/game-name.json` using `edit/createFile`.
+2. Sanitise the file slug strictly to lowercase alphanumeric and hyphens (`$safeSlug = ($GameName.ToLower() -replace '[^a-z0-9]+', '-').Trim('-')`) so no path separators or `..` traversal sequences can occur, then write the file to `knowledge/games/$safeSlug.json` using `edit/createFile`.
 3. Report: `Written to knowledge/games/game-name.json — [N] keys captured.`
 4. Show both contribution paths:
 

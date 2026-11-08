@@ -1,9 +1,9 @@
 ---
 name: accessibility-modifiers
 description: >
-  Per-modifier setting tables for all eight ReFrame accessibility modifiers:
-  motion_comfort, photosensitivity, low_vision, colour_vision, arachnophobia,
-  trypophobia, dyslexia, and dyscalculia. Loaded on-demand when
+  Per-modifier setting tables for all nine ReFrame accessibility modifiers:
+  motion_comfort, photosensitivity, low_vision, colour_vision, hearing,
+  arachnophobia, trypophobia, dyslexia, and dyscalculia. Loaded on-demand when
   optimisation_modifiers is non-empty.
 ---
 
@@ -106,6 +106,22 @@ For users with colour vision deficiency (colour blindness).
 | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | Colour blind mode / type                        | **Manual** — select appropriate mode (Protanopia / Deuteranopia / Tritanopia) in Accessibility settings | Rarely in config files                           |
 | Enemy / ally highlight colour (if configurable) | Game-specific — check GAMES.md                                                                          | Some games expose outline colours as config keys |
+
+---
+
+## Hearing and Audio Accessibility
+
+### `hearing`
+
+For deaf or hard-of-hearing users, unilateral hearing loss (single-sided deafness), or auditory processing needs.
+
+| Setting                                   | Recommended                                                  | Reason                                                                                       |
+| ----------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| Subtitles / Closed Captions               | On (Full captions including speaker names and sound effects) | Ensures dialogue and non-speech audio cues are readable                                      |
+| Subtitle background opacity               | High (≥ 75% if configurable)                                 | Maintains caption legibility over bright scenes                                              |
+| Mono audio / Downmix to mono              | On (when requested for unilateral / single-sided hearing)    | Prevents directional audio cues on the deaf side from being lost in stereo/surround channels |
+| Visual sound indicators / Directional HUD | **Manual** — enable in Accessibility or Audio settings       | Visualises footsteps, gunfire, and directional threat alerts on the HUD (e.g. Fortnite, CoD) |
+| Dynamic range / Night Mode                | Narrow / Night Mode (if configurable)                        | Compresses loud explosions while boosting quiet dialogue clarity                             |
 
 ---
 

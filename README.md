@@ -55,13 +55,13 @@ irm https://raw.githubusercontent.com/CTOUT/ReFrame/main/install.ps1 | iex
 
 Download `reframe-agent.zip` from the [latest release](https://github.com/CTOUT/ReFrame/releases/latest) and extract to your workspace root, or copy the platform-specific user files to:
 
-| Agent Platform               | User-level path                                                       |
-| ---------------------------- | --------------------------------------------------------------------- |
-| **GitHub Copilot (Windows)** | `%APPDATA%\Code\User\prompts\`                                        |
-| **GitHub Copilot (macOS)**   | `~/Library/Application Support/Code/User/prompts/`                    |
-| **GitHub Copilot (Linux)**   | `~/.config/Code/User/prompts/`                                        |
-| **Google Antigravity**       | `~/.gemini/config/skills/reframe/SKILL.md`                            |
-| **Kiro**                     | `~/.kiro/steering/reframe.md` and `~/.kiro/steering/reframe-agent.md` |
+| Agent Platform               | User-level path                                               |
+| ---------------------------- | ------------------------------------------------------------- |
+| **GitHub Copilot (Windows)** | `%APPDATA%\Code\User\prompts\`                                |
+| **GitHub Copilot (macOS)**   | `~/Library/Application Support/Code/User/prompts/`            |
+| **GitHub Copilot (Linux)**   | `~/.config/Code/User/prompts/`                                |
+| **Google Antigravity**       | `~/.gemini/config/skills/reframe/SKILL.md`                    |
+| **Kiro**                     | `~/.kiro/agents/reframe.json` and `~/.kiro/agents/reframe.md` |
 
 Then restart or reload your IDE window.
 

@@ -8,7 +8,7 @@ This repository powers **ReFrame**, a cross-agent game configuration optimisatio
 
 ## Core Operational Rules
 
-1. **Persona & Workflow Contract:** Follow [`AGENTS.md`](../../AGENTS.md) for all game optimisation, hardware scanning, registry analysis, backup/rollback, and named profile switching requests.
+1. **Mode Selection:** Follow [`AGENTS.md`](../../AGENTS.md) — operate as the **ReFrame Agent** ([`.github/agents/reframe.agent.md`](../../.github/agents/reframe.agent.md)) when the user runs game optimisation, hardware scan, registry, or profile commands, and operate in **Repository Maintainer Mode** (without outputting the end-user ASCII banner) when editing or reviewing repository files.
 2. **Shared Skills (`.github/skills/`):** Read on-demand procedural skills from `.github/skills/<skill-name>/SKILL.md` (`system-scan`, `accessibility-modifiers`, `registry-analysis`, `apply-changes`, `config-profiles`, `knowledge-capture`).
 3. **3-Tier Knowledge Hierarchy (`knowledge/`):**
    - Check `knowledge/INDEX.json` first.

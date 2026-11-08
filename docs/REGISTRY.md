@@ -76,6 +76,18 @@ Game Mode dedicates CPU/GPU resources to the active game and suspends background
 
 ---
 
+## Multi-Plane Overlay (MPO) — Opt-in Troubleshooting Only
+
+Path: `HKLM\SOFTWARE\Microsoft\Windows\Dwm`
+
+| Value Name        | Type  | Default          | Opt-in Troubleshooting | Effect                                                                                                                     |
+| ----------------- | ----- | ---------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `OverlayTestMode` | DWord | Absent (enabled) | `5` (disables MPO)     | Disables DWM Multi-Plane Overlays. **Only use if diagnosing legacy driver flicker**; keep absent on Windows 11 23H2/24H2+. |
+
+> **Important:** On Windows 11 23H2/24H2+, Multi-Plane Overlay (MPO) is required for **Windowed G-Sync / VRR**, **Auto HDR**, and low-latency borderless presentation. Do not set `OverlayTestMode = 5` by default. If applied for troubleshooting, rolling back requires **restoring the pre-change `DWM.reg` backup** (or deleting the `OverlayTestMode` value) — setting it to `0` does not re-enable MPO.
+
+---
+
 ## Power Plan
 
 Managed via `powercfg`, not a registry key directly.
