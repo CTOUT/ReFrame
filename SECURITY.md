@@ -31,7 +31,7 @@ You can expect:
 
 This repository contains:
 
-- A GitHub Copilot agent definition (`reframe.agent.md`) and modular skills (`.github/skills/`)
+- Agent definitions and steering manifests (`AGENTS.md`, `.agents/skills.json`, `.github/agents/reframe.agent.md`, `.kiro/`) and modular skills (`.github/skills/`)
 - An installer script (`install.ps1`)
 - GitHub Actions release and validation workflows (`.github/workflows/`)
 - Documentation and knowledge base files (`docs/`, `knowledge/`)

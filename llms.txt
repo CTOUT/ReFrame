@@ -1,12 +1,16 @@
 # ReFrame
 
-> GitHub Copilot agent for PC game configuration optimisation, accessibility tuning, and profile switching.
+> Cross-agent PC game configuration optimisation, accessibility tuning, and profile switching assistant for GitHub Copilot, Google Antigravity, and Kiro.
 
-ReFrame is an open-source GitHub Copilot agent (MIT licence) that detects system hardware, locates and parses game configuration files (INI, CFG, XML, JSON, WTF, Lua), analyses Windows gaming registry settings, and recommends or applies hardware-appropriate performance and eye-comfort improvements with automatic backup, rollback, and named profile switching.
+ReFrame is an open-source AI agent (MIT licence) supporting **GitHub Copilot (VS Code)**, **Google Antigravity (AGY)**, and **Kiro** that detects system hardware, locates and parses game configuration files (INI, CFG, XML, JSON, WTF, Lua), analyses Windows gaming registry settings, and recommends or applies hardware-appropriate performance and eye-comfort improvements with automatic backup, rollback, and named profile switching.
 
 ## Repository Layout
 
-- `.github/agents/reframe.agent.md` — Primary agent definition, workflows, tier resolution, and safety rules
+- `AGENTS.md` — Universal agent persona, workflows, 3-tier resolution rules, and safety contract (auto-loaded by Antigravity, Kiro, and `AGENTS.md`-compatible tools)
+- `.agents/skills.json` — Google Antigravity skill manifest mounting `.github/skills/` with zero file duplication
+- `.kiro/agents/reframe.json` — Kiro custom `@reframe` agent definition referencing `AGENTS.md` and `skill://.github/skills/**/SKILL.md`
+- `.kiro/steering/reframe.md` — Kiro workspace steering (`inclusion: always`)
+- `.github/agents/reframe.agent.md` — GitHub Copilot (VS Code) agent definition, workflows, tier resolution, and safety rules
 - `.github/skills/system-scan/SKILL.md` — Hardware detection via DxDiag XML and PowerShell CIM queries
 - `.github/skills/accessibility-modifiers/SKILL.md` — Setting tables for motion/eye comfort, photosensitivity, vision, and cognitive modifiers
 - `.github/skills/apply-changes/SKILL.md` — Backup, modification, and rollback procedures for configs and registry hives
@@ -20,7 +24,7 @@ ReFrame is an open-source GitHub Copilot agent (MIT licence) that detects system
 - `docs/GAMES.md` — Human-readable reference for game configuration paths, overrides, and ultrawide/eye-comfort setups
 - `docs/REGISTRY.md` — Windows gaming registry reference
 - `docs/TROUBLESHOOTING.md` — Diagnostic and remediation guide
-- `install.ps1` — PowerShell installer supporting repo-level and user-level deployment
+- `install.ps1` — PowerShell installer supporting repo-level and user-level deployment across `copilot`, `antigravity`, `kiro`, or `all`
 
 ## Validation & Maintenance Scripts
 

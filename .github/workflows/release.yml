@@ -28,7 +28,13 @@ jobs:
       - name: Package agent
         run: |
           mkdir -p dist
-          zip -j dist/reframe-agent.zip .github/agents/reframe.agent.md
+          zip -r dist/reframe-agent.zip \
+            AGENTS.md \
+            .agents/skills.json \
+            .github/agents/reframe.agent.md \
+            .github/skills \
+            .kiro/agents/reframe.json \
+            .kiro/steering/reframe.md
           cp install.ps1 dist/install.ps1
 
       - name: Generate checksums

@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Multi-Agent Support (Google Antigravity & Kiro)**:
+  - Added [`AGENTS.md`](AGENTS.md) at the repository root as a universal agent persona and safety contract auto-discovered by **Google Antigravity**, **Kiro**, and `AGENTS.md`-compatible tools.
+  - Added [`.agents/skills.json`](.agents/skills.json) to mount `.github/skills/*` into Google Antigravity with zero file duplication.
+  - Added [`.kiro/agents/reframe.json`](.kiro/agents/reframe.json) and [`.kiro/steering/reframe.md`](.kiro/steering/reframe.md) for Kiro custom `@reframe` agent and workspace steering support.
+  - Updated [`install.ps1`](install.ps1) with `-Platform` (`copilot`, `antigravity`, `kiro`, `all`) for both repo-level and user-level installations, and updated [`.github/workflows/release.yml`](.github/workflows/release.yml) to bundle all multi-agent manifests into `reframe-agent.zip`.
 - **World of Warcraft: Forever (`wowf`) & Eye-Comfort Updates**:
   - Added _World of Warcraft: Forever_ (`_forever_`, `wowf`) client support, detection paths, and aliases to `knowledge/games/world-of-warcraft.json` (`v1.2.0`), `knowledge/game-engines/blizzard-wow-engine.json` (`v1.2.0`), `knowledge/INDEX.json`, and `docs/GAMES.md`.
   - Added 14 eye-comfort, frame-pacing, and ultrawide HUD CVars to the World of Warcraft profile (`cameraShake`, `cameraBobbing`, `cameraPivot`, `ffxGlow`, `ffxDeath`, `screenEdgeFlash`, `CameraReduceUnexpectedMovement`, `ResampleQuality`, `ResampleAlwaysSharpen`, `ResampleSharpness`, `useMaxFPS`, `LowLatencyMode`, `useUiScale`, `uiScale`).

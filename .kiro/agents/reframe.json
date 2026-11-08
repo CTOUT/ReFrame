@@ -1,0 +1,14 @@
+{
+  "name": "reframe",
+  "description": "Game configuration optimisation agent. Detects system hardware, analyses game config files and Windows registry settings, and applies hardware-appropriate improvements with backup, rollback, and named profile switching.",
+  "prompt": "file://AGENTS.md",
+  "tools": ["read", "write", "shell", "web"],
+  "resources": [
+    "file://AGENTS.md",
+    "file://knowledge/INDEX.json",
+    "file://docs/GAMES.md",
+    "file://docs/REGISTRY.md",
+    "skill://.github/skills/**/SKILL.md"
+  ]
+}
+

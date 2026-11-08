@@ -1,7 +1,7 @@
 {
   "name": "reframe",
   "version": "1.2.0",
-  "description": "GitHub Copilot agent for PC game configuration optimisation, accessibility tuning, and profile switching.",
+  "description": "Cross-agent PC game configuration optimisation, accessibility tuning, and profile switching assistant for GitHub Copilot, Google Antigravity, and Kiro.",
   "private": true,
   "license": "MIT",
   "repository": {
@@ -9,7 +9,7 @@
     "url": "https://github.com/CTOUT/ReFrame.git"
   },
   "scripts": {
-    "spellcheck": "cspell --config cspell.json \"README.md\" \"CONTRIBUTING.md\" \"SECURITY.md\" \"CHANGELOG.md\" \"TODO.md\" \"llms.txt\" \"docs/*.md\" \".github/**/*.md\"",
+    "spellcheck": "cspell --config cspell.json \"README.md\" \"AGENTS.md\" \"CONTRIBUTING.md\" \"SECURITY.md\" \"CHANGELOG.md\" \"TODO.md\" \"llms.txt\" \"docs/*.md\" \".github/**/*.md\" \".kiro/**/*.md\"",
     "format": "prettier --write \"**/*.{md,json,yml,yaml,cff}\"",
     "format:check": "prettier --check \"**/*.{md,json,yml,yaml,cff}\""
   },

@@ -1,42 +1,53 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Install the ReFrame game configuration optimisation agent for GitHub Copilot.
+    Install the ReFrame game configuration optimisation agent for GitHub Copilot, Google Antigravity, or Kiro.
 
 .DESCRIPTION
-    Downloads and installs reframe.agent.md into the VS Code user prompts folder
-    (user-level install, default) or into .github/agents/ (repo-level install).
+    Downloads and installs ReFrame agent definitions and steering/skill manifests
+    for GitHub Copilot (VS Code), Google Antigravity (AGY), Kiro, or all three platforms.
+    Supports both user-level (global) and repo-level (workspace) installations.
 
 .PARAMETER Target
     Installation target. 'user' (default) or 'repo'.
 
+.PARAMETER Platform
+    Target AI agent platform: 'copilot' (default), 'antigravity', 'kiro', or 'all'.
+
 .PARAMETER Ref
     Git ref (tag, branch, or commit SHA) to install from. Defaults to 'main'.
-    Pin to a release tag for reproducible installs: -Ref v1.0.0
+    Pin to a release tag for reproducible installs: -Ref v1.2.0
 
 .PARAMETER DryRun
     Show what would happen without writing any files.
 
 .PARAMETER Uninstall
-    Remove the installed ReFrame agent file.
+    Remove the installed ReFrame agent files for the selected platform(s).
 
 .EXAMPLE
     irm https://raw.githubusercontent.com/CTOUT/ReFrame/main/install.ps1 | iex
 
 .EXAMPLE
-    # Recommended — repo-level install with full knowledge base:
-    git clone https://github.com/CTOUT/ReFrame.git; cd ReFrame; .\install.ps1 -Target repo
+    # Recommended — repo-level install for all platforms (Copilot, Antigravity, Kiro):
+    git clone https://github.com/CTOUT/ReFrame.git; cd ReFrame; .\install.ps1 -Target repo -Platform all
 
 .EXAMPLE
-    .\install.ps1 -Target repo -Ref v1.0.0
+    # Install globally for Google Antigravity and Kiro:
+    .\install.ps1 -Target user -Platform all
 
 .EXAMPLE
-    .\install.ps1 -DryRun
+    .\install.ps1 -Target repo -Platform antigravity -Ref v1.2.0
+
+.EXAMPLE
+    .\install.ps1 -DryRun -Platform all
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [ValidateSet('user', 'repo')]
     [string]$Target = 'user',
+
+    [ValidateSet('copilot', 'antigravity', 'kiro', 'all')]
+    [string]$Platform = 'copilot',
 
     [ValidatePattern('^[a-zA-Z0-9._/-]+$')]
     [string]$Ref = 'main',
@@ -57,76 +68,190 @@ if ($Ref -match '\.\.') {
 # Enforce TLS 1.2 / 1.3 for older PowerShell versions
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 -bor [Net.SecurityProtocolType]::Tls13
 
-# --- Paths ---
-$agentFileName = 'reframe.agent.md'
-$rawBase = "https://raw.githubusercontent.com/CTOUT/ReFrame/$Ref/.github/agents"
+$rawRoot = "https://raw.githubusercontent.com/CTOUT/ReFrame/$Ref"
+$cwd = (Get-Location).Path
+$homeDir = if ($env:USERPROFILE) { $env:USERPROFILE } else { $HOME }
 
-$userPromptsPath = switch ($true) {
-    ($IsLinux) { "$HOME/.config/Code/User/prompts" }
-    ($IsMacOS) { "$HOME/Library/Application Support/Code/User/prompts" }
+$vscodePromptsPath = switch ($true) {
+    ($IsLinux) { "$homeDir/.config/Code/User/prompts" }
+    ($IsMacOS) { "$homeDir/Library/Application Support/Code/User/prompts" }
     default { "$env:APPDATA\Code\User\prompts" }
 }
 
-$installPath = if ($Target -eq 'repo') {
-    Join-Path (Get-Location) '.github\agents'
+$platformsToProcess = if ($Platform -eq 'all') {
+    @('copilot', 'antigravity', 'kiro')
 }
 else {
-    $userPromptsPath
+    @($Platform)
 }
 
-$destFile = Join-Path $installPath $agentFileName
+# Build file mapping list: SourceRelPath, DestPath, PlatformName
+$installItems = [System.Collections.Generic.List[PSCustomObject]]::new()
+
+foreach ($plat in $platformsToProcess) {
+    switch ($plat) {
+        'copilot' {
+            $dest = if ($Target -eq 'repo') {
+                Join-Path $cwd '.github\agents\reframe.agent.md'
+            }
+            else {
+                Join-Path $vscodePromptsPath 'reframe.agent.md'
+            }
+            $installItems.Add([PSCustomObject]@{
+                Platform      = 'copilot'
+                SourceRelPath = '.github/agents/reframe.agent.md'
+                DestPath      = $dest
+                WrapAsSkill   = $false
+            })
+        }
+        'antigravity' {
+            if ($Target -eq 'repo') {
+                $installItems.Add([PSCustomObject]@{
+                    Platform      = 'antigravity'
+                    SourceRelPath = 'AGENTS.md'
+                    DestPath      = Join-Path $cwd 'AGENTS.md'
+                    WrapAsSkill   = $false
+                })
+                $installItems.Add([PSCustomObject]@{
+                    Platform      = 'antigravity'
+                    SourceRelPath = '.agents/skills.json'
+                    DestPath      = Join-Path $cwd '.agents\skills.json'
+                    WrapAsSkill   = $false
+                })
+            }
+            else {
+                $installItems.Add([PSCustomObject]@{
+                    Platform      = 'antigravity'
+                    SourceRelPath = 'AGENTS.md'
+                    DestPath      = Join-Path $homeDir '.gemini\config\skills\reframe\SKILL.md'
+                    WrapAsSkill   = $true
+                })
+            }
+        }
+        'kiro' {
+            if ($Target -eq 'repo') {
+                $installItems.Add([PSCustomObject]@{
+                    Platform      = 'kiro'
+                    SourceRelPath = 'AGENTS.md'
+                    DestPath      = Join-Path $cwd 'AGENTS.md'
+                    WrapAsSkill   = $false
+                })
+                $installItems.Add([PSCustomObject]@{
+                    Platform      = 'kiro'
+                    SourceRelPath = '.kiro/agents/reframe.json'
+                    DestPath      = Join-Path $cwd '.kiro\agents\reframe.json'
+                    WrapAsSkill   = $false
+                })
+                $installItems.Add([PSCustomObject]@{
+                    Platform      = 'kiro'
+                    SourceRelPath = '.kiro/steering/reframe.md'
+                    DestPath      = Join-Path $cwd '.kiro\steering\reframe.md'
+                    WrapAsSkill   = $false
+                })
+            }
+            else {
+                $installItems.Add([PSCustomObject]@{
+                    Platform      = 'kiro'
+                    SourceRelPath = 'AGENTS.md'
+                    DestPath      = Join-Path $homeDir '.kiro\steering\reframe-agent.md'
+                    WrapAsSkill   = $false
+                })
+                $installItems.Add([PSCustomObject]@{
+                    Platform      = 'kiro'
+                    SourceRelPath = '.kiro/steering/reframe.md'
+                    DestPath      = Join-Path $homeDir '.kiro\steering\reframe.md'
+                    WrapAsSkill   = $false
+                })
+            }
+        }
+    }
+}
+
+# Deduplicate by DestPath (e.g. AGENTS.md when installing both antigravity and kiro at repo level)
+$uniqueItems = $installItems | Group-Object -Property DestPath | ForEach-Object { $_.Group[0] }
 
 # --- Uninstall ---
 if ($Uninstall) {
-    if (Test-Path $destFile) {
-        if ($DryRun) {
-            Write-Host "[DryRun] Would remove: $destFile"
+    foreach ($item in $uniqueItems) {
+        if (Test-Path $item.DestPath) {
+            if ($DryRun) {
+                Write-Host "[DryRun] Would remove: $($item.DestPath)"
+            }
+            else {
+                Remove-Item $item.DestPath -Force
+                Write-Host "Removed: $($item.DestPath)"
+            }
         }
         else {
-            Remove-Item $destFile -Force
-            Write-Host "Removed: $destFile"
+            Write-Host "Not installed at: $($item.DestPath)"
         }
-    }
-    else {
-        Write-Host "Not installed at: $destFile"
     }
     return
 }
 
-# --- Download ---
-$sourceUrl = "$rawBase/$agentFileName"
-
-Write-Host "ReFrame installer"
-Write-Host "  Source : $sourceUrl"
-Write-Host "  Target : $destFile"
+# --- Install ---
+Write-Host "ReFrame installer (Target: $Target | Platform: $Platform | Ref: $Ref)"
+foreach ($item in $uniqueItems) {
+    Write-Host "  [$($item.Platform)] $rawRoot/$($item.SourceRelPath) -> $($item.DestPath)"
+}
 
 if ($DryRun) {
     Write-Host "[DryRun] No files written."
     return
 }
 
-if (-not (Test-Path $installPath)) {
-    New-Item -ItemType Directory -Path $installPath -Force | Out-Null
-}
-
-# Download to a private temp directory
 $tempDir = Join-Path ([System.IO.Path]::GetTempPath()) ([System.IO.Path]::GetRandomFileName())
 New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
-$tempFile = Join-Path $tempDir $agentFileName
 
 try {
-    Invoke-WebRequest -Uri $sourceUrl -OutFile $tempFile -UseBasicParsing -TimeoutSec 30
-    Copy-Item -Path $tempFile -Destination $destFile -Force
-    Write-Host "Installed: $destFile"
+    foreach ($item in $uniqueItems) {
+        $destDir = Split-Path -Path $item.DestPath -Parent
+        if (-not (Test-Path $destDir)) {
+            New-Item -ItemType Directory -Path $destDir -Force | Out-Null
+        }
+
+        $localCandidate = Join-Path $cwd ($item.SourceRelPath -replace '/', '\')
+        $tempFile = Join-Path $tempDir ([System.IO.Path]::GetRandomFileName())
+        $sourceUrl = "$rawRoot/$($item.SourceRelPath)"
+
+        try {
+            Invoke-WebRequest -Uri $sourceUrl -OutFile $tempFile -UseBasicParsing -TimeoutSec 30
+        }
+        catch {
+            if (Test-Path $localCandidate) {
+                Copy-Item -Path $localCandidate -Destination $tempFile -Force
+            }
+            else {
+                throw
+            }
+        }
+
+        if ($item.WrapAsSkill) {
+            $body = Get-Content -Path $tempFile -Raw -Encoding UTF8
+            $skillHeader = @(
+                '---'
+                'name: reframe'
+                'description: Game configuration optimisation agent. Detects system hardware, analyses game config files and Windows registry settings, and applies improvements with backup, rollback, and named profile switching.'
+                '---'
+                ''
+            ) -join "`n"
+            [System.IO.File]::WriteAllText($item.DestPath, ($skillHeader + $body), [System.Text.UTF8Encoding]::new($false))
+        }
+        else {
+            Copy-Item -Path $tempFile -Destination $item.DestPath -Force
+        }
+
+        Write-Host "Installed: $($item.DestPath)"
+    }
+
     Write-Host ""
     if ($Target -eq 'user') {
-        Write-Host "Note: user-level installs do not include the knowledge base."
+        Write-Host "Note: user-level installs do not include the knowledge/ directory."
         Write-Host "      Game-specific profiles and per-engine JSON defaults are unavailable."
-        Write-Host "      The agent will use embedded engine defaults and web lookups."
         Write-Host "      For full knowledge base coverage, clone the repo and use -Target repo."
         Write-Host ""
     }
-    Write-Host "Restart VS Code (or run 'Developer: Reload Window') to load the agent."
+    Write-Host "Installation complete for platform(s): $($platformsToProcess -join ', ')."
 }
 finally {
     Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue

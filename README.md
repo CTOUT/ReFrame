@@ -1,6 +1,6 @@
 # ReFrame
 
-A **GitHub Copilot agent** for game configuration optimisation. ReFrame detects your system hardware, locates game configuration files, analyses registry settings, and recommends or applies hardware-appropriate performance improvements — with automatic backup and rollback.
+A cross-agent **game configuration optimisation assistant** for **GitHub Copilot (VS Code)**, **Google Antigravity**, and **Kiro**. ReFrame detects your system hardware, locates game configuration files, analyses registry settings, and recommends or applies hardware-appropriate performance and eye-comfort improvements — with automatic backup, rollback, and named profile switching.
 
 ---
 
@@ -28,35 +28,42 @@ This gives you the full knowledge base (game-specific profiles, per-engine defau
 ```powershell
 git clone https://github.com/CTOUT/ReFrame.git
 cd ReFrame
-.\install.ps1 -Target repo
+.\install.ps1 -Target repo -Platform all
 ```
 
-Open the `ReFrame` folder in VS Code. The agent is available as `@ReFrame` in that workspace and can read the `knowledge/` files at runtime.
+- **GitHub Copilot (VS Code):** Open the `ReFrame` folder in VS Code and select **ReFrame** (`@ReFrame`) in Copilot Chat.
+- **Google Antigravity:** Open the `ReFrame` folder in Antigravity — `AGENTS.md` and `.agents/skills.json` load the agent and all six skills automatically.
+- **Kiro:** Open the `ReFrame` folder in Kiro — `.kiro/steering/reframe.md` and `.kiro/agents/reframe.json` (`@reframe`) are active immediately.
 
-> To pin to a specific release: `.\install.ps1 -Target repo -Ref v1.0.0`
+> To pin to a specific release or single platform: `.\install.ps1 -Target repo -Platform antigravity -Ref v1.2.0`
 
 ### Quick install (any workspace, no clone needed)
 
-Installs the agent to your VS Code user prompts folder so `@ReFrame` is available in every workspace without cloning.
+Installs the agent globally for your preferred platform (`-Platform copilot`, `antigravity`, `kiro`, or `all`):
 
 ```powershell
-# PowerShell (Windows)
+# PowerShell (Windows) — default: GitHub Copilot user-level install
 irm https://raw.githubusercontent.com/CTOUT/ReFrame/main/install.ps1 | iex
+
+# Or install globally for all supported AI agents (Copilot, Antigravity, Kiro) from a local script:
+.\install.ps1 -Target user -Platform all
 ```
 
 > **Note:** User-level installs do not include the `knowledge/` files. Game-specific profiles (Tier 1) and per-engine JSON defaults (Tier 2) are unavailable — the agent falls back to generic best-practice rules (Tier 3) and web lookups when needed. For full knowledge base coverage, use the repo-level install above.
 
 ### Manual install
 
-Download `reframe-agent.zip` from the [latest release](https://github.com/CTOUT/ReFrame/releases/latest) and extract to:
+Download `reframe-agent.zip` from the [latest release](https://github.com/CTOUT/ReFrame/releases/latest) and extract to your workspace root, or copy the platform-specific user files to:
 
-| Platform | User-level path                                    |
-| -------- | -------------------------------------------------- |
-| Windows  | `%APPDATA%\Code\User\prompts\`                     |
-| macOS    | `~/Library/Application Support/Code/User/prompts/` |
-| Linux    | `~/.config/Code/User/prompts/`                     |
+| Agent Platform               | User-level path                                                       |
+| ---------------------------- | --------------------------------------------------------------------- |
+| **GitHub Copilot (Windows)** | `%APPDATA%\Code\User\prompts\`                                        |
+| **GitHub Copilot (macOS)**   | `~/Library/Application Support/Code/User/prompts/`                    |
+| **GitHub Copilot (Linux)**   | `~/.config/Code/User/prompts/`                                        |
+| **Google Antigravity**       | `~/.gemini/config/skills/reframe/SKILL.md`                            |
+| **Kiro**                     | `~/.kiro/steering/reframe.md` and `~/.kiro/steering/reframe-agent.md` |
 
-Then restart VS Code (or `Developer: Reload Window`).
+Then restart or reload your IDE window.
 
 The same knowledge base caveat applies — for game-specific profiles, use the repo-level install.
 
@@ -64,7 +71,9 @@ The same knowledge base caveat applies — for game-specific profiles, use the r
 
 ## Usage
 
-Open Copilot Chat and select **ReFrame** from the agent picker, or type `@ReFrame`.
+- **GitHub Copilot (VS Code):** Open Copilot Chat and select **ReFrame** from the agent picker, or type `@ReFrame`.
+- **Google Antigravity:** Open the `ReFrame` workspace and chat directly (or activate the `reframe` skill in global installs).
+- **Kiro:** Open the `ReFrame` workspace and chat directly or invoke the `@reframe` custom agent.
 
 ### Quick start
 
@@ -137,9 +146,11 @@ See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for help with common issu
 
 ```text
 ReFrame/
+├── .agents/
+│   └── skills.json                 ← Google Antigravity zero-copy skill manifest
 ├── .github/
 │   ├── agents/
-│   │   └── reframe.agent.md        ← the agent definition
+│   │   └── reframe.agent.md        ← GitHub Copilot agent definition
 │   ├── ISSUE_TEMPLATE/             ← GitHub Issue Forms & knowledge submission
 │   ├── skills/
 │   │   ├── accessibility-modifiers/← on-demand modifier guidance
@@ -152,6 +163,11 @@ ReFrame/
 │   │   ├── release.yml             ← GitHub Actions release workflow
 │   │   └── spellcheck.yml          ← Documentation spellcheck CI
 │   └── CODEOWNERS
+├── .kiro/
+│   ├── agents/
+│   │   └── reframe.json            ← Kiro custom @reframe agent definition
+│   └── steering/
+│       └── reframe.md              ← Kiro workspace steering rules
 ├── .vscode/
 │   └── extensions.json
 ├── docs/
@@ -168,6 +184,7 @@ ReFrame/
 ├── .gitignore
 ├── .markdownlint.json
 ├── .prettierrc
+├── AGENTS.md                       ← Universal agent rules (Antigravity, Kiro, Copilot)
 ├── CHANGELOG.md
 ├── CITATION.cff
 ├── CONTRIBUTING.md
