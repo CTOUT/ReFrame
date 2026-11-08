@@ -32,6 +32,8 @@ Transcript*
 *.tmp
 *.bak
 *.swp
+.env*
+.handoff_pending
 
 # ReFrame runtime backups — canonical location is %LOCALAPPDATA%\ReFrame\Backups\ (outside repo)
 # .reframe-backups/ entry kept for any legacy backups already written to the repo root

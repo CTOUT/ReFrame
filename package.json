@@ -1,7 +1,17 @@
 {
+  "name": "reframe",
+  "version": "1.2.0",
+  "description": "GitHub Copilot agent for PC game configuration optimisation, accessibility tuning, and profile switching.",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CTOUT/ReFrame.git"
+  },
   "scripts": {
-    "spellcheck": "cspell --config cspell.json \"README.md\" \"CONTRIBUTING.md\" \"SECURITY.md\" \"CHANGELOG.md\" \"TODO.md\" \"docs/*.md\"",
-    "format": "prettier --write \"**/*.{md,json,yml,yaml}\""
+    "spellcheck": "cspell --config cspell.json \"README.md\" \"CONTRIBUTING.md\" \"SECURITY.md\" \"CHANGELOG.md\" \"TODO.md\" \"llms.txt\" \"docs/*.md\" \".github/**/*.md\"",
+    "format": "prettier --write \"**/*.{md,json,yml,yaml,cff}\"",
+    "format:check": "prettier --check \"**/*.{md,json,yml,yaml,cff}\""
   },
   "devDependencies": {
     "cspell": "^10.4.0",

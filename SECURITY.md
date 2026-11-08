@@ -31,10 +31,10 @@ You can expect:
 
 This repository contains:
 
-- A GitHub Copilot agent definition (`reframe.agent.md`)
+- A GitHub Copilot agent definition (`reframe.agent.md`) and modular skills (`.github/skills/`)
 - An installer script (`install.ps1`)
-- A GitHub Actions release workflow
-- Documentation and knowledge base files
+- GitHub Actions release and validation workflows (`.github/workflows/`)
+- Documentation and knowledge base files (`docs/`, `knowledge/`)
 
 Vulnerabilities in any of these are in scope. Areas of particular interest:
 
@@ -73,11 +73,12 @@ ReFrame uses `execute/runInTerminal` to execute PowerShell for hardware detectio
 
 ## GitHub Actions
 
-The release workflow (`release.yml`) pins all actions to full commit SHAs to prevent supply-chain compromise via mutable tags:
+The workflows (`release.yml` and `spellcheck.yml`) pin all actions to full commit SHAs to prevent supply-chain compromise via mutable tags:
 
 | Action                        | SHA                                        | Tag    |
 | ----------------------------- | ------------------------------------------ | ------ |
-| `actions/checkout`            | `de0fac2e4500dabe0009e67214ff5f5447ce83dd` | v6.0.2 |
-| `softprops/action-gh-release` | `b4309332981a82ec1c5618f44dd2e27cc8bfbfda` | v3.0.0 |
+| `actions/checkout`            | `3d3c42e5aac5ba805825da76410c181273ba90b1` | v7.0.1 |
+| `actions/setup-node`          | `949feb2413d6458794dcd2491c4babbbce0c15c1` | v7.1.0 |
+| `softprops/action-gh-release` | `efb35369e0ad2afab669f228072c1b0d510eae64` | v3.0.3 |
 
-When updating either action, replace the SHA with the new release's commit SHA — do not revert to a mutable tag reference.
+When updating any action, replace the SHA with the new release's commit SHA — do not revert to a mutable tag reference.

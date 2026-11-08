@@ -891,11 +891,12 @@ dxvk.enableAsync = False
 
 **Engine:** Blizzard WoW Engine
 
-| Platform             | Config Path                                           | Format            |
-| -------------------- | ----------------------------------------------------- | ----------------- |
-| Battle.net (Retail)  | `%APPDATA%\Battle.net\WTF\Config.wtf`                 | WTF (key "value") |
-| Battle.net (Classic) | `%APPDATA%\Battle.net\WoW Classic\WTF\Config.wtf`     | WTF               |
-| Battle.net (PTR)     | `%APPDATA%\Battle.net\WoW Public Test\WTF\Config.wtf` | WTF               |
+| Platform             | Config Path                                                      | Format            |
+| -------------------- | ---------------------------------------------------------------- | ----------------- |
+| Battle.net (Forever) | `%PROGRAMFILES(X86)%\World of Warcraft\_forever_\WTF\Config.wtf` | WTF (key "value") |
+| Battle.net (Retail)  | `%PROGRAMFILES(X86)%\World of Warcraft\_retail_\WTF\Config.wtf`  | WTF               |
+| Battle.net (Classic) | `%PROGRAMFILES(X86)%\World of Warcraft\_classic_\WTF\Config.wtf` | WTF               |
+| Battle.net (PTR)     | `%PROGRAMFILES(X86)%\World of Warcraft\_ptr_\WTF\Config.wtf`     | WTF               |
 
 > **Note:** `Config.wtf` is reset to defaults if the game client detects file corruption or version mismatch. Keep a backup copy.
 
@@ -920,6 +921,33 @@ dxvk.enableAsync = False
 - `maxFPSbk 30` ensures WoW does not consume full GPU resources when alt-tabbed.
 - DLSS 4 and FSR 3.1 are available in System > Advanced. Setting a "Raid" graphics preset (lower `graphicsSpellDensity`) vs a "World/Questing" preset is a common practice.
 - **Sources:** [PCGamingWiki — World of Warcraft](https://www.pcgamingwiki.com/wiki/World_of_Warcraft), [Wowpedia — Config.wtf](https://wowpedia.fandom.com/wiki/Config.wtf)
+
+### World of Warcraft: Eye-Comfort & Ultrawide (32:9 / 21:9) Setup
+
+On 32:9 Super Ultrawide monitors (e.g. 5120×1440), playing World of Warcraft with default settings introduces visual fatigue, nausea from camera shaking, and neck strain from HUD elements pushed to the 49-inch outer bezels.
+
+**Eye-Comfort CVars:**
+
+| CVar                                     | Recommended | Reason                                                                                 |
+| ---------------------------------------- | ----------- | -------------------------------------------------------------------------------------- |
+| `SET cameraShake "0"`                    | `0`         | Eliminates environmental/spell earthquake screen shakes across the 49" panel           |
+| `SET cameraBobbing "0"`                  | `0`         | Eliminates camera head-bobbing / sway while moving                                     |
+| `SET cameraPivot "0"`                    | `0`         | Disables abrupt camera collision bounce / snaps near doorways and walls                |
+| `SET cameraSmoothTrackingStyle "0"`      | `0`         | Prevents automated sudden camera recentring                                            |
+| `SET CameraReduceUnexpectedMovement "1"` | `1`         | Enables built-in motion sickness dampener for sudden camera motions                    |
+| `SET ffxGlow "0"`                        | `0`         | Disables intense full-screen bloom glare that causes eye strain across wide FOV        |
+| `SET ffxDeath "0"`                       | `0`         | Keeps world coloured upon death, avoiding jarring high-contrast monochrome flashes     |
+| `SET screenEdgeFlash "0"`                | `0`         | Disables red low-health / aggro strobe pulses along the 32:9 peripheral edges          |
+| `SET ResampleQuality "3"`                | `3`         | Engages FidelityFX Super Resolution 1.0 (required for CAS sharpening pass)             |
+| `SET ResampleAlwaysSharpen "1"`          | `1`         | Forces CAS sharpening at 100% native resolution, preventing ciliary refocusing fatigue |
+| `SET ResampleSharpness "0.5"`            | `0.5`       | Inverted 0.0–2.0 scale (0.0=max, 2.0=min); 0.5 provides ~75% crisp clarity at 1440p    |
+
+**21:9 Centred HUD Setup on 5120×1440 (32:9):**
+
+1. **Native Aspect Clamping:** A 21:9 box on a 5120×1440 screen corresponds to 3440×1440, leaving an 840px margin on both the left and right sides.
+2. **UI Scaling:** Set `SET useUiScale "1"` and `SET uiScale "0.711111"` in `Config.wtf` for crisp 1:1 pixel font mapping.
+3. **Blizzard Edit Mode (Recommended):** Use **Esc > Edit Mode**, create a new layout, and anchor Action Bars, Chat, Player/Target frames, Minimap, Buffs, and Quest Tracker within the central 21:9 boundary (leaving the outer 840px left and right clear for peripheral immersion). This is 100% native and combat-safe (no frame taint).
+4. **Window Centring Addons (Non-Combat UI):** Third-party anchor mods that intercept secure action bars (such as `CenterWoWFrames` or `Siz UltraWide CenteredUI`) cause severe combat taint exceptions (`[ADDON_ACTION_BLOCKED]`), causing action bars to disappear in combat. For moving pop-up UI panels (Character sheet, Spellbook, Bags) without touching secure action bars, use **[BlizzMove](https://www.curseforge.com/wow/addons/blizzmove)** instead.
 
 ---
 

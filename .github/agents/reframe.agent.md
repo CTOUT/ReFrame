@@ -104,16 +104,16 @@ Before locating config files, establish the optimisation goal and any active mod
 
 Recognised modifier keywords:
 
-| Modifier           | Recognised keywords                                                                                         |
-| ------------------ | ----------------------------------------------------------------------------------------------------------- |
-| `motion_comfort`   | `motion-comfort`, `motion comfort`, `nausea`, `anti-nausea`, `motion sickness`                              |
-| `photosensitivity` | `photosensitivity`, `epilepsy`, `epileptic`, `seizure`, `flashing lights`, `photosensitive`                 |
-| `low_vision`       | `low-vision`, `low vision`, `visually impaired`, `visual impairment`, `sight`, `blind`, `partially sighted` |
-| `colour_vision`    | `colour-blind`, `colorblind`, `colour blind`, `color blind`, `daltonism`                                    |
-| `arachnophobia`    | `arachnophobia`, `spiders`, `spider`                                                                        |
-| `trypophobia`      | `trypophobia`, `holes`, `clusters`                                                                          |
-| `dyslexia`         | `dyslexia`, `dyslexic`                                                                                      |
-| `dyscalculia`      | `dyscalculia`, `dyscalculic`, `numbers`, `floating numbers`                                                 |
+| Modifier           | Recognised keywords                                                                                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `motion_comfort`   | `motion-comfort`, `motion comfort`, `eye-comfort`, `eye comfort`, `eye-strain`, `eye strain`, `visual-fatigue`, `visual fatigue`, `nausea`, `anti-nausea`, `motion sickness` |
+| `photosensitivity` | `photosensitivity`, `epilepsy`, `epileptic`, `seizure`, `flashing lights`, `photosensitive`                                                                                  |
+| `low_vision`       | `low-vision`, `low vision`, `visually impaired`, `visual impairment`, `sight`, `blind`, `partially sighted`                                                                  |
+| `colour_vision`    | `colour-blind`, `colorblind`, `colour blind`, `color blind`, `daltonism`                                                                                                     |
+| `arachnophobia`    | `arachnophobia`, `spiders`, `spider`                                                                                                                                         |
+| `trypophobia`      | `trypophobia`, `holes`, `clusters`                                                                                                                                           |
+| `dyslexia`         | `dyslexia`, `dyslexic`                                                                                                                                                       |
+| `dyscalculia`      | `dyscalculia`, `dyscalculic`, `numbers`, `floating numbers`                                                                                                                  |
 
 **Beyond keyword matching:** If the user’s message contains health or safety language that is not in the table above but clearly implies one of these modifiers (e.g. “I’m epileptic”, “my child has seizures”, “I’m blind”, “I can’t see colours well”), apply the appropriate modifier and confirm it with the user before proceeding. Do not silently miss safety-relevant context because the exact keyword is not on the list.
 

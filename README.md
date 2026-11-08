@@ -88,21 +88,21 @@ Assesses Windows gaming registry settings (multimedia scheduler, GPU scheduling,
 
 ### All commands
 
-| Command                       | Description                                           |
-| ----------------------------- | ----------------------------------------------------- |
-| `scan system`                 | Detect hardware profile                               |
-| `optimise <game>`             | Full optimisation workflow for the named game         |
-| `analyse config <path>`       | Analyse a specific config file                        |
-| `check registry`              | Assess Windows gaming registry settings               |
-| `apply`                       | Apply the pending change preview (after confirmation) |
-| `rollback <game>`             | Restore a backup for the named game                   |
-| `rollback last`               | Restore the most recent backup                        |
-| `list backups`                | Show all ReFrame backups                              |
-| `save profile <game> <name>`  | Save active config as a named profile                 |
-| `switch config <game> <name>` | Switch active config to a named profile               |
-| `list profiles [game]`        | Show saved profiles and active state                  |
-| `diff profiles <game> <a <b`  | Compare settings between two profiles                 |
-| `help`                        | Show command reference                                |
+| Command                        | Description                                           |
+| ------------------------------ | ----------------------------------------------------- |
+| `scan system`                  | Detect hardware profile                               |
+| `optimise <game>`              | Full optimisation workflow for the named game         |
+| `analyse config <path>`        | Analyse a specific config file                        |
+| `check registry`               | Assess Windows gaming registry settings               |
+| `apply`                        | Apply the pending change preview (after confirmation) |
+| `rollback <game>`              | Restore a backup for the named game                   |
+| `rollback last`                | Restore the most recent backup                        |
+| `list backups`                 | Show all ReFrame backups                              |
+| `save profile <game> <name>`   | Save active config as a named profile                 |
+| `switch config <game> <name>`  | Switch active config to a named profile               |
+| `list profiles [game]`         | Show saved profiles and active state                  |
+| `diff profiles <game> <a> <b>` | Compare settings between two profiles                 |
+| `help`                         | Show command reference                                |
 
 ---
 
@@ -140,6 +140,7 @@ ReFrame/
 ├── .github/
 │   ├── agents/
 │   │   └── reframe.agent.md        ← the agent definition
+│   ├── ISSUE_TEMPLATE/             ← GitHub Issue Forms & knowledge submission
 │   ├── skills/
 │   │   ├── accessibility-modifiers/← on-demand modifier guidance
 │   │   ├── apply-changes/          ← backup/apply/rollback workflow
@@ -160,10 +161,13 @@ ReFrame/
 ├── knowledge/
 │   ├── game-engines/               ← Per-engine default profiles (Tier 2)
 │   ├── games/                      ← Per-game config profiles (Tier 1)
-│   └── templates/                  ← Templates for contributors
+│   ├── templates/                  ← Templates for contributors
+│   └── INDEX.json                  ← Machine-readable profile index
+├── .editorconfig
 ├── .gitattributes
 ├── .gitignore
 ├── .markdownlint.json
+├── .prettierrc
 ├── CHANGELOG.md
 ├── CITATION.cff
 ├── CONTRIBUTING.md
@@ -183,7 +187,7 @@ ReFrame/
 ## FAQ
 
 **Does ReFrame work with any game?**
-ReFrame works with any game that stores configuration in INI, CFG, XML, or JSON files. It ships with a knowledge base of **26 game profiles** (Cyberpunk 2077, World of Warcraft, Counter-Strike 2, Apex Legends, Minecraft, Baldur's Gate 3, and more) across **14 engine profiles** (UE4/UE5, Source 2, REDengine 4, Unity, and more). Use `optimise <game name>` and ReFrame will locate and analyse whatever configs it finds — even for titles without a dedicated profile.
+ReFrame works with any game that stores configuration in INI, CFG, XML, or JSON files. It ships with a knowledge base of **47 game profiles** (Cyberpunk 2077, World of Warcraft, Counter-Strike 2, Apex Legends, Minecraft, Baldur's Gate 3, and more) across **16 engine profiles** (UE4/UE5, Source 2, REDengine 4, Unity, and more). Use `optimise <game name>` and ReFrame will locate and analyse whatever configs it finds — even for titles without a dedicated profile.
 
 **Will ReFrame break my game or corrupt my save files?**
 No. ReFrame only modifies game configuration files and Windows registry settings — never save data. Every change is backed up to `%LOCALAPPDATA%\ReFrame\Backups\` before being applied, and `rollback <game>` restores the original state in seconds.

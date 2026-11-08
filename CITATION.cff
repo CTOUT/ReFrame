@@ -1,8 +1,18 @@
 cff-version: 1.2.0
-title: "Repository Template"
+title: "ReFrame"
 message: "If you use this software, please cite it as below."
 type: software
 authors:
-  - family-names: "Maintainer"
-    given-names: "Repository"
+  - alias: "CTOUT"
+    name: "CTOUT"
+repository-code: "https://github.com/CTOUT/ReFrame"
+url: "https://github.com/CTOUT/ReFrame"
+abstract: "GitHub Copilot agent for PC game configuration optimisation, hardware detection, Windows gaming registry analysis, accessibility tuning, and named profile switching with automatic backup and rollback."
+keywords:
+  - github-copilot
+  - game-optimisation
+  - pc-gaming
+  - configuration-management
+  - accessibility
+  - ultrawide
 license: MIT

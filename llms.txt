@@ -1,18 +1,40 @@
 # ReFrame
 
-> GitHub Copilot agent for PC game configuration optimisation and performance tuning.
+> GitHub Copilot agent for PC game configuration optimisation, accessibility tuning, and profile switching.
 
-ReFrame is an open-source GitHub Copilot agent (MIT licence) that detects system hardware,
-locates game configuration files, analyses Windows registry settings, and recommends or applies
-performance-optimised changes with automatic backup and one-command rollback.
+ReFrame is an open-source GitHub Copilot agent (MIT licence) that detects system hardware, locates and parses game configuration files (INI, CFG, XML, JSON, WTF, Lua), analyses Windows gaming registry settings, and recommends or applies hardware-appropriate performance and eye-comfort improvements with automatic backup, rollback, and named profile switching.
 
-## Key pages
+## Repository Layout
 
-- README: https://github.com/CTOUT/ReFrame/blob/main/README.md
-- Knowledge base (games): https://github.com/CTOUT/ReFrame/tree/main/knowledge/games
-- Knowledge base (engines): https://github.com/CTOUT/ReFrame/tree/main/knowledge/game-engines
-- Changelog: https://github.com/CTOUT/ReFrame/blob/main/CHANGELOG.md
-- Contributing: https://github.com/CTOUT/ReFrame/blob/main/CONTRIBUTING.md
+- `.github/agents/reframe.agent.md` — Primary agent definition, workflows, tier resolution, and safety rules
+- `.github/skills/system-scan/SKILL.md` — Hardware detection via DxDiag XML and PowerShell CIM queries
+- `.github/skills/accessibility-modifiers/SKILL.md` — Setting tables for motion/eye comfort, photosensitivity, vision, and cognitive modifiers
+- `.github/skills/apply-changes/SKILL.md` — Backup, modification, and rollback procedures for configs and registry hives
+- `.github/skills/config-profiles/SKILL.md` — Named profile creation, listing, diffing, and switching with process safety checks
+- `.github/skills/knowledge-capture/SKILL.md` — Workflow for capturing new game profiles from live sessions
+- `.github/skills/registry-analysis/SKILL.md` — Windows MMCSS, priority separation, HAGS, Game Mode, and MPO registry assessment
+- `knowledge/INDEX.json` — Machine-readable catalogue of all 47 game profiles and 16 engine profiles
+- `knowledge/games/*.json` — Tier 1 game-specific configuration profiles
+- `knowledge/game-engines/*.json` — Tier 2 engine-level default profiles
+- `knowledge/templates/*.json` — Schema templates for games, engines, and saved user profiles
+- `docs/GAMES.md` — Human-readable reference for game configuration paths, overrides, and ultrawide/eye-comfort setups
+- `docs/REGISTRY.md` — Windows gaming registry reference
+- `docs/TROUBLESHOOTING.md` — Diagnostic and remediation guide
+- `install.ps1` — PowerShell installer supporting repo-level and user-level deployment
+
+## Validation & Maintenance Scripts
+
+- `npm run format` — Format Markdown, JSON, YAML, and CFF files with Prettier
+- `npm run format:check` — Verify formatting compliance
+- `npm run spellcheck` — Validate British English (`en-GB`) spelling via CSpell
+
+## Core Architectural & Safety Constraints
+
+1. Never modify a file or registry key without creating a timestamped backup in `%LOCALAPPDATA%\ReFrame\Backups\`.
+2. Always present a Change Preview and require explicit user confirmation before writing changes.
+3. Verify the target game process is not running before applying or switching configuration files.
+4. Preserve original file encodings and Byte Order Marks (UTF-8 BOM vs. No-BOM).
+5. Evaluate knowledge hierarchy per key: Tier 1 (Game-Specific) supersedes Tier 2 (Engine Default), which supersedes Tier 3 (Generic).
 
 ## Attribution
 

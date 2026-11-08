@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **World of Warcraft: Forever (`wowf`) & Eye-Comfort Updates**:
+  - Added _World of Warcraft: Forever_ (`_forever_`, `wowf`) client support, detection paths, and aliases to `knowledge/games/world-of-warcraft.json` (`v1.2.0`), `knowledge/game-engines/blizzard-wow-engine.json` (`v1.2.0`), `knowledge/INDEX.json`, and `docs/GAMES.md`.
+  - Added 14 eye-comfort, frame-pacing, and ultrawide HUD CVars to the World of Warcraft profile (`cameraShake`, `cameraBobbing`, `cameraPivot`, `ffxGlow`, `ffxDeath`, `screenEdgeFlash`, `CameraReduceUnexpectedMovement`, `ResampleQuality`, `ResampleAlwaysSharpen`, `ResampleSharpness`, `useMaxFPS`, `LowLatencyMode`, `useUiScale`, `uiScale`).
+  - Documented the inverted `ResampleSharpness` attenuation scale (`0.0` maximum to `2.0` minimum; `0.5` sweet spot for 1440p/32:9) and combat-safe 21:9 HUD centring workflow (native Blizzard Edit Mode + `BlizzMove`) in `docs/GAMES.md` and `docs/TROUBLESHOOTING.md`.
+  - Expanded `motion_comfort` in `.github/agents/reframe.agent.md` and `.github/skills/accessibility-modifiers/SKILL.md` to recognise eye-comfort/eye-strain keywords and recommend native contrast-adaptive sharpening and combat-safe ultrawide HUD centring.
 - **Config Profiles & Switcher** (`.github/skills/config-profiles/SKILL.md`):
   - Support for creating, listing, diffing, and switching named game configuration profiles stored in `%LOCALAPPDATA%\ReFrame\Profiles\<Game>\<Profile>\`.
   - Process state guardrail preventing profile swaps while the target game is actively executing.
@@ -19,6 +24,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New agent commands in `reframe.agent.md`: `save profile <game> <name>`, `switch config <game> <name>`, `list profiles [game]`, and `diff profiles <game> <prof_a> <prof_b>`.
 - Profile troubleshooting guide in `docs/TROUBLESHOOTING.md`.
 - `knowledge/templates/profile.template.json` metadata template for profile definitions.
+
+### Changed
+
+- **Repository Standardisation & Governance**:
+  - Updated `CITATION.cff` with accurate ReFrame metadata, author attribution, abstract, and keywords.
+  - Expanded `llms.txt` into a complete architectural and safety orientation guide for AI agents.
+  - Synchronised `SECURITY.md` scope and pinned GitHub Actions commit SHA table with `.github/workflows/release.yml` and `.github/workflows/spellcheck.yml`.
+  - Updated `README.md` command table syntax, repository structure tree, and knowledge base counts (**47 game profiles** across **16 engine profiles**).
+  - Updated `package.json` metadata, added `format:check` script, and expanded `spellcheck` and `format` coverage to include `.github/**/*.md`, `llms.txt`, and `*.cff`.
 
 ---
 
@@ -139,6 +153,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `install.ps1` installer for user-level and repo-level installation
 - Docs: `REGISTRY.md` (Windows gaming registry reference), `GAMES.md` (known game config paths)
 
-[Unreleased]: https://github.com/CTOUT/ReFrame/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/CTOUT/ReFrame/compare/v1.2.0...HEAD
+[v1.2.0]: https://github.com/CTOUT/ReFrame/compare/v1.1.0...v1.2.0
 [v1.1.0]: https://github.com/CTOUT/ReFrame/compare/v1.0.0...v1.1.0
 [v1.0.0]: https://github.com/CTOUT/ReFrame/releases/tag/v1.0.0

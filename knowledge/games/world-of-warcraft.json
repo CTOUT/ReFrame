@@ -1,11 +1,15 @@
 {
   "game": "World of Warcraft",
   "engine": "Blizzard WoW Engine",
-  "profile_version": "1.1.0",
-  "updated": "2026-08-11",
+  "profile_version": "1.2.0",
+  "updated": "2026-11-08",
   "aliases": [
     "WoW",
     "World of Warcraft: The War Within",
+    "World of Warcraft: Forever",
+    "WoW: Forever",
+    "WoW Forever",
+    "wowf",
     "WoW Retail",
     "Project Ascension",
     "Ascension WoW",
@@ -38,6 +42,11 @@
     }
   ],
   "variants": [
+    {
+      "name": "World of Warcraft: Forever",
+      "config_path": "%PROGRAMFILES(X86)%\\World of Warcraft\\_forever_\\WTF\\Config.wtf",
+      "note": "World of Warcraft: Forever (wowf) runs on the modern engine build (1.60+) with D3D12, Reflex, and Modern Edit Mode. Also common at D:\\Games\\Blizzard\\World of Warcraft\\_forever_\\WTF\\Config.wtf."
+    },
     {
       "name": "Project Ascension (Custom WotLK 3.3.5a Client)",
       "config_path": "D:\\Games\\Other\\Ascension\\Launcher\\resources\\ascension-live\\WTF\\Config.wtf",
@@ -271,6 +280,173 @@
         "balanced": "1",
         "quality": "1"
       }
+    },
+    {
+      "key": "cameraShake",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Environmental and spell screen shake (0=none, 1=full).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Essential for eye-comfort and motion-comfort on ultrawide and super-ultrawide (32:9) setups."
+    },
+    {
+      "key": "cameraBobbing",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Camera head bobbing while running (0=disabled, 1=enabled).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Eliminates camera sway; reduces nausea and visual fatigue."
+    },
+    {
+      "key": "cameraPivot",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Automatic camera obstacle collision bounce (0=disabled, 1=enabled).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Prevents sudden camera collision snaps in doorways and narrow indoor corridors."
+    },
+    {
+      "key": "ffxGlow",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Fullscreen glow / atmospheric bloom (0=disabled, 1=enabled).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Disabling removes glaring bloom wash across wide panels, enhancing text clarity and reducing eye strain."
+    },
+    {
+      "key": "ffxDeath",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Monochrome ghost death screen (0=full colour, 1=monochrome).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Maintains world colour when dead, avoiding high-contrast flash transitions."
+    },
+    {
+      "key": "screenEdgeFlash",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Red edge flashing on low health or aggro (0=disabled, 1=enabled).",
+      "recommendations": {
+        "performance": "0",
+        "balanced": "0",
+        "quality": "0"
+      },
+      "notes": "Prevents large flashing arcs in peripheral vision on 21:9 and 32:9 monitors."
+    },
+    {
+      "key": "CameraReduceUnexpectedMovement",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Built-in motion sickness dampener for sudden camera movements (0=disabled, 1=enabled).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Recommended when motion_comfort modifier is active; stored in Config.wtf or account-level config-cache.wtf."
+    },
+    {
+      "key": "ResampleQuality",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Resampling and upscaling filter algorithm (0=Bilinear, 1=Bicubic, 2=Point, 3=FidelityFX Super Resolution 1.0).",
+      "recommendations": {
+        "performance": "3",
+        "balanced": "3",
+        "quality": "3"
+      },
+      "notes": "Must be set to 3 (FSR 1.0) for ResampleAlwaysSharpen and ResampleSharpness (FidelityFX CAS) to engage."
+    },
+    {
+      "key": "ResampleAlwaysSharpen",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Forces FidelityFX CAS sharpening pass even at 100% native RenderScale (0=disabled, 1=enabled).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Counters temporal/CMAA2 anti-aliasing softness on high-resolution displays, preventing ciliary muscle refocusing fatigue."
+    },
+    {
+      "key": "ResampleSharpness",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "FidelityFX CAS attenuation filter intensity on an INVERTED 0.0 to 2.0 scale (0.0=maximum sharpness, 1.0=moderate, 2.0=minimum/softest).",
+      "recommendations": {
+        "performance": "0.5",
+        "balanced": "0.5",
+        "quality": "0.5"
+      },
+      "notes": "Scale is inverted: 0.0 is 100% sharpness, 0.5 is ~75% crisp 1440p sweet spot, and 1.8 is the gentlest subtle touch above off."
+    },
+    {
+      "key": "useMaxFPS",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Master toggle for foreground frame-rate limiter (0=uncapped, 1=enabled).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Must be set to 1 in modern client builds for maxFPS to take effect."
+    },
+    {
+      "key": "LowLatencyMode",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Low latency pipeline mode (0=Off, 1=Built-in, 2=NVIDIA Reflex On, 3=NVIDIA Reflex On + Boost).",
+      "recommendations": {
+        "performance": "3",
+        "balanced": "2",
+        "quality": "3"
+      },
+      "notes": "Use 2 or 3 on NVIDIA GPUs for minimal render queue latency under DirectX 12."
+    },
+    {
+      "key": "useUiScale",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Enable custom UI scaling (0=disabled, 1=enabled).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "uiScale",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "User interface scale multiplier (typically 0.64 to 1.0).",
+      "recommendations": {
+        "performance": "0.711111",
+        "balanced": "0.711111",
+        "quality": "0.711111"
+      },
+      "notes": "0.711111 provides crisp 1:1 pixel font mapping on 1440p / 5120x1440 displays."
     }
   ],
   "manual_only_settings": [
@@ -285,6 +461,12 @@
       "location": "System > Graphics > Raid Preset",
       "recommendation": "Set a dedicated reduced-quality preset for raid instances. WoW's Raid Preset system (added in Dragonflight) automatically applies a separate graphics profile when entering raid zones.",
       "reason": "Separates graphics quality between solo/world content and group content where performance is critical. Configured entirely in-game."
+    },
+    {
+      "setting": "21:9 Centered HUD Layout (32:9 Super Ultrawide)",
+      "location": "Game Menu > Edit Mode",
+      "recommendation": "Use native Edit Mode to position Action Bars, Unit Frames, Chat, Minimap, and Tracker inside the central 3440px zone (leaving 840px outer margins). Avoid anchor addons like CenterWoWFrames/Siz that hook secure action bars and trigger [ADDON_ACTION_BLOCKED] in combat. Use BlizzMove for non-combat dialog windows.",
+      "reason": "Native Edit Mode is signed and 100% combat-safe, eliminating Lua errors and action bar disappearance during combat lockdown."
     }
   ],
   "notes": [

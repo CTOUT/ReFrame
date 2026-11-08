@@ -1,17 +1,19 @@
 {
   "engine": "Blizzard WoW Engine",
   "version_range": "all",
-  "profile_version": "1.0.0",
-  "updated": "2026-04-28",
+  "profile_version": "1.2.0",
+  "updated": "2026-11-08",
   "detection_signatures": {
     "file_names": ["Config.wtf"],
     "path_fragments": [
+      "World of Warcraft\\_forever_\\WTF",
       "World of Warcraft\\_retail_\\WTF",
       "World of Warcraft\\_classic_\\WTF",
       "World of Warcraft\\_ptr_\\WTF"
     ]
   },
   "config_file_locations": {
+    "windows_forever": "%PROGRAMFILES(X86)%\\World of Warcraft\\_forever_\\WTF\\Config.wtf",
     "windows_retail": "%PROGRAMFILES(X86)%\\World of Warcraft\\_retail_\\WTF\\Config.wtf",
     "windows_classic": "%PROGRAMFILES(X86)%\\World of Warcraft\\_classic_\\WTF\\Config.wtf",
     "windows_note": "Blizzard installs WoW to Program Files by default. Config.wtf uses a SET key value format (not INI sections). The Battle.net launcher rewrites some keys; edits made while the game is running may be overwritten. Edit only while WoW is closed."
@@ -144,6 +146,64 @@
         "quality": "0"
       },
       "notes": "Hardware audio acceleration is deprecated on modern Windows 10/11 drivers and causes distortion or crashes. Set to 0."
+    },
+    {
+      "key": "ResampleQuality",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Resampling and upscaling filter algorithm (0=Bilinear, 1=Bicubic, 2=Point, 3=FidelityFX Super Resolution 1.0).",
+      "recommendations": {
+        "performance": "3",
+        "balanced": "3",
+        "quality": "3"
+      },
+      "notes": "Must be set to 3 (FSR 1.0) for ResampleAlwaysSharpen and ResampleSharpness (FidelityFX CAS) to engage."
+    },
+    {
+      "key": "ResampleAlwaysSharpen",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Forces FidelityFX CAS sharpening pass even at 100% native RenderScale (0=disabled, 1=enabled).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      },
+      "notes": "Counters temporal/CMAA2 anti-aliasing softness on high-resolution displays, preventing ciliary muscle refocusing fatigue."
+    },
+    {
+      "key": "ResampleSharpness",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "FidelityFX CAS attenuation filter intensity on an INVERTED 0.0 to 2.0 scale (0.0=maximum sharpness, 1.0=moderate, 2.0=minimum/softest).",
+      "recommendations": {
+        "performance": "0.5",
+        "balanced": "0.5",
+        "quality": "0.5"
+      },
+      "notes": "Scale is inverted: 0.0 is 100% sharpness, 0.5 is ~75% crisp 1440p sweet spot, and 1.8 is the gentlest subtle touch above off."
+    },
+    {
+      "key": "useMaxFPS",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Master toggle for foreground frame-rate limiter (0=uncapped, 1=enabled).",
+      "recommendations": {
+        "performance": "1",
+        "balanced": "1",
+        "quality": "1"
+      }
+    },
+    {
+      "key": "LowLatencyMode",
+      "file": "Config.wtf",
+      "format": "wtf",
+      "effect": "Low latency pipeline mode (0=Off, 1=Built-in, 2=NVIDIA Reflex On, 3=NVIDIA Reflex On + Boost).",
+      "recommendations": {
+        "performance": "3",
+        "balanced": "2",
+        "quality": "3"
+      }
     }
   ],
   "sources": [

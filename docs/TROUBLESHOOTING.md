@@ -203,6 +203,37 @@ Set-ItemProperty -Path "<path_to_config>" -Name IsReadOnly -Value $false
 
 ---
 
+## In-game sharpening slider has no effect or works in reverse
+
+**Symptom:** In games using AMD FidelityFX Contrast Adaptive Sharpening (CAS) or FSR 1.0 (such as _World of Warcraft_), running `/console sharpness` does nothing, or adjusting the in-game **Resample Sharpness** slider makes the image softer when moved toward `2.0` and overly ringed/crispy when moved toward `0.0`.
+
+**Causes and fixes:**
+
+1. **Wrong CVar name or missing prerequisite pass.** In the Blizzard WoW Engine, the active CVar is `ResampleSharpness` (not `sharpness`), and the sharpening pass is completely bypassed at 100% native render scale unless both `SET ResampleQuality "3"` (FidelityFX Super Resolution 1.0) and `SET ResampleAlwaysSharpen "1"` are enabled in `Config.wtf`.
+2. **Inverted attenuation scale (`0.0` = maximum, `2.0` = minimum).** Unlike percentage sliders where higher numbers mean stronger sharpening, `ResampleSharpness` controls the CAS attenuation factor:
+   - `0.0` = **100% maximum sharpness** (can introduce white haloing around text and foliage at 1440p)
+   - `0.2` = **Default (80% sharpness)** when `ResampleAlwaysSharpen` is enabled without a custom value
+   - `0.5` = **Balanced sweet spot (~75% sharpness)** — counters CMAA2 edge softness without ringing artefacts on 1440p and 32:9 Super Ultrawide displays
+   - `1.0` = **Moderate (50% sharpness)**
+   - `1.8` = **Subtle (10% sharpness)** — gentlest sharpening pass before turning off
+   - `2.0` = **0% sharpness (off / softest)**
+
+---
+
+## Ultrawide UI centring addons cause Lua errors or missing action bars in combat
+
+**Symptom:** On 32:9 Super Ultrawide monitors (e.g. 5120×1440), installing third-party frame-centring addons in _World of Warcraft_ (such as _Centered WoW Frames_ or _Siz UltraWide CenteredUI_) triggers `[ADDON_ACTION_BLOCKED]` Lua taint errors and causes action bars or unit frames to disappear when entering combat.
+
+**Cause:** Modern WoW clients enforce strict `InCombatLockdown()` protection on `SecureActionButtonTemplate` frames (action bars, unit frames, and cast bars). Addons that dynamically hook or re-anchor these frames to an invisible 21:9 container taint the execution path whenever combat begins or a vehicle/stance transition occurs during combat.
+
+**Fix:**
+
+1. Disable third-party global parent-frame anchor addons (`CenterWoWFrames`, `Siz UltraWide CenteredUI`).
+2. Use the game's native **Edit Mode** (`Esc` → **Edit Mode**) to move HUD elements (Action Bars, Player/Target frames, Cast Bar, Buffs, Minimap, and Objective Tracker) inward into the central 21:9 (`3440×1440`) comfort zone. Native Edit Mode anchors are stored server-side and never taint combat frames.
+3. Pair native Edit Mode with **BlizzMove** (available on CurseForge) to drag and `Ctrl` + Mouse Wheel scale non-combat pop-up windows (Character sheet, Spellbook, Professions, Collections, Quest Log, and Auction House) that normally open flush against the far-left 32:9 monitor bezel.
+
+---
+
 ## Steam Deck, Linux, and macOS
 
 **ReFrame is currently Windows-only.** The following features are unavailable on other platforms:
