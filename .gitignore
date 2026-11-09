@@ -41,9 +41,20 @@ backups/
 .reframe-backups/
 
 # ReFrame bespoke agent, skill, and platform manifests (override global gitignore)
+.github/.copilot-subscriptions.json
+.github/instructions/
+.github/hooks/
+.github/plugin/
+.github/workflows/*.md
+.claude/
+.cursor/
+.cursorrules
+.gemini/
 !.github/agents/
 !.github/agents/**
 !.github/skills/
 !.github/skills/**
 !.agents/
 !.agents/skills.json
+!.kiro/
+!.kiro/**
