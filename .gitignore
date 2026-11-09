@@ -39,3 +39,11 @@ Transcript*
 # .reframe-backups/ entry kept for any legacy backups already written to the repo root
 backups/
 .reframe-backups/
+
+# ReFrame bespoke agent, skill, and platform manifests (override global gitignore)
+!.github/agents/
+!.github/agents/**
+!.github/skills/
+!.github/skills/**
+!.agents/
+!.agents/skills.json

@@ -9,9 +9,9 @@
     "url": "https://github.com/CTOUT/ReFrame.git"
   },
   "scripts": {
-    "spellcheck": "cspell --config cspell.json \"README.md\" \"AGENTS.md\" \"CONTRIBUTING.md\" \"SECURITY.md\" \"CHANGELOG.md\" \"TODO.md\" \"llms.txt\" \"docs/*.md\" \".github/**/*.md\" \".kiro/**/*.md\"",
-    "format": "prettier --write \"**/*.{md,json,yml,yaml,cff}\"",
-    "format:check": "prettier --check \"**/*.{md,json,yml,yaml,cff}\""
+    "spellcheck": "cspell \"**\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "cspell": "^10.4.0",

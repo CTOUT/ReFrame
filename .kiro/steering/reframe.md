@@ -20,4 +20,3 @@ This repository powers **ReFrame**, a cross-agent game configuration optimisatio
 5. **Repository Conventions:**
    - All documentation, comments, and JSON descriptions must use **British English (`en-GB`)** spelling (`optimise`, `analyse`, `colour`, `centred`, `centring`, `synchronisation`, `behaviour`) per `cspell.json`.
    - Maintain 2-space indentation, UTF-8 encoding, and LF line endings per `.editorconfig` and `.prettierrc`.
-

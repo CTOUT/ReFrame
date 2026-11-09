@@ -465,7 +465,7 @@
     {
       "setting": "21:9 Centered HUD Layout (32:9 Super Ultrawide)",
       "location": "Game Menu > Edit Mode",
-      "recommendation": "Use native Edit Mode to position Action Bars, Unit Frames, Chat, Minimap, and Tracker inside the central 3440px zone (leaving 840px outer margins). Avoid anchor addons like CenterWoWFrames/Siz that hook secure action bars and trigger [ADDON_ACTION_BLOCKED] in combat. Use BlizzMove for non-combat dialog windows.",
+      "recommendation": "Use native Edit Mode to position Action Bars, Unit Frames, Chat, Minimap, and Tracker inside the central 3440px zone (leaving 840px outer margins). Avoid anchor addons like CenterWoWFrames/Siz that hook secure action bars and trigger [ADDON_ACTION_BLOCKED] in combat. Use BlizzMove for non-combat dialogue windows.",
       "reason": "Native Edit Mode is signed and 100% combat-safe, eliminating Lua errors and action bar disappearance during combat lockdown."
     }
   ],
